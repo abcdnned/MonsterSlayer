@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1xx64y185f23"]
+
+[ext_resource type="AudioStream" uid="uid://ca0bh2wlf7q53" path="res://music/music_celtic.mp3" id="1_cg7rt"]
+
+[node name="music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_cg7rt")
+autoplay = true
+max_distance = 2e+13
+bus = &"Music"

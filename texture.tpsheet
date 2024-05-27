@@ -1,0 +1,183 @@
+{
+	"textures": [
+		{
+			"image": "texture.png",
+			"size": {
+				"w": 479,
+				"h": 595
+			},
+			"sprites": [
+				{
+					"filename": "arrow_flying.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 30,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "arrow_static.png",
+					"region": {
+						"x": 0,
+						"y": 128,
+						"w": 11,
+						"h": 113
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bow_charge_1.png",
+					"region": {
+						"x": 30,
+						"y": 0,
+						"w": 128,
+						"h": 106
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bow_charge_2.png",
+					"region": {
+						"x": 0,
+						"y": 241,
+						"w": 128,
+						"h": 128
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bow_origin.png",
+					"region": {
+						"x": 158,
+						"y": 0,
+						"w": 128,
+						"h": 80
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bow_release.png",
+					"region": {
+						"x": 0,
+						"y": 369,
+						"w": 128,
+						"h": 104
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "sword.png",
+					"region": {
+						"x": 286,
+						"y": 0,
+						"w": 75,
+						"h": 254
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "dagger.png",
+					"region": {
+						"x": 0,
+						"y": 473,
+						"w": 49,
+						"h": 122
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "knight.png",
+					"region": {
+						"x": 30,
+						"y": 106,
+						"w": 106,
+						"h": 115
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "globin.png",
+					"region": {
+						"x": 128,
+						"y": 254,
+						"w": 127,
+						"h": 75
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "shield.png",
+					"region": {
+						"x": 361,
+						"y": 0,
+						"w": 118,
+						"h": 60
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.7",
+		"format": "RGBA8888",
+	}
+}
