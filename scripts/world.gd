@@ -1,4 +1,4 @@
-# 1.1 Target
+# 2.0 Target
 # Optimze StateMachine to use signals
 # Extract knock_back to a class
 # Add sub class to inherit CharacterBody2D
