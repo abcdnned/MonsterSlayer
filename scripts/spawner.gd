@@ -5,8 +5,6 @@ class_name Spawner
 @export var internval_seconds = 10
 @export var top_left = Vector2(-10, 10)
 @export var bottom_right = Vector2(10, -10)
-@onready var spawner = $"."
-@onready var world = $".."
 var enable = true
 
 
@@ -25,15 +23,13 @@ func _process(delta):
 		spawn_count = 0
 		var spawn_position = _get_spawn_position()
 		var mob = MOB.instantiate()
-		mob.mob_death.connect(_on_mob_death)
 		mob.position = spawn_position
-		spawner.add_child(mob)
+		add_child(mob)
+		mob.mob_death.connect(owner._on_mob_death)
 
 func _get_spawn_position():
 	var x = randi_range(top_left.x, bottom_right.x)
 	var y = randi_range(top_left.y, bottom_right.y)
 	return Vector2(x, y)
 
-func _on_mob_death():
-	world._on_mob_death()
 

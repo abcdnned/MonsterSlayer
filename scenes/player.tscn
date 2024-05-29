@@ -1,15 +1,15 @@
 [gd_scene load_steps=32 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
-[ext_resource type="Texture2D" uid="uid://bv3ptb5kuulqk" path="res://sprites/texture.png" id="1_dgfel"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
+[ext_resource type="Texture2D" uid="uid://ccbfxx0xmcfgf" path="res://sprites/short_sword.png" id="3_navsb"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_u465u"]
 [ext_resource type="AudioStream" uid="uid://cg4mkt8a0yb82" path="res://sounds/weapon_swing6.wav" id="4_xgjfg"]
 [ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/hit-swing-sword-small.wav" id="5_o0uxe"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="7_tqos6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
-radius = 154.003
+radius = 109.005
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqexy"]
 radius = 53.1507
@@ -147,7 +147,7 @@ loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_520qt"]
 resource_name = "swap"
-length = 0.26
+length = 0.4
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -156,10 +156,10 @@ tracks/0/path = NodePath("Sprite2D/LongSword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.1, 0.12, 0.14, 0.16, 0.2, 0.26),
+"times": PackedFloat32Array(0, 0.1, 0.14, 0.16, 0.18, 0.22, 0.34, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(169, 141), Vector2(216, -4.00001), Vector2(131, -159), Vector2(-64, -190), Vector2(-124, -168), Vector2(-124, -168)]
+"values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(-52, -173), Vector2(-66, -163)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -168,10 +168,10 @@ tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.1, 0.12, 0.14, 0.16, 0.2, 0.26),
+"times": PackedFloat32Array(0, 0.1, 0.14, 0.16, 0.18, 0.22, 0.34, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.97266, -2.35804, -2.35804]
+"values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.52262, -2.16964, -2.30237]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -180,7 +180,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.08),
+"times": PackedFloat32Array(0.12),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -194,7 +194,7 @@ tracks/3/path = NodePath("Sprite2D/damage_zone:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.14),
+"times": PackedFloat32Array(0.14, 0.18),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -310,15 +310,14 @@ region_rect = Rect2(512, 256, 128, 128)
 [node name="LongSword" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
 position = Vector2(139, 83)
-texture = ExtResource("1_dgfel")
-region_enabled = true
+texture = ExtResource("3_navsb")
 region_rect = Rect2(0, 0, 256, 128)
 
 [node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
-position = Vector2(190, -8)
+position = Vector2(171, -11)
 shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

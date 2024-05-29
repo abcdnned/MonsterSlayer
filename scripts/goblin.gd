@@ -31,8 +31,6 @@ func _find_target():
 	
 func _process(delta):
 	match state_machine.get_current_node():
-		"dying":
-			animation_tree.set("parameters/conditions/dying", false)
 		"chasing":
 			if is_in_group("lose"):
 				return
@@ -51,6 +49,7 @@ func _physics_process(delta):
 				velocity = direction * SPEED
 				move_and_slide()
 		"dying":
+			animation_tree.set("parameters/conditions/dying", false)
 			var direction = source_position.direction_to(global_position).normalized()
 			velocity = direction * v
 			v = clamp(v - 10.0, 0.0, v)

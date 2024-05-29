@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cp030u4v4at67"]
+[gd_scene load_steps=24 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://bv3ptb5kuulqk" path="res://sprites/texture.png" id="1_wlp18"]
@@ -181,21 +181,17 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"dying"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2117k"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gg5j"]
 advance_mode = 2
 advance_condition = &"attack"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vpymk"]
-advance_mode = 2
-advance_condition = &"dying"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqpmq"]
 switch_mode = 2
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hcv2b"]
+advance_mode = 2
+advance_condition = &"dying"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
 states/attack/node = SubResource("AnimationNodeAnimation_w5dv5")
@@ -204,7 +200,7 @@ states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(443.5, 103)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
 states/dying/position = Vector2(644.5, 100.5)
-transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "dying", "End", SubResource("AnimationNodeStateMachineTransition_2117k"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_vpymk"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq")]
+transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b")]
 graph_offset = Vector2(107.565, 18.2925)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]

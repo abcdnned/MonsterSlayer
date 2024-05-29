@@ -72,7 +72,10 @@ func _physics_process(delta):
 
 func _move_velocity(delta):
 	var mouse_pos = get_global_mouse_position()
-	var direction = Input.get_vector("left", "right", "up", "down")
+	var forward = (mouse_pos - global_position).normalized()
+	var right = forward.rotated(deg_to_rad(90))
+	var input = Input.get_vector("left", "right", "up", "down")
+	var direction = (forward * -input.y + right * input.x).normalized()
 	if direction:
 		if Input.is_action_pressed("sprint"):
 			speed = SPRINT_SPEED
