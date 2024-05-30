@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=37 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cg4mkt8a0yb82" path="res://sounds/weapon_swing6.wav" id="4_xgjfg"]
 [ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/hit-swing-sword-small.wav" id="5_o0uxe"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="7_tqos6"]
+[ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/521999__kastenfrosch__whoosh-dash.wav" id="8_cfbsl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
@@ -229,11 +230,43 @@ tracks/1/keys = {
 "values": [0.0, -0.334249]
 }
 
+[sub_resource type="Animation" id="Animation_2ax2q"]
+resource_name = "dash"
+length = 0.12
+step = 0.02
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dash"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(115, 59)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
 _data = {
 "Idle": SubResource("Animation_jv00t"),
 "Idle_2": SubResource("Animation_7u53w"),
 "RESET": SubResource("Animation_1ea80"),
+"dash": SubResource("Animation_2ax2q"),
 "dying": SubResource("Animation_bsl3y"),
 "stun": SubResource("Animation_7vio4"),
 "swap": SubResource("Animation_520qt"),
@@ -242,6 +275,9 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_llu4x"]
 animation = &"Idle_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bakcq"]
+animation = &"dash"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5wc5"]
 animation = &"dying"
@@ -287,18 +323,28 @@ advance_condition = &"dying"
 advance_mode = 2
 advance_condition = &"dying"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1jlru"]
+advance_mode = 2
+advance_condition = &"dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ljhp8"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_07lbm"]
 states/Idle_2/node = SubResource("AnimationNodeAnimation_llu4x")
 states/Idle_2/position = Vector2(452.165, 100.056)
 states/Start/position = Vector2(202.5, 99.75)
+states/dash/node = SubResource("AnimationNodeAnimation_bakcq")
+states/dash/position = Vector2(450.17, -33.0603)
 states/dying/node = SubResource("AnimationNodeAnimation_x5wc5")
 states/dying/position = Vector2(683.21, 56.5448)
 states/stun/node = SubResource("AnimationNodeAnimation_yx11l")
 states/stun/position = Vector2(640.81, 180.202)
 states/swap/node = SubResource("AnimationNodeAnimation_64u58")
 states/swap/position = Vector2(458.81, 248.202)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5")]
-graph_offset = Vector2(320.625, 15.0373)
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8")]
+graph_offset = Vector2(228.555, -63.1577)
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
 script = ExtResource("1_4j5bp")
@@ -337,6 +383,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_07lbm")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
+parameters/conditions/dash = false
 parameters/conditions/dying = false
 parameters/conditions/stun = false
 parameters/conditions/unstun = false
@@ -352,4 +399,13 @@ bus = &"SFX"
 
 [node name="death" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_tqos6")
+bus = &"SFX"
+
+[node name="dash_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="dash_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_cfbsl")
+volume_db = -5.0
 bus = &"SFX"

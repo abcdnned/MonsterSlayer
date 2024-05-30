@@ -1,9 +1,8 @@
 # 2.0 Target
-# Optimze StateMachine to use signals
 # Extract knock_back to a class
 # Add sub class to inherit CharacterBody2D
 # Goblin with bow
-# Dash
+
 extends Node2D
 
 @onready var player = $Player

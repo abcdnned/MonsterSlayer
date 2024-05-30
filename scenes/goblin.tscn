@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
-[ext_resource type="Texture2D" uid="uid://bv3ptb5kuulqk" path="res://sprites/texture.png" id="1_wlp18"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
+[ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_qle06"]
 [ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="4_1il02"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_24x6m"]
 [ext_resource type="AudioStream" uid="uid://colc12t274qwt" path="res://sounds/dagger_woosh.mp3" id="6_q4eyh"]
@@ -201,15 +201,14 @@ states/chasing/position = Vector2(443.5, 103)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
 states/dying/position = Vector2(644.5, 100.5)
 transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b")]
-graph_offset = Vector2(107.565, 18.2925)
+graph_offset = Vector2(107.565, 39.3447)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
 script = ExtResource("1_04ln1")
 
 [node name="GoblinSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_wlp18")
-region_enabled = true
+texture = ExtResource("2_qle06")
 region_rect = Rect2(384, 128, 128, 128)
 
 [node name="DaggerSprite" type="Sprite2D" parent="GoblinSprite"]

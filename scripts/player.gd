@@ -10,6 +10,9 @@ var state_machine
 @onready var damage_zone = $Sprite2D/damage_zone
 @onready var sprite_2d = $Sprite2D
 @onready var death = $death
+@onready var dash_cooldown = $dash_cooldown
+@onready var dash_sound = $dash_sound
+const dash_dust = preload("res://scenes/dash_dust.tscn")
 
 signal health_change(health)
 signal max_health_change(max_health)
@@ -27,6 +30,10 @@ var knock_back_source_position
 
 
 var speed = WALK_SPEED
+
+var dash_direction = Vector2.ZERO
+const DASH_MAX_SPEED = 1400.0
+var dash_speed = DASH_MAX_SPEED
 
 func _ready():
 	state_machine = animation_tree.get("parameters/playback")
@@ -48,6 +55,10 @@ func _physics_process(delta):
 		"Idle_2":
 			if Input.is_action_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
+			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
+				dash_direction = get_direction()
+				animation_tree.set("parameters/conditions/dash", true)
+				dash_cooldown.start()
 			else:
 				_move_velocity(delta)
 				move_and_slide()	
@@ -69,15 +80,28 @@ func _physics_process(delta):
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
+		"dash":
+			animation_tree.set("parameters/conditions/dash", false)
+			velocity = dash_direction * dash_speed
+			dash_speed -= 10.0
+			move_and_slide()
 
-func _move_velocity(delta):
+func get_direction():
 	var mouse_pos = get_global_mouse_position()
 	var forward = (mouse_pos - global_position).normalized()
 	var right = forward.rotated(deg_to_rad(90))
-	var input = Input.get_vector("left", "right", "up", "down")
+	var input = get_input()
 	var direction = (forward * -input.y + right * input.x).normalized()
+	return direction
+
+func get_input():
+	return Input.get_vector("left", "right", "up", "down")
+
+func _move_velocity(delta):
+	var direction = get_direction()
+	var input = get_input()
 	if direction:
-		if Input.is_action_pressed("sprint"):
+		if Input.is_action_pressed("sprint") and input == Vector2(0.0, -1.0):
 			speed = SPRINT_SPEED
 		else:
 			speed = WALK_SPEED
@@ -116,3 +140,13 @@ func _apply_dying_shader():
 func _emit_hero_death():
 	emit_signal("hero_death")
 	
+func dash():
+	if not dash_direction:
+		dash_direction = -(get_global_mouse_position() - global_position).normalized()
+	dash_speed = DASH_MAX_SPEED
+	dash_sound.play()
+	var dust = dash_dust.instantiate()
+	dust.position = global_position
+	dust.play("spawn")
+	owner.add_child(dust)
+		

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1agjji5vkxkq"]
+
+[ext_resource type="Texture2D" uid="uid://bv3ptb5kuulqk" path="res://sprites/dash_dust.png" id="1_xt6u8"]
+[ext_resource type="PackedScene" uid="uid://cpleteurevlp2" path="res://scenes/short_live.tscn" id="2_morse"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnusl"]
+atlas = ExtResource("1_xt6u8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6iv2"]
+atlas = ExtResource("1_xt6u8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsqi5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnusl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6iv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6iv2")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 6.0
+}]
+
+[node name="DashDust" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_qsqi5")
+animation = &"spawn"
+frame = 2
+frame_progress = 1.0
+
+[node name="ShortLive" parent="." instance=ExtResource("2_morse")]
+life = 0.3
