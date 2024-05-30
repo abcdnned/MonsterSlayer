@@ -178,5 +178,5 @@ bottom_right = Vector2(19, -19)
 [connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]
 [connection signal="hero_death" from="Player" to="." method="_on_player_hero_death"]
 [connection signal="max_health_change" from="Player" to="UI/Life/MaxHearts" method="_on_player_max_health_change"]
-[connection signal="mob_death" from="Goblin" to="." method="_on_mob_death"]
-[connection signal="mob_death" from="Goblin2" to="." method="_on_mob_death"]
+[connection signal="death" from="Goblin" to="." method="_on_mob_death"]
+[connection signal="death" from="Goblin2" to="." method="_on_mob_death"]

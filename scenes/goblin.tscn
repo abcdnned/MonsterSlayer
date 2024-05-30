@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://cp030u4v4at67"]
+[gd_scene load_steps=25 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
 [ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_qle06"]
 [ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="4_1il02"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_24x6m"]
+[ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="5_ol62f"]
 [ext_resource type="AudioStream" uid="uid://colc12t274qwt" path="res://sounds/dagger_woosh.mp3" id="6_q4eyh"]
 [ext_resource type="AudioStream" uid="uid://yi2aurllo2s0" path="res://sounds/knifesword-stab.wav" id="7_6xa88"]
 
@@ -206,6 +207,7 @@ graph_offset = Vector2(107.565, 39.3447)
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
 script = ExtResource("1_04ln1")
+max_health = 1.0
 
 [node name="GoblinSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_qle06")
@@ -233,8 +235,7 @@ shape = SubResource("RectangleShape2D_riha1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cpxg6")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
+[node name="NavigationAgent2D" parent="." instance=ExtResource("5_ol62f")]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

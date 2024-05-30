@@ -1,6 +1,4 @@
 # 2.0 Target
-# Extract knock_back to a class
-# Add sub class to inherit CharacterBody2D
 # Goblin with bow
 
 extends Node2D

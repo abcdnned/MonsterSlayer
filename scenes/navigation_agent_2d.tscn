@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://dqepojbmga4ea"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D"]
+path_postprocessing = 1

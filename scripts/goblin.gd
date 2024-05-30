@@ -1,23 +1,16 @@
-extends CharacterBody2D
-
-signal mob_death
+extends Unit
 
 const SPEED = 400
 @export var target: Node2D
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var goblin_sprite = $GoblinSprite
-@onready var animation_tree = $AnimationTree
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell
 @onready var ray_cast_2d = $GoblinSprite/RayCast2D
 @onready var dagger_attack_sound = $dagger_attack_sound
 
-var state_machine
-var source_position
-var v
 
-func _ready():
-	state_machine = animation_tree.get("parameters/playback")
+func _sub_ready():
 	if not target:
 		_find_target()
 
@@ -50,20 +43,14 @@ func _physics_process(delta):
 				move_and_slide()
 		"dying":
 			animation_tree.set("parameters/conditions/dying", false)
-			var direction = source_position.direction_to(global_position).normalized()
-			velocity = direction * v
-			v = clamp(v - 10.0, 0.0, v)
+			var direction = knock_back_source_position.direction_to(global_position).normalized()
+			velocity = direction * knock_back_force
+			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
 
 
 func _on_timer_timeout():
 	navigation_agent_2d.target_position = target.global_position
-	
-func _take_damage(d, v, source_position, ticks):
-	self.v = v / 2
-	self.source_position = source_position
-	emit_signal("mob_death")
-	animation_tree.set("parameters/conditions/dying", true)
 	
 func _apply_dying_shader():
 	var shader = load("res://shader/dying.gdshader")

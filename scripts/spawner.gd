@@ -25,7 +25,7 @@ func _process(delta):
 		var mob = MOB.instantiate()
 		mob.position = spawn_position
 		add_child(mob)
-		mob.mob_death.connect(owner._on_mob_death)
+		mob.death.connect(owner._on_mob_death)
 
 func _get_spawn_position():
 	var x = randi_range(top_left.x, bottom_right.x)
