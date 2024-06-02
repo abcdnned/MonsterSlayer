@@ -1,11 +1,8 @@
 extends Unit
 
-@onready var player_sprite = $Sprite2D
 @onready var sword_swing_sound = $sword_swing_sound
 @onready var sword_hit = $sword_hit
-@onready var sword_hit_2 = $sword_hit2
 @onready var damage_zone = $Sprite2D/damage_zone
-@onready var sprite_2d = $Sprite2D
 @onready var death_sound = $death
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
@@ -26,7 +23,7 @@ func _process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
 			var mouse_pos = get_global_mouse_position()
-			player_sprite.look_at(mouse_pos)
+			sprite.look_at(mouse_pos)
 			animation_tree.set("parameters/conditions/unstun", false)
 		"dying":
 			animation_tree.set("parameters/conditions/dying", false)
@@ -97,13 +94,6 @@ func _sword_swing():
 func _death():
 	_apply_dying_shader()
 	death_sound.play()
-	
-	
-func _apply_dying_shader():
-	var shader = load("res://shader/dying.gdshader")
-	var shader_material = ShaderMaterial.new()
-	shader_material.shader = shader
-	sprite_2d.material = shader_material
 
 func _emit_hero_death():
 	emit_signal("hero_death")

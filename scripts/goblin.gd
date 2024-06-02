@@ -3,10 +3,9 @@ extends Unit
 const SPEED = 400
 @export var target: Node2D
 @onready var navigation_agent_2d = $NavigationAgent2D
-@onready var goblin_sprite = $GoblinSprite
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell
-@onready var ray_cast_2d = $GoblinSprite/RayCast2D
+@onready var ray_cast_2d = $Sprite2D/RayCast2D
 @onready var dagger_attack_sound = $dagger_attack_sound
 
 
@@ -38,7 +37,7 @@ func _physics_process(delta):
 		"chasing":
 			if not target.is_in_group("dead") and not is_in_group("lose"):
 				var direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
-				goblin_sprite.look_at(navigation_agent_2d.get_next_path_position())
+				sprite.look_at(navigation_agent_2d.get_next_path_position())
 				velocity = direction * SPEED
 				move_and_slide()
 		"dying":
@@ -51,12 +50,6 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	navigation_agent_2d.target_position = target.global_position
-	
-func _apply_dying_shader():
-	var shader = load("res://shader/dying.gdshader")
-	var shader_material = ShaderMaterial.new()
-	shader_material.shader = shader
-	goblin_sprite.material = shader_material
 	
 func _play_dying_sound():
 	death_yell.play()

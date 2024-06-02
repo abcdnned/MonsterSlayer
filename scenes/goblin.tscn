@@ -19,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GoblinSprite/DaggerSprite:position")
+tracks/0/path = NodePath("Sprite2D/DaggerSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GoblinSprite/DaggerSprite:rotation")
+tracks/1/path = NodePath("Sprite2D/DaggerSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -60,7 +60,7 @@ step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GoblinSprite/DaggerSprite:position")
+tracks/0/path = NodePath("Sprite2D/DaggerSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GoblinSprite/DaggerSprite:rotation")
+tracks/1/path = NodePath("Sprite2D/DaggerSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -84,7 +84,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GoblinSprite/damage_zone:monitoring")
+tracks/2/path = NodePath("Sprite2D/damage_zone:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -209,24 +209,24 @@ z_index = 9
 script = ExtResource("1_04ln1")
 max_health = 1.0
 
-[node name="GoblinSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qle06")
 region_rect = Rect2(384, 128, 128, 128)
 
-[node name="DaggerSprite" type="Sprite2D" parent="GoblinSprite"]
+[node name="DaggerSprite" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
 position = Vector2(55, 36)
 rotation = 1.5708
 texture = ExtResource("2_5avma")
 
-[node name="RayCast2D" type="RayCast2D" parent="GoblinSprite"]
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
 target_position = Vector2(130, 0)
 
-[node name="damage_zone" parent="GoblinSprite" node_paths=PackedStringArray("sound") instance=ExtResource("4_24x6m")]
+[node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_24x6m")]
 damage = 0.5
 sound = NodePath("../../dagger_stab")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoblinSprite/damage_zone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
 position = Vector2(110, 1)
 rotation = 1.5708
 scale = Vector2(1.72, 5.6)

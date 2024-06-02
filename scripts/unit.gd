@@ -3,6 +3,7 @@ class_name Unit
 
 var state_machine
 
+@onready var sprite = $Sprite2D
 @onready var anim = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 
@@ -40,4 +41,10 @@ func _take_damage(d, v, source_position, tick):
 		emit_signal("death")
 	else:
 		animation_tree.set("parameters/conditions/stun", true)
+		
+func _apply_dying_shader():
+	var shader = load("res://shader/dying.gdshader")
+	var shader_material = ShaderMaterial.new()
+	shader_material.shader = shader
+	sprite.material = shader_material
 		

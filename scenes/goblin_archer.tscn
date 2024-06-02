@@ -1,0 +1,389 @@
+[gd_scene load_steps=32 format=3 uid="uid://dfgn2a3h6b40x"]
+
+[ext_resource type="Script" path="res://scripts/goblin_archer.gd" id="1_3piif"]
+[ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_gfai2"]
+[ext_resource type="Texture2D" uid="uid://b06jiyytltwrn" path="res://sprites/bow_origin.png" id="3_bl0gi"]
+[ext_resource type="Texture2D" uid="uid://bniufex1t0d0x" path="res://sprites/bow_charge_1.png" id="4_105m8"]
+[ext_resource type="Texture2D" uid="uid://dvccv3i0em70v" path="res://sprites/bow_charge_2.png" id="5_prhyb"]
+[ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="5_w4vcc"]
+[ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="6_7o0bp"]
+[ext_resource type="Texture2D" uid="uid://bl47gvcpimnxl" path="res://sprites/bow_release.png" id="6_xnxj2"]
+[ext_resource type="AudioStream" uid="uid://ceyufeboh3qgw" path="res://sounds/209399__sgossner__bow-release.wav" id="9_b15np"]
+[ext_resource type="AudioStream" uid="uid://bcx27b0i3y6" path="res://sounds/521242__cyoung510__arrow_woosh.wav" id="10_t5u7j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_00sus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bl0gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_105m8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_prhyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xnxj2")
+}],
+"loop": false,
+"name": &"charge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bl0gi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpxg6"]
+radius = 42.0476
+
+[sub_resource type="Animation" id="Animation_2swvi"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Bow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(27, 23)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Bow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.89322]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Bow:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n85hi"]
+resource_name = "charge"
+length = 1.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Bow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Bow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Bow:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_mtitu"]
+resource_name = "chasing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Bow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(27, 23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Bow:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.89322]
+}
+
+[sub_resource type="Animation" id="Animation_ic3m7"]
+resource_name = "dying"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_apply_dying_shader"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_dying_sound"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_my0w6"]
+resource_name = "shoot"
+length = 0.44
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Bow:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Bow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(47, 12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Bow:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
+_data = {
+"RESET": SubResource("Animation_2swvi"),
+"charge": SubResource("Animation_n85hi"),
+"chasing": SubResource("Animation_mtitu"),
+"dying": SubResource("Animation_ic3m7"),
+"shoot": SubResource("Animation_my0w6")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3f77"]
+animation = &"charge"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c14qp"]
+animation = &"chasing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7si6"]
+animation = &"dying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sp5tj"]
+animation = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l62qm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbvko"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wo53"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jm3he"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7qcc2"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci34l"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_858cl"]
+advance_mode = 2
+advance_condition = &"chasing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g7ojp"]
+advance_mode = 2
+advance_condition = &"charge"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
+states/charge/node = SubResource("AnimationNodeAnimation_c3f77")
+states/charge/position = Vector2(309.79, 231.02)
+states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
+states/chasing/position = Vector2(436.5, 79.5)
+states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
+states/dying/position = Vector2(672, 127)
+states/shoot/node = SubResource("AnimationNodeAnimation_sp5tj")
+states/shoot/position = Vector2(501.69, 311.912)
+transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "shoot", "chasing", SubResource("AnimationNodeStateMachineTransition_nbvko"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_7wo53"), "shoot", "dying", SubResource("AnimationNodeStateMachineTransition_jm3he"), "charge", "shoot", SubResource("AnimationNodeStateMachineTransition_7qcc2"), "charge", "dying", SubResource("AnimationNodeStateMachineTransition_ci34l"), "charge", "chasing", SubResource("AnimationNodeStateMachineTransition_858cl"), "chasing", "charge", SubResource("AnimationNodeStateMachineTransition_g7ojp")]
+graph_offset = Vector2(77.115, 41.8872)
+
+[node name="GoblinArcher" type="CharacterBody2D" groups=["mob"]]
+z_index = 9
+script = ExtResource("1_3piif")
+max_health = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gfai2")
+region_rect = Rect2(384, 128, 128, 128)
+
+[node name="Bow" type="AnimatedSprite2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(27, 23)
+rotation = 1.89322
+sprite_frames = SubResource("SpriteFrames_00sus")
+animation = &"charge"
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
+position = Vector2(0, 11)
+target_position = Vector2(800, 0)
+
+[node name="ShootPos" type="Node2D" parent="Sprite2D"]
+position = Vector2(73, 11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cpxg6")
+
+[node name="NavigationAgent2D" parent="." instance=ExtResource("5_w4vcc")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uihj1")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uihj1")
+}
+tree_root = SubResource("AnimationNodeStateMachine_42fvj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/charge = false
+parameters/conditions/chasing = false
+parameters/conditions/dying = false
+parameters/conditions/shoot = false
+
+[node name="death_yell" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_7o0bp")
+bus = &"SFX"
+
+[node name="bow_release" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_b15np")
+bus = &"SFX"
+
+[node name="arrow_woosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_t5u7j")
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

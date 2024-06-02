@@ -42,7 +42,9 @@ func _on_player_hero_death():
 func _on_mob_death():
 	kill_count += 1
 	kill.text = "KILL " + str(kill_count)
-	if kill_count == 10:
+	if kill_count > 10:
+		spawner.level = 2
+	if kill_count == 20:
 		_win()
 
 func _win():

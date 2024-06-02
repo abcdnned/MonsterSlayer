@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpfjbnll6lwhd"]
+
+[ext_resource type="Script" path="res://scripts/flying_arrow.gd" id="1_w2wbf"]
+[ext_resource type="Texture2D" uid="uid://uguua72h6a7k" path="res://sprites/arrow_flying.png" id="1_xmxod"]
+[ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="2_7nsk1"]
+[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/521242__cyoung510__arrow_hits_target.wav" id="4_cpy6s"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5u5xm"]
+b = Vector2(80, 0)
+
+[node name="FlyingArrow" type="Node2D"]
+script = ExtResource("1_w2wbf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_xmxod")
+
+[node name="damage_zone" parent="." node_paths=PackedStringArray("sound") instance=ExtResource("2_7nsk1")]
+monitoring = true
+damage = 0.5
+sound = NodePath("../arrow_hit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+position = Vector2(-17, 0)
+shape = SubResource("SegmentShape2D_5u5xm")
+
+[node name="arrow_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cpy6s")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="hit" from="damage_zone" to="." method="_on_damage_zone_hit"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
