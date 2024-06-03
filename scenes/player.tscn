@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=44 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -11,6 +11,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fog5n"]
+size = Vector2(207, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqexy"]
 radius = 53.1507
@@ -76,34 +79,46 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.358054]
+"values": [Vector2(139, 83)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/LongSword:position")
+tracks/2/path = NodePath("CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(139, 83)]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/path = NodePath("Sprite2D/damage_zone:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/damage_zone2:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -143,67 +158,60 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_yn61v"]
 resource_name = "dash_attack"
-length = 0.5
+length = 0.6
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.358054, 0.107121, 0.0]
+"values": [-0.001129, -0.001129, 0.00670608, 0.00670608, 0.304272]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.433986, 0.433986, 0.00670608, 0.00670608, 0.304272]
+"values": [Vector2(36, 27), Vector2(36, 27), Vector2(176, 2), Vector2(176, 2), Vector2(115, 82)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/LongSword:position")
+tracks/2/path = NodePath("Sprite2D/damage_zone2:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(113.808, 101.556), Vector2(113.808, 101.556), Vector2(189, 2), Vector2(189, 2), Vector2(115, 82)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath(".:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.24, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(400, 0), Vector2(415, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D/damage_zone:monitoring")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.08, 0.24),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"dash_attack_sound"
+}, {
+"args": [],
+"method": &"dash_attack_stop"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_bsl3y"]
@@ -357,6 +365,9 @@ animation = &"Idle_2"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bakcq"]
 animation = &"dash"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ka6py"]
+animation = &"dash_attack"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5wc5"]
 animation = &"dying"
 
@@ -409,26 +420,43 @@ advance_condition = &"dash"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ibfje"]
+advance_mode = 2
+advance_condition = &"dash_attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q74yg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ulak1"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oslmi"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_07lbm"]
 states/Idle_2/node = SubResource("AnimationNodeAnimation_llu4x")
 states/Idle_2/position = Vector2(452.165, 100.056)
 states/Start/position = Vector2(202.5, 99.75)
 states/dash/node = SubResource("AnimationNodeAnimation_bakcq")
 states/dash/position = Vector2(450.17, -33.0603)
+states/dash_attack/node = SubResource("AnimationNodeAnimation_ka6py")
+states/dash_attack/position = Vector2(631.32, -79.7902)
 states/dying/node = SubResource("AnimationNodeAnimation_x5wc5")
-states/dying/position = Vector2(683.21, 56.5448)
+states/dying/position = Vector2(743.71, 41.5448)
 states/stun/node = SubResource("AnimationNodeAnimation_yx11l")
-states/stun/position = Vector2(640.81, 180.202)
+states/stun/position = Vector2(670.31, 213.702)
 states/swap/node = SubResource("AnimationNodeAnimation_64u58")
 states/swap/position = Vector2(458.81, 248.202)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8")]
-graph_offset = Vector2(180.66, -67.4027)
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_ulak1"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_oslmi")]
+graph_offset = Vector2(281.565, -44.7677)
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
 script = ExtResource("1_4j5bp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 0.358054
 texture = ExtResource("2_mrnfa")
 region_rect = Rect2(512, 256, 128, 128)
 
@@ -444,6 +472,13 @@ sound = NodePath("../../sword_hit")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
 position = Vector2(171, -11)
 shape = SubResource("CircleShape2D_y1hdt")
+
+[node name="damage_zone2" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
+sound = NodePath("../../sword_hit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone2"]
+position = Vector2(156.5, 3)
+shape = SubResource("RectangleShape2D_fog5n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqexy")
@@ -463,6 +498,7 @@ tree_root = SubResource("AnimationNodeStateMachine_07lbm")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/dash = false
+parameters/conditions/dash_attack = false
 parameters/conditions/dying = false
 parameters/conditions/stun = false
 parameters/conditions/unstun = false

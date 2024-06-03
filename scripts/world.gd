@@ -1,5 +1,5 @@
 # 2.0 Target
-# Goblin with bow
+# Shield
 
 extends Node2D
 

@@ -162,8 +162,8 @@ text = "Kill: 0"
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("9_l8cwq")
 internval_seconds = 3
-top_left = Vector2(-19, 19)
-bottom_right = Vector2(19, -19)
+top_left = Vector2(-1000, 1000)
+bottom_right = Vector2(1000, -1000)
 
 [connection signal="health_change" from="Player" to="UI/Life" method="_on_player_health_change"]
 [connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]

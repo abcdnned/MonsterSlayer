@@ -3,8 +3,8 @@ class_name Spawner
 
 @export var unit_type: String = "res://scenes/goblin.tscn"
 @export var internval_seconds = 10
-@export var top_left = Vector2(-10, 10)
-@export var bottom_right = Vector2(10, -10)
+@export var top_left = Vector2(-10, 10) * 128.0
+@export var bottom_right = Vector2(10, -10) * 128.0
 @export var enable = true
 
 var level = 1
@@ -27,8 +27,8 @@ func _process(delta):
 		do_spawn()
 
 func _get_spawn_position():
-	var x = randi_range(top_left.x, bottom_right.x)
-	var y = randi_range(top_left.y, bottom_right.y)
+	var x = randf_range(top_left.x, bottom_right.x)
+	var y = randf_range(bottom_right.y, top_left.y)
 	return Vector2(x, y)
 	
 func do_spawn():
@@ -46,7 +46,8 @@ func spawn_mob(type, group):
 	var mob = type.instantiate()
 	mob.add_to_group(group)
 	mob.position = spawn_position
-	get_parent().add_child(mob)
+	print(spawn_position)
+	owner.add_child(mob)
 	mob.death.connect(owner._on_mob_death)
 
 
