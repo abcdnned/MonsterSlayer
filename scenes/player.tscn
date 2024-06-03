@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=38 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -37,26 +37,26 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/LongSword:position")
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(130, 58)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(130, 58)]
 }
 
 [sub_resource type="Animation" id="Animation_1ea80"]
@@ -64,34 +64,46 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/LongSword:position")
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(139, 83)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/path = NodePath("Sprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.358054]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/path = NodePath("Sprite2D/LongSword:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(139, 83)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -127,6 +139,71 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(115, 59)]
+}
+
+[sub_resource type="Animation" id="Animation_yn61v"]
+resource_name = "dash_attack"
+length = 0.5
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.358054, 0.107121, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.433986, 0.433986, 0.00670608, 0.00670608, 0.304272]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/LongSword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(113.808, 101.556), Vector2(113.808, 101.556), Vector2(189, 2), Vector2(189, 2), Vector2(115, 82)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(400, 0), Vector2(415, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/damage_zone:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.08, 0.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_bsl3y"]
@@ -184,52 +261,52 @@ step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/LongSword:position")
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.14, 0.16, 0.18, 0.22, 0.34, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(-52, -173), Vector2(-66, -163)]
+"values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.52262, -2.16964, -2.30237]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/path = NodePath("Sprite2D/damage_zone:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.14, 0.16, 0.18, 0.22, 0.34, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.14, 0.18),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.52262, -2.16964, -2.30237]
+"values": [true, false]
 }
-tracks/2/type = "method"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("Sprite2D/LongSword:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.14, 0.16, 0.18, 0.22, 0.34, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(-52, -173), Vector2(-66, -163)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0.12),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"_sword_swing"
 }]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D/damage_zone:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.14, 0.18),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_jxbro"]
@@ -239,26 +316,26 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/LongSword:position")
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(139, 83), Vector2(199, 38)]
+"values": [0.0, -0.334249]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -0.334249]
+"values": [Vector2(139, 83), Vector2(199, 38)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
@@ -267,6 +344,7 @@ _data = {
 "Idle_2": SubResource("Animation_7u53w"),
 "RESET": SubResource("Animation_1ea80"),
 "dash": SubResource("Animation_2ax2q"),
+"dash_attack": SubResource("Animation_yn61v"),
 "dying": SubResource("Animation_bsl3y"),
 "stun": SubResource("Animation_7vio4"),
 "swap": SubResource("Animation_520qt"),
@@ -344,12 +422,13 @@ states/stun/position = Vector2(640.81, 180.202)
 states/swap/node = SubResource("AnimationNodeAnimation_64u58")
 states/swap/position = Vector2(458.81, 248.202)
 transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8")]
-graph_offset = Vector2(151.83, 6.63731)
+graph_offset = Vector2(180.66, -67.4027)
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
 script = ExtResource("1_4j5bp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.358054
 texture = ExtResource("2_mrnfa")
 region_rect = Rect2(512, 256, 128, 128)
 
