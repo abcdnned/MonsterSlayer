@@ -13,8 +13,9 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 		return
 	if _check_parent(body):
 		return
-	body._take_damage(damage, knockback, global_position, 10)
-	_play_sound()
+	var sound_override = body._take_damage(damage, knockback, global_position, 10)
+	if not sound_override:
+		_play_sound()
 	emit_signal("hit")
 
 func _check_parent(body):

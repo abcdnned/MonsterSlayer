@@ -1,13 +1,15 @@
-[gd_scene load_steps=44 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=63 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
 [ext_resource type="Texture2D" uid="uid://ccbfxx0xmcfgf" path="res://sprites/short_sword.png" id="3_navsb"]
+[ext_resource type="Texture2D" uid="uid://cj72vm8j4vmff" path="res://sprites/shield.png" id="4_cceqf"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_u465u"]
 [ext_resource type="AudioStream" uid="uid://cg4mkt8a0yb82" path="res://sounds/weapon_swing6.wav" id="4_xgjfg"]
 [ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/hit-swing-sword-small.wav" id="5_o0uxe"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="7_tqos6"]
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/521999__kastenfrosch__whoosh-dash.wav" id="8_cfbsl"]
+[ext_resource type="AudioStream" uid="uid://cm8vrpnyg8fpv" path="res://sounds/690076__apocaloopsis__small-object-hit-wood.wav" id="10_fawfi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
@@ -60,6 +62,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(130, 58)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Shield:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, -64)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Shield:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.26397]
 }
 
 [sub_resource type="Animation" id="Animation_1ea80"]
@@ -123,6 +149,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D/Shield:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, -64)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D/Shield:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.26397]
 }
 
 [sub_resource type="Animation" id="Animation_2ax2q"]
@@ -346,14 +396,176 @@ tracks/1/keys = {
 "values": [Vector2(139, 83), Vector2(199, 38)]
 }
 
+[sub_resource type="Animation" id="Animation_rospf"]
+resource_name = "Idle_Defense"
+loop_mode = 1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 58)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Shield:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(67, -20)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Shield:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.195387]
+}
+
+[sub_resource type="Animation" id="Animation_bqgxm"]
+resource_name = "idle_defense_cancel"
+length = 0.04
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Shield:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(67, -20), Vector2(21, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Shield:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.195387, -1.25664]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/LongSword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 58)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_86rf0"]
+resource_name = "idle_defense_hit"
+length = 0.1
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/LongSword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(130, 58)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Shield:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(46, -15), Vector2(85, -18), Vector2(67, -20)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Shield:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.195387]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
 _data = {
 "Idle": SubResource("Animation_jv00t"),
 "Idle_2": SubResource("Animation_7u53w"),
+"Idle_Defense": SubResource("Animation_rospf"),
 "RESET": SubResource("Animation_1ea80"),
 "dash": SubResource("Animation_2ax2q"),
 "dash_attack": SubResource("Animation_yn61v"),
 "dying": SubResource("Animation_bsl3y"),
+"idle_defense_cancel": SubResource("Animation_bqgxm"),
+"idle_defense_hit": SubResource("Animation_86rf0"),
 "stun": SubResource("Animation_7vio4"),
 "swap": SubResource("Animation_520qt"),
 "walk": SubResource("Animation_jxbro")
@@ -361,6 +573,9 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_llu4x"]
 animation = &"Idle_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rtk7t"]
+animation = &"Idle_Defense"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bakcq"]
 animation = &"dash"
@@ -370,6 +585,12 @@ animation = &"dash_attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5wc5"]
 animation = &"dying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3dcbf"]
+animation = &"idle_defense_cancel"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oqu07"]
+animation = &"idle_defense_hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx11l"]
 animation = &"stun"
@@ -436,22 +657,73 @@ advance_condition = &"stun"
 advance_mode = 2
 advance_condition = &"dying"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8pbgv"]
+advance_mode = 2
+advance_condition = &"defense"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j1roa"]
+advance_mode = 2
+advance_condition = &"defense_cancel"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mo8ah"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_thn15"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c8xnu"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fitq"]
+advance_mode = 2
+advance_condition = &"defense_hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7yfoa"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qytbj"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q43em"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pd3b5"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_st1sv"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_07lbm"]
+states/End/position = Vector2(1036.5, -124.5)
 states/Idle_2/node = SubResource("AnimationNodeAnimation_llu4x")
 states/Idle_2/position = Vector2(452.165, 100.056)
-states/Start/position = Vector2(202.5, 99.75)
+states/Idle_Defense/node = SubResource("AnimationNodeAnimation_rtk7t")
+states/Idle_Defense/position = Vector2(237.695, -221.575)
+states/Start/position = Vector2(175.5, 143.75)
 states/dash/node = SubResource("AnimationNodeAnimation_bakcq")
-states/dash/position = Vector2(450.17, -33.0603)
+states/dash/position = Vector2(159.668, -36.0603)
 states/dash_attack/node = SubResource("AnimationNodeAnimation_ka6py")
-states/dash_attack/position = Vector2(631.32, -79.7902)
+states/dash_attack/position = Vector2(822.32, -157.79)
 states/dying/node = SubResource("AnimationNodeAnimation_x5wc5")
-states/dying/position = Vector2(743.71, 41.5448)
+states/dying/position = Vector2(999.21, 83.5448)
+states/idle_defense_cancel/node = SubResource("AnimationNodeAnimation_3dcbf")
+states/idle_defense_cancel/position = Vector2(544.79, -197.445)
+states/idle_defense_hit/node = SubResource("AnimationNodeAnimation_oqu07")
+states/idle_defense_hit/position = Vector2(454.13, -391.379)
 states/stun/node = SubResource("AnimationNodeAnimation_yx11l")
-states/stun/position = Vector2(670.31, 213.702)
+states/stun/position = Vector2(849.81, 222.202)
 states/swap/node = SubResource("AnimationNodeAnimation_64u58")
-states/swap/position = Vector2(458.81, 248.202)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_ulak1"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_oslmi")]
-graph_offset = Vector2(281.565, -44.7677)
+states/swap/position = Vector2(431.31, 296.202)
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_ulak1"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_oslmi"), "Idle_2", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_8pbgv"), "Idle_Defense", "idle_defense_cancel", SubResource("AnimationNodeStateMachineTransition_j1roa"), "idle_defense_cancel", "Idle_2", SubResource("AnimationNodeStateMachineTransition_mo8ah"), "idle_defense_cancel", "dying", SubResource("AnimationNodeStateMachineTransition_thn15"), "idle_defense_cancel", "stun", SubResource("AnimationNodeStateMachineTransition_c8xnu"), "Idle_Defense", "idle_defense_hit", SubResource("AnimationNodeStateMachineTransition_7fitq"), "idle_defense_hit", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_7yfoa"), "Idle_Defense", "stun", SubResource("AnimationNodeStateMachineTransition_qytbj"), "Idle_Defense", "dying", SubResource("AnimationNodeStateMachineTransition_q43em"), "idle_defense_hit", "stun", SubResource("AnimationNodeStateMachineTransition_pd3b5"), "idle_defense_hit", "dying", SubResource("AnimationNodeStateMachineTransition_st1sv")]
+graph_offset = Vector2(109.305, -457.404)
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
 script = ExtResource("1_4j5bp")
@@ -465,6 +737,12 @@ z_index = -1
 position = Vector2(139, 83)
 texture = ExtResource("3_navsb")
 region_rect = Rect2(0, 0, 256, 128)
+
+[node name="Shield" type="Sprite2D" parent="Sprite2D"]
+z_index = 1
+position = Vector2(21, -64)
+rotation = -1.26397
+texture = ExtResource("4_cceqf")
 
 [node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 sound = NodePath("../../sword_hit")
@@ -499,6 +777,9 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/dash = false
 parameters/conditions/dash_attack = false
+parameters/conditions/defense = false
+parameters/conditions/defense_cancel = false
+parameters/conditions/defense_hit = false
 parameters/conditions/dying = false
 parameters/conditions/stun = false
 parameters/conditions/unstun = false
@@ -523,4 +804,8 @@ one_shot = true
 [node name="dash_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_cfbsl")
 volume_db = -5.0
+bus = &"SFX"
+
+[node name="shield_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_fawfi")
 bus = &"SFX"

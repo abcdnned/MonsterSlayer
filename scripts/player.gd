@@ -7,6 +7,7 @@ extends Unit
 @onready var death_sound = $death
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
+@onready var shield_hit = $shield_hit
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 
 signal hero_death
@@ -38,7 +39,9 @@ func _process(delta):
 func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
-			if Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
+			if Input.is_action_pressed("right_click"):
+				animation_tree.set("parameters/conditions/defense", true)
+			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
@@ -81,7 +84,20 @@ func _physics_process(delta):
 			velocity = dash_attack_direction * dash_attack_speed
 			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
 			move_and_slide()
-			
+		"Idle_Defense":
+			animation_tree.set("parameters/conditions/defense", false)
+			var mouse_pos = get_global_mouse_position()
+			sprite.look_at(mouse_pos)
+			if not Input.is_action_pressed("right_click"):
+				animation_tree.set("parameters/conditions/defense_cancel", true)
+		"idle_defense_cancel":
+			animation_tree.set("parameters/conditions/defense_cancel", false)
+		"idle_defense_hit":
+			animation_tree.set("parameters/conditions/defense_hit", false)
+			var direction = knock_back_source_position.direction_to(global_position).normalized()
+			velocity = direction * knock_back_force
+			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
+			move_and_slide()
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -131,4 +147,29 @@ func dash_attack_stop():
 	
 func dash_attack_sound():
 	sword_swing_sound.play()
+
+func _take_damage(d, v, source_position, tick):
+	match state_machine.get_current_node():
+		"Idle_Defense":
+			var hit_angel = Vector2(cos(sprite.global_rotation), sin(sprite.global_rotation)).angle_to((source_position - global_position))
+			if abs(hit_angel) < deg_to_rad(40.0):
+				self.knock_back_force = v
+				self.knock_back_source_position = source_position
+				animation_tree.set("parameters/conditions/defense_hit", true)
+				shield_hit.play()
+				return true
+			else:
+				super._take_damage(d, v, source_position, tick)
+		"idle_defense_hit":
+			var hit_angel = Vector2(cos(sprite.global_rotation), sin(sprite.global_rotation)).angle_to((source_position - global_position))
+			if abs(hit_angel) < deg_to_rad(40.0):
+				self.knock_back_force = v
+				self.knock_back_source_position = source_position
+				state_machine.start("idle_defense_hit", true)
+				shield_hit.play()
+				return true
+			else:
+				super._take_damage(d, v, source_position, tick)
+		_:
+			super._take_damage(d, v, source_position, tick)
 		
