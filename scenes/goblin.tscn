@@ -207,7 +207,7 @@ graph_offset = Vector2(107.565, 39.3447)
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
 script = ExtResource("1_04ln1")
-max_health = 1.0
+max_health = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qle06")

@@ -329,7 +329,7 @@ graph_offset = Vector2(77.115, 41.8872)
 [node name="GoblinArcher" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
 script = ExtResource("1_3piif")
-max_health = 1.0
+max_health = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_gfai2")

@@ -1,5 +1,9 @@
-# 2.0 Target
-# Shield
+# 3.0 Target
+# Map generage
+# level preset
+# Tab Map UI
+# area control
+# win game condition change to control area
 
 extends Node2D
 
