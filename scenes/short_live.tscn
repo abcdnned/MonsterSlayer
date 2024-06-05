@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpleteurevlp2"]
 
-[ext_resource type="Script" path="res://scenes/Node.gd" id="1_46i7y"]
+[ext_resource type="Script" path="res://scripts/Node.gd" id="1_m1fm6"]
 
 [node name="ShortLive" type="Node"]
-script = ExtResource("1_46i7y")
+script = ExtResource("1_m1fm6")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

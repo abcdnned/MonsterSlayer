@@ -24,6 +24,8 @@ var dash_attack_speed = DASH_ATTACK_MAX_SPEED
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
 
+var current_map_tile = Vector2(4, 4)
+
 
 
 func _process(delta):

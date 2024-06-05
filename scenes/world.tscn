@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=18 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="PackedScene" uid="uid://csinpw556o7ux" path="res://scenes/player.tscn" id="1_10ho3"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
@@ -10,6 +10,8 @@
 [ext_resource type="Shader" path="res://shader/dying.gdshader" id="8_tthfh"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="9_l8cwq"]
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
+[ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
+[ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -165,6 +167,14 @@ internval_seconds = 3
 top_left = Vector2(-1000, 1000)
 bottom_right = Vector2(1000, -1000)
 
+[node name="Map" parent="." instance=ExtResource("11_8baoh")]
+
+[node name="WinningSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_54gj3")
+attenuation = 0.000150286
+bus = &"SFX"
+
+[connection signal="map_change" from="." to="Map" method="_on_world_map_change"]
 [connection signal="health_change" from="Player" to="UI/Life" method="_on_player_health_change"]
 [connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]
 [connection signal="hero_death" from="Player" to="." method="_on_player_hero_death"]
