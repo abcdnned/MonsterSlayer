@@ -3,8 +3,8 @@ class_name Spawner
 
 @export var unit_type: String = "res://scenes/goblin.tscn"
 @export var internval_seconds = 10
-@export var top_left = Vector2(-10, 10) * 128.0
-@export var bottom_right = Vector2(10, -10) * 128.0
+var top_left = Vector2(-10, 10) * 128.0
+var bottom_right = Vector2(10, -10) * 128.0
 @export var enable = true
 
 var level = 1
@@ -22,7 +22,6 @@ func _process(delta):
 		return
 	spawn_count += 1
 	if (spawn_count / 50 >= internval_seconds):
-		print("spawn")
 		spawn_count = 0
 		do_spawn()
 
@@ -46,7 +45,6 @@ func spawn_mob(type, group):
 	var mob = type.instantiate()
 	mob.add_to_group(group)
 	mob.position = spawn_position
-	print(spawn_position)
 	owner.add_child(mob)
 	mob.death.connect(owner._on_mob_death)
 

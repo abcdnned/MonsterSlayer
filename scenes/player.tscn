@@ -809,3 +809,9 @@ bus = &"SFX"
 [node name="shield_hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_fawfi")
 bus = &"SFX"
+
+[node name="emit_signal" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="emit_signal" to="." method="_on_emit_signal_timeout"]

@@ -11,7 +11,9 @@ extends Unit
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 
 signal hero_death
+signal map_pos_change(x, y)
 const WALK_SPEED = 500.0
+const GUARD_SPEED = 300.0
 const SPRINT_SPEED = 800.0
 
 var speed = WALK_SPEED
@@ -23,10 +25,7 @@ const DASH_ATTACK_MAX_SPEED = 1100.0
 var dash_attack_speed = DASH_ATTACK_MAX_SPEED
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
-
-var current_map_tile = Vector2(4, 4)
-
-
+var map_pos = Vector2(4, 4)
 
 func _process(delta):
 	match state_machine.get_current_node():
@@ -90,6 +89,13 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/defense", false)
 			var mouse_pos = get_global_mouse_position()
 			sprite.look_at(mouse_pos)
+			var direction = get_direction()
+			if direction:
+				speed = GUARD_SPEED
+				velocity = direction * speed
+			else:
+				velocity = velocity.lerp(Vector2.ZERO, delta * 20)
+			move_and_slide()
 			if not Input.is_action_pressed("right_click"):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
 		"idle_defense_cancel":
@@ -175,3 +181,7 @@ func _take_damage(d, v, source_position, tick):
 		_:
 			super._take_damage(d, v, source_position, tick)
 		
+
+
+func _on_emit_signal_timeout():
+	emit_signal("map_pos_change", global_position.x, global_position.y)
