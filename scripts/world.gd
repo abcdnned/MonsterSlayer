@@ -1,3 +1,6 @@
+# 3.2 target
+# switch between item and weapon, item on offhand
+# loot goblin crops to pick knife and throw
 
 
 extends Node2D

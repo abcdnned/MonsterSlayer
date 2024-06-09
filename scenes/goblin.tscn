@@ -38,7 +38,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.5708]
+"values": [0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -79,7 +79,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.06, 0.1, 0.12, 0.14, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [1.78595, 1.78595, 1.5708, 1.5708, 1.62893, 1.62893]
+"values": [0.214675, 0.214675, 0.0, 0.0, 0.0575959, 0.0575959]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -202,7 +202,7 @@ states/chasing/position = Vector2(443.5, 103)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
 states/dying/position = Vector2(644.5, 100.5)
 transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b")]
-graph_offset = Vector2(107.565, 39.3447)
+graph_offset = Vector2(78.855, -34.3278)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
@@ -216,7 +216,6 @@ region_rect = Rect2(384, 128, 128, 128)
 [node name="DaggerSprite" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
 position = Vector2(55, 36)
-rotation = 1.5708
 texture = ExtResource("2_5avma")
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]

@@ -29,7 +29,7 @@ var map_pos = Vector2(4, 4)
 
 func _process(delta):
 	match state_machine.get_current_node():
-		"Idle_2":
+		"Idle_2", "HoldItem":
 			var mouse_pos = get_global_mouse_position()
 			sprite.look_at(mouse_pos)
 			animation_tree.set("parameters/conditions/unstun", false)
@@ -42,6 +42,9 @@ func _physics_process(delta):
 		"Idle_2":
 			if Input.is_action_pressed("right_click"):
 				animation_tree.set("parameters/conditions/defense", true)
+			elif Input.is_action_pressed("item"):
+				animation_tree.set("parameters/conditions/hold_item", true)
+				animation_tree.set("parameters/conditions/hide_item", false)
 			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
@@ -106,6 +109,16 @@ func _physics_process(delta):
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
+		"HoldItem":
+			if Input.is_action_pressed("left_click"):
+				animation_tree.set("parameters/conditions/hide_item", true)
+				animation_tree.set("parameters/conditions/hold_item", false)
+			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
+				dash_direction = get_direction()
+				animation_tree.set("parameters/conditions/dash", true)
+				dash_cooldown.start()
+			_move_velocity(delta)
+			move_and_slide()	
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
