@@ -324,7 +324,7 @@ states/dying/position = Vector2(672, 127)
 states/shoot/node = SubResource("AnimationNodeAnimation_sp5tj")
 states/shoot/position = Vector2(501.69, 311.912)
 transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "shoot", "chasing", SubResource("AnimationNodeStateMachineTransition_nbvko"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_7wo53"), "shoot", "dying", SubResource("AnimationNodeStateMachineTransition_jm3he"), "charge", "shoot", SubResource("AnimationNodeStateMachineTransition_7qcc2"), "charge", "dying", SubResource("AnimationNodeStateMachineTransition_ci34l"), "charge", "chasing", SubResource("AnimationNodeStateMachineTransition_858cl"), "chasing", "charge", SubResource("AnimationNodeStateMachineTransition_g7ojp")]
-graph_offset = Vector2(77.115, 41.8872)
+graph_offset = Vector2(5.34, 37.2597)
 
 [node name="GoblinArcher" type="CharacterBody2D" groups=["mob"]]
 z_index = 9

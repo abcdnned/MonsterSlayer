@@ -176,6 +176,7 @@ bus = &"SFX"
 [node name="SpawnerStarter" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+autostart = true
 
 [connection signal="health_change" from="Player" to="UI/Life" method="_on_player_health_change"]
 [connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]

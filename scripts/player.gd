@@ -8,8 +8,9 @@ extends Unit
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
 @onready var shield_hit = $shield_hit
-const dash_dust = preload("res://scenes/dash_dust.tscn")
+@onready var item_handle = $Sprite2D/ItemHandle
 
+const dash_dust = preload("res://scenes/dash_dust.tscn")
 signal hero_death
 signal map_pos_change(x, y)
 const WALK_SPEED = 500.0
@@ -117,8 +118,14 @@ func _physics_process(delta):
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
-			_move_velocity(delta)
-			move_and_slide()	
+			elif Input.is_action_pressed("right_click"):
+				animation_tree.set("parameters/conditions/use_item", true)
+			else:
+				_move_velocity(delta)
+				move_and_slide()
+		"use_item":
+			animation_tree.set("parameters/conditions/use_item", false)
+			animation_tree.set("parameters/conditions/hold_item", false)
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -198,3 +205,6 @@ func _take_damage(d, v, source_position, tick):
 
 func _on_emit_signal_timeout():
 	emit_signal("map_pos_change", global_position.x, global_position.y)
+	
+func throw_item():
+	item_handle.get_child(0).shoot()

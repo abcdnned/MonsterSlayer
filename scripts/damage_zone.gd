@@ -3,9 +3,11 @@ extends Area2D
 @export var damage = 2.0
 @export var knockback = 1000.0
 @export var sound: AudioStreamPlayer2D = null
+@export var aoe = true
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 signal hit
+
 
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -17,6 +19,8 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 	if not sound_override:
 		_play_sound()
 	emit_signal("hit")
+	if not aoe:
+		monitoring = false
 
 func _check_parent(body):
 	var current_node = self

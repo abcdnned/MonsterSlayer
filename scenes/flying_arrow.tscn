@@ -19,6 +19,7 @@ texture = ExtResource("1_xmxod")
 monitoring = true
 damage = 0.5
 sound = NodePath("../arrow_hit")
+aoe = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
 position = Vector2(-17, 0)
