@@ -44,8 +44,9 @@ func _physics_process(delta):
 			if Input.is_action_pressed("right_click"):
 				animation_tree.set("parameters/conditions/defense", true)
 			elif Input.is_action_pressed("item"):
-				animation_tree.set("parameters/conditions/hold_item", true)
-				animation_tree.set("parameters/conditions/hide_item", false)
+				if item_handle.get_child_count() > 0:
+					animation_tree.set("parameters/conditions/hold_item", true)
+					animation_tree.set("parameters/conditions/hide_item", false)
 			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
@@ -57,9 +58,8 @@ func _physics_process(delta):
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
 			elif Input.is_action_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
-			else:
-				_move_velocity(delta)
-				move_and_slide()	
+			_move_velocity(delta)
+			move_and_slide()	
 		"swap":
 			animation_tree.set("parameters/conditions/attack", false)
 		"stun":
@@ -125,7 +125,6 @@ func _physics_process(delta):
 				move_and_slide()
 		"use_item":
 			animation_tree.set("parameters/conditions/use_item", false)
-			animation_tree.set("parameters/conditions/hold_item", false)
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -208,3 +207,7 @@ func _on_emit_signal_timeout():
 	
 func throw_item():
 	item_handle.get_child(0).shoot()
+
+func unload_item():
+	item_handle.get_child(0).queue_free()
+	animation_tree.set("parameters/conditions/hold_item", false)
