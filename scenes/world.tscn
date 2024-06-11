@@ -126,17 +126,21 @@ visible = false
 
 [node name="Life" type="Control" parent="UI"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_left = 0.123
+anchor_top = 0.899
+anchor_right = 0.123
+anchor_bottom = 0.899
+offset_left = -0.639999
+offset_top = 0.0499268
+offset_right = 39.36
+offset_bottom = 40.0499
+grow_vertical = 0
 
 [node name="Hearts" type="TextureRect" parent="UI/Life"]
 z_index = 1
 layout_mode = 0
-offset_left = 450.0
-offset_top = 950.0
-offset_right = 1857.0
-offset_bottom = 1078.0
+offset_right = 1420.0
+offset_bottom = 128.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_vj55y")
 expand_mode = 1
@@ -146,10 +150,8 @@ script = ExtResource("6_hv15k")
 [node name="MaxHearts" type="TextureRect" parent="UI/Life"]
 material = SubResource("ShaderMaterial_75xxt")
 layout_mode = 0
-offset_left = 450.0
-offset_top = 950.0
-offset_right = 1870.0
-offset_bottom = 1078.0
+offset_right = 1420.0
+offset_bottom = 128.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_vj55y")
 expand_mode = 2
@@ -174,7 +176,6 @@ attenuation = 0.000150286
 bus = &"SFX"
 
 [node name="SpawnerStarter" type="Timer" parent="."]
-wait_time = 3.0
 one_shot = true
 autostart = true
 

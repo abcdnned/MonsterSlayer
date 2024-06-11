@@ -31,14 +31,21 @@ func _get_spawn_position():
 	return Vector2(x, y)
 	
 func do_spawn():
-	if level == 1 and get_tree().get_nodes_in_group("melee_mob").size() < max_melee:
+	if level == 1 and get_alive_mob_count("melee_mob") < max_melee:
 		spawn_mob(MOB, "melee_mob")
 	elif level == 2:
 		max_melee = 2
-		if get_tree().get_nodes_in_group("melee_mob").size() < max_melee:
+		if get_alive_mob_count("melee_mob") < max_melee:
 			spawn_mob(MOB, "melee_mob")
-		if get_tree().get_nodes_in_group("range_mob").size() < max_range:
+		if get_alive_mob_count("range_mob") < max_range:
 			spawn_mob(GOBLIN_ARCHER, "range_mob")
+
+func get_alive_mob_count(type):
+	var mob_count = 0
+	for mob in get_tree().get_nodes_in_group(type):
+		if not mob.is_in_group("dead"):
+			mob_count += 1
+	return mob_count
 
 func spawn_mob(type, group):
 	var spawn_position = _get_spawn_position()

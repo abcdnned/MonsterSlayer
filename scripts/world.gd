@@ -1,3 +1,8 @@
+# 3.3 target
+# TODO outline when hover on lootable crops
+# TODO switch item out when pick up item
+# TODO damage heart particles
+
 extends Node2D
 
 @onready var player = $Player
