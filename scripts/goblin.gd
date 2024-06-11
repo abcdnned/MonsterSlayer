@@ -7,7 +7,9 @@ const SPEED = 400
 @onready var death_yell = $death_yell
 @onready var ray_cast_2d = $Sprite2D/RayCast2D
 @onready var dagger_attack_sound = $dagger_attack_sound
-
+@onready var damage_zone = $Sprite2D/damage_zone
+@onready var dagger_sprite = $Sprite2D/DaggerSprite
+const I_DAGGER = preload("res://scenes/i_dagger.tscn")
 
 func _sub_ready():
 	if not target:
@@ -46,6 +48,7 @@ func _physics_process(delta):
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
+			damage_zone.monitoring = false
 
 
 func _on_timer_timeout():
@@ -56,3 +59,10 @@ func _play_dying_sound():
 	
 func _dagger_attack():
 	dagger_attack_sound.play()
+	
+func loot(player):
+	if dagger_sprite.visible && player.item_handle.get_child_count() == 0:
+		var dagger = I_DAGGER.instantiate()
+		dagger_sprite.visible = false
+		dagger.owner = player
+		player.item_handle.add_child(dagger)

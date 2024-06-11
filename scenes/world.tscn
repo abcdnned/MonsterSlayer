@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="PackedScene" uid="uid://csinpw556o7ux" path="res://scenes/player.tscn" id="1_10ho3"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
+[ext_resource type="PackedScene" uid="uid://cp030u4v4at67" path="res://scenes/goblin.tscn" id="13_pxcq4"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -176,6 +177,8 @@ bus = &"SFX"
 [node name="SpawnerStarter" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Goblin" parent="." instance=ExtResource("13_pxcq4")]
 
 [connection signal="health_change" from="Player" to="UI/Life" method="_on_player_health_change"]
 [connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]
