@@ -39,6 +39,8 @@ func _take_damage(d, v, source_position, tick):
 		animation_tree.set("parameters/conditions/dying", true)
 		add_to_group("dead")
 		emit_signal("death")
+		_apply_dying_shader()
+		_sub_dead()
 	else:
 		animation_tree.set("parameters/conditions/stun", true)
 		
@@ -47,4 +49,7 @@ func _apply_dying_shader():
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = shader
 	sprite.material = shader_material
+	
+func _sub_dead():
+	pass
 		

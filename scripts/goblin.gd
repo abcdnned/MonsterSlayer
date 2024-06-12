@@ -9,7 +9,7 @@ const SPEED = 400
 @onready var dagger_attack_sound = $dagger_attack_sound
 @onready var damage_zone = $Sprite2D/damage_zone
 @onready var dagger_sprite = $Sprite2D/DaggerSprite
-const I_DAGGER = preload("res://scenes/i_dagger.tscn")
+
 
 func _sub_ready():
 	if not target:
@@ -54,15 +54,9 @@ func _physics_process(delta):
 func _on_timer_timeout():
 	navigation_agent_2d.target_position = target.global_position
 	
-func _play_dying_sound():
-	death_yell.play()
-	
 func _dagger_attack():
 	dagger_attack_sound.play()
-	
-func loot(player):
-	if dagger_sprite.visible && player.item_handle.get_child_count() == 0:
-		var dagger = I_DAGGER.instantiate()
-		dagger_sprite.visible = false
-		dagger.owner = player
-		player.item_handle.add_child(dagger)
+		
+func _sub_dead():
+	dagger_sprite.lootable = true
+	death_yell.play()

@@ -152,8 +152,7 @@ func _move_velocity(delta):
 func _sword_swing():
 	sword_swing_sound.play()
 
-func _death():
-	_apply_dying_shader()
+func _sub_dead():
 	death_sound.play()
 
 func _emit_hero_death():
@@ -211,3 +210,9 @@ func throw_item():
 func unload_item():
 	item_handle.get_child(0).queue_free()
 	animation_tree.set("parameters/conditions/hold_item", false)
+	
+func gaven_new_item(item):
+	if item_handle.get_child_count() > 0:
+		animation_tree.set("parameters/conditions/hold_item", true)
+		animation_tree.set("parameters/conditions/hide_item", false)
+		

@@ -61,7 +61,7 @@ func _physics_process(delta):
 func _on_timer_timeout():
 	navigation_agent_2d.target_position = target.global_position
 	
-func _play_dying_sound():
+func _sub_dead():
 	death_yell.play()
 	
 func shoot():

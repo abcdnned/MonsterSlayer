@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
 [ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_qle06"]
-[ext_resource type="Script" path="res://scripts/lootable.gd" id="3_v3u77"]
 [ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="4_1il02"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_24x6m"]
+[ext_resource type="Script" path="res://scripts/dagger_loot.gd" id="4_mdxyd"]
 [ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="5_ol62f"]
 [ext_resource type="AudioStream" uid="uid://colc12t274qwt" path="res://sounds/dagger_woosh.mp3" id="6_q4eyh"]
 [ext_resource type="AudioStream" uid="uid://yi2aurllo2s0" path="res://sounds/knifesword-stab.wav" id="7_6xa88"]
@@ -116,22 +116,17 @@ loop_mode = 1
 [sub_resource type="Animation" id="Animation_ic3m7"]
 resource_name = "dying"
 length = 10.0
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 10),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_apply_dying_shader"
-}, {
-"args": [],
-"method": &"queue_free"
-}]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -140,24 +135,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(10),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_play_dying_sound"
+"method": &"queue_free"
 }]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
@@ -204,7 +187,7 @@ states/chasing/position = Vector2(443.5, 103)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
 states/dying/position = Vector2(644.5, 100.5)
 transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b")]
-graph_offset = Vector2(78.855, -34.3278)
+graph_offset = Vector2(121.92, 27.7122)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
@@ -214,12 +197,12 @@ max_health = 0.5
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qle06")
 region_rect = Rect2(384, 128, 128, 128)
-script = ExtResource("3_v3u77")
 
 [node name="DaggerSprite" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
 position = Vector2(55, 36)
 texture = ExtResource("2_5avma")
+script = ExtResource("4_mdxyd")
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
 target_position = Vector2(130, 0)
