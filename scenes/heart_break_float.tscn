@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxlshyd1rl7r8"]
+
+[ext_resource type="Texture2D" uid="uid://bfipia3ktq14i" path="res://texures/break_half_heart.png" id="1_ihgsc"]
+[ext_resource type="Script" path="res://scripts/heart_break_api.gd" id="1_p1vje"]
+
+[sub_resource type="Curve" id="Curve_vu6ve"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.237292), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="HeartBreakFloat" type="Node2D"]
+script = ExtResource("1_p1vje")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_ihgsc")
+spread = 180.0
+gravity = Vector2(0, 150)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_vu6ve")
