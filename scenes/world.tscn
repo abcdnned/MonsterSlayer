@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://csinpw556o7ux" path="res://scenes/player.tscn" id="1_10ho3"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
-[ext_resource type="PackedScene" uid="uid://cp030u4v4at67" path="res://scenes/goblin.tscn" id="4_4jbbu"]
 [ext_resource type="Texture2D" uid="uid://c43p5kqhy370s" path="res://texures/heart.png" id="5_vj55y"]
 [ext_resource type="PackedScene" uid="uid://rfoyb3i878pc" path="res://scenes/lose_scene.tscn" id="6_83dxx"]
 [ext_resource type="Script" path="res://scripts/Hearts.gd" id="6_hv15k"]
@@ -13,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
+[ext_resource type="Script" path="res://scripts/boime_spawner.gd" id="14_ucirg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -115,12 +115,6 @@ position = Vector2(-146, 309)
 tile_set = SubResource("TileSet_upu07")
 format = 2
 
-[node name="Goblin" parent="." instance=ExtResource("4_4jbbu")]
-position = Vector2(-452, 28)
-
-[node name="Goblin2" parent="." instance=ExtResource("4_4jbbu")]
-position = Vector2(-384, -38)
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="WinningScene" parent="UI" instance=ExtResource("10_45iw7")]
@@ -184,6 +178,9 @@ bus = &"SFX"
 
 [node name="SpawnerStarter" type="Timer" parent="."]
 one_shot = true
+
+[node name="BoimeSpawner" type="Node" parent="."]
+script = ExtResource("14_ucirg")
 
 [connection signal="health_change" from="Player" to="UI/Life" method="_on_player_health_change"]
 [connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]

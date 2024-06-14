@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cp030u4v4at67"]
+[gd_scene load_steps=31 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
@@ -143,12 +143,17 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_gylsu"]
+resource_name = "wandering"
+loop_mode = 1
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
 _data = {
 "RESET": SubResource("Animation_2swvi"),
 "attack": SubResource("Animation_cg68e"),
 "chasing": SubResource("Animation_mtitu"),
-"dying": SubResource("Animation_ic3m7")
+"dying": SubResource("Animation_ic3m7"),
+"wandering": SubResource("Animation_gylsu")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w5dv5"]
@@ -160,8 +165,8 @@ animation = &"chasing"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7si6"]
 animation = &"dying"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l62qm"]
-advance_mode = 2
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lma3l"]
+animation = &"wandering"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jryju"]
 advance_mode = 2
@@ -179,6 +184,21 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"dying"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0v775"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xa6cx"]
+advance_mode = 2
+advance_condition = &"target"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xhdx3"]
+advance_mode = 2
+advance_condition = &"wandering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpaxi"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
 states/attack/node = SubResource("AnimationNodeAnimation_w5dv5")
 states/attack/position = Vector2(509.84, 227.71)
@@ -186,8 +206,10 @@ states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(443.5, 103)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
 states/dying/position = Vector2(644.5, 100.5)
-transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_l62qm"), "chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b")]
-graph_offset = Vector2(121.92, 27.7122)
+states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
+states/wandering/position = Vector2(313.92, 228.461)
+transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi")]
+graph_offset = Vector2(78.855, -186.87)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
@@ -239,6 +261,8 @@ tree_root = SubResource("AnimationNodeStateMachine_42fvj")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/dying = false
+parameters/conditions/target = false
+parameters/conditions/wandering = false
 
 [node name="death_yell" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_1il02")
@@ -252,4 +276,9 @@ bus = &"SFX"
 stream = ExtResource("7_6xa88")
 bus = &"SFX"
 
+[node name="WanderingTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="WanderingTimer" to="." method="_on_wandering_timer_timeout"]

@@ -1,4 +1,10 @@
 # 3.4 target
+# TODO item: apple, restore HP
+# TODO fetch switch item
+
+
+# Arena
+# Survive
 
 
 extends Node2D
@@ -21,7 +27,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	_create_boime(-3, 3, -3, 3, map.map, 4, 4, 0, map.map_cord)
+	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
