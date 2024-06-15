@@ -137,6 +137,10 @@ func get_direction():
 func get_input():
 	return Input.get_vector("left", "right", "up", "down")
 
+func _sub_ready():
+	health = 3.0
+	emit_signal("health_change", health)
+
 func _move_velocity(delta):
 	var direction = get_direction()
 	var input = get_input()
@@ -206,9 +210,6 @@ func _on_emit_signal_timeout():
 	
 func throw_item():
 	item_handle.get_child(0).shoot()
-
-func unload_item():
-	item_handle.get_child(0).queue_free()
 	animation_tree.set("parameters/conditions/hold_item", false)
 	
 func gaven_new_item(item):

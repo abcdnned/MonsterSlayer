@@ -1,10 +1,5 @@
 # 3.4 target
-# TODO item: apple, restore HP
 # TODO fetch switch item
-
-
-# Arena
-# Survive
 
 
 extends Node2D

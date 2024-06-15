@@ -2,10 +2,13 @@ extends Node
 class_name BoimeSpawner
 
 @export var area_spawn_count = 5
+@export var enable = true
 
 const GOBLIN = preload("res://scenes/goblin.tscn")
 
 func _ready():
+	if not enable:
+		return
 	await owner.ready
 	for cord in owner.map.map_cord:
 		for i in range(area_spawn_count):

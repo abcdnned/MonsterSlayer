@@ -7,7 +7,7 @@ var state_machine
 @onready var anim = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 
-var health := 3.0
+var health := 2.0
 @export var max_health := 3.0
 var knock_back_force
 var stun_ticks
@@ -19,9 +19,9 @@ signal death
 
 func _ready():
 	state_machine = animation_tree.get("parameters/playback")
+	health = max_health
 	emit_signal("health_change", health)
 	emit_signal("max_health_change", max_health)
-	health = max_health
 	_sub_ready()
 
 func _sub_ready():
@@ -52,4 +52,8 @@ func _apply_dying_shader():
 	
 func _sub_dead():
 	pass
+	
+func heal(h):
+	health = clampf(health + h, 0, max_health)
+	emit_signal("health_change", health)
 		
