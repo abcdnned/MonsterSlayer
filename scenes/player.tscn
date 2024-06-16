@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=85 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -758,6 +758,10 @@ tracks/1/keys = {
 "values": [Vector2(139, 83), Vector2(199, 38)]
 }
 
+[sub_resource type="Animation" id="Animation_0hhfo"]
+resource_name = "drop_item"
+length = 0.04
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
 _data = {
 "HoldItem": SubResource("Animation_7smbj"),
@@ -767,6 +771,7 @@ _data = {
 "RESET": SubResource("Animation_1ea80"),
 "dash": SubResource("Animation_2ax2q"),
 "dash_attack": SubResource("Animation_yn61v"),
+"drop_item": SubResource("Animation_0hhfo"),
 "dying": SubResource("Animation_bsl3y"),
 "idle_defense_cancel": SubResource("Animation_bqgxm"),
 "idle_defense_hit": SubResource("Animation_86rf0"),
@@ -790,6 +795,9 @@ animation = &"dash"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ka6py"]
 animation = &"dash_attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ggwrt"]
+animation = &"drop_item"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5wc5"]
 animation = &"dying"
@@ -959,10 +967,26 @@ priority = 0
 advance_mode = 2
 advance_condition = &"unstun & hold_item"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qfpll"]
+advance_mode = 2
+advance_condition = &"drop_item"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2t41s"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3s8l"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ir0ar"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_07lbm"]
 states/End/position = Vector2(1036.5, -124.5)
 states/HoldItem/node = SubResource("AnimationNodeAnimation_4xs71")
-states/HoldItem/position = Vector2(153.805, -33.904)
+states/HoldItem/position = Vector2(137.805, -12.404)
 states/Idle_2/node = SubResource("AnimationNodeAnimation_llu4x")
 states/Idle_2/position = Vector2(433.237, 135.998)
 states/Idle_Defense/node = SubResource("AnimationNodeAnimation_rtk7t")
@@ -972,6 +996,8 @@ states/dash/node = SubResource("AnimationNodeAnimation_bakcq")
 states/dash/position = Vector2(171.668, 134.44)
 states/dash_attack/node = SubResource("AnimationNodeAnimation_ka6py")
 states/dash_attack/position = Vector2(822.32, -157.79)
+states/drop_item/node = SubResource("AnimationNodeAnimation_ggwrt")
+states/drop_item/position = Vector2(734.82, -356.269)
 states/dying/node = SubResource("AnimationNodeAnimation_x5wc5")
 states/dying/position = Vector2(999.21, 83.5448)
 states/idle_defense_cancel/node = SubResource("AnimationNodeAnimation_3dcbf")
@@ -984,8 +1010,8 @@ states/swap/node = SubResource("AnimationNodeAnimation_64u58")
 states/swap/position = Vector2(431.31, 296.202)
 states/use_item/node = SubResource("AnimationNodeAnimation_xk3wl")
 states/use_item/position = Vector2(185.48, -125.865)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_ulak1"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_oslmi"), "Idle_2", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_8pbgv"), "Idle_Defense", "idle_defense_cancel", SubResource("AnimationNodeStateMachineTransition_j1roa"), "idle_defense_cancel", "Idle_2", SubResource("AnimationNodeStateMachineTransition_mo8ah"), "idle_defense_cancel", "dying", SubResource("AnimationNodeStateMachineTransition_thn15"), "idle_defense_cancel", "stun", SubResource("AnimationNodeStateMachineTransition_c8xnu"), "Idle_Defense", "idle_defense_hit", SubResource("AnimationNodeStateMachineTransition_7fitq"), "idle_defense_hit", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_7yfoa"), "Idle_Defense", "stun", SubResource("AnimationNodeStateMachineTransition_qytbj"), "Idle_Defense", "dying", SubResource("AnimationNodeStateMachineTransition_q43em"), "idle_defense_hit", "stun", SubResource("AnimationNodeStateMachineTransition_pd3b5"), "idle_defense_hit", "dying", SubResource("AnimationNodeStateMachineTransition_st1sv"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di")]
-graph_offset = Vector2(-19.8898, 2.763)
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_qtrgo"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_4cxf5"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_ulak1"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_oslmi"), "Idle_2", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_8pbgv"), "Idle_Defense", "idle_defense_cancel", SubResource("AnimationNodeStateMachineTransition_j1roa"), "idle_defense_cancel", "Idle_2", SubResource("AnimationNodeStateMachineTransition_mo8ah"), "idle_defense_cancel", "dying", SubResource("AnimationNodeStateMachineTransition_thn15"), "idle_defense_cancel", "stun", SubResource("AnimationNodeStateMachineTransition_c8xnu"), "Idle_Defense", "idle_defense_hit", SubResource("AnimationNodeStateMachineTransition_7fitq"), "idle_defense_hit", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_7yfoa"), "Idle_Defense", "stun", SubResource("AnimationNodeStateMachineTransition_qytbj"), "Idle_Defense", "dying", SubResource("AnimationNodeStateMachineTransition_q43em"), "idle_defense_hit", "stun", SubResource("AnimationNodeStateMachineTransition_pd3b5"), "idle_defense_hit", "dying", SubResource("AnimationNodeStateMachineTransition_st1sv"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "drop_item", "stun", SubResource("AnimationNodeStateMachineTransition_u3s8l"), "drop_item", "dying", SubResource("AnimationNodeStateMachineTransition_ir0ar")]
+graph_offset = Vector2(-5.53473, -413.006)
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
 script = ExtResource("1_4j5bp")
@@ -1050,6 +1076,7 @@ parameters/conditions/dash_attack = false
 parameters/conditions/defense = false
 parameters/conditions/defense_cancel = false
 parameters/conditions/defense_hit = false
+parameters/conditions/drop_item = false
 parameters/conditions/dying = false
 parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false

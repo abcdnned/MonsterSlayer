@@ -1,6 +1,9 @@
-extends Sprite2D
+extends Lootable
 
 const FLYING_DAGGER = preload("res://scenes/flying_dagger.tscn")
+
+func _ready():
+	lootable = true
 
 func shoot():
 	var dagger = FLYING_DAGGER.instantiate()

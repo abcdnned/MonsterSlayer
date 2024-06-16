@@ -120,11 +120,16 @@ func _physics_process(delta):
 				dash_cooldown.start()
 			elif Input.is_action_pressed("right_click"):
 				animation_tree.set("parameters/conditions/use_item", true)
+			elif Input.is_action_pressed("drop"):
+				animation_tree.set("parameters/conditions/drop_item", true)
+				drop()
 			else:
 				_move_velocity(delta)
 				move_and_slide()
 		"use_item":
 			animation_tree.set("parameters/conditions/use_item", false)
+		"drop_item":
+			animation_tree.set("parameters/conditions/drop_item", false)
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -216,4 +221,9 @@ func gaven_new_item(item):
 	if item_handle.get_child_count() > 0:
 		animation_tree.set("parameters/conditions/hold_item", true)
 		animation_tree.set("parameters/conditions/hide_item", false)
-		
+
+func drop():
+	item_handle.get_child(0).drop(get_global_mouse_position())
+	animation_tree.set("parameters/conditions/hold_item", false)
+	animation_tree.set("parameters/conditions/hide_item", true)
+	

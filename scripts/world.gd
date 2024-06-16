@@ -1,6 +1,7 @@
-# 3.4 target
-# TODO fetch switch item
 
+
+# Backlogs
+# Sheild charge
 
 extends Node2D
 
