@@ -2,9 +2,6 @@ extends Lootable
 
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
-func _ready():
-	lootable = true
-
 func shoot():
 	p.heal(1.0)
 	reparent(get_tree().current_scene, true)

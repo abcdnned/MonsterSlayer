@@ -467,6 +467,10 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_0hhfo"]
+resource_name = "drop_item"
+length = 0.04
+
 [sub_resource type="Animation" id="Animation_bsl3y"]
 resource_name = "dying"
 length = 1.5
@@ -757,10 +761,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(139, 83), Vector2(199, 38)]
 }
-
-[sub_resource type="Animation" id="Animation_0hhfo"]
-resource_name = "drop_item"
-length = 0.04
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
 _data = {

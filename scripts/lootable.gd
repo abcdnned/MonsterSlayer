@@ -5,15 +5,20 @@ var lootable = false
 const pick_up_dis = 500.0
 var p = null
 
+func _ready():
+	lootable = true
+	add_to_group("lootable")
+
 func _process(delta):
 	if lootable and get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis:
-		apply_pickable_shader(self)
+		if is_on_top():
+			apply_pickable_shader(self)
 	else:
 		material = null
 
 func _input(event):
 	if lootable and event is InputEventKey and event.pressed and event.as_text_physical_keycode() == "Q":
-		if get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis:
+		if get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis and is_on_top():
 			loot(get_tree().current_scene.player)
 
 func apply_pickable_shader(sprite):
@@ -39,3 +44,9 @@ func drop(pos):
 	global_position = pos
 	p = null
 	lootable = true
+
+func is_on_top():
+	for l in get_tree().get_nodes_in_group("lootable"):
+		if get_rect().has_point(to_local(l.global_position)) and is_greater_than(l):
+			return false
+	return true

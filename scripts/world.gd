@@ -1,7 +1,10 @@
-
+# 3.5 target
+# TODO goblin warrior with flags
+# TODO double hand spear weapon
 
 # Backlogs
 # Sheild charge
+# goblin bomber
 
 extends Node2D
 
