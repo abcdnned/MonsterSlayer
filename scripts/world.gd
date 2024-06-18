@@ -1,6 +1,10 @@
-# 3.5 target
+# 4.0 target
 # TODO goblin warrior with flags
-# TODO double hand spear weapon
+# TODO double hand spear weapon sprite
+# TODO extract common player parent
+# TODO sword shield role
+# TODO double spear role
+# TODO switch between two role
 
 # Backlogs
 # Sheild charge
