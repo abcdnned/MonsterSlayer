@@ -1,8 +1,5 @@
 # 4.0 target
 # TODO goblin warrior with flags
-# TODO double hand spear weapon sprite
-# TODO extract common player parent
-# TODO sword shield role
 # TODO double spear role
 # TODO switch between two role
 
@@ -16,10 +13,14 @@ extends Node2D
 @onready var tile_map = $TileMap
 @onready var kill = $UI/Kill
 @onready var winning_scene = $UI/WinningScene
+@onready var hearts = $UI/Life/Hearts
+@onready var max_hearts = $UI/Life/MaxHearts
 @onready var spawner = $Spawner
 @onready var lose_scene = $UI/LoseScene
 @onready var winning_sound = $WinningSound
 @onready var map = $UI/Map
+const PLAYER = preload("res://scenes/player.tscn")
+const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 
 var kill_count = 0
 
@@ -30,6 +31,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
+	load_player()
 	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord)
 	
 
@@ -94,3 +96,12 @@ func _win():
 
 func _on_spawner_starter_timeout():
 	spawner.enable = true
+
+func load_player():
+	var player = PLAYER.instantiate()
+	player.global_position = Vector2(0, 0)
+	add_child(player)
+	player.health_change.connect(hearts._on_player_health_change)
+	player.max_health_change.connect(max_hearts._on_player_max_health_change)
+	player.hero_death.connect(_on_player_hero_death)
+	player.map_pos_change.connect(map._on_player_map_pos_change)
