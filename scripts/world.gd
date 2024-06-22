@@ -1,15 +1,16 @@
 # 4.0 target
 # TODO goblin warrior with flags
-# TODO double spear role
-# TODO switch between two role
 
 # Backlogs
 # Sheild charge
 # goblin bomber
+# pickable enemy weapon
+# notification when target spotted
+# navigation composite
 
 extends Node2D
 
-@onready var player = $Player
+@onready var player = null
 @onready var tile_map = $TileMap
 @onready var kill = $UI/Kill
 @onready var winning_scene = $UI/WinningScene
@@ -31,7 +32,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player()
+	load_player(PLAYER, Vector2(0, 0))
 	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord)
 	
 
@@ -97,11 +98,16 @@ func _win():
 func _on_spawner_starter_timeout():
 	spawner.enable = true
 
-func load_player():
-	var player = PLAYER.instantiate()
-	player.global_position = Vector2(0, 0)
+func load_player(player_type, position):
+	if player != null:
+		player.queue_free()
+		player = null
+	player = player_type.instantiate()
+	player.global_position = position
 	add_child(player)
+	player.owner = self
 	player.health_change.connect(hearts._on_player_health_change)
 	player.max_health_change.connect(max_hearts._on_player_max_health_change)
 	player.hero_death.connect(_on_player_hero_death)
 	player.map_pos_change.connect(map._on_player_map_pos_change)
+	player._ready()

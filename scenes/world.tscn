@@ -1,6 +1,5 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
 
-[ext_resource type="PackedScene" uid="uid://csinpw556o7ux" path="res://scenes/player.tscn" id="1_10ho3"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
 [ext_resource type="Texture2D" uid="uid://c43p5kqhy370s" path="res://texures/heart.png" id="5_vj55y"]
@@ -107,11 +106,6 @@ shader_parameter/shift_color = Color(0.81, 0.81, 0.81, 1)
 [node name="World" type="Node2D"]
 script = ExtResource("1_se2w6")
 
-[node name="Player" parent="." instance=ExtResource("1_10ho3")]
-z_index = 10
-position = Vector2(21, 401)
-max_health = 6.0
-
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-146, 309)
 tile_set = SubResource("TileSet_upu07")
@@ -183,7 +177,6 @@ one_shot = true
 
 [node name="BoimeSpawner" type="Node" parent="."]
 script = ExtResource("14_ucirg")
-enable = false
 
 [node name="iApple" parent="." instance=ExtResource("14_mam26")]
 
@@ -196,9 +189,4 @@ position = Vector2(-336, 2)
 [node name="iApple4" parent="." instance=ExtResource("14_mam26")]
 position = Vector2(-459, 227)
 
-[connection signal="health_change" from="Player" to="UI/Life" method="_on_player_health_change"]
-[connection signal="health_change" from="Player" to="UI/Life/Hearts" method="_on_player_health_change"]
-[connection signal="hero_death" from="Player" to="." method="_on_player_hero_death"]
-[connection signal="map_pos_change" from="Player" to="UI/Map" method="_on_player_map_pos_change"]
-[connection signal="max_health_change" from="Player" to="UI/Life/MaxHearts" method="_on_player_max_health_change"]
 [connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]

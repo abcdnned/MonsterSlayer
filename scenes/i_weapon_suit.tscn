@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://nx0miil60yqq"]
+
+[ext_resource type="Texture2D" uid="uid://lafsid1bcwqe" path="res://sprites/knight_weapon_suit2.png" id="1_do78p"]
+[ext_resource type="Script" path="res://scripts/iKnightWeaponSuit.gd" id="2_685t6"]
+
+[node name="iKnightWeaponSuit" type="Sprite2D"]
+texture = ExtResource("1_do78p")
+script = ExtResource("2_685t6")

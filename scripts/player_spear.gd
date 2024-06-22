@@ -6,7 +6,6 @@ extends Unit
 @onready var death_sound = $death
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
-@onready var shield_hit = $shield_hit
 @onready var item_handle = $Sprite2D/ItemHandle
 
 const dash_dust = preload("res://scenes/dash_dust.tscn")
@@ -25,6 +24,7 @@ var dash_attack_speed = DASH_ATTACK_MAX_SPEED
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
 var map_pos = Vector2(4, 4)
+const TYPE = "HeavySpear"
 
 func _process(delta):
 	match state_machine.get_current_node():
@@ -39,9 +39,7 @@ func _process(delta):
 func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
-			if Input.is_action_pressed("right_click"):
-				animation_tree.set("parameters/conditions/defense", true)
-			elif Input.is_action_pressed("item"):
+			if Input.is_action_pressed("item"):
 				if item_handle.get_child_count() > 0:
 					animation_tree.set("parameters/conditions/hold_item", true)
 					animation_tree.set("parameters/conditions/hide_item", false)
@@ -57,7 +55,7 @@ func _physics_process(delta):
 			elif Input.is_action_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
 			_move_velocity(delta)
-			move_and_slide()	
+			move_and_slide()
 		"Attack":
 			animation_tree.set("parameters/conditions/attack", false)
 		"stun":
@@ -152,6 +150,9 @@ func dash():
 	dust.position = global_position
 	dust.play("spawn")
 	owner.add_child(dust)
+
+func dash_second_attack():
+	dash_attack_speed = DASH_ATTACK_MAX_SPEED * .8
 	
 func dash_attack_stop():
 	dash_attack_deduction = 40.0

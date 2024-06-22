@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cp030u4v4at67"]
+[gd_scene load_steps=32 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="5_ol62f"]
 [ext_resource type="AudioStream" uid="uid://colc12t274qwt" path="res://sounds/dagger_woosh.mp3" id="6_q4eyh"]
 [ext_resource type="AudioStream" uid="uid://yi2aurllo2s0" path="res://sounds/knifesword-stab.wav" id="7_6xa88"]
+[ext_resource type="Script" path="res://scripts/targetFinder.gd" id="10_ap58d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_riha1"]
 
@@ -243,6 +244,9 @@ shape = SubResource("RectangleShape2D_riha1")
 shape = SubResource("CircleShape2D_cpxg6")
 
 [node name="NavigationAgent2D" parent="." instance=ExtResource("5_ol62f")]
+
+[node name="TargetFinder" type="Node" parent="."]
+script = ExtResource("10_ap58d")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2

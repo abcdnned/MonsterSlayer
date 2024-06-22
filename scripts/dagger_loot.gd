@@ -9,3 +9,6 @@ func loot(player):
 		dagger.owner = player
 		player.item_handle.add_child(dagger)
 		player.gaven_new_item(dagger)
+
+func _sub_ready():
+	lootable = false
