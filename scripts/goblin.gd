@@ -8,16 +8,10 @@ const SPEED = 400
 @onready var dagger_attack_sound = $dagger_attack_sound
 @onready var damage_zone = $Sprite2D/damage_zone
 @onready var dagger_sprite = $Sprite2D/DaggerSprite
-@onready var wandering_timer = $WanderingTimer
 @onready var target_finder = $TargetFinder
+@onready var wandering = $Wandering
 
 var alert_range = 500.0
-var wandering_loc = Vector2.ZERO
-
-func _sub_ready():
-	wandering_loc = global_position
-	wandering_timer.wait_time = randf_range(5, 10)
-
 
 	
 func _process(delta):
@@ -67,7 +61,7 @@ func _on_timer_timeout():
 	if target_finder.target:
 		navigation_agent_2d.target_position = target_finder.target.global_position
 	else:
-		navigation_agent_2d.target_position = wandering_loc
+		navigation_agent_2d.target_position = wandering.wandering_loc
 	
 func _dagger_attack():
 	dagger_attack_sound.play()
@@ -76,12 +70,4 @@ func _sub_dead():
 	dagger_sprite.lootable = true
 	death_yell.play()
 
-
-func _on_wandering_timer_timeout():
-	var r = deg_to_rad(randf_range(0, 360.0))
-	var d = randf_range(100.0, 1000.0)
-	var x = global_position.x + cos(r) * d
-	var y = global_position.y + sin(r) * d
-	wandering_loc = Vector2(x, y)
-	wandering_timer.wait_time = randf_range(5, 10)
 				

@@ -7,6 +7,8 @@
 # pickable enemy weapon
 # notification when target spotted
 # navigation composite
+# no UI?
+# switch weapon v2
 
 extends Node2D
 

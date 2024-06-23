@@ -7,6 +7,9 @@ extends Unit
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
 @onready var item_handle = $Sprite2D/ItemHandle
+@onready var spear_woosh = $spear_woosh
+@onready var spear_stub_woosh = $spear_stub_woosh
+
 
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 signal hero_death
@@ -54,10 +57,14 @@ func _physics_process(delta):
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
 			elif Input.is_action_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
+			elif Input.is_action_just_pressed("right_click"):
+				animation_tree.set("parameters/conditions/pole_attack", true)
 			_move_velocity(delta)
 			move_and_slide()
 		"Attack":
 			animation_tree.set("parameters/conditions/attack", false)
+		"PoleAttack":
+			animation_tree.set("parameters/conditions/pole_attack", false)
 		"stun":
 			animation_tree.set("parameters/conditions/stun", false)
 			damage_zone.monitoring = false
@@ -131,9 +138,6 @@ func _move_velocity(delta):
 		velocity = direction * speed
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, delta * 20)
-		
-func stub():
-	sword_swing_sound.play()
 
 func _sub_dead():
 	death_sound.play()
@@ -156,9 +160,6 @@ func dash_second_attack():
 	
 func dash_attack_stop():
 	dash_attack_deduction = 40.0
-	
-func dash_attack_sound():
-	sword_swing_sound.play()
 		
 func _on_emit_signal_timeout():
 	emit_signal("map_pos_change", global_position.x, global_position.y)
@@ -176,4 +177,11 @@ func drop():
 	item_handle.get_child(0).drop(get_global_mouse_position())
 	animation_tree.set("parameters/conditions/hold_item", false)
 	animation_tree.set("parameters/conditions/hide_item", true)
+	
+func spear_woosh_sound():
+	spear_woosh.play()
+	
+func spear_stub_sound():
+	spear_stub_woosh.play()
+	
 	

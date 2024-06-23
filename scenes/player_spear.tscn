@@ -1,16 +1,21 @@
-[gd_scene load_steps=64 format=3 uid="uid://dyortnniqa1ua"]
+[gd_scene load_steps=73 format=3 uid="uid://dyortnniqa1ua"]
 
 [ext_resource type="Script" path="res://scripts/player_spear.gd" id="1_eacyd"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_u30ly"]
 [ext_resource type="Texture2D" uid="uid://dk41htrxydoh1" path="res://sprites/heavy_spear.png" id="3_lwljw"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="6_hswxh"]
-[ext_resource type="AudioStream" uid="uid://cg4mkt8a0yb82" path="res://sounds/weapon_swing6.wav" id="7_2it63"]
-[ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/hit-swing-sword-small.wav" id="8_hxgfi"]
+[ext_resource type="AudioStream" uid="uid://dxrvo3m3fkke" path="res://sounds/547040__cogfirestudios__hit-swing-sword-small-2.wav" id="7_3qqoq"]
+[ext_resource type="AudioStream" uid="uid://bsegar0k5jjb" path="res://sounds/422510__nightflame__swinging-staff-whoosh-strong-05.wav" id="8_krbbr"]
+[ext_resource type="AudioStream" uid="uid://cmcaelru5jg2m" path="res://sounds/205517__everheat__axe_barrel1.wav" id="9_363tm"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="9_uwwuq"]
+[ext_resource type="AudioStream" uid="uid://7f46s7d2o404" path="res://sounds/spear_stub_woosh.wav" id="10_6p4fh"]
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/521999__kastenfrosch__whoosh-dash.wav" id="10_drpr7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 40.6079
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxbta"]
+size = Vector2(161, 342)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yqexy"]
 radius = 53.1507
@@ -54,7 +59,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"stub"
+"method": &"spear_stub_sound"
 }]
 }
 tracks/3/type = "value"
@@ -175,6 +180,47 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_eoalt"]
+resource_name = "PoleAttack"
+length = 0.24
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.06, 0.1, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(50, 25), Vector2(50, 25), Vector2(116, 25), Vector2(116, 25), Vector2(50, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.06, 0.1, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.5708, 1.5708, 1.5708, 1.5708, 1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Weapon/damage_zone2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.02, 0.08),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_1ea80"]
 length = 0.001
 tracks/0/type = "value"
@@ -260,6 +306,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(55, -57)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D/Weapon/damage_zone2:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_2ax2q"]
@@ -368,6 +426,23 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false, true, false]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.32, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"spear_woosh_sound"
+}, {
+"args": [],
+"method": &"spear_woosh_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_0hhfo"]
 resource_name = "drop_item"
@@ -467,6 +542,7 @@ _data = {
 "Attack": SubResource("Animation_520qt"),
 "HoldItem": SubResource("Animation_7smbj"),
 "Idle_2": SubResource("Animation_7u53w"),
+"PoleAttack": SubResource("Animation_eoalt"),
 "RESET": SubResource("Animation_1ea80"),
 "dash": SubResource("Animation_2ax2q"),
 "dash_attack": SubResource("Animation_yn61v"),
@@ -484,6 +560,9 @@ animation = &"HoldItem"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_llu4x"]
 animation = &"Idle_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4u1w"]
+animation = &"PoleAttack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bakcq"]
 animation = &"dash"
@@ -633,6 +712,22 @@ advance_condition = &"stun"
 advance_mode = 2
 advance_condition = &"dying"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_822ja"]
+advance_mode = 2
+advance_condition = &"pole_attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vblfo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kuwn8"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h0u8b"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_07lbm"]
 states/Attack/node = SubResource("AnimationNodeAnimation_8hewe")
 states/Attack/position = Vector2(460.285, 373.17)
@@ -641,6 +736,8 @@ states/HoldItem/node = SubResource("AnimationNodeAnimation_4xs71")
 states/HoldItem/position = Vector2(77.305, -62.904)
 states/Idle_2/node = SubResource("AnimationNodeAnimation_llu4x")
 states/Idle_2/position = Vector2(394.737, 179.498)
+states/PoleAttack/node = SubResource("AnimationNodeAnimation_r4u1w")
+states/PoleAttack/position = Vector2(632.72, 383.437)
 states/Start/position = Vector2(314.5, 373.75)
 states/dash/node = SubResource("AnimationNodeAnimation_bakcq")
 states/dash/position = Vector2(130.528, 67.1085)
@@ -654,7 +751,7 @@ states/stun/node = SubResource("AnimationNodeAnimation_yx11l")
 states/stun/position = Vector2(849.81, 222.202)
 states/use_item/node = SubResource("AnimationNodeAnimation_xk3wl")
 states/use_item/position = Vector2(241.98, -144.865)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "drop_item", "stun", SubResource("AnimationNodeStateMachineTransition_u3s8l"), "drop_item", "dying", SubResource("AnimationNodeStateMachineTransition_ir0ar"), "Idle_2", "Attack", SubResource("AnimationNodeStateMachineTransition_1n82x"), "Attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_foi4y"), "Attack", "stun", SubResource("AnimationNodeStateMachineTransition_j7p1h"), "Attack", "dying", SubResource("AnimationNodeStateMachineTransition_78dy3"), "dash", "stun", SubResource("AnimationNodeStateMachineTransition_2llvj"), "dash", "dying", SubResource("AnimationNodeStateMachineTransition_lu84a"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_uri6y"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_5o1q1"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_f5hik"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_4hpgw"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_thnnf")]
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "drop_item", "stun", SubResource("AnimationNodeStateMachineTransition_u3s8l"), "drop_item", "dying", SubResource("AnimationNodeStateMachineTransition_ir0ar"), "Idle_2", "Attack", SubResource("AnimationNodeStateMachineTransition_1n82x"), "Attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_foi4y"), "Attack", "stun", SubResource("AnimationNodeStateMachineTransition_j7p1h"), "Attack", "dying", SubResource("AnimationNodeStateMachineTransition_78dy3"), "dash", "stun", SubResource("AnimationNodeStateMachineTransition_2llvj"), "dash", "dying", SubResource("AnimationNodeStateMachineTransition_lu84a"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_uri6y"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_5o1q1"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_f5hik"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_4hpgw"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_thnnf"), "Idle_2", "PoleAttack", SubResource("AnimationNodeStateMachineTransition_822ja"), "PoleAttack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_vblfo"), "PoleAttack", "stun", SubResource("AnimationNodeStateMachineTransition_kuwn8"), "PoleAttack", "dying", SubResource("AnimationNodeStateMachineTransition_h0u8b")]
 graph_offset = Vector2(-21.7801, -265.563)
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
@@ -673,11 +770,21 @@ region_rect = Rect2(0, 0, 256, 128)
 
 [node name="damage_zone" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("6_hswxh")]
 rotation = -2.50551
-sound = NodePath("../../../sword_hit")
+sound = NodePath("../../../spear_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Weapon/damage_zone"]
 position = Vector2(-128.498, 93.6493)
 shape = SubResource("CircleShape2D_y1hdt")
+
+[node name="damage_zone2" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("6_hswxh")]
+damage = 0.5
+knockback = 1200.0
+sound = NodePath("../../../pole_hit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Weapon/damage_zone2"]
+position = Vector2(-21, 2.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qxbta")
 
 [node name="ItemHandle" type="Node2D" parent="Sprite2D"]
 visible = false
@@ -708,19 +815,11 @@ parameters/conditions/drop_item = false
 parameters/conditions/dying = false
 parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false
+parameters/conditions/pole_attack = false
 parameters/conditions/stun = false
 parameters/conditions/unstun = false
 "parameters/conditions/unstun & hold_item" = false
 parameters/conditions/use_item = false
-
-[node name="sword_swing_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_2it63")
-bus = &"SFX"
-
-[node name="sword_hit" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_hxgfi")
-volume_db = 5.0
-bus = &"SFX"
 
 [node name="death" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_uwwuq")
@@ -738,5 +837,23 @@ bus = &"SFX"
 [node name="emit_signal" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="spear_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3qqoq")
+bus = &"SFX"
+
+[node name="spear_woosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_krbbr")
+bus = &"SFX"
+
+[node name="pole_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_363tm")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="spear_stub_woosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_6p4fh")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="timeout" from="emit_signal" to="." method="_on_emit_signal_timeout"]
