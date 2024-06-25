@@ -1,6 +1,7 @@
-# 4.0 target
+# 4.1 target
 
 # Backlogs
+# Flag area, dangrous++
 # Sheild charge
 # goblin bomber
 # pickable enemy weapon
@@ -10,7 +11,10 @@
 # weapon composite
 # switch weapon v2
 # defense no heart break
-# Q to swtich between battale and holding item
+# Q to swtich between battale and holding item, left click to use, right click to drop
+# pick order bug fix
+# ad tree generator
+# ad apple generator
 
 extends Node2D
 
