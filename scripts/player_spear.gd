@@ -1,7 +1,5 @@
 extends Unit
 
-@onready var sword_swing_sound = $sword_swing_sound
-@onready var sword_hit = $sword_hit
 @onready var damage_zone = $Sprite2D/Weapon/damage_zone
 @onready var death_sound = $death
 @onready var dash_cooldown = $dash_cooldown
@@ -9,6 +7,7 @@ extends Unit
 @onready var item_handle = $Sprite2D/ItemHandle
 @onready var spear_woosh = $spear_woosh
 @onready var spear_stub_woosh = $spear_stub_woosh
+@onready var damage_zone_2 = $Sprite2D/Weapon/damage_zone2
 
 
 const dash_dust = preload("res://scenes/dash_dust.tscn")
@@ -77,6 +76,8 @@ func _physics_process(delta):
 			else:
 				animation_tree.set("parameters/conditions/unstun", true)
 		"dying":
+			damage_zone.monitoring = false
+			damage_zone_2.monitoring = false
 			var direction = knock_back_source_position.direction_to(global_position).normalized()
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
@@ -183,5 +184,20 @@ func spear_woosh_sound():
 	
 func spear_stub_sound():
 	spear_stub_woosh.play()
+
+func dash_attack_hit():
+	damage_zone.knockback = 1200
+	damage_zone.stun = 12
+
+func dash_attack_unhit():
+	damage_zone.knockback = 1000
+	damage_zone.stun = 10
+
+func pole_attack_hit():
+	damage_zone_2.knockback = 1500
+	
+func pole_attack_unhit():
+	damage_zone_2.knockback = 1000
+	
 	
 	

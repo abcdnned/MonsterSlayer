@@ -38,7 +38,7 @@ func _take_damage(d, v, source_position, tick):
 		knock_back_force = knock_back_force / 2
 		animation_tree.set("parameters/conditions/dying", true)
 		add_to_group("dead")
-		emit_signal("death")
+		emit_signal("death", self)
 		_apply_dying_shader()
 		_sub_dead()
 	else:

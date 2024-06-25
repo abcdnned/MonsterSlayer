@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=20 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
+[ext_resource type="PackedScene" uid="uid://dfgn2a3h6b40x" path="res://scenes/goblin_archer.tscn" id="14_0as1k"]
 [ext_resource type="PackedScene" uid="uid://hfkufxgl3rgi" path="res://scenes/i_apple.tscn" id="14_mam26"]
 [ext_resource type="Script" path="res://scripts/boime_spawner.gd" id="14_ucirg"]
 
@@ -188,5 +189,8 @@ position = Vector2(-336, 2)
 
 [node name="iApple4" parent="." instance=ExtResource("14_mam26")]
 position = Vector2(-459, 227)
+
+[node name="GoblinArcher" parent="." instance=ExtResource("14_0as1k")]
+position = Vector2(-971, -340)
 
 [connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]

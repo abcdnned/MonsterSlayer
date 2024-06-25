@@ -1,5 +1,4 @@
 # 4.0 target
-# TODO goblin warrior with flags
 
 # Backlogs
 # Sheild charge
@@ -8,7 +7,10 @@
 # notification when target spotted
 # navigation composite
 # no UI?
+# weapon composite
 # switch weapon v2
+# defense no heart break
+# Q to swtich between battale and holding item
 
 extends Node2D
 
@@ -80,12 +82,10 @@ func _create_boime(x1, x2, y1, y2, map, mx, my, from, cord):
 func _on_player_hero_death():
 	lose_scene.visible = true
 
-func _on_mob_death():
+func _on_mob_death(node):
 	kill_count += 1
 	kill.text = "KILL " + str(kill_count)
-	if kill_count > 10:
-		spawner.level = 2
-	if kill_count == 20:
+	if node.name == "GoblinWarrior":
 		_win()
 
 func _win():

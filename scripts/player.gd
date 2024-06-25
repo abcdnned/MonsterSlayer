@@ -76,6 +76,8 @@ func _physics_process(delta):
 			else:
 				animation_tree.set("parameters/conditions/unstun", true)
 		"dying":
+			damage_zone.monitoring = false
+			damage_zone_2.monitoring = false
 			var direction = knock_back_source_position.direction_to(global_position).normalized()
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
