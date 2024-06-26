@@ -195,7 +195,7 @@ func _take_damage(d, v, source_position, tick):
 				self.knock_back_source_position = source_position
 				animation_tree.set("parameters/conditions/defense_hit", true)
 				shield_hit.play()
-				return true
+				return [true, 0]
 			else:
 				super._take_damage(d, v, source_position, tick)
 		"idle_defense_hit":
@@ -205,12 +205,12 @@ func _take_damage(d, v, source_position, tick):
 				self.knock_back_source_position = source_position
 				state_machine.start("idle_defense_hit", true)
 				shield_hit.play()
-				return true
+				return [true, 0]
 			else:
 				super._take_damage(d, v, source_position, tick)
 		_:
 			super._take_damage(d, v, source_position, tick)
-		
+	return [false, d]
 
 
 func _on_emit_signal_timeout():

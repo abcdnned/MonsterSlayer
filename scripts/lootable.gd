@@ -2,7 +2,7 @@ extends Sprite2D
 class_name Lootable
 
 var lootable = true
-const pick_up_dis = 500.0
+const pick_up_dis = 600.0
 var p = null
 
 func _ready():
@@ -13,6 +13,7 @@ func _sub_ready():
 	pass
 
 func _process(delta):
+	print(name + str(lootable))
 	if lootable and get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis:
 		if is_on_top():
 			apply_pickable_shader(self)

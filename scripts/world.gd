@@ -1,4 +1,6 @@
 # 4.1 target
+# TODO Goblin Flag generator
+
 
 # Backlogs
 # Flag area, dangrous++
@@ -7,11 +9,8 @@
 # pickable enemy weapon
 # notification when target spotted
 # navigation composite
-# no UI?
 # weapon composite
 # switch weapon v2
-# defense no heart break
-# Q to swtich between battale and holding item, left click to use, right click to drop
 # pick order bug fix
 # ad tree generator
 # ad apple generator

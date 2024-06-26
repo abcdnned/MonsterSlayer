@@ -15,26 +15,27 @@ var active = true
 
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	var tmp_d = damage
 	if not active:
 		return
 	if (!body.has_method("_take_damage")):
 		return
 	if _check_parent(body):
 		return
-	var sound_override = body._take_damage(damage, knockback, global_position, stun)
-	if not sound_override:
+	var overrides = body._take_damage(damage, knockback, global_position, stun)
+	if not overrides[0]:
 		_play_sound()
-	
-	if damage - int(damage) > 0:
+	tmp_d = overrides[1]
+	if tmp_d - int(tmp_d) > 0:
 		var heart_break_float = HEART_BREAK_FLOAT.instantiate()
 		get_tree().current_scene.add_child(heart_break_float)
 		heart_break_float.global_position = body.global_position
 		heart_break_float.emit()
-	if int(damage) > 0:
+	if int(tmp_d) > 0:
 		var heart_break_floor = HEART_BREAK_FLOOR.instantiate()
 		get_tree().current_scene.add_child(heart_break_floor)
 		heart_break_floor.global_position = body.global_position
-		heart_break_floor.set_amount(int(damage))
+		heart_break_floor.set_amount(int(tmp_d))
 		heart_break_floor.emit()
 	emit_signal("hit")
 	if not aoe:

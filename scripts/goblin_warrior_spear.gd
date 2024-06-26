@@ -69,7 +69,11 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	if target_finder.target:
-		navigation_agent_2d.target_position = target_finder.target.global_position
+		if global_position.distance_to(target_finder.target.global_position) >= 70:
+			var dir = (target_finder.target.global_position - global_position).normalized()
+			navigation_agent_2d.target_position = target_finder.target.global_position + dir * 70
+		else:
+			navigation_agent_2d.target_position = global_position
 	else:
 		navigation_agent_2d.target_position = wandering.wandering_loc
 	
