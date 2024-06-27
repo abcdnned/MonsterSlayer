@@ -1,9 +1,8 @@
 extends Node
 class_name BoimeSpawner
 
-@export var area_spawn_count = 0
-@export var archer_spawn_count = 0
-@export var heavy_spear_count = 0
+@export var area_spawn_count = 2
+@export var archer_spawn_count = 1
 @export var enable = true
 
 const GOBLIN = preload("res://scenes/goblin.tscn")

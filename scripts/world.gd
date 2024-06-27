@@ -1,5 +1,5 @@
-# 4.1 target
-# TODO Goblin Flag generator
+# 4.2 target
+
 
 
 # Backlogs
@@ -14,6 +14,7 @@
 # pick order bug fix
 # ad tree generator
 # ad apple generator
+# Goblin Flag generator
 
 extends Node2D
 
