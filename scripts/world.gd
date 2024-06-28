@@ -1,20 +1,20 @@
-# 4.2 target
-
+# 4.3 target
 
 
 # Backlogs
 # Flag area, dangrous++
 # Sheild charge
 # goblin bomber
+# goblin slow liquid thrower
 # pickable enemy weapon
 # notification when target spotted
 # navigation composite
 # weapon composite
 # switch weapon v2
 # pick order bug fix
-# ad tree generator
-# ad apple generator
 # Goblin Flag generator
+# no cycle tree
+# generate tree snacks
 
 extends Node2D
 

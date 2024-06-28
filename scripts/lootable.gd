@@ -13,7 +13,6 @@ func _sub_ready():
 	pass
 
 func _process(delta):
-	print(name + str(lootable))
 	if lootable and get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis:
 		if is_on_top():
 			apply_pickable_shader(self)

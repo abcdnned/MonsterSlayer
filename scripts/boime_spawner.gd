@@ -1,29 +1,71 @@
 extends Node
 class_name BoimeSpawner
 
-@export var area_spawn_count = 2
-@export var archer_spawn_count = 1
 @export var enable = true
+var area_spawn_count = 0
+var archer_spawn_count = 0
+var apple_count = 3
+var tree_count = 5
+var tree_min_size = 1
+var tree_max_size = 6
 
 const GOBLIN = preload("res://scenes/goblin.tscn")
 const I_HEAVY_SPEAR = preload("res://scenes/i_heavy_spear.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
 const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
+const I_APPLE = preload("res://scenes/i_apple.tscn")
 
 func _ready():
 	if not enable:
 		return
 	await owner.ready
-	#region Spawn Goblin
+	spawn_goblin()
+	spawn_goblin_archer()
+	#spawn_heavy_spear()
+	#spawn_goblin_warrior()
+	spawn_apple()
+	spawn_tree()
+	
+func spawn_tree():
+	for cord in owner.map.map_cord:
+		for i in range(tree_count):
+			var x = randi_range(cord["top_left"].x, cord["bottom_right"].x)
+			var y = randi_range(cord["top_left"].y, cord["bottom_right"].y)
+			spawn_tree_snake(x, y, cord)
+
+func spawn_tree_snake(x, y, cord):
+	owner.tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 2), 0)
+
+func spawn_apple():
+	for cord in owner.map.map_cord:
+		for i in range(apple_count):
+			var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
+			var bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
+			var x = randi_range(top_left.x, bottom_right.x)
+			var y = randi_range(top_left.y, bottom_right.y)
+			var a = I_APPLE.instantiate()
+			a.position = Vector2(x, y)
+			owner.add_child(a)
+
+func spawn_goblin_warrior():
+	var i = randi_range(0, owner.map.map_cord.size() - 1)
+	var cord = owner.map.map_cord[i]
+	var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
+	var bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
+	var x = randi_range(top_left.x, bottom_right.x)
+	var y = randi_range(top_left.y, bottom_right.y)
+	spawn_mob(GOBLIN_WARRIOR_SPEAR, Vector2(x, y))
+
+func spawn_goblin():
 	for cord in owner.map.map_cord:
 		for i in range(area_spawn_count):
 			var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
 			var bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
 			var x = randi_range(top_left.x, bottom_right.x)
 			var y = randi_range(top_left.y, bottom_right.y)
-			spawn_mob(GOBLIN, Vector2(x, y))
-	#endregion
-	#region Spawn Goblin archer
+			spawn_mob(GOBLIN, Vector2(x, y))	
+
+func spawn_goblin_archer():
 	for cord in owner.map.map_cord:
 		for i in range(archer_spawn_count):
 			var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
@@ -31,31 +73,16 @@ func _ready():
 			var x = randi_range(top_left.x, bottom_right.x)
 			var y = randi_range(top_left.y, bottom_right.y)
 			spawn_mob(GOBLIN_ARCHER, Vector2(x, y))
-	#endregion
-	var i
-	var cord
-	var top_left
-	var bottom_right
-	var x
-	var y
-	#region Spawn Heavy Spear
-	i = randi_range(0, owner.map.map_cord.size() - 1)
-	cord = owner.map.map_cord[i]
-	top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
-	bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
-	x = randi_range(top_left.x, bottom_right.x)
-	y = randi_range(top_left.y, bottom_right.y)
+
+func spawn_heavy_spear():
+	var i = randi_range(0, owner.map.map_cord.size() - 1)
+	var cord = owner.map.map_cord[i]
+	var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
+	var bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
+	var x = randi_range(top_left.x, bottom_right.x)
+	var y = randi_range(top_left.y, bottom_right.y)
 	spawn_weapon(Vector2(x, y))
-	#endregion
-	#region Spawn Goblin Warrior
-	i = randi_range(0, owner.map.map_cord.size() - 1)
-	cord = owner.map.map_cord[i]
-	top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
-	bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
-	x = randi_range(top_left.x, bottom_right.x)
-	y = randi_range(top_left.y, bottom_right.y)
-	spawn_mob(GOBLIN_WARRIOR_SPEAR, Vector2(x, y))
-	#endregion
+
 func spawn_mob(type, spawn_position):
 	var mob = type.instantiate()
 	mob.position = spawn_position
