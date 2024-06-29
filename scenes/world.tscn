@@ -133,7 +133,6 @@ offset_bottom = 40.0499
 grow_vertical = 0
 
 [node name="Hearts" type="TextureRect" parent="UI/Life"]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_right = 1420.0
@@ -145,7 +144,6 @@ stretch_mode = 1
 script = ExtResource("6_hv15k")
 
 [node name="MaxHearts" type="TextureRect" parent="UI/Life"]
-visible = false
 material = SubResource("ShaderMaterial_75xxt")
 layout_mode = 0
 offset_right = 1420.0

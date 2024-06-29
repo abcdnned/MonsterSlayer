@@ -6,7 +6,7 @@ var area_spawn_count = 0
 var archer_spawn_count = 0
 var apple_count = 3
 var tree_count = 5
-var tree_min_size = 1
+var tree_min_size = 3
 var tree_max_size = 6
 
 const GOBLIN = preload("res://scenes/goblin.tscn")
@@ -34,7 +34,19 @@ func spawn_tree():
 			spawn_tree_snake(x, y, cord)
 
 func spawn_tree_snake(x, y, cord):
-	owner.tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 2), 0)
+	var cur = Vector2i(x, y)
+	var c = randi_range(tree_min_size, tree_max_size)
+	for i in range(c):
+		owner.tile_map.set_cell(0, cur, 0, Vector2i(0, 2), 0)
+		var d = randi_range(1, 4)
+		if d == 1:
+			cur = Vector2i(cur.x + 1, cur.y)
+		elif d == 2:
+			cur = Vector2i(cur.x - 1, cur.y)
+		elif d == 3:
+			cur = Vector2i(cur.x, cur.y + 1)
+		else:
+			cur = Vector2i(cur.x, cur.y - 1)
 
 func spawn_apple():
 	for cord in owner.map.map_cord:

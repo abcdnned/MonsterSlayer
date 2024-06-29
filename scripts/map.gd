@@ -15,7 +15,7 @@ const KNIGHT_POTRIAT = preload("res://scenes/knight_potriat.tscn")
 
 func _ready():
 	init_map()
-	init_plain_boime(3)
+	init_plain_boime(8)
 	for x in range(0, 10):
 		print(map[x])
 	
