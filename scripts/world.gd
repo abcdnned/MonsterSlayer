@@ -1,6 +1,5 @@
-# 4.3 target
-# TODO generate tree snacks
-# TODO enlarge map
+# 4.4 target
+# TODO fix map bug
 
 # Backlogs
 # Flag area, dangrous++
@@ -16,6 +15,10 @@
 # Goblin Flag generator
 # no cycle tree
 # war fog
+# light
+# multi items
+# weapon tire
+# treasures
 
 extends Node2D
 

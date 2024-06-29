@@ -8,6 +8,7 @@ var apple_count = 3
 var tree_count = 5
 var tree_min_size = 3
 var tree_max_size = 6
+var apple_rate: float = 0
 
 const GOBLIN = preload("res://scenes/goblin.tscn")
 const I_HEAVY_SPEAR = preload("res://scenes/i_heavy_spear.tscn")
@@ -19,11 +20,11 @@ func _ready():
 	if not enable:
 		return
 	await owner.ready
+	apple_rate = float(apple_count) / ((float(tree_min_size) + float(tree_max_size)) / 2.0 * float(tree_count))
 	spawn_goblin()
 	spawn_goblin_archer()
 	#spawn_heavy_spear()
 	#spawn_goblin_warrior()
-	spawn_apple()
 	spawn_tree()
 	
 func spawn_tree():
@@ -38,6 +39,9 @@ func spawn_tree_snake(x, y, cord):
 	var c = randi_range(tree_min_size, tree_max_size)
 	for i in range(c):
 		owner.tile_map.set_cell(0, cur, 0, Vector2i(0, 2), 0)
+		if randf_range(0, 1) <= apple_rate:
+			var p = owner.tile_map.to_global(owner.tile_map.map_to_local(cur))
+			spawn_apple(p)
 		var d = randi_range(1, 4)
 		if d == 1:
 			cur = Vector2i(cur.x + 1, cur.y)
@@ -48,16 +52,10 @@ func spawn_tree_snake(x, y, cord):
 		else:
 			cur = Vector2i(cur.x, cur.y - 1)
 
-func spawn_apple():
-	for cord in owner.map.map_cord:
-		for i in range(apple_count):
-			var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["top_left"].x, cord["top_left"].y)))
-			var bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(cord["bottom_right"].x, cord["bottom_right"].y)))
-			var x = randi_range(top_left.x, bottom_right.x)
-			var y = randi_range(top_left.y, bottom_right.y)
-			var a = I_APPLE.instantiate()
-			a.position = Vector2(x, y)
-			owner.add_child(a)
+func spawn_apple(p):
+	var a = I_APPLE.instantiate()
+	a.position = p
+	owner.add_child(a)
 
 func spawn_goblin_warrior():
 	var i = randi_range(0, owner.map.map_cord.size() - 1)

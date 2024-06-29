@@ -5,8 +5,8 @@ extends Control
 var map = []
 var map_cord = []
 const START = Vector2(4, 4)
-const MAP_H = 10
-const MAP_V = 10
+const MAP_H = 20
+const MAP_V = 20
 var tiles = []
 const MAP_TILE = preload("res://scenes/map_tile.tscn")
 var player = null
@@ -15,7 +15,7 @@ const KNIGHT_POTRIAT = preload("res://scenes/knight_potriat.tscn")
 
 func _ready():
 	init_map()
-	init_plain_boime(8)
+	init_plain_boime(3)
 	for x in range(0, 10):
 		print(map[x])
 	
@@ -26,9 +26,6 @@ func _process(delta):
 		visible = false
 
 func init_map():
-	var width = 10
-	var height = 10
-
 	for y in range(MAP_H):
 		var row = []
 		for x in range(MAP_V):
@@ -40,6 +37,7 @@ func init_map():
 		for x in range(MAP_V):
 			var tile = MAP_TILE.instantiate()
 			grid_container.add_child(tile)
+			tile.color = Color.BURLYWOOD
 			row.append(tile)
 		tiles.append(row)
 		
