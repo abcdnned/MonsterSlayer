@@ -1,5 +1,6 @@
-# 4.5 target
-# TODO manual draw map
+# 4.6 target
+# TODO Goblin army
+# TODO War Eye
 
 # Backlogs
 # Flag area, dangrous++
@@ -19,6 +20,13 @@
 # multi items
 # weapon tire
 # treasures
+# rush gallary
+# burnable wooden locked door
+# key merchants boss
+# treasure
+# goblin summoner
+# treasure goblin sneaker
+# world map related code move to map.gd
 
 extends Node2D
 
@@ -32,6 +40,7 @@ extends Node2D
 @onready var lose_scene = $UI/LoseScene
 @onready var winning_sound = $WinningSound
 @onready var map = $UI/Map
+@onready var war_eye = $UI/WarEye
 const PLAYER = preload("res://scenes/player.tscn")
 const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 
@@ -47,7 +56,6 @@ func _ready():
 	load_player(PLAYER, Vector2(0, 0))
 	var route := {}
 	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord, route)
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -57,6 +65,7 @@ func _create_boime(x1, x2, y1, y2, map, mx, my, from, cord, route):
 	for x in range(x1, x2 + 1):
 		for y in range(y1, y2 + 1):
 			var chance = randi_range(1, 100 + 10 + 5)
+			self.map.tile_to_cord[Vector2(x, y)] = Vector2(mx, my)
 			if chance <= 10:
 				tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), 0)
 			elif chance <= 15:
@@ -122,4 +131,16 @@ func load_player(player_type, position):
 	player.max_health_change.connect(max_hearts._on_player_max_health_change)
 	player.hero_death.connect(_on_player_hero_death)
 	player.map_pos_change.connect(map._on_player_map_pos_change)
+	player.map_pos_change.connect(_on_player_map_pos_change)
 	player._ready()
+
+func _on_player_map_pos_change(x, y):
+	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
+	var i = self.map.tile_to_cord[Vector2(p.x, p.y)]
+	if i and map.war_eye[i.x][i.y] == 1:
+		war_eye.visible = true
+	else:
+		war_eye.visible = false
+		
+	
+	

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt4admtr0y2cf"]
+
+[ext_resource type="Texture2D" uid="uid://du1xtedi7tahm" path="res://sprites/war_eye.png" id="1_6gsua"]
+
+[node name="WarEye" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.114
+anchor_right = 0.114
+offset_left = -191.52
+offset_right = -151.52
+offset_bottom = 40.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_6gsua")
+metadata/_edit_use_anchors_ = true
