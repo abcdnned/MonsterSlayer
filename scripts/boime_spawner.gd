@@ -4,7 +4,7 @@ class_name BoimeSpawner
 @export var enable = true
 var area_spawn_count = 0
 var archer_spawn_count = 0
-var apple_count = 3
+var apple_count = 2
 var tree_count = 5
 var tree_min_size = 3
 var tree_max_size = 6

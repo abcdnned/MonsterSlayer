@@ -44,13 +44,25 @@ func init_map():
 func init_plain_boime():
 	var x = START.x
 	var y = START.y
+	# Plain garrlery
 	set_plain_tile(x, y)
-	x += 1
+	set_plain_tile(x + 1, y)
+	set_plain_tile(x + 1, y + 1)
+	set_plain_tile(x + 1, y + 2)
+	set_plain_tile(x + 1, y + 3)
+	set_plain_tile(x - 1, y)
+	set_plain_tile(x, y - 1)
+	# Goblin Forntie
+	x -= 3
 	set_plain_tile(x, y)
-	y += 1
-	set_plain_tile(x, y)
-	x -= 1
-	set_plain_tile(x, y)
+	set_plain_tile(x - 1, y)
+	set_plain_tile(x - 1, y + 1)
+	set_plain_tile(x, y + 1)
+	set_plain_tile(x + 1, y + 1)
+	set_plain_tile(x + 1, y)
+	set_plain_tile(x + 1, y - 1)
+	set_plain_tile(x, y - 1)
+	set_plain_tile(x - 1, y - 1)
 	
 func set_plain_tile(x, y):
 	map[x][y] = 1
