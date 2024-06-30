@@ -1,5 +1,5 @@
-# 4.4 target
-# TODO fix map bug
+# 4.5 target
+# TODO manual draw map
 
 # Backlogs
 # Flag area, dangrous++
@@ -45,14 +45,15 @@ var kill_count = 0
 func _ready():
 	randomize()
 	load_player(PLAYER, Vector2(0, 0))
-	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord)
+	var route := {}
+	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord, route)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
-func _create_boime(x1, x2, y1, y2, map, mx, my, from, cord):
+func _create_boime(x1, x2, y1, y2, map, mx, my, from, cord, route):
 	for x in range(x1, x2 + 1):
 		for y in range(y1, y2 + 1):
 			var chance = randi_range(1, 100 + 10 + 5)
@@ -62,17 +63,18 @@ func _create_boime(x1, x2, y1, y2, map, mx, my, from, cord):
 				tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(1, 0), 0)
 			else:
 				tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 1), 0)
+	route[Vector2(mx, my)] = null
 	var size = x2 - x1 + 1
 	cord.append({"map": Vector2(mx, my), "top_left": Vector2(x1, y1), "bottom_right": Vector2(x2, y2)})
 	# generate plain
-	if from != 3 and map[mx + 1][my] == 1:
-		_create_boime(x1, x2, y1 + size, y2 + size, map, mx + 1, my, 1, cord)
-	if from != 2 and map[mx][my + 1] == 1:
-		_create_boime(x1 + size, x2 + size, y1, y2, map, mx, my + 1, 4, cord)
-	if from != 1 and map[mx - 1][my] == 1:
-		_create_boime(x1, x2, y1 - size, y2 - size, map, mx - 1, my, 3, cord)
-	if from != 4 and map[mx][my - 1] == 1:
-		_create_boime(x1 - size, x2 - size, y1, y2, map, mx, my - 1, 2, cord)
+	if from != 3 and map[mx + 1][my] == 1 and not route.has(Vector2(mx + 1, my)):
+		_create_boime(x1, x2, y1 + size, y2 + size, map, mx + 1, my, 1, cord, route)
+	if from != 2 and map[mx][my + 1] == 1 and not route.has(Vector2(mx, my + 1)):
+		_create_boime(x1 + size, x2 + size, y1, y2, map, mx, my + 1, 4, cord, route)
+	if from != 1 and map[mx - 1][my] == 1 and not route.has(Vector2(mx - 1, my)):
+		_create_boime(x1, x2, y1 - size, y2 - size, map, mx - 1, my, 3, cord, route)
+	if from != 4 and map[mx][my - 1] == 1 and not route.has(Vector2(mx, my - 1)):
+		_create_boime(x1 - size, x2 - size, y1, y2, map, mx, my - 1, 2, cord, route)
 	# generate wall
 	if from != 3 and map[mx + 1][my] == 0:
 		for x in range(x1, x2 + 1):

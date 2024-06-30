@@ -15,8 +15,8 @@ const KNIGHT_POTRIAT = preload("res://scenes/knight_potriat.tscn")
 
 func _ready():
 	init_map()
-	init_plain_boime(3)
-	for x in range(0, 10):
+	init_plain_boime()
+	for x in range(0, 20):
 		print(map[x])
 	
 func _process(delta):
@@ -41,23 +41,20 @@ func init_map():
 			row.append(tile)
 		tiles.append(row)
 		
-func init_plain_boime(d):
+func init_plain_boime():
 	var x = START.x
 	var y = START.y
-	var dir = randi_range(0, 3)
-	for i in range(0, d):
-		map[x][y] = 1
-		tiles[x][y].color = Color(.2, .8, .2, .5)
-		match dir:
-			0:
-				x -= 1
-			1:
-				y += 1
-			2:
-				x += 1
-			3:
-				y -= 1
-		dir = ((dir + 2) % 4 + randi_range(1, 3)) % 4
+	set_plain_tile(x, y)
+	x += 1
+	set_plain_tile(x, y)
+	y += 1
+	set_plain_tile(x, y)
+	x -= 1
+	set_plain_tile(x, y)
+	
+func set_plain_tile(x, y):
+	map[x][y] = 1
+	tiles[x][y].color = Color(.2, .8, .2, .5)
 
 
 func _on_player_map_pos_change(x, y):
