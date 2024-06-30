@@ -78,16 +78,16 @@ func _create_boime(x1, x2, y1, y2, map, mx, my, from, cord, route):
 	# generate wall
 	if from != 3 and map[mx + 1][my] == 0:
 		for x in range(x1, x2 + 1):
-			tile_map.set_cell(0, Vector2i(x, y2 + 1), 0, Vector2i(0, 2), 0)
+			tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(0, 2), 0)
 	if from != 2 and map[mx][my + 1] == 0:
 		for y in range(y1, y2 + 1):
-			tile_map.set_cell(0, Vector2i(x2 + 1, y), 0, Vector2i(0, 2), 0)
+			tile_map.set_cell(0, Vector2i(x2, y), 0, Vector2i(0, 2), 0)
 	if from != 1 and map[mx - 1][my] == 0:
 		for x in range(x1, x2 + 1):
-			tile_map.set_cell(0, Vector2i(x, y1 - 1), 0, Vector2i(0, 2), 0)
+			tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(0, 2), 0)
 	if from != 4 and map[mx][my - 1] == 0:
 		for y in range(y1, y2 + 1):
-			tile_map.set_cell(0, Vector2i(x1 - 1, y), 0, Vector2i(0, 2), 0)
+			tile_map.set_cell(0, Vector2i(x1, y), 0, Vector2i(0, 2), 0)
 
 func _on_player_hero_death():
 	lose_scene.visible = true
