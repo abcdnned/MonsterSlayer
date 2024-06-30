@@ -85,9 +85,5 @@ func _on_player_map_pos_change(x, y):
 	for t in map_cord:
 		if t["top_left"].x <= p.x and t["top_left"].y <= p.y and t["bottom_right"].x >= p.x and t["bottom_right"].y >= p.y:
 			tiles[t["map"].x][t["map"].y].add_child(player)
-			var top_left = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(t["top_left"].x, t["top_left"].y)))
-			var bottom_right = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(t["bottom_right"].x, t["bottom_right"].y)))
-			owner.spawner.top_left = top_left
-			owner.spawner.bottom_right = bottom_right
 			break
 

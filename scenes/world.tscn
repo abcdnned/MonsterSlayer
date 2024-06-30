@@ -170,10 +170,10 @@ theme_override_colors/font_color = Color(0.878431, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Kill: 0"
 
-[node name="Spawner" type="Node" parent="."]
+[node name="GoblinArmy1Spawner" type="Node" parent="."]
 script = ExtResource("9_l8cwq")
-internval_seconds = 3
-enable = false
+top_left = Vector2(-3600, -4000)
+bottom_right = Vector2(3600, -11000)
 
 [node name="WinningSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_54gj3")

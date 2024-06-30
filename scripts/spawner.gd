@@ -2,10 +2,10 @@ extends Node
 class_name Spawner
 
 @export var unit_type: String = "res://scenes/goblin.tscn"
-@export var internval_seconds = 10
-var top_left = Vector2(-10, 10) * 128.0
-var bottom_right = Vector2(10, -10) * 128.0
-@export var enable = true
+@export var internval_seconds = 3
+@export var top_left = Vector2(-10, 10) * 128.0
+@export var bottom_right = Vector2(10, -10) * 128.0
+@export var enable = false
 
 var level = 1
 var spawn_count = 0

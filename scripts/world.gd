@@ -1,6 +1,5 @@
 # 4.6 target
 # TODO Goblin army
-# TODO War Eye
 
 # Backlogs
 # Flag area, dangrous++
@@ -36,7 +35,7 @@ extends Node2D
 @onready var winning_scene = $UI/WinningScene
 @onready var hearts = $UI/Life/Hearts
 @onready var max_hearts = $UI/Life/MaxHearts
-@onready var spawner = $Spawner
+@onready var spawner = $GoblinArmy1Spawner
 @onready var lose_scene = $UI/LoseScene
 @onready var winning_sound = $WinningSound
 @onready var map = $UI/Map
@@ -137,10 +136,15 @@ func load_player(player_type, position):
 func _on_player_map_pos_change(x, y):
 	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
 	var i = self.map.tile_to_cord[Vector2(p.x, p.y)]
-	if i and map.war_eye[i.x][i.y] == 1:
+	if i and map.war_eye[i.x][i.y] > 0:
 		war_eye.visible = true
 	else:
 		war_eye.visible = false
+	if i and map.war_eye[i.x][i.y] == 1:
+		spawner.enable = true
+	else:
+		spawner.enable = false
+	#print(Vector2(x, y)) # TODO get pos
 		
 	
 	
