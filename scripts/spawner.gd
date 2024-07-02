@@ -1,21 +1,16 @@
 extends Node
 class_name Spawner
 
-@export var unit_type: String = "res://scenes/goblin.tscn"
 @export var internval_seconds = 3
 @export var top_left = Vector2(-10, 10) * 128.0
 @export var bottom_right = Vector2(10, -10) * 128.0
 @export var enable = false
 
-var level = 1
+var wave = 1
 var spawn_count = 0
-var MOB = null
+const GOBLIN = preload("res://scenes/goblin.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
-var max_melee: int = 3
-var max_range: int = 1
-
-func _ready():
-	MOB = load(unit_type)
+const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
 
 func _process(delta):
 	if not enable:
@@ -28,17 +23,29 @@ func _process(delta):
 func _get_spawn_position():
 	var x = randf_range(top_left.x, bottom_right.x)
 	var y = randf_range(bottom_right.y, top_left.y)
+	var p = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(x, y)))
+	while owner.tile_map.get_cell_atlas_coords(0, p) == Vector2i(0, 2):
+		x = randf_range(top_left.x, bottom_right.x)
+		y = randf_range(bottom_right.y, top_left.y)
+		p = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(x, y)))
 	return Vector2(x, y)
 	
 func do_spawn():
-	if level == 1 and get_alive_mob_count("melee_mob") < max_melee:
-		spawn_mob(MOB, "melee_mob")
-	elif level == 2:
-		max_melee = 2
-		if get_alive_mob_count("melee_mob") < max_melee:
-			spawn_mob(MOB, "melee_mob")
-		if get_alive_mob_count("range_mob") < max_range:
-			spawn_mob(GOBLIN_ARCHER, "range_mob")
+	if wave <= 5 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 9:
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		wave += 1
+	elif wave <= 10 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 9:
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN_ARCHER, "range_mob")
+		wave += 1
+	elif wave == 11 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
+		spawn_tracker(GOBLIN_WARRIOR_SPEAR, "melee_mob")
+		wave += 1
+	else:
+		enable = false
 
 func get_alive_mob_count(type):
 	var mob_count = 0
@@ -47,6 +54,10 @@ func get_alive_mob_count(type):
 			mob_count += 1
 	return mob_count
 
+func spawn_tracker(type, group):
+	var mob = spawn_mob(type, group)
+	mob.alert_range = 1000000
+
 func spawn_mob(type, group):
 	var spawn_position = _get_spawn_position()
 	var mob = type.instantiate()
@@ -54,5 +65,6 @@ func spawn_mob(type, group):
 	mob.position = spawn_position
 	owner.add_child(mob)
 	mob.death.connect(owner._on_mob_death)
+	return mob
 
 

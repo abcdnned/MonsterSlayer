@@ -1,5 +1,5 @@
 # 4.6 target
-# TODO Goblin army
+# TODO fix Goblin archer AI
 
 # Backlogs
 # Flag area, dangrous++
