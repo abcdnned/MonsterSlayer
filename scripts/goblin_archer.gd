@@ -34,9 +34,9 @@ func _physics_process(delta):
 			if is_in_group("lose"):
 				return
 			if target_finder.target:
-				if global_position.distance_to(target_finder.target.global_position) <= CHARGE_DIS * .8:
+				if should_charge():
 					animation_tree.set("parameters/conditions/charge", true)
-				elif not target_finder.target.is_in_group("dead") and not is_in_group("lose"):
+				if not target_finder.target.is_in_group("dead") and not is_in_group("lose"):
 					var direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 					sprite.look_at(navigation_agent_2d.get_next_path_position())
 					velocity = direction * SPEED
@@ -46,9 +46,10 @@ func _physics_process(delta):
 				animation_tree.set("parameters/conditions/target", false)
 		"charge":
 			animation_tree.set("parameters/conditions/charge", false)
+			if obstacle():
+				animation_tree.set("parameters/conditions/chasing", true)
 			if ray_cast_2d.is_colliding() and state_machine.get_current_play_position() >= 1.2:
-				if ray_cast_2d.get_collider().is_in_group("human"):
-					animation_tree.set("parameters/conditions/shoot", true)
+				animation_tree.set("parameters/conditions/shoot", true)
 			else:
 				if global_position.distance_to(target_finder.target.global_position) > CHARGE_DIS:
 					animation_tree.set("parameters/conditions/chasing", true)
@@ -63,6 +64,20 @@ func _physics_process(delta):
 		"shoot":
 			animation_tree.set("parameters/conditions/shoot", false)
 
+func should_charge():
+	var dis = global_position.distance_to(target_finder.target.global_position) <= CHARGE_DIS * .8
+	var obstacle = not ray_cast().collider.is_in_group("human")
+	return dis and not obstacle
+
+func obstacle():
+	return not ray_cast().collider.is_in_group("human")
+
+func ray_cast():
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, target_finder.target.global_position)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	return result
 
 func _on_timer_timeout():
 	if target_finder.target:
