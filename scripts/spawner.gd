@@ -2,8 +2,6 @@ extends Node
 class_name Spawner
 
 @export var internval_seconds = 3
-@export var top_left = Vector2(-10, 10) * 128.0
-@export var bottom_right = Vector2(10, -10) * 128.0
 @export var enable = false
 
 var wave = 1
@@ -19,31 +17,21 @@ func _process(delta):
 	if (spawn_count / 50 >= internval_seconds):
 		spawn_count = 0
 		do_spawn()
-
-func _get_spawn_position():
-	var x = randf_range(top_left.x, bottom_right.x)
-	var y = randf_range(bottom_right.y, top_left.y)
-	var p = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(x, y)))
-	while owner.tile_map.get_cell_atlas_coords(0, p) == Vector2i(0, 2):
-		x = randf_range(top_left.x, bottom_right.x)
-		y = randf_range(bottom_right.y, top_left.y)
-		p = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(x, y)))
-	return Vector2(x, y)
 	
 func do_spawn():
-	if wave <= 1 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 4:
-		#spawn_tracker(GOBLIN, "melee_mob")
-		#spawn_tracker(GOBLIN, "melee_mob")
-		#spawn_tracker(GOBLIN, "melee_mob")
-		#wave += 1
-	#elif wave <= 10 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 9:
-		#spawn_tracker(GOBLIN, "melee_mob")
-		#spawn_tracker(GOBLIN, "melee_mob")
+	if wave <= 1 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		wave += 1
+	elif wave <= 10 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN_ARCHER, "range_mob")
 		wave += 1
-	#elif wave == 11 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
-		#spawn_tracker(GOBLIN_WARRIOR_SPEAR, "melee_mob")
-		#wave += 1
+	elif wave == 11 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
+		spawn_tracker(GOBLIN_WARRIOR_SPEAR, "melee_mob")
+		wave += 1
 	else:
 		enable = false
 
@@ -59,7 +47,7 @@ func spawn_tracker(type, group):
 	mob.alert_range = 1000000
 
 func spawn_mob(type, group):
-	var spawn_position = _get_spawn_position()
+	var spawn_position = owner.get_spawn_position(owner.GOBLIN_ARMY_TOP_LEFT, owner.GOBLIN_ARMY_BOTTOM_RIGHT)
 	var mob = type.instantiate()
 	mob.add_to_group(group)
 	mob.position = spawn_position

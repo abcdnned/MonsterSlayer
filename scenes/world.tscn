@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=20 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
 [ext_resource type="Script" path="res://scripts/boime_spawner.gd" id="14_ucirg"]
+[ext_resource type="PackedScene" uid="uid://cbsyhqjtkh8cn" path="res://scenes/floating_text.tscn" id="17_vbuj7"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -170,10 +171,16 @@ theme_override_colors/font_color = Color(0.878431, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Kill: 0"
 
+[node name="Coins" type="Label" parent="UI"]
+offset_top = 37.0
+offset_right = 65.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.878431, 0.741176, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Coins: 0"
+
 [node name="GoblinArmy1Spawner" type="Node" parent="."]
 script = ExtResource("9_l8cwq")
-top_left = Vector2(-3600, -4000)
-bottom_right = Vector2(3600, -11000)
 
 [node name="WinningSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_54gj3")
@@ -185,5 +192,11 @@ one_shot = true
 
 [node name="BoimeSpawner" type="Node" parent="."]
 script = ExtResource("14_ucirg")
+
+[node name="FloatingText" parent="." instance=ExtResource("17_vbuj7")]
+offset_left = -167.0
+offset_top = 9.0
+offset_right = -167.0
+offset_bottom = 9.0
 
 [connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]

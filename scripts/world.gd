@@ -1,4 +1,7 @@
 # 4.8 target
+# TODO treasures
+# TODO goblin warrior AI
+# TODO new weapon design
 
 # Backlogs
 # Flag area, dangrous++
@@ -7,9 +10,7 @@
 # goblin slow liquid thrower
 # pickable enemy weapon
 # notification when target spotted
-# navigation composite
-# weapon composite
-# switch weapon v2
+# switch weapon
 # pick order bug fix
 # Goblin Flag generator
 # no cycle tree
@@ -17,11 +18,9 @@
 # light
 # multi items
 # weapon tire
-# treasures
 # rush gallary
 # burnable wooden locked door
 # key merchants boss
-# treasure
 # goblin summoner
 # treasure goblin sneaker
 # world map related code move to map.gd
@@ -31,6 +30,7 @@ extends Node2D
 @onready var player = null
 @onready var tile_map = $TileMap
 @onready var kill = $UI/Kill
+@onready var coins = $UI/Coins
 @onready var winning_scene = $UI/WinningScene
 @onready var hearts = $UI/Life/Hearts
 @onready var max_hearts = $UI/Life/MaxHearts
@@ -41,9 +41,10 @@ extends Node2D
 @onready var war_eye = $UI/WarEye
 const PLAYER = preload("res://scenes/player.tscn")
 const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
-
+const GOBLIN_ARMY_TOP_LEFT = Vector2(-3600, -4000)
+const GOBLIN_ARMY_BOTTOM_RIGHT = Vector2(3600, -11000)
+var money: int = 0
 var kill_count = 0
-
 
 # Called when the node enters the scene tree for the first time.
 #   1
@@ -145,5 +146,26 @@ func _on_player_map_pos_change(x, y):
 		spawner.enable = false
 	#print(Vector2(x, y)) # TODO get pos
 		
-	
+func get_money(m):
+	money += m
+	coins.text = "Coins: " + str(money)
+
+func spawn(type, top_left, bottom_right):
+	var spawn_position = get_spawn_position(top_left, bottom_right)
+	var thing = type.instantiate()
+	thing.position = spawn_position
+	add_child(thing)
+	return thing
+
+func get_spawn_position(top_left, bottom_right):
+	var x = randf_range(top_left.x, bottom_right.x)
+	var y = randf_range(bottom_right.y, top_left.y)
+	while not can_spawn(x, y):
+		x = randf_range(top_left.x, bottom_right.x)
+		y = randf_range(bottom_right.y, top_left.y)
+	return Vector2(x, y)
+
+func can_spawn(x, y):
+	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
+	return tile_map.get_cell_atlas_coords(0, p) != Vector2i(0, 2)
 	

@@ -15,6 +15,7 @@ const I_HEAVY_SPEAR = preload("res://scenes/i_heavy_spear.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
 const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
 const I_APPLE = preload("res://scenes/i_apple.tscn")
+const I_COIN_SMALL = preload("res://scenes/i_coin_small.tscn")
 
 func _ready():
 	if not enable:
@@ -23,10 +24,13 @@ func _ready():
 	apple_rate = float(apple_count) / ((float(tree_min_size) + float(tree_max_size)) / 2.0 * float(tree_count))
 	spawn_goblin()
 	spawn_goblin_archer()
-	#spawn_heavy_spear()
-	#spawn_goblin_warrior()
+	spawn_coins()
 	spawn_tree()
-	
+
+func spawn_coins():
+	for i in range(10):
+		owner.spawn(I_COIN_SMALL, owner.GOBLIN_ARMY_TOP_LEFT, owner.GOBLIN_ARMY_BOTTOM_RIGHT)
+
 func spawn_tree():
 	for cord in owner.map.map_cord:
 		for i in range(tree_count):

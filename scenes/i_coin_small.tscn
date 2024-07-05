@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfw25eeased7r"]
+
+[ext_resource type="Texture2D" uid="uid://bjlq7rnweitdi" path="res://sprites/coin_small.png" id="1_xih8n"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="2_anqod"]
+[ext_resource type="AudioStream" uid="uid://b6vee6j2la3xn" path="res://sounds/get_coins_small.wav" id="3_k3f2l"]
+[ext_resource type="Script" path="res://scripts/FloatingTextUtil.gd" id="4_it70k"]
+
+[node name="iCoinSmall" type="Sprite2D"]
+texture = ExtResource("1_xih8n")
+script = ExtResource("2_anqod")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_k3f2l")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="FloatingTextUtil" type="Node" parent="."]
+script = ExtResource("4_it70k")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

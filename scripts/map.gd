@@ -14,7 +14,6 @@ const MAP_TILE = preload("res://scenes/map_tile.tscn")
 var player = null
 const KNIGHT_POTRIAT = preload("res://scenes/knight_potriat.tscn")
 
-
 func _ready():
 	init_map()
 	init_plain_boime()
