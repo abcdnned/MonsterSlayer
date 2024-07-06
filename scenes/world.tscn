@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
 [ext_resource type="Script" path="res://scripts/boime_spawner.gd" id="14_ucirg"]
-[ext_resource type="PackedScene" uid="uid://cbsyhqjtkh8cn" path="res://scenes/floating_text.tscn" id="17_vbuj7"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -192,11 +191,5 @@ one_shot = true
 
 [node name="BoimeSpawner" type="Node" parent="."]
 script = ExtResource("14_ucirg")
-
-[node name="FloatingText" parent="." instance=ExtResource("17_vbuj7")]
-offset_left = -167.0
-offset_top = 9.0
-offset_right = -167.0
-offset_bottom = 9.0
 
 [connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]

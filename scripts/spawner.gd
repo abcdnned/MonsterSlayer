@@ -20,16 +20,16 @@ func _process(delta):
 	
 func do_spawn():
 	if wave <= 1 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN, "melee_mob")
-		wave += 1
-	elif wave <= 10 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN_ARCHER, "range_mob")
-		wave += 1
-	elif wave == 11 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
+		#spawn_tracker(GOBLIN, "melee_mob")
+		#spawn_tracker(GOBLIN, "melee_mob")
+		#spawn_tracker(GOBLIN, "melee_mob")
+		#wave += 1
+	#elif wave <= 10 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
+		#spawn_tracker(GOBLIN, "melee_mob")
+		#spawn_tracker(GOBLIN, "melee_mob")
+		#spawn_tracker(GOBLIN_ARCHER, "range_mob")
+		#wave += 1
+	#elif wave == 11 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
 		spawn_tracker(GOBLIN_WARRIOR_SPEAR, "melee_mob")
 		wave += 1
 	else:

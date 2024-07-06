@@ -784,6 +784,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["human"]]
 z_index = 10
 script = ExtResource("1_4j5bp")
+max_health = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_mrnfa")

@@ -1,5 +1,4 @@
 # 4.8 target
-# TODO treasures
 # TODO goblin warrior AI
 # TODO new weapon design
 
@@ -24,6 +23,7 @@
 # goblin summoner
 # treasure goblin sneaker
 # world map related code move to map.gd
+# white eye attack, purple eye attack
 
 extends Node2D
 

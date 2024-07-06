@@ -125,7 +125,7 @@ func get_input():
 	return Input.get_vector("left", "right", "up", "down")
 
 func _sub_ready():
-	health = 3.0
+	health = max_health
 	emit_signal("health_change", health)
 
 func _move_velocity(delta):

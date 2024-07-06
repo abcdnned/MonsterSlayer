@@ -6,8 +6,15 @@ const SPEED = 400
 @onready var death_yell = $death_yell
 @onready var ray_cast_2d = $Sprite2D/RayCast2D
 @onready var damage_zone = $Sprite2D/Weapon/damage_zone
+@onready var damage_zone_2 = $Sprite2D/Weapon/damage_zone2
 @onready var target_finder = $TargetFinder
 @onready var wandering = $Wandering
+@onready var what_am_i_thinking = $WhatAmIThinking
+@onready var ray_cast_s = $Sprite2D/RayCastS
+@onready var shape_cast_2d = $Sprite2D/ShapeCast2D
+var dash_attack_speed = 1100
+var dash_attack_direction = Vector2.ZERO
+var dash_attack_deduction = 20.0
 
 var alert_range = 1000.0
 
@@ -17,9 +24,20 @@ func _process(delta):
 		"chasing":
 			if is_in_group("lose"):
 				return
-			if ray_cast_2d.is_colliding():
+			if ray_cast_2d.is_colliding() and what_am_i_thinking.thinking < 50:
 				if ray_cast_2d.get_collider().is_in_group("human"):
 					animation_tree.set("parameters/conditions/attack", true)
+			elif ray_cast_s.is_colliding() and what_am_i_thinking.thinking < 80:
+				if ray_cast_s.get_collider().is_in_group("human"):
+					animation_tree.set("parameters/conditions/pole_attack", true)
+			elif shape_cast_2d.is_colliding() and what_am_i_thinking.thinking < 30:
+				for i in range(shape_cast_2d.get_collision_count()):
+					if shape_cast_2d.get_collider(i).is_in_group("human"):
+						animation_tree.set("parameters/conditions/dash_attack", true)
+						dash_attack_speed = 1100
+						dash_attack_deduction = 20.0
+						dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
+						break
 		"HeavySpear_Attack":
 			animation_tree.set("parameters/conditions/attack", false)
 
@@ -65,7 +83,14 @@ func _physics_process(delta):
 				move_and_slide()
 			else:
 				animation_tree.set("parameters/conditions/unstun", true)
-
+		"HeavySpear_PoleAttack":
+			animation_tree.set("parameters/conditions/pole_attack", false)
+		"HeavySpear_dash_attack":
+			print("dash_attack")
+			animation_tree.set("parameters/conditions/dash_attack", false)
+			velocity = dash_attack_direction * dash_attack_speed
+			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
+			move_and_slide()
 
 func _on_timer_timeout():
 	if target_finder.target:
@@ -80,4 +105,8 @@ func _on_timer_timeout():
 func _sub_dead():
 	death_yell.play()
 
-				
+func pole_attack_hit():
+	damage_zone_2.knockback = 1500
+	
+func pole_attack_unhit():
+	damage_zone_2.knockback = 1000
