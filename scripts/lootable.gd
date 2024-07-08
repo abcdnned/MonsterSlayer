@@ -13,16 +13,17 @@ func _sub_ready():
 	pass
 
 func _process(delta):
-	if lootable and get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis:
-		if is_on_top():
-			apply_pickable_shader(self)
+	if lootable and is_on_top() and is_reachable():
+		apply_pickable_shader(self)
 	else:
 		material = null
 
 func _input(event):
-	if lootable and event is InputEventKey and event.pressed and event.as_text_physical_keycode() == "Q":
-		if get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis and is_on_top():
-			loot(get_tree().current_scene.player)
+	if is_Q_presses(event) and lootable and is_on_top() and is_reachable():
+		loot(get_tree().current_scene.player)
+
+func is_Q_presses(event):
+	return event is InputEventKey and event.pressed and event.as_text_physical_keycode() == "Q"
 
 func apply_pickable_shader(sprite):
 	var shader = load("res://shader/pickable.gdshader")
@@ -33,8 +34,6 @@ func apply_pickable_shader(sprite):
 func loot(player):
 	if not visible:
 		return
-	if player.item_handle.get_child_count() == 1:
-		player.item_handle.get_child(0).drop(get_global_mouse_position())
 	if player.item_handle.get_child_count() == 0:
 		reparent(player.item_handle, false)
 		position = Vector2(0, 0)
@@ -49,7 +48,15 @@ func drop(pos):
 	lootable = true
 
 func is_on_top():
+	var top = null
 	for l in get_tree().get_nodes_in_group("lootable"):
-		if get_rect().has_point(to_local(l.global_position)) and is_greater_than(l):
-			return false
-	return true
+		if is_intersect(l) and (top == null or l.is_greater_than(top)):
+			top = l
+	return top == self
+	
+func is_intersect(l):
+	return l.global_position.distance_to(get_global_mouse_position()) < 50.0
+
+func is_reachable():
+	var pp = get_tree().current_scene.player.global_position
+	return pp.distance_to(get_global_mouse_position()) <= pick_up_dis

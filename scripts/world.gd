@@ -1,16 +1,10 @@
-# 4.8 target
-# TODO goblin warrior AI
-# TODO new weapon design
+# 4.9 target
 
 # Backlogs
-# Flag area, dangrous++
 # Sheild charge
 # goblin bomber
-# goblin slow liquid thrower
-# pickable enemy weapon
 # notification when target spotted
 # switch weapon
-# pick order bug fix
 # Goblin Flag generator
 # no cycle tree
 # war fog
@@ -24,6 +18,8 @@
 # treasure goblin sneaker
 # world map related code move to map.gd
 # white eye attack, purple eye attack
+# lootable precise collision
+# just pressed attack
 
 extends Node2D
 
