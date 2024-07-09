@@ -1,4 +1,6 @@
 # 4.9 target
+# Hammer Weapon
+# new map area
 
 # Backlogs
 # Sheild charge
@@ -37,6 +39,7 @@ extends Node2D
 @onready var war_eye = $UI/WarEye
 const PLAYER = preload("res://scenes/player.tscn")
 const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
+const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
 const GOBLIN_ARMY_TOP_LEFT = Vector2(-3600, -4000)
 const GOBLIN_ARMY_BOTTOM_RIGHT = Vector2(3600, -11000)
 var money: int = 0

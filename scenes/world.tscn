@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
-[ext_resource type="PackedScene" uid="uid://hfkufxgl3rgi" path="res://scenes/i_apple.tscn" id="14_apyme"]
 [ext_resource type="Script" path="res://scripts/boime_spawner.gd" id="14_ucirg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
@@ -193,14 +192,5 @@ one_shot = true
 [node name="BoimeSpawner" type="Node" parent="."]
 script = ExtResource("14_ucirg")
 enable = false
-
-[node name="iApple" parent="." instance=ExtResource("14_apyme")]
-position = Vector2(270, 222)
-
-[node name="iApple2" parent="." instance=ExtResource("14_apyme")]
-position = Vector2(576, 147)
-
-[node name="iApple3" parent="." instance=ExtResource("14_apyme")]
-position = Vector2(952, 161)
 
 [connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]

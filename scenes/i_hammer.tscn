@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cny3eeyaa6wep"]
+
+[ext_resource type="Texture2D" uid="uid://ce1p86wiuis62" path="res://sprites/Hammer.png" id="1_6fes1"]
+[ext_resource type="Script" path="res://scripts/iHeavySpear.gd" id="2_g8rvv"]
+
+[node name="iHammer" type="Sprite2D"]
+rotation = -1.5708
+texture = ExtResource("1_6fes1")
+script = ExtResource("2_g8rvv")
