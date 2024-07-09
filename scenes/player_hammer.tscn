@@ -1,12 +1,9 @@
-[gd_scene load_steps=66 format=3 uid="uid://rvxdsfthj8v5"]
+[gd_scene load_steps=65 format=3 uid="uid://rvxdsfthj8v5"]
 
 [ext_resource type="Script" path="res://scripts/player_hammer.gd" id="1_knv2p"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_y3nrw"]
 [ext_resource type="Texture2D" uid="uid://ce1p86wiuis62" path="res://sprites/Hammer.png" id="3_6dqxk"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_8v3rg"]
-[ext_resource type="Animation" uid="uid://ckkfqp3lvduw5" path="res://animation/Attack.res" id="5_74pke"]
-[ext_resource type="Animation" uid="uid://8sq6iu4co2gj" path="res://animation/PoleAttack.res" id="6_lr4xk"]
-[ext_resource type="Animation" uid="uid://dhfbh7e05dcah" path="res://animation/dash_attack.res" id="7_6kdia"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="8_nfcv6"]
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/521999__kastenfrosch__whoosh-dash.wav" id="9_xxaw8"]
 
@@ -94,7 +91,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.47175]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -106,7 +103,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(23, 50)]
+"values": [Vector2(54, 77)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -133,7 +130,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.47131]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,7 +142,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(23, 50)]
+"values": [Vector2(54, 77)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -206,6 +203,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite2D/Weapon:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
 
 [sub_resource type="Animation" id="Animation_2ax2q"]
@@ -344,15 +353,108 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_h70qh"]
+resource_name = "attack"
+length = 0.68
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.2, 0.28, 0.36, 0.4, 0.42, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-35, 88), Vector2(-46, 77), Vector2(-46, 77), Vector2(68, 86), Vector2(149, 22), Vector2(195, 2), Vector2(199, -16), Vector2(130, 33), Vector2(54, 77)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.2, 0.28, 0.36, 0.4, 0.42, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.6543, 2.80784, 2.80784, 1.1132, 0.142271, 0.0119175, -0.116217, 0.691562, 1.47131]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Weapon/damage_zone:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.42),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_hlht3"]
+resource_name = "dash_attack"
+length = 0.7
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.14, 0.3, 0.32, 0.34, 0.38, 0.4, 0.58),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 35), Vector2(-80, 35), Vector2(-19, 14), Vector2(215, 1), Vector2(215, 1), Vector2(219, -19), Vector2(218, -7), Vector2(218, -7), Vector2(54, 77)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.14, 0.3, 0.32, 0.34, 0.38, 0.4, 0.58),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.9415, 2.9415, 0.0456346, 0.0456346, 0.0456346, -0.18042, -0.018352, -0.018352, 1.47131]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Weapon:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 1, -1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Weapon/damage_zone:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.14, 0.34),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
 _data = {
-"Attack": ExtResource("5_74pke"),
 "HoldItem": SubResource("Animation_7smbj"),
 "Idle_2": SubResource("Animation_7u53w"),
-"PoleAttack": ExtResource("6_lr4xk"),
 "RESET": SubResource("Animation_1ea80"),
+"attack": SubResource("Animation_h70qh"),
 "dash": SubResource("Animation_2ax2q"),
-"dash_attack": ExtResource("7_6kdia"),
+"dash_attack": SubResource("Animation_hlht3"),
 "drop_item": SubResource("Animation_0hhfo"),
 "dying": SubResource("Animation_bsl3y"),
 "stun": SubResource("Animation_7vio4"),
@@ -563,7 +665,8 @@ region_rect = Rect2(512, 256, 128, 128)
 
 [node name="Weapon" type="Sprite2D" parent="Sprite2D"]
 z_index = -1
-position = Vector2(23, 50)
+position = Vector2(54, 77)
+rotation = 1.47131
 texture = ExtResource("3_6dqxk")
 region_rect = Rect2(0, 0, 256, 128)
 

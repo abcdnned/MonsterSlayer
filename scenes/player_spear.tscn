@@ -622,6 +622,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_805h5")
 }
