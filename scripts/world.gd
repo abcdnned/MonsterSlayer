@@ -52,7 +52,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player(PLAYER, Vector2(0, 0))
+	load_player(PLAYER_HAMMER, Vector2(0, 0))
 	var route := {}
 	_create_boime(-10, 10, -10, 10, map.map, 4, 4, 0, map.map_cord, route)
 

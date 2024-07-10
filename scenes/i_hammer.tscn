@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cny3eeyaa6wep"]
+[gd_scene load_steps=3 format=3 uid="uid://cganenim1o0uf"]
 
 [ext_resource type="Texture2D" uid="uid://ce1p86wiuis62" path="res://sprites/Hammer.png" id="1_6fes1"]
-[ext_resource type="Script" path="res://scripts/iHeavySpear.gd" id="2_g8rvv"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_o7055"]
 
 [node name="iHammer" type="Sprite2D"]
-rotation = -1.5708
 texture = ExtResource("1_6fes1")
-script = ExtResource("2_g8rvv")
+script = ExtResource("1_o7055")
+weapon_type = "PLAYER_HAMMER"

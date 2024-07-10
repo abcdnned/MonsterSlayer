@@ -1,9 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3j8jsttf160t"]
+[gd_scene load_steps=2 format=3 uid="uid://drtvlprmmjiqg"]
 
-[ext_resource type="Texture2D" uid="uid://dk41htrxydoh1" path="res://sprites/heavy_spear.png" id="1_eo7k8"]
-[ext_resource type="Script" path="res://scripts/iHeavySpear.gd" id="2_fhk1p"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_ppf82"]
 
 [node name="iHeavySpear" type="Sprite2D"]
-rotation = -1.5708
-texture = ExtResource("1_eo7k8")
-script = ExtResource("2_fhk1p")
+script = ExtResource("1_ppf82")
+weapon_type = "PLAYER_SPEAR"

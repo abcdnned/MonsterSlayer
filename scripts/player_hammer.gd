@@ -52,14 +52,15 @@ func _physics_process(delta):
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
 			elif Input.is_action_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
-			elif Input.is_action_just_pressed("right_click"):
-				animation_tree.set("parameters/conditions/pole_attack", true)
+			elif Input.is_action_pressed("right_click"):
+				animation_tree.set("parameters/conditions/swap", true)
+				dash_attack_speed = 700
+				dash_attack_deduction = 7.0
+				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
 			_move_velocity(delta)
 			move_and_slide()
-		"Attack":
+		"attack":
 			animation_tree.set("parameters/conditions/attack", false)
-		"PoleAttack":
-			animation_tree.set("parameters/conditions/pole_attack", false)
 		"stun":
 			animation_tree.set("parameters/conditions/stun", false)
 			damage_zone.monitoring = false
@@ -107,6 +108,12 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/use_item", false)
 		"drop_item":
 			animation_tree.set("parameters/conditions/drop_item", false)
+		"swap":
+			animation_tree.set("parameters/conditions/swap", false)
+			#if state_machine.get_current_play_position() >= 0.18:
+			velocity = dash_attack_direction * dash_attack_speed
+			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
+			move_and_slide()
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -173,11 +180,3 @@ func drop():
 	item_handle.get_child(0).drop(get_global_mouse_position())
 	animation_tree.set("parameters/conditions/hold_item", false)
 	animation_tree.set("parameters/conditions/hide_item", true)
-	
-func dash_attack_hit():
-	damage_zone.knockback = 1200
-	damage_zone.stun = 12
-
-func dash_attack_unhit():
-	damage_zone.knockback = 1000
-	damage_zone.stun = 10
