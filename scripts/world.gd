@@ -1,6 +1,7 @@
 # 4.9 target
-# Hammer Weapon
-# new map area
+# TODO Hammer Weapon
+# TODO new map area
+# TODO Hammer right click move?
 
 # Backlogs
 # Sheild charge
