@@ -86,7 +86,6 @@ func _physics_process(delta):
 		"HeavySpear_PoleAttack":
 			animation_tree.set("parameters/conditions/pole_attack", false)
 		"HeavySpear_dash_attack":
-			print("dash_attack")
 			animation_tree.set("parameters/conditions/dash_attack", false)
 			velocity = dash_attack_direction * dash_attack_speed
 			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)

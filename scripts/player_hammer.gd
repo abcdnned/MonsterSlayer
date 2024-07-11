@@ -110,10 +110,10 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/drop_item", false)
 		"swap":
 			animation_tree.set("parameters/conditions/swap", false)
-			#if state_machine.get_current_play_position() >= 0.18:
-			velocity = dash_attack_direction * dash_attack_speed
-			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
-			move_and_slide()
+			if state_machine.get_current_play_position() >= 0.18:
+				velocity = dash_attack_direction * dash_attack_speed
+				dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
+				move_and_slide()
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()

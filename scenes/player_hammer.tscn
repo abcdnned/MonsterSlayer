@@ -392,6 +392,47 @@ tracks/1/keys = {
 resource_name = "stun"
 loop_mode = 1
 
+[sub_resource type="Animation" id="Animation_jjn0h"]
+resource_name = "swap"
+length = 0.94
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.22, 0.24, 0.28, 0.34, 0.4, 0.46, 0.5, 0.62, 0.74, 0.94),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(54, 77), Vector2(-75, 89), Vector2(43, 129), Vector2(98, 117), Vector2(167, 75), Vector2(179, -89), Vector2(-13, -173), Vector2(-116, -86), Vector2(-143, -79), Vector2(-6, -89), Vector2(85, -58), Vector2(54, 77)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.22, 0.24, 0.28, 0.34, 0.4, 0.46, 0.5, 0.62, 0.74, 0.94),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.47175, 2.71026, 1.44925, 0.818752, 0.24573, -0.19118, -1.62157, -2.55757, -2.81254, -2.15867, -1.25118, 1.47131]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Weapon/damage_zone2:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.18, 0.46),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_ly6d4"]
 resource_name = "use_item"
 length = 0.2
@@ -445,47 +486,6 @@ tracks/3/keys = {
 "args": [],
 "method": &"throw_item"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_jjn0h"]
-resource_name = "swap"
-length = 0.94
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.18, 0.22, 0.24, 0.28, 0.34, 0.4, 0.46, 0.5, 0.62, 0.74, 0.94),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(54, 77), Vector2(-75, 89), Vector2(43, 129), Vector2(98, 117), Vector2(167, 75), Vector2(179, -89), Vector2(-13, -173), Vector2(-116, -86), Vector2(-143, -79), Vector2(-6, -89), Vector2(85, -58), Vector2(54, 77)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Weapon:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.18, 0.22, 0.24, 0.28, 0.34, 0.4, 0.46, 0.5, 0.62, 0.74, 0.94),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [1.47175, 2.71026, 1.44925, 0.818752, 0.24573, -0.19118, -1.62157, -2.55757, -2.81254, -2.15867, -1.25118, 1.47131]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Weapon/damage_zone2:monitoring")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.18, 0.46),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
