@@ -1,7 +1,7 @@
-# 4.9 target
-# TODO Hammer Weapon
-# TODO new map area
-# TODO Hammer right click move?
+# 5.0 target
+# TODO tire0 map and tire1 map
+# TODO key and gate
+# TODO respawn
 
 # Backlogs
 # Sheild charge
