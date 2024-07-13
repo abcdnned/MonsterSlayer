@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
-[ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime.png" id="2_l0pn6"]
+[ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime/plain_boime.png" id="2_l0pn6"]
 [ext_resource type="Texture2D" uid="uid://c43p5kqhy370s" path="res://texures/heart.png" id="5_vj55y"]
 [ext_resource type="PackedScene" uid="uid://bt4admtr0y2cf" path="res://scenes/war_eye.tscn" id="6_6d53g"]
 [ext_resource type="PackedScene" uid="uid://rfoyb3i878pc" path="res://scenes/lose_scene.tscn" id="6_83dxx"]

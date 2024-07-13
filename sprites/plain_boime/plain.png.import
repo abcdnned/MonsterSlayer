@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lhvhnunejvve"
-path="res://.godot/imported/plain_boime.png-d2575b8521a83ba11c1ba1f7a9c37cb8.ctex"
+uid="uid://buoe4iu7au4fh"
+path="res://.godot/imported/plain.png-c485ec10770ff8a2f994239192687c1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/plain_boime.png"
-dest_files=["res://.godot/imported/plain_boime.png-d2575b8521a83ba11c1ba1f7a9c37cb8.ctex"]
+source_file="res://sprites/plain_boime/plain.png"
+dest_files=["res://.godot/imported/plain.png-c485ec10770ff8a2f994239192687c1f.ctex"]
 
 [params]
 

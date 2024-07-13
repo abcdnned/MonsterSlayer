@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://be6pww2vx4jtm"]
+[gd_scene load_steps=51 format=3 uid="uid://be6pww2vx4jtm"]
 
 [ext_resource type="Script" path="res://scripts/goblin_warrior_spear.gd" id="1_e1vh1"]
 [ext_resource type="Texture2D" uid="uid://cv6lrgslytyi7" path="res://sprites/goblin_warrior.png" id="2_08fiq"]
@@ -215,13 +215,29 @@ advance_condition = &"dash_attack"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jif8i"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ypsuw"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xmkg"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k1gab"]
+advance_mode = 2
+advance_condition = &"stun"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
 states/HeavySpear_Attack/node = SubResource("AnimationNodeAnimation_n7i3s")
 states/HeavySpear_Attack/position = Vector2(643.526, -150.538)
 states/HeavySpear_PoleAttack/node = SubResource("AnimationNodeAnimation_hidut")
-states/HeavySpear_PoleAttack/position = Vector2(417.147, -147.865)
+states/HeavySpear_PoleAttack/position = Vector2(971.147, -86.865)
 states/HeavySpear_dash_attack/node = SubResource("AnimationNodeAnimation_ky753")
-states/HeavySpear_dash_attack/position = Vector2(243.647, -82.3651)
+states/HeavySpear_dash_attack/position = Vector2(627.647, 477.635)
 states/Start/position = Vector2(200.5, 91)
 states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(445.5, 34)
@@ -231,7 +247,7 @@ states/stun/node = SubResource("AnimationNodeAnimation_je77x")
 states/stun/position = Vector2(812.052, 308.962)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(412.92, 230.961)
-transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "HeavySpear_Attack", SubResource("AnimationNodeStateMachineTransition_0xef2"), "HeavySpear_Attack", "chasing", SubResource("AnimationNodeStateMachineTransition_v462e"), "HeavySpear_Attack", "dying", SubResource("AnimationNodeStateMachineTransition_vn06t"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_drct6"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_565t3"), "HeavySpear_Attack", "stun", SubResource("AnimationNodeStateMachineTransition_bj5be"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_gvc2a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_iy5qc"), "chasing", "HeavySpear_PoleAttack", SubResource("AnimationNodeStateMachineTransition_2qmxl"), "HeavySpear_PoleAttack", "chasing", SubResource("AnimationNodeStateMachineTransition_3n6v4"), "chasing", "HeavySpear_dash_attack", SubResource("AnimationNodeStateMachineTransition_10reh"), "HeavySpear_dash_attack", "chasing", SubResource("AnimationNodeStateMachineTransition_8g10j")]
+transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "HeavySpear_Attack", SubResource("AnimationNodeStateMachineTransition_0xef2"), "HeavySpear_Attack", "chasing", SubResource("AnimationNodeStateMachineTransition_v462e"), "HeavySpear_Attack", "dying", SubResource("AnimationNodeStateMachineTransition_vn06t"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_drct6"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_565t3"), "HeavySpear_Attack", "stun", SubResource("AnimationNodeStateMachineTransition_bj5be"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_gvc2a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_iy5qc"), "chasing", "HeavySpear_PoleAttack", SubResource("AnimationNodeStateMachineTransition_2qmxl"), "HeavySpear_PoleAttack", "chasing", SubResource("AnimationNodeStateMachineTransition_3n6v4"), "chasing", "HeavySpear_dash_attack", SubResource("AnimationNodeStateMachineTransition_10reh"), "HeavySpear_dash_attack", "chasing", SubResource("AnimationNodeStateMachineTransition_8g10j"), "HeavySpear_dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_jif8i"), "HeavySpear_dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_ypsuw"), "HeavySpear_PoleAttack", "dying", SubResource("AnimationNodeStateMachineTransition_6xmkg"), "HeavySpear_PoleAttack", "stun", SubResource("AnimationNodeStateMachineTransition_k1gab")]
 graph_offset = Vector2(112.147, -223.865)
 
 [node name="GoblinWarrior" type="CharacterBody2D" groups=["mob"]]

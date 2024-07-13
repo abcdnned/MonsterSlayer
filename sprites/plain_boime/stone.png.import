@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o2vii5oc1ei1"
-path="res://.godot/imported/tree.png-f6c9ce7c15c3646c3c37a737953f3b49.ctex"
+uid="uid://bqiawtr27lo1c"
+path="res://.godot/imported/stone.png-69a624d2693a5d3ebd37303068c2fd46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tree.png"
-dest_files=["res://.godot/imported/tree.png-f6c9ce7c15c3646c3c37a737953f3b49.ctex"]
+source_file="res://sprites/plain_boime/stone.png"
+dest_files=["res://.godot/imported/stone.png-69a624d2693a5d3ebd37303068c2fd46.ctex"]
 
 [params]
 

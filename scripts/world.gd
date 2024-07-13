@@ -1,5 +1,4 @@
 # 5.0 target
-# TODO tire0 map and tire1 map
 # TODO key and gate
 # TODO respawn
 

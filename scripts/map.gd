@@ -49,26 +49,29 @@ func init_map():
 func init_plain_boime():
 	var x = START.x
 	var y = START.y
-	# Plain garrlery
-	set_plain_tile(x, y)
-	set_plain_tile(x + 1, y)
-	set_plain_tile(x + 1, y + 1)
-	set_plain_tile(x + 1, y + 2)
-	set_plain_tile(x + 1, y + 3)
-	set_plain_tile(x - 1, y)
-	set_plain_tile(x, y - 1)
+	# Start Plain
+	create_plain_chambler(x, y, false)
+	# Gallery to first small boss
+	set_plain_tile(x + 2, y)
+	set_plain_tile(x + 3, y)
+	set_plain_tile(x + 4, y)
 	# Goblin Forntie
-	x -= 3
-	set_plain_tile(x, y, true)
-	set_plain_tile(x - 1, y, true)
-	set_plain_tile(x - 1, y + 1, true)
-	set_plain_tile(x, y + 1, true)
-	set_plain_tile(x + 1, y + 1, true)
-	set_plain_tile(x + 1, y, true)
-	set_plain_tile(x + 1, y - 1, true)
-	set_plain_tile(x, y - 1, true)
-	set_plain_tile(x - 1, y - 1, true)
+	x += 6
+	create_plain_chambler(x, y, true)
+
+
+func create_plain_chambler(x, y, war_eye = false):
+	set_plain_tile(x, y, war_eye)
+	set_plain_tile(x - 1, y, war_eye)
+	set_plain_tile(x - 1, y + 1, war_eye)
+	set_plain_tile(x, y + 1, war_eye)
+	set_plain_tile(x + 1, y + 1, war_eye)
+	set_plain_tile(x + 1, y, war_eye)
+	set_plain_tile(x + 1, y - 1, war_eye)
+	set_plain_tile(x, y - 1, war_eye)
+	set_plain_tile(x - 1, y - 1, war_eye)
 	
+
 func set_plain_tile(x, y, is_war_eye = false):
 	map[x][y] = 1
 	tiles[x][y].color = Color(.2, .8, .2, .5)
