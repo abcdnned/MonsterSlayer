@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
-[ext_resource type="Texture2D" uid="uid://lhvhnunejvve" path="res://sprites/plain_boime/plain_boime.png" id="2_l0pn6"]
+[ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
 [ext_resource type="Texture2D" uid="uid://c43p5kqhy370s" path="res://texures/heart.png" id="5_vj55y"]
 [ext_resource type="PackedScene" uid="uid://bt4admtr0y2cf" path="res://scenes/war_eye.tscn" id="6_6d53g"]
 [ext_resource type="PackedScene" uid="uid://rfoyb3i878pc" path="res://scenes/lose_scene.tscn" id="6_83dxx"]
@@ -26,7 +26,7 @@ agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvayt"]
 resource_name = "plain_boime"
-texture = ExtResource("2_l0pn6")
+texture = ExtResource("2_o8njh")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -87,6 +87,15 @@ texture_region_size = Vector2i(128, 128)
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
 
 [sub_resource type="TileSet" id="TileSet_upu07"]
 tile_size = Vector2i(128, 128)

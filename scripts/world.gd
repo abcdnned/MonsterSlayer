@@ -1,6 +1,5 @@
 # 5.0 target
 # TODO key and gate
-# TODO respawn
 
 # Backlogs
 # Sheild charge
