@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvqxv8nqmn7yv"]
+
+[ext_resource type="Script" path="res://scripts/flying_key.gd" id="1_u0oiy"]
+[ext_resource type="Texture2D" uid="uid://d3tl5jq5ee5pv" path="res://sprites/item/start_key.png" id="2_eb5nu"]
+[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/521242__cyoung510__arrow_hits_target.wav" id="4_5wif1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njdt2"]
+size = Vector2(130, 70.5)
+
+[node name="FlyingKey" type="Node2D"]
+script = ExtResource("1_u0oiy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eb5nu")
+
+[node name="key_insert" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5wif1")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1.25)
+shape = SubResource("RectangleShape2D_njdt2")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
