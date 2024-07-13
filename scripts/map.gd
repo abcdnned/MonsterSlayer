@@ -5,6 +5,7 @@ extends Control
 var map = []
 var cord = []
 var tile_to_cord = {}
+var gate := {}
 const START = Vector2(4, 4)
 const MAP_H = 20
 const MAP_V = 20
@@ -51,6 +52,8 @@ func init_plain_boime():
 	var y = START.y
 	# Start Plain
 	create_plain_chambler(x, y, false)
+	# Create Start Plain Sourth Gate
+	create_gate(x + 2, y, 1)
 	# Gallery to first small boss
 	set_plain_tile(x + 2, y)
 	set_plain_tile(x + 3, y)
@@ -59,6 +62,8 @@ func init_plain_boime():
 	x += 6
 	create_plain_chambler(x, y, true)
 
+func create_gate(x, y, d):
+	gate[Vector2(x, y)] = d
 
 func create_plain_chambler(x, y, war_eye = false):
 	set_plain_tile(x, y, war_eye)
@@ -138,3 +143,15 @@ func create_boime(x1, x2, y1, y2, mx, my, from, route):
 	if from != 4 and map[mx][my - 1] == 0:
 		for y in range(y1, y2 + 1):
 			owner.tile_map.set_cell(0, Vector2i(x1, y), 0, Vector2i(0, 2), 0)
+	# generate gate
+	if gate.has(Vector2(mx, my)):
+		match gate[Vector2(mx, my)]:
+			1:
+				var center = (x2 + x1 + 1) / 2
+				for x in range(x1 + 1, x2):
+					if x == center:
+						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 2), 0)
+					elif x >= center - 2 and x <= center + 2 and x != center:
+						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(2, 0), 0)
+					else:
+						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 1), 0)

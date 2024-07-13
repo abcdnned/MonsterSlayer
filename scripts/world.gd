@@ -1,6 +1,5 @@
 # 5.0 target
 # TODO key and gate
-# TODO world map related code move to map.gd
 
 # Backlogs
 # Sheild charge
