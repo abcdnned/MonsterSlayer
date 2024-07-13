@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://hfkufxgl3rgi"]
 
-[ext_resource type="Texture2D" uid="uid://dx7werd2tu4vk" path="res://sprites/apple.png" id="1_m0h02"]
+[ext_resource type="Texture2D" uid="uid://dx7werd2tu4vk" path="res://sprites/item/apple.png" id="1_m0h02"]
 [ext_resource type="Script" path="res://scripts/iApple.gd" id="1_weesb"]
 [ext_resource type="AudioStream" uid="uid://bd17lenmrkfid" path="res://sounds/411597__omgbong__eating-an-apple-01.wav" id="3_nvgg7"]
 
