@@ -1,5 +1,6 @@
 # 5.0 target
 # TODO key and gate
+# 10 weapon design
 
 # Backlogs
 # Sheild charge

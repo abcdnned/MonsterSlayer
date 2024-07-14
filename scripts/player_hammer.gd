@@ -78,7 +78,7 @@ func _physics_process(delta):
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
-		"dash":
+		"dash", "HoldItem_Dash":
 			animation_tree.set("parameters/conditions/dash", false)
 			velocity = dash_direction * dash_speed
 			dash_speed -= 10.0

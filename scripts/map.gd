@@ -1,7 +1,6 @@
 extends Control
 
 @onready var grid_container = $GridContainer
-
 var map = []
 var cord = []
 var tile_to_cord = {}
@@ -14,6 +13,7 @@ var war_eye = []
 const MAP_TILE = preload("res://scenes/map_tile.tscn")
 var player = null
 const KNIGHT_POTRIAT = preload("res://scenes/knight_potriat.tscn")
+const KEY_HOLE = preload("res://scenes/key_hole.tscn")
 
 func _ready():
 	init_map()
@@ -151,6 +151,9 @@ func create_boime(x1, x2, y1, y2, mx, my, from, route):
 				for x in range(x1 + 1, x2):
 					if x == center:
 						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 2), 0)
+						var keyHole = KEY_HOLE.instantiate()
+						keyHole.global_position = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(x, y1)))
+						get_tree().current_scene.add_child(keyHole)
 					elif x >= center - 2 and x <= center + 2 and x != center:
 						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(2, 0), 0)
 					else:

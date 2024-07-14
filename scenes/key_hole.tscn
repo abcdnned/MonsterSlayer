@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ya446jcu18ed"]
+
+[ext_resource type="Script" path="res://scripts/key_hole.gd" id="1_byq5r"]
+[ext_resource type="Texture2D" uid="uid://cbj5liqnsrvgi" path="res://icon.svg" id="1_f2iat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qeeo"]
+size = Vector2(170.5, 166)
+
+[node name="KeyHole" type="Sprite2D"]
+z_index = 5
+texture = ExtResource("1_f2iat")
+script = ExtResource("1_byq5r")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0qeeo")

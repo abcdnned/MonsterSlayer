@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyav6t3ilft82"]
 
 [ext_resource type="Texture2D" uid="uid://d3tl5jq5ee5pv" path="res://sprites/item/start_key.png" id="1_hql61"]
-[ext_resource type="Script" path="res://scripts/i_dagger.gd" id="2_jjxwv"]
+[ext_resource type="Script" path="res://scripts/i_start_key.gd" id="2_j7tr1"]
 
 [node name="iStartKey" type="Sprite2D"]
 texture = ExtResource("1_hql61")
-script = ExtResource("2_jjxwv")
+script = ExtResource("2_j7tr1")

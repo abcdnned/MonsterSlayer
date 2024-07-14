@@ -1,25 +1,29 @@
 extends Node2D
 
-@onready var damage_zone = $damage_zone
+@onready var area_2d = $Area2D
 
-
-var dis = 800.0
 const SPEED = 2000.0
 
 func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	dis = clamp(dis - SPEED * delta, 0.0, dis)
-	if dis == 0:
-		queue_free()
-	else:
-		position += Vector2(cos(rotation), sin(rotation)) * SPEED * delta
+	position += Vector2(cos(rotation), sin(rotation)) * SPEED * delta
 
-
-func _on_damage_zone_hit():
-	visible = false
-	damage_zone.monitoring = false
 
 func _on_timer_timeout():
+	var key = load("res://scenes/i_start_key.tscn").instantiate()
+	key.global_position = global_position
+	key.lootable = true
+	get_tree().current_scene.add_child(key)
+	queue_free()
+
+
+func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	if (body.has_method("open_gate")):
+		body.open_gate
+	else:
+		var key = load("res://scenes/i_start_key.tscn").instantiate()
+		key.global_position = global_position
+		get_tree().current_scene.add_child(key)
 	queue_free()
