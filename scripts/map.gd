@@ -153,6 +153,11 @@ func create_boime(x1, x2, y1, y2, mx, my, from, route):
 						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 2), 0)
 						var keyHole = KEY_HOLE.instantiate()
 						keyHole.global_position = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(x, y1)))
+						keyHole.door.append(Vector2(x, y1))
+						keyHole.door.append(Vector2(x - 2, y1))
+						keyHole.door.append(Vector2(x - 1, y1))
+						keyHole.door.append(Vector2(x + 1, y1))
+						keyHole.door.append(Vector2(x + 2, y1))
 						get_tree().current_scene.add_child(keyHole)
 					elif x >= center - 2 and x <= center + 2 and x != center:
 						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(2, 0), 0)

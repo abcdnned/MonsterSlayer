@@ -19,9 +19,9 @@ func _on_timer_timeout():
 	queue_free()
 
 
-func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if (body.has_method("open_gate")):
-		body.open_gate
+func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	if (area.get_parent().has_method("open_gate")):
+		area.get_parent().open_gate()
 	else:
 		var key = load("res://scenes/i_start_key.tscn").instantiate()
 		key.global_position = global_position

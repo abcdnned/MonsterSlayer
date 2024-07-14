@@ -1,8 +1,12 @@
-# 5.0 target
-# TODO key and gate
-# 10 weapon design
+# 5.2 target
 
 # Backlogs
+# arean mode?
+# design monster tire
+# carry key goblin
+# mob wolf
+# mob spear goblin
+# 6 weapon design
 # Sheild charge
 # goblin bomber
 # notification when target spotted
