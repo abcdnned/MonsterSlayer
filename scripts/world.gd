@@ -1,9 +1,11 @@
 # 5.2 target
+# TODO carry key goblin
+# TODO Starter Plain spawner
+# TODO arean mode?
+
 
 # Backlogs
-# arean mode?
 # design monster tire
-# carry key goblin
 # mob wolf
 # mob spear goblin
 # 6 weapon design
