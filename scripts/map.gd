@@ -2,8 +2,9 @@ extends Control
 
 @onready var grid_container = $GridContainer
 var map = []
-var cord = []
+var cord_to_tile = {}
 var tile_to_cord = {}
+var level_cord = {}
 var gate := {}
 const START = Vector2(4, 4)
 const MAP_H = 20
@@ -51,7 +52,8 @@ func init_plain_boime():
 	var x = START.x
 	var y = START.y
 	# Start Plain
-	create_plain_chambler(x, y, false)
+	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), false)
+	level_cord["starter_plain"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
 	# Create Start Plain Sourth Gate
 	create_gate(x + 2, y, 1)
 	# Gallery to first small boss
@@ -60,21 +62,16 @@ func init_plain_boime():
 	set_plain_tile(x + 4, y)
 	# Goblin Forntie
 	x += 6
-	create_plain_chambler(x, y, true)
+	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), true)
+	level_cord["goblin_frontier"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
 
 func create_gate(x, y, d):
 	gate[Vector2(x, y)] = d
 
-func create_plain_chambler(x, y, war_eye = false):
-	set_plain_tile(x, y, war_eye)
-	set_plain_tile(x - 1, y, war_eye)
-	set_plain_tile(x - 1, y + 1, war_eye)
-	set_plain_tile(x, y + 1, war_eye)
-	set_plain_tile(x + 1, y + 1, war_eye)
-	set_plain_tile(x + 1, y, war_eye)
-	set_plain_tile(x + 1, y - 1, war_eye)
-	set_plain_tile(x, y - 1, war_eye)
-	set_plain_tile(x - 1, y - 1, war_eye)
+func create_plain_chambler(top_left, bottom_right, war_eye = false):
+	for x in range(top_left.x, bottom_right.x + 1):
+		for y in range(top_left.y, bottom_right.y + 1):
+			set_plain_tile(x, y, war_eye)
 	
 
 func set_plain_tile(x, y, is_war_eye = false):
@@ -89,9 +86,9 @@ func _on_player_map_pos_change(x, y):
 		player.queue_free()
 	player = KNIGHT_POTRIAT.instantiate()
 	var p = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(x, y)))
-	for t in cord:
-		if t["top_left"].x <= p.x and t["top_left"].y <= p.y and t["bottom_right"].x >= p.x and t["bottom_right"].y >= p.y:
-			tiles[t["map"].x][t["map"].y].add_child(player)
+	for key in cord_to_tile:
+		if cord_to_tile[key]["top_left"].x <= p.x and cord_to_tile[key]["top_left"].y <= p.y and cord_to_tile[key]["bottom_right"].x >= p.x and cord_to_tile[key]["bottom_right"].y >= p.y:
+			tiles[key.x][key.y].add_child(player)
 			break
 
 
@@ -120,7 +117,9 @@ func create_boime(x1, x2, y1, y2, mx, my, from, route):
 				owner.tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 1), 0)
 	route[Vector2(mx, my)] = null
 	var size = x2 - x1 + 1
-	cord.append({"map": Vector2(mx, my), "top_left": Vector2(x1, y1), "bottom_right": Vector2(x2, y2)})
+	if not cord_to_tile.has(Vector2(mx, my)):
+		cord_to_tile[Vector2(mx, my)] = []
+	cord_to_tile[Vector2(mx, my)] = {"top_left": Vector2(x1, y1), "bottom_right": Vector2(x2, y2)}
 	# generate plain
 	if from != 3 and map[mx + 1][my] == 1 and not route.has(Vector2(mx + 1, my)):
 		create_boime(x1, x2, y1 + size, y2 + size, mx + 1, my, 1, route)

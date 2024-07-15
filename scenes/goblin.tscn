@@ -242,6 +242,11 @@ rotation = 1.5708
 scale = Vector2(1.72, 5.6)
 shape = SubResource("RectangleShape2D_riha1")
 
+[node name="ItemBack" type="Node2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(-49, -6)
+rotation = -1.62425
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cpxg6")
 

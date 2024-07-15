@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
-[ext_resource type="Script" path="res://scripts/boime_spawner.gd" id="14_ucirg"]
+[ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
 [ext_resource type="PackedScene" uid="uid://dyav6t3ilft82" path="res://scenes/i_start_key.tscn" id="14_xkahf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
@@ -199,11 +199,12 @@ bus = &"SFX"
 [node name="SpawnerStarter" type="Timer" parent="."]
 one_shot = true
 
-[node name="BoimeSpawner" type="Node" parent="."]
-script = ExtResource("14_ucirg")
-enable = false
-
 [node name="iStartKey" parent="." instance=ExtResource("14_xkahf")]
 position = Vector2(103, 143)
+
+[node name="LevelSpawner" type="Node" parent="."]
+
+[node name="StarterPlainSpawner" type="Node" parent="LevelSpawner"]
+script = ExtResource("14_ucirg")
 
 [connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]
