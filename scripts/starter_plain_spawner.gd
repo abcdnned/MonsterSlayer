@@ -4,7 +4,7 @@ class_name BoimeSpawner
 @export var enable = true
 var area_spawn_count = 10
 var apple_count = 2
-var tree_count = 50
+var tree_count = 100
 var tree_min_size = 3
 var tree_max_size = 6
 var apple_rate: float = 0
@@ -28,15 +28,16 @@ func spawn_tree():
 	for i in range(tree_count):
 		var top_left = owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["top_left"]]["top_left"]
 		var bottom_right = owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"]
-		var x = randi_range(top_left.x, bottom_right.x)
-		var y = randi_range(top_left.y, bottom_right.y)
-		spawn_tree_snake(x, y)
+		spawn_tree_snake(top_left, bottom_right)
 
-func spawn_tree_snake(x, y):
+func spawn_tree_snake(top_left, bottom_right):
+	var x = randi_range(top_left.x, bottom_right.x)
+	var y = randi_range(top_left.y, bottom_right.y)
 	var cur = Vector2i(x, y)
 	var c = randi_range(tree_min_size, tree_max_size)
 	for i in range(c):
-		owner.tile_map.set_cell(0, cur, 0, Vector2i(0, 2), 0)
+		if x > top_left.x and x < bottom_right.x and y > top_left.y and y < bottom_right.y:
+			owner.tile_map.set_cell(0, cur, 0, Vector2i(0, 2), 0)
 		if randf_range(0, 1) <= apple_rate:
 			var p = owner.tile_map.to_global(owner.tile_map.map_to_local(cur))
 			spawn_apple(p)
