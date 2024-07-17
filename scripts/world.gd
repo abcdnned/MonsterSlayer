@@ -1,7 +1,6 @@
 # 5.2 target
 # TODO carry key goblin
 # TODO Starter Plain spawner
-# TODO arean mode?
 
 
 # Backlogs
