@@ -58,3 +58,4 @@ func heal(h):
 	health = clampf(health + h, 0, max_health)
 	emit_signal("health_change", health)
 		
+

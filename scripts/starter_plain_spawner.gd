@@ -4,7 +4,7 @@ class_name BoimeSpawner
 @export var enable = true
 var area_spawn_count = 10
 var apple_count = 2
-var tree_count = 100
+var tree_count = 70
 var tree_min_size = 3
 var tree_max_size = 6
 var apple_rate: float = 0
@@ -15,6 +15,7 @@ const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
 const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
 const I_APPLE = preload("res://scenes/i_apple.tscn")
 const I_COIN_SMALL = preload("res://scenes/i_coin_small.tscn")
+const I_START_KEY = preload("res://scenes/i_start_key.tscn")
 
 func _ready():
 	if not enable:
@@ -23,6 +24,7 @@ func _ready():
 	apple_rate = float(apple_count) / ((float(tree_min_size) + float(tree_max_size)) / 2.0 * float(tree_count))
 	spawn_tree()
 	spawn_goblin()
+	spawn_goblin_with_key()
 
 func spawn_tree():
 	for i in range(tree_count):
@@ -62,6 +64,16 @@ func spawn_goblin():
 		var bottom_right = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"])
 		var mob = owner.spawn(GOBLIN, top_left, bottom_right)
 		mob.death.connect(owner._on_mob_death)
+
+func spawn_goblin_with_key():
+	var top_left = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["top_left"]]["top_left"])
+	var bottom_right = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"])
+	var mob = owner.spawn(GOBLIN, top_left, bottom_right)
+	mob.death.connect(owner._on_mob_death)
+	var key = I_START_KEY.instantiate()
+	mob.item_back.add_child(key)
+	key.position = Vector2(0, 0)
+	key.lootable = false
 
 func tile_to_global(v):
 	return owner.tile_map.to_global(owner.tile_map.map_to_local(v))

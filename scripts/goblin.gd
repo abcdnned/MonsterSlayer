@@ -10,6 +10,7 @@ const SPEED = 400
 @onready var dagger_sprite = $Sprite2D/DaggerSprite
 @onready var target_finder = $TargetFinder
 @onready var wandering = $Wandering
+@onready var item_back = $Sprite2D/ItemBack
 
 var alert_range = 500.0
 
@@ -69,5 +70,12 @@ func _dagger_attack():
 func _sub_dead():
 	dagger_sprite.lootable = true
 	death_yell.play()
+	drop_key()
 
+func drop_key():
+	if item_back.get_child_count() == 1:
+		var key = item_back.get_child(0)
+		key.lootable = true
+		key.reparent(get_tree().current_scene, true)
+		key.rotation_degrees = 0
 				
