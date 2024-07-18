@@ -1,4 +1,7 @@
 # 5.4 target
+# TODO hammer sound
+# TODO war-eye spawner
+# TODO goblin warrior with hammer
 
 # Backlogs
 # design monster tire
