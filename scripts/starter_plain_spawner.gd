@@ -7,7 +7,7 @@ var apple_count = 2
 var tree_count = 70
 var tree_min_size = 3
 var tree_max_size = 6
-var apple_rate: float = 0
+var apple_rate: float = 0.05
 
 const GOBLIN = preload("res://scenes/goblin.tscn")
 const I_HEAVY_SPEAR = preload("res://scenes/i_heavy_spear.tscn")
@@ -16,15 +16,24 @@ const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
 const I_APPLE = preload("res://scenes/i_apple.tscn")
 const I_COIN_SMALL = preload("res://scenes/i_coin_small.tscn")
 const I_START_KEY = preload("res://scenes/i_start_key.tscn")
+const GOBLIN_FLAG = preload("res://scenes/goblin_flag.tscn")
 
 func _ready():
 	if not enable:
 		return
 	await owner.ready
-	apple_rate = float(apple_count) / ((float(tree_min_size) + float(tree_max_size)) / 2.0 * float(tree_count))
 	spawn_tree()
+	spawn_flag()
 	spawn_goblin()
 	spawn_goblin_with_key()
+	clean_up_game_spawner()
+	
+func clean_up_game_spawner():
+	var origin = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(0, 0)))
+	print(origin)
+	for i in range(-5, 5):
+		for j in range(-5, 5):
+			owner.tile_map.set_cell(0, Vector2(origin.x + i, origin.y + j), 0, Vector2i(0, 1), 0)
 
 func spawn_tree():
 	for i in range(tree_count):
@@ -78,4 +87,7 @@ func spawn_goblin_with_key():
 func tile_to_global(v):
 	return owner.tile_map.to_global(owner.tile_map.map_to_local(v))
 
-
+func spawn_flag():
+	var top_left = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["top_left"]]["top_left"])
+	var bottom_right = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"])
+	owner.spawn(GOBLIN_FLAG, top_left, bottom_right)
