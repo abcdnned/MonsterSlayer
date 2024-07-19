@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://yi2aurllo2s0"
-path="res://.godot/imported/knifesword-stab.wav-fec66d9044c7f40e396a6c7c363ee468.sample"
+path="res://.godot/imported/knifesword-stab.wav-eba822d6e08d3530e1f821af109a0ba8.sample"
 
 [deps]
 
-source_file="res://sounds/knifesword-stab.wav"
-dest_files=["res://.godot/imported/knifesword-stab.wav-fec66d9044c7f40e396a6c7c363ee468.sample"]
+source_file="res://sounds/weapon/knifesword-stab.wav"
+dest_files=["res://.godot/imported/knifesword-stab.wav-eba822d6e08d3530e1f821af109a0ba8.sample"]
 
 [params]
 

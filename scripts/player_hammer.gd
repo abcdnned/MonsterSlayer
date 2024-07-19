@@ -5,6 +5,10 @@ extends Unit
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
 @onready var item_handle = $Sprite2D/ItemHandle
+@onready var hammer_attack = $HammerAttack
+@onready var hammer_dash_attack = $HammerDashAttack
+@onready var hammer_swap = $HammerSwap
+
 
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 signal hero_death
@@ -180,3 +184,13 @@ func drop():
 	item_handle.get_child(0).drop(get_global_mouse_position())
 	animation_tree.set("parameters/conditions/hold_item", false)
 	animation_tree.set("parameters/conditions/hide_item", true)
+
+func on_attack():
+	hammer_attack.play()
+	
+func on_dash_attack():
+	hammer_dash_attack.play()
+	
+func on_swap():
+	hammer_swap.play()
+	

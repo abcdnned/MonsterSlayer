@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/flying_arrow.gd" id="1_rv4p1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_6mpj5"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="3_m71de"]
-[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/521242__cyoung510__arrow_hits_target.wav" id="4_hcfk6"]
+[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/weapon/521242__cyoung510__arrow_hits_target.wav" id="4_hcfk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_njdt2"]
 size = Vector2(87, 32)

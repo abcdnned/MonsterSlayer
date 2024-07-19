@@ -8,4 +8,4 @@ func shoot():
 	dagger.global_rotation = get_parent().global_rotation
 	get_tree().current_scene.add_child(dagger)
 	queue_free()
-	Tool.play_sound_2d(get_tree().current_scene, "res://sounds/dagger_woosh.mp3", dagger.global_position)
+	Tool.play_sound_2d(get_tree().current_scene, "res://sounds/weapon/dagger_woosh.mp3", dagger.global_position)

@@ -6,13 +6,13 @@
 [ext_resource type="Animation" uid="uid://ckkfqp3lvduw5" path="res://animation/Attack.res" id="5_jjdkd"]
 [ext_resource type="Animation" uid="uid://8sq6iu4co2gj" path="res://animation/PoleAttack.res" id="6_dnrhg"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="6_hswxh"]
-[ext_resource type="AudioStream" uid="uid://dxrvo3m3fkke" path="res://sounds/547040__cogfirestudios__hit-swing-sword-small-2.wav" id="7_3qqoq"]
+[ext_resource type="AudioStream" uid="uid://dxrvo3m3fkke" path="res://sounds/weapon/547040__cogfirestudios__hit-swing-sword-small-2.wav" id="7_3qqoq"]
 [ext_resource type="Animation" uid="uid://dhfbh7e05dcah" path="res://animation/dash_attack.res" id="7_lf23u"]
-[ext_resource type="AudioStream" uid="uid://bsegar0k5jjb" path="res://sounds/422510__nightflame__swinging-staff-whoosh-strong-05.wav" id="8_krbbr"]
-[ext_resource type="AudioStream" uid="uid://cmcaelru5jg2m" path="res://sounds/205517__everheat__axe_barrel1.wav" id="9_363tm"]
+[ext_resource type="AudioStream" uid="uid://bsegar0k5jjb" path="res://sounds/weapon/422510__nightflame__swinging-staff-whoosh-strong-05.wav" id="8_krbbr"]
+[ext_resource type="AudioStream" uid="uid://cmcaelru5jg2m" path="res://sounds/weapon/205517__everheat__axe_barrel1.wav" id="9_363tm"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="9_uwwuq"]
-[ext_resource type="AudioStream" uid="uid://7f46s7d2o404" path="res://sounds/spear_stub_woosh.wav" id="10_6p4fh"]
-[ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/521999__kastenfrosch__whoosh-dash.wav" id="10_drpr7"]
+[ext_resource type="AudioStream" uid="uid://7f46s7d2o404" path="res://sounds/weapon/spear_stub_woosh.wav" id="10_6p4fh"]
+[ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/weapon/521999__kastenfrosch__whoosh-dash.wav" id="10_drpr7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 40.6079

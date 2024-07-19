@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="5_w4vcc"]
 [ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="6_7o0bp"]
 [ext_resource type="Texture2D" uid="uid://bl47gvcpimnxl" path="res://sprites/bow_release.png" id="6_xnxj2"]
-[ext_resource type="AudioStream" uid="uid://ceyufeboh3qgw" path="res://sounds/209399__sgossner__bow-release.wav" id="9_b15np"]
-[ext_resource type="AudioStream" uid="uid://bcx27b0i3y6" path="res://sounds/521242__cyoung510__arrow_woosh.wav" id="10_t5u7j"]
+[ext_resource type="AudioStream" uid="uid://ceyufeboh3qgw" path="res://sounds/weapon/209399__sgossner__bow-release.wav" id="9_b15np"]
+[ext_resource type="AudioStream" uid="uid://bcx27b0i3y6" path="res://sounds/weapon/521242__cyoung510__arrow_woosh.wav" id="10_t5u7j"]
 [ext_resource type="Script" path="res://scripts/targetFinder.gd" id="11_v032f"]
 [ext_resource type="Script" path="res://scripts/wandering.gd" id="12_06bbr"]
 

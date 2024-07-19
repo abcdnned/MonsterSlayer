@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsdts71tmlke5"]
 
 [ext_resource type="Script" path="res://scripts/damage_zone.gd" id="1_v84qh"]
-[ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/hit-swing-sword-small.wav" id="2_1kjqt"]
+[ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/weapon/hit-swing-sword-small.wav" id="2_1kjqt"]
 
 [node name="damage_zone" type="Area2D"]
 collision_layer = 2

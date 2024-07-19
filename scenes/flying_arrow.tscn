@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/flying_arrow.gd" id="1_w2wbf"]
 [ext_resource type="Texture2D" uid="uid://uguua72h6a7k" path="res://sprites/arrow_flying.png" id="1_xmxod"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="2_7nsk1"]
-[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/521242__cyoung510__arrow_hits_target.wav" id="4_cpy6s"]
+[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/weapon/521242__cyoung510__arrow_hits_target.wav" id="4_cpy6s"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_5u5xm"]
 b = Vector2(80, 0)

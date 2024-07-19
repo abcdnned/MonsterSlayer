@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dr16khaikgudr"
-path="res://.godot/imported/hit-swing-sword-small.wav-a46b714b9d7b809cbbe25f4344609387.sample"
+path="res://.godot/imported/hit-swing-sword-small.wav-af3424f439d1fb36500aad2fb65225e5.sample"
 
 [deps]
 
-source_file="res://sounds/hit-swing-sword-small.wav"
-dest_files=["res://.godot/imported/hit-swing-sword-small.wav-a46b714b9d7b809cbbe25f4344609387.sample"]
+source_file="res://sounds/weapon/hit-swing-sword-small.wav"
+dest_files=["res://.godot/imported/hit-swing-sword-small.wav-af3424f439d1fb36500aad2fb65225e5.sample"]
 
 [params]
 

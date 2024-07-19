@@ -1,12 +1,12 @@
 # 5.4 target
-# TODO hammer sound
-# TODO door open sound
 # TODO war-eye spawner
 # TODO goblin warrior with hammer
 
 # Backlogs
+# spear weapon drop
 # design monster tire
 # mob wolf
+# optimaze control
 # mob spear goblin
 # 6 weapon design
 # Sheild charge
