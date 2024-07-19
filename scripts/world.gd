@@ -1,5 +1,6 @@
 # 5.4 target
 # TODO hammer sound
+# TODO door open sound
 # TODO war-eye spawner
 # TODO goblin warrior with hammer
 
