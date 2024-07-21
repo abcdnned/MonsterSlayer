@@ -2,3 +2,4 @@
 
 [node name="NavigationAgent2D" type="NavigationAgent2D"]
 path_postprocessing = 1
+debug_enabled = true

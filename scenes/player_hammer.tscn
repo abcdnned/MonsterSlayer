@@ -645,7 +645,6 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qxbta")
 
 [node name="damage_zone2" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("4_8v3rg")]
-monitoring = true
 damage = 3.5
 knockback = 1700.0
 sound = NodePath("../../../HammerHitHeavy")

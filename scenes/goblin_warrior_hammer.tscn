@@ -31,120 +31,6 @@ size = Vector2(30, 100)
 [sub_resource type="CircleShape2D" id="CircleShape2D_rt7qa"]
 radius = 61.0737
 
-[sub_resource type="Animation" id="Animation_b367i"]
-resource_name = "dying"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_emit_hero_death"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_yymrd"]
-resource_name = "stun"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_vrsrd"]
-resource_name = "Idle_2"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Weapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.47175]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Weapon:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(54, 77)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/ItemHandle:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_cxjsl"]
-resource_name = "Idle_2"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/Weapon:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.47175]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/Weapon:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(54, 77)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/ItemHandle:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_g7q0q"]
 length = 0.001
 tracks/0/type = "value"
@@ -218,6 +104,96 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vrsrd"]
+resource_name = "Idle_2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.47175]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(54, 77)]
+}
+
+[sub_resource type="Animation" id="Animation_b367i"]
+resource_name = "dying"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_emit_hero_death"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_yymrd"]
+resource_name = "stun"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_cxjsl"]
+resource_name = "Idle_2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.47175]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(54, 77)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
@@ -354,11 +330,12 @@ states/swap/position = Vector2(1086.66, -21.9651)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(397.92, 230.961)
 transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_drct6"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_565t3"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_gvc2a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_iy5qc"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_ugxkf"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_ogyj1"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_liwcp"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_j6o4x"), "chasing", "dash_attack", SubResource("AnimationNodeStateMachineTransition_0gemt"), "dash_attack", "chasing", SubResource("AnimationNodeStateMachineTransition_vya5n"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_mx0rj"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_wxbps"), "chasing", "swap", SubResource("AnimationNodeStateMachineTransition_kcag8"), "swap", "chasing", SubResource("AnimationNodeStateMachineTransition_x8rop"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_c74j6"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_sxm5o")]
-graph_offset = Vector2(272.28, -354.905)
+graph_offset = Vector2(359.625, -172.662)
 
 [node name="GoblinWarriorHammer" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
 script = ExtResource("1_yebkh")
+max_health = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_rcka3")
@@ -394,13 +371,10 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_dwhjx")
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
-target_position = Vector2(430, 0)
-
-[node name="RayCastS" type="RayCast2D" parent="Sprite2D"]
-target_position = Vector2(197, 0)
+target_position = Vector2(338, 0)
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="Sprite2D"]
-position = Vector2(564, 0)
+position = Vector2(422, 0)
 shape = SubResource("RectangleShape2D_tr3uf")
 target_position = Vector2(100, 0)
 

@@ -1,12 +1,13 @@
 extends Unit
 
-@onready var damage_zone = $Sprite2D/Weapon/damage_zone
 @onready var death_sound = $death
 @onready var dash_cooldown = $dash_cooldown
 @onready var dash_sound = $dash_sound
 @onready var item_handle = $Sprite2D/ItemHandle
 @onready var hammer_attack = $HammerAttack
 @onready var hammer_dash_attack = $HammerDashAttack
+@onready var damage_zone = $Sprite2D/Weapon/damage_zone
+@onready var damage_zone_2 = $Sprite2D/Weapon/damage_zone2
 @onready var hammer_swap = $HammerSwap
 
 
@@ -68,6 +69,7 @@ func _physics_process(delta):
 		"stun":
 			animation_tree.set("parameters/conditions/stun", false)
 			damage_zone.monitoring = false
+			damage_zone_2.monitoring = false
 			if stun_ticks > 0:
 				stun_ticks -= 1
 				var direction = knock_back_source_position.direction_to(global_position).normalized()
@@ -78,6 +80,7 @@ func _physics_process(delta):
 				animation_tree.set("parameters/conditions/unstun", true)
 		"dying":
 			damage_zone.monitoring = false
+			damage_zone_2.monitoring = false
 			var direction = knock_back_source_position.direction_to(global_position).normalized()
 			velocity = direction * knock_back_force
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)

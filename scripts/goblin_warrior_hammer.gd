@@ -1,6 +1,6 @@
 extends Unit
 
-const SPEED = 400
+const SPEED = 350
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell
@@ -10,7 +10,6 @@ const SPEED = 400
 @onready var target_finder = $TargetFinder
 @onready var wandering = $Wandering
 @onready var what_am_i_thinking = $WhatAmIThinking
-@onready var ray_cast_s = $Sprite2D/RayCastS
 @onready var shape_cast_2d = $Sprite2D/ShapeCast2D
 @onready var hammer_attack = $HammerAttack
 @onready var hammer_dash_attack = $HammerDashAttack
@@ -30,9 +29,12 @@ func _process(delta):
 			if ray_cast_2d.is_colliding() and what_am_i_thinking.thinking < 50:
 				if ray_cast_2d.get_collider().is_in_group("human"):
 					animation_tree.set("parameters/conditions/attack", true)
-			elif ray_cast_s.is_colliding() and what_am_i_thinking.thinking < 80:
-				if ray_cast_s.get_collider().is_in_group("human"):
+			elif ray_cast_2d.is_colliding() and what_am_i_thinking.thinking < 80:
+				if ray_cast_2d.get_collider().is_in_group("human"):
 					animation_tree.set("parameters/conditions/swap", true)
+					dash_attack_speed = 700
+					dash_attack_deduction = 7.0
+					dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
 			elif shape_cast_2d.is_colliding() and what_am_i_thinking.thinking < 30:
 				for i in range(shape_cast_2d.get_collision_count()):
 					if shape_cast_2d.get_collider(i).is_in_group("human"):
