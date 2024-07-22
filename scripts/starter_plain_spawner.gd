@@ -17,6 +17,7 @@ const I_APPLE = preload("res://scenes/i_apple.tscn")
 const I_COIN_SMALL = preload("res://scenes/i_coin_small.tscn")
 const I_START_KEY = preload("res://scenes/i_start_key.tscn")
 const GOBLIN_FLAG = preload("res://scenes/goblin_flag.tscn")
+const OBSTACLE_AGENT = preload("res://scenes/obstacle_agent.tscn")
 
 func _ready():
 	if not enable:
@@ -49,6 +50,8 @@ func spawn_tree_snake(top_left, bottom_right):
 	for i in range(c):
 		if x > top_left.x and x < bottom_right.x and y > top_left.y and y < bottom_right.y:
 			owner.tile_map.set_cell(0, cur, 0, Vector2i(0, 2), 0)
+			var p = owner.tile_map.to_global(owner.tile_map.map_to_local(cur))
+			#spawn_obstacle_agent(p)
 		if randf_range(0, 1) <= apple_rate:
 			var p = owner.tile_map.to_global(owner.tile_map.map_to_local(cur))
 			spawn_apple(p)
@@ -91,3 +94,8 @@ func spawn_flag():
 	var top_left = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["top_left"]]["top_left"])
 	var bottom_right = tile_to_global(owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"])
 	owner.spawn(GOBLIN_FLAG, top_left, bottom_right)
+
+func spawn_obstacle_agent(p):
+	var a = OBSTACLE_AGENT.instantiate()
+	a.position = p
+	owner.add_child(a)

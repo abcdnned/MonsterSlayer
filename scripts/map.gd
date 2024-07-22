@@ -15,6 +15,7 @@ const MAP_TILE = preload("res://scenes/map_tile.tscn")
 var player = null
 const KNIGHT_POTRIAT = preload("res://scenes/knight_potriat.tscn")
 const KEY_HOLE = preload("res://scenes/key_hole.tscn")
+const OBSTACLE_AGENT = preload("res://scenes/obstacle_agent.tscn")
 
 func _ready():
 	init_map()

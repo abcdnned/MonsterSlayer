@@ -383,6 +383,8 @@ position = Vector2(3, -1)
 shape = SubResource("CircleShape2D_rt7qa")
 
 [node name="NavigationAgent2D" parent="." instance=ExtResource("6_kj1ri")]
+radius = 64.0
+max_speed = 350.0
 
 [node name="TargetFinder" type="Node" parent="."]
 script = ExtResource("7_1rn4v")
@@ -442,4 +444,5 @@ stream = ExtResource("18_diurd")
 volume_db = 8.0
 bus = &"SFX"
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

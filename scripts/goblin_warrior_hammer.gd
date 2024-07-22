@@ -59,14 +59,14 @@ func _physics_process(delta):
 					var direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 					sprite.look_at(navigation_agent_2d.get_next_path_position())
 					velocity = direction * SPEED
-					move_and_slide()
+					navigation_move()
 		"chasing":
 			animation_tree.set("parameters/conditions/unstun", false)
 			if target_finder.target:
 				var direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 				sprite.look_at(navigation_agent_2d.get_next_path_position())
 				velocity = direction * SPEED
-				move_and_slide()
+				navigation_move()
 			else:
 				animation_tree.set("parameters/conditions/wandering", true)
 				animation_tree.set("parameters/conditions/target", false)
@@ -127,3 +127,14 @@ func on_dash_attack():
 	
 func on_swap():
 	hammer_swap.play()
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	move_and_slide()
+
+func navigation_move():
+	if navigation_agent_2d.avoidance_enabled:
+		navigation_agent_2d.set_velocity(velocity)
+	else:
+		move_and_slide()

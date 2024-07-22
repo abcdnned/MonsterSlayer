@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://dlys3kq78aa40"]
+[gd_scene load_steps=2 format=3 uid="uid://dlys3kq78aa40"]
+
+[ext_resource type="Texture2D" uid="uid://cbj5liqnsrvgi" path="res://icon.svg" id="1_tsn5u"]
 
 [node name="ObstacleAgent" type="NavigationObstacle2D"]
-radius = 200.0
+vertices = PackedVector2Array(-70, -70, 70, -70, 70, 70, -70, 70)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.490723, 0.442337)
+texture = ExtResource("1_tsn5u")
