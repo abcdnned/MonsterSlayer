@@ -2,7 +2,9 @@
 # TODO war-eye spawner
 # TODO goblin warrior with hammer
 
+
 # Backlogs
+# stanmine system
 # spear weapon drop
 # design monster tire
 # mob wolf
@@ -10,6 +12,7 @@
 # mob spear goblin
 # 6 weapon design
 # Sheild charge
+# war eye support multipul areas
 # goblin bomber
 # notification when target spotted
 # switch weapon
@@ -37,16 +40,14 @@ extends Node2D
 @onready var winning_scene = $UI/WinningScene
 @onready var hearts = $UI/Life/Hearts
 @onready var max_hearts = $UI/Life/MaxHearts
-@onready var spawner = $GoblinArmy1Spawner
 @onready var lose_scene = $UI/LoseScene
 @onready var winning_sound = $WinningSound
 @onready var map = $UI/Map
 @onready var war_eye = $UI/WarEye
+@onready var goblin_army_1_spawner = $LevelSpawner/GoblinArmy1Spawner
 const PLAYER = preload("res://scenes/player.tscn")
 const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
-const GOBLIN_ARMY_TOP_LEFT = Vector2(-3600, -4000)
-const GOBLIN_ARMY_BOTTOM_RIGHT = Vector2(3600, -11000)
 var money: int = 0
 var kill_count = 0
 
@@ -75,15 +76,10 @@ func _on_mob_death(node):
 
 func _win():
 	winning_scene.visible = true
-	spawner.enable = false
 	winning_sound.play()
 	var mobs = get_tree().get_nodes_in_group("mob")
 	for mob in mobs:
 		mob.add_to_group("lose")
-
-
-func _on_spawner_starter_timeout():
-	spawner.enable = true
 
 func load_player(player_type, position):
 	if player != null:
@@ -104,15 +100,16 @@ func _on_player_map_pos_change(x, y):
 	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
 	var i = self.map.tile_to_cord[Vector2(p.x, p.y)]
 	if i and map.war_eye[i.x][i.y] > 0:
-		war_eye.visible = true
+		check_war_eye_spawner()
 	else:
 		war_eye.visible = false
-	if i and map.war_eye[i.x][i.y] == 1:
-		spawner.enable = true
-	else:
-		spawner.enable = false
+		goblin_army_1_spawner.enable = false
 	#print(Vector2(x, y)) # TODO get pos
-		
+
+func check_war_eye_spawner():
+	war_eye.visible = true
+	goblin_army_1_spawner.enable = true
+
 func get_money(m):
 	money += m
 	coins.text = "Coins: " + str(money)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=58 format=3 uid="uid://b2qcx1xa8raob"]
 
 [ext_resource type="Script" path="res://scripts/goblin_warrior_hammer.gd" id="1_yebkh"]
-[ext_resource type="Texture2D" uid="uid://ohyii6b61cdq" path="res://sprites/goblin_warrior_hammer.png" id="2_rcka3"]
+[ext_resource type="Texture2D" uid="uid://bv62c5iqno3w8" path="res://sprites/goblin_warrior_hammer2.0.png" id="2_phiwf"]
 [ext_resource type="Texture2D" uid="uid://ce1p86wiuis62" path="res://sprites/Hammer.png" id="3_0na0l"]
 [ext_resource type="Script" path="res://scripts/dagger_loot.gd" id="4_twpta"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="5_764eb"]
@@ -29,7 +29,7 @@ size = Vector2(124, 97)
 size = Vector2(30, 100)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rt7qa"]
-radius = 61.0737
+radius = 45.0444
 
 [sub_resource type="Animation" id="Animation_g7q0q"]
 length = 0.001
@@ -338,7 +338,7 @@ script = ExtResource("1_yebkh")
 max_health = 15.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_rcka3")
+texture = ExtResource("2_phiwf")
 region_rect = Rect2(384, 128, 128, 128)
 
 [node name="Weapon" type="Sprite2D" parent="Sprite2D"]

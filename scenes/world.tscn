@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=21 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
-[ext_resource type="PackedScene" uid="uid://b2qcx1xa8raob" path="res://scenes/goblin_warrior_hammer.tscn" id="14_avwcx"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
@@ -202,23 +201,15 @@ theme_override_colors/font_color = Color(0.878431, 0.741176, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Coins: 0"
 
-[node name="GoblinArmy1Spawner" type="Node" parent="."]
-script = ExtResource("9_l8cwq")
-
 [node name="WinningSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_54gj3")
 attenuation = 0.000150286
 bus = &"SFX"
-
-[node name="SpawnerStarter" type="Timer" parent="."]
-one_shot = true
 
 [node name="LevelSpawner" type="Node" parent="."]
 
 [node name="StarterPlainSpawner" type="Node" parent="LevelSpawner"]
 script = ExtResource("14_ucirg")
 
-[node name="GoblinWarriorHammer" parent="." instance=ExtResource("14_avwcx")]
-position = Vector2(-461, -602)
-
-[connection signal="timeout" from="SpawnerStarter" to="." method="_on_spawner_starter_timeout"]
+[node name="GoblinArmy1Spawner" type="Node" parent="LevelSpawner"]
+script = ExtResource("9_l8cwq")
