@@ -50,7 +50,7 @@ func spawn_tracker(type, group):
 func spawn_mob(type, group):
 	var top_left = get_spawn_top_left()
 	var bottom_right = get_spawn_bottom_right()
-	var spawn_position = owner.get_spawn_position()
+	var spawn_position = owner.map.get_spawn_position(top_left, bottom_right)
 	var mob = type.instantiate()
 	mob.add_to_group(group)
 	mob.position = spawn_position
@@ -60,8 +60,8 @@ func spawn_mob(type, group):
 
 func get_spawn_top_left():
 	var tile = owner.map.cord_to_tile[owner.map.level_cord["goblin_fontier"]["top_left"]]["top_left"]
-	return owner.map.to_global(owner.map.map_to_local(tile))
+	return owner.tile_map.to_global(owner.tile_map.map_to_local(tile))
 
 func get_spawn_bottom_right():
 	var tile = owner.map.cord_to_tile[owner.map.level_cord["goblin_fontier"]["bottom_right"]]["bottom_right"]
-	return owner.map.to_global(owner.map.map_to_local(tile))
+	return owner.tile_map.to_global(owner.tile_map.map_to_local(tile))

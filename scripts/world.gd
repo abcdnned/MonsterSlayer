@@ -1,14 +1,10 @@
-# 5.4 target
-# TODO war-eye spawner
-# TODO goblin warrior with hammer
-
+# 5.5 target
+# TODO spear weapon drop
+# TODO optimaze control
+# TODO hammer weapon drop
 
 # Backlogs
-# stanmine system
-# spear weapon drop
-# design monster tire
-# mob wolf
-# optimaze control
+# new level
 # mob spear goblin
 # 6 weapon design
 # Sheild charge
@@ -30,6 +26,9 @@
 # white eye attack, purple eye attack
 # lootable precise collision
 # just pressed attack
+# stanmine system
+# design monster tire
+# mob wolf
 
 extends Node2D
 
@@ -57,7 +56,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player(PLAYER_HAMMER, Vector2(0, 0))
+	load_player(PLAYER_HAMMER, Vector2(0, 10000))
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
 

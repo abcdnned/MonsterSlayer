@@ -50,8 +50,6 @@ func spawn_tree_snake(top_left, bottom_right):
 	for i in range(c):
 		if x > top_left.x and x < bottom_right.x and y > top_left.y and y < bottom_right.y:
 			owner.tile_map.set_cell(0, cur, 0, Vector2i(0, 2), 0)
-			var p = owner.tile_map.to_global(owner.tile_map.map_to_local(cur))
-			#spawn_obstacle_agent(p)
 		if randf_range(0, 1) <= apple_rate:
 			var p = owner.tile_map.to_global(owner.tile_map.map_to_local(cur))
 			spawn_apple(p)

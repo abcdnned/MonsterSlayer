@@ -56,7 +56,7 @@ func init_plain_boime():
 	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), false)
 	level_cord["starter_plain"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
 	# Create Start Plain Sourth Gate
-	create_gate(x + 2, y, 1)
+	#create_gate(x + 2, y, 1)
 	# Gallery to first small boss
 	set_plain_tile(x + 2, y)
 	set_plain_tile(x + 3, y)
@@ -64,7 +64,7 @@ func init_plain_boime():
 	# Goblin Forntie
 	x += 6
 	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), true)
-	level_cord["goblin_frontier"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
+	level_cord["goblin_fontier"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
 
 func create_gate(x, y, d):
 	gate[Vector2(x, y)] = d

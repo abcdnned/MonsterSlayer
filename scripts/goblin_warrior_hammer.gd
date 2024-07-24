@@ -29,13 +29,13 @@ func _process(delta):
 			if ray_cast_2d.is_colliding() and what_am_i_thinking.thinking < 50:
 				if ray_cast_2d.get_collider().is_in_group("human"):
 					animation_tree.set("parameters/conditions/attack", true)
-			elif ray_cast_2d.is_colliding() and what_am_i_thinking.thinking < 80:
+			elif ray_cast_2d.is_colliding() and what_am_i_thinking.thinking < 70:
 				if ray_cast_2d.get_collider().is_in_group("human"):
 					animation_tree.set("parameters/conditions/swap", true)
 					dash_attack_speed = 700
 					dash_attack_deduction = 7.0
 					dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
-			elif shape_cast_2d.is_colliding() and what_am_i_thinking.thinking < 30:
+			elif shape_cast_2d.is_colliding() and what_am_i_thinking.thinking < 10:
 				for i in range(shape_cast_2d.get_collision_count()):
 					if shape_cast_2d.get_collider(i).is_in_group("human"):
 						animation_tree.set("parameters/conditions/dash_attack", true)
