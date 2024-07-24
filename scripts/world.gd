@@ -1,7 +1,5 @@
 # 5.5 target
-# TODO spear weapon drop
 # TODO optimaze control
-# TODO hammer weapon drop
 
 # Backlogs
 # new level
@@ -56,7 +54,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player(PLAYER_HAMMER, Vector2(0, 10000))
+	load_player(PLAYER_HAMMER, Vector2(0, 0))
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
 
@@ -80,7 +78,7 @@ func _win():
 	for mob in mobs:
 		mob.add_to_group("lose")
 
-func load_player(player_type, position):
+func load_player(player_type, position, stats = null):
 	if player != null:
 		player.queue_free()
 		player = null
@@ -93,7 +91,11 @@ func load_player(player_type, position):
 	player.hero_death.connect(_on_player_hero_death)
 	player.map_pos_change.connect(map._on_player_map_pos_change)
 	player.map_pos_change.connect(_on_player_map_pos_change)
-	player._ready()
+	if stats:
+		player.health = stats["health"]
+		player.max_health = stats["max_health"]
+		player.emit_signal("health_change", player.health)
+		player.emit_signal("max_health_change", player.max_health)
 
 func _on_player_map_pos_change(x, y):
 	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))

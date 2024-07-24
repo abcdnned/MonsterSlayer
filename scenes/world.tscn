@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=22 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
+[ext_resource type="PackedScene" uid="uid://be6pww2vx4jtm" path="res://scenes/goblin_warrior_spear.tscn" id="14_8ypu0"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
@@ -213,3 +214,6 @@ script = ExtResource("14_ucirg")
 
 [node name="GoblinArmy1Spawner" type="Node" parent="LevelSpawner"]
 script = ExtResource("9_l8cwq")
+
+[node name="GoblinWarriorSpear" parent="." instance=ExtResource("14_8ypu0")]
+position = Vector2(-278, -250)

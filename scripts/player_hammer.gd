@@ -27,7 +27,7 @@ var dash_attack_speed = DASH_ATTACK_MAX_SPEED
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
 var map_pos = Vector2(4, 4)
-const TYPE = "HeavySpear"
+const TYPE = "Hammer"
 
 func _process(delta):
 	match state_machine.get_current_node():

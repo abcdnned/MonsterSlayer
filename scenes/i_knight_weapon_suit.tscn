@@ -6,4 +6,4 @@
 [node name="iKnightWeaponSuit" type="Sprite2D"]
 texture = ExtResource("1_fdxmx")
 script = ExtResource("1_uag5l")
-weapon_type = "PLAYER"
+weapon_type = "res://scenes/i_knight_weapon_suit.tscn"

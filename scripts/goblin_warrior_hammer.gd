@@ -14,6 +14,7 @@ const SPEED = 350
 @onready var hammer_attack = $HammerAttack
 @onready var hammer_dash_attack = $HammerDashAttack
 @onready var hammer_swap = $HammerSwap
+const I_HAMMER = preload("res://scenes/i_hammer.tscn")
 var dash_attack_speed = 1100
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
@@ -111,8 +112,13 @@ func _on_timer_timeout():
 		navigation_agent_2d.target_position = wandering.wandering_loc
 	
 func _sub_dead():
-	death_yell.play()
+	drop_hammer()
 
+func drop_hammer():
+	var hammer = I_HAMMER.instantiate()
+	hammer.position = global_position
+	get_tree().current_scene.add_child(hammer)
+	
 func pole_attack_hit():
 	damage_zone_2.knockback = 1500
 	

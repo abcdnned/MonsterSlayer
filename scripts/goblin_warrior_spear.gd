@@ -12,6 +12,7 @@ const SPEED = 400
 @onready var what_am_i_thinking = $WhatAmIThinking
 @onready var ray_cast_s = $Sprite2D/RayCastS
 @onready var shape_cast_2d = $Sprite2D/ShapeCast2D
+const I_HEAVY_SPEAR = preload("res://scenes/i_heavy_spear.tscn")
 var dash_attack_speed = 1100
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
@@ -103,6 +104,12 @@ func _on_timer_timeout():
 	
 func _sub_dead():
 	death_yell.play()
+	drop_spear()
+
+func drop_spear():
+	var spear = I_HEAVY_SPEAR.instantiate()
+	spear.position = global_position
+	get_tree().current_scene.add_child(spear)
 
 func pole_attack_hit():
 	damage_zone_2.knockback = 1500

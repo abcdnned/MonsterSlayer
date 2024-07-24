@@ -6,4 +6,4 @@
 [node name="iHammer" type="Sprite2D"]
 texture = ExtResource("1_6fes1")
 script = ExtResource("1_o7055")
-weapon_type = "PLAYER_HAMMER"
+weapon_type = "res://scenes/player_hammer.tscn"
