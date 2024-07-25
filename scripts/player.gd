@@ -42,7 +42,7 @@ func _process(delta):
 func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
-			if Input.is_action_pressed("right_click"):
+			if Input.is_action_just_pressed("right_click"):
 				animation_tree.set("parameters/conditions/defense", true)
 			elif Input.is_action_pressed("item"):
 				if item_handle.get_child_count() > 0:
@@ -52,12 +52,12 @@ func _physics_process(delta):
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
-			elif Input.is_action_pressed("sprint") and get_input() == Vector2(0.0, -1.0) and Input.is_action_pressed("left_click"):
+			elif Input.is_action_pressed("sprint") and get_input() == Vector2(0.0, -1.0) and Input.is_action_just_pressed("left_click"):
 				animation_tree.set("parameters/conditions/dash_attack", true)
 				dash_attack_speed = DASH_ATTACK_MAX_SPEED
 				dash_attack_deduction = 20.0
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
-			elif Input.is_action_pressed("left_click"):
+			elif Input.is_action_just_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
 			_move_velocity(delta)
 			move_and_slide()	
@@ -114,16 +114,15 @@ func _physics_process(delta):
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
 		"HoldItem":
-			if Input.is_action_pressed("left_click"):
-				animation_tree.set("parameters/conditions/hide_item", true)
-				animation_tree.set("parameters/conditions/hold_item", false)
+			animation_tree.set("parameters/conditions/attack", false)
+			animation_tree.set("parameters/conditions/dash_attack", false)
+			if Input.is_action_just_pressed("left_click"):
+				animation_tree.set("parameters/conditions/use_item", true)
 			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
 			elif Input.is_action_pressed("right_click"):
-				animation_tree.set("parameters/conditions/use_item", true)
-			elif Input.is_action_pressed("drop"):
 				animation_tree.set("parameters/conditions/drop_item", true)
 				drop()
 			else:

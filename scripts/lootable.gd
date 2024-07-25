@@ -19,11 +19,11 @@ func _process(delta):
 		material = null
 
 func _input(event):
-	if is_Q_presses(event) and lootable and is_on_top() and is_reachable():
+	if is_left_mouse_button_pressed(event) and lootable and is_on_top() and is_reachable():
 		loot(get_tree().current_scene.player)
 
-func is_Q_presses(event):
-	return event is InputEventKey and event.pressed and event.as_text_physical_keycode() == "Q"
+func is_left_mouse_button_pressed(event):
+	return event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
 
 func apply_pickable_shader(sprite):
 	var shader = load("res://shader/pickable.gdshader")
