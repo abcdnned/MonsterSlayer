@@ -1,17 +1,16 @@
-# 5.5 target
-# TODO optimaze control
+# 5.6 target
+# TODO new level design
+# TODO mob wolf
+# TODO mob spear goblin
+# TODO goblin bomber
 
 # Backlogs
-# new level
-# mob spear goblin
-# 6 weapon design
-# Sheild charge
-# war eye support multipul areas
-# goblin bomber
+
 # notification when target spotted
 # switch weapon
 # Goblin Flag generator
 # no cycle tree
+# dash_tired
 # war fog
 # light
 # multi items
@@ -26,8 +25,9 @@
 # just pressed attack
 # stanmine system
 # design monster tire
-# mob wolf
-
+# 6 weapon design
+# war eye support multipul areas
+# Sheild charge
 extends Node2D
 
 @onready var player = null
