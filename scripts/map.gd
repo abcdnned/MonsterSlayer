@@ -65,7 +65,31 @@ func init_plain_boime():
 	x += 6
 	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), true)
 	level_cord["goblin_fontier"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
-
+	# Gallery to peaceful boime
+	set_plain_tile(x, y + 2)
+	set_plain_tile(x, y + 3)
+	set_plain_tile(x, y + 4)
+	y += 5
+	create_half_plain_chambler(Vector2(x, y), false)
+	level_cord["peaceful_boime"] = {"top_left": Vector2(x - 1, y), "bottom_right": Vector2(x, y + 1)}
+	# Gallery to orb1
+	set_plain_tile(x + 1, y)
+	set_plain_tile(x + 2, y)
+	set_plain_tile(x + 3, y)
+	# Gallery to orb2
+	set_plain_tile(x - 2, y + 1)
+	set_plain_tile(x - 3, y + 1)
+	set_plain_tile(x - 4, y + 1)
+	set_plain_tile(x - 5, y + 1)
+	# Gallery to orb3
+	set_plain_tile(x - 4, y + 2)
+	set_plain_tile(x - 4, y + 3)
+	set_plain_tile(x - 4, y + 4)
+	# final Gallery
+	set_plain_tile(x, y + 2)
+	set_plain_tile(x, y + 3)
+	set_plain_tile(x, y + 4)
+	
 func create_gate(x, y, d):
 	gate[Vector2(x, y)] = d
 
@@ -73,6 +97,12 @@ func create_plain_chambler(top_left, bottom_right, war_eye = false):
 	for x in range(top_left.x, bottom_right.x + 1):
 		for y in range(top_left.y, bottom_right.y + 1):
 			set_plain_tile(x, y, war_eye)
+
+func create_half_plain_chambler(bottom_left, war_eye = false):
+	set_plain_tile(bottom_left.x, bottom_left.y, war_eye)
+	set_plain_tile(bottom_left.x - 1, bottom_left.y, war_eye)
+	set_plain_tile(bottom_left.x, bottom_left.y + 1, war_eye)
+	set_plain_tile(bottom_left.x - 1, bottom_left.y + 1, war_eye)
 	
 
 func set_plain_tile(x, y, is_war_eye = false):

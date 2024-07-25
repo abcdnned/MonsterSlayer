@@ -1,16 +1,21 @@
 # 5.6 target
-# TODO new level design
 # TODO mob wolf
 # TODO mob spear goblin
 # TODO goblin bomber
 
 # Backlogs
-
+# cursor image
+# orb1 boime
+# orb2 boime
+# orb3 boime
+# item slots
+# presure plate trape
 # notification when target spotted
 # switch weapon
 # Goblin Flag generator
 # no cycle tree
 # dash_tired
+# dash_angel_limit
 # war fog
 # light
 # multi items
