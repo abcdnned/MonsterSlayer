@@ -1,0 +1,10 @@
+0. add immediate trasfer from attack to hold_item
+1. add immediate trasfer from dash_attack to hold_item
+2. change left click and right click attack, dash_attack to just pressed
+3. disable left click return in "Hold_item" add 
+animation_tree.set("parameters/conditions/attack", false)
+animation_tree.set("parameters/conditions/dash_attack", false)
+if Input.is_action_just_pressed("left_click"):
+        animation_tree.set("parameters/conditions/use_item", true)
+4. make right drop item
+5. delete 'G' drop item

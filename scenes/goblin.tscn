@@ -212,7 +212,7 @@ states/dying/position = Vector2(645, 91.5)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.461)
 transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi")]
-graph_offset = Vector2(92.955, -366.06)
+graph_offset = Vector2(22.53, 60.465)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 9

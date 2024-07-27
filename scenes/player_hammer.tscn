@@ -8,6 +8,7 @@
 [ext_resource type="Animation" uid="uid://bu7kfb3xoqbdf" path="res://animation/Hammer/dash_attack.res" id="6_4nfaq"]
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/weapon/521999__kastenfrosch__whoosh-dash.wav" id="6_vaxuk"]
 [ext_resource type="Animation" uid="uid://c5vht34p1fe4w" path="res://animation/Hammer/swap.res" id="7_i53a7"]
+[ext_resource type="Animation" uid="uid://b1bn6rpg1nngh" path="res://animation/stun.res" id="7_nygob"]
 [ext_resource type="AudioStream" uid="uid://bx8gcbd2fm5vo" path="res://sounds/weapon/hammer_attack.wav" id="7_po0cl"]
 [ext_resource type="AudioStream" uid="uid://c7wccveksi5wq" path="res://sounds/weapon/hammer_dash_attack.wav" id="8_5rjua"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="8_nfcv6"]
@@ -345,10 +346,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_7vio4"]
-resource_name = "stun"
-loop_mode = 1
-
 [sub_resource type="Animation" id="Animation_ly6d4"]
 resource_name = "use_item"
 length = 0.2
@@ -415,7 +412,7 @@ _data = {
 "dash_attack": ExtResource("6_4nfaq"),
 "drop_item": SubResource("Animation_0hhfo"),
 "dying": SubResource("Animation_bsl3y"),
-"stun": SubResource("Animation_7vio4"),
+"stun": ExtResource("7_nygob"),
 "swap": ExtResource("7_i53a7"),
 "use_item": SubResource("Animation_ly6d4")
 }
@@ -623,7 +620,7 @@ states/swap/position = Vector2(542.423, 435.204)
 states/use_item/node = SubResource("AnimationNodeAnimation_xk3wl")
 states/use_item/position = Vector2(314.98, -167.365)
 transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "drop_item", "stun", SubResource("AnimationNodeStateMachineTransition_u3s8l"), "drop_item", "dying", SubResource("AnimationNodeStateMachineTransition_ir0ar"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ty0yu"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_rvwuo"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_14ika"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_okf55"), "Idle_2", "attack", SubResource("AnimationNodeStateMachineTransition_rulhw"), "attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_m1cfe"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_vo8n7"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_51rar"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_6kqcj"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_efgfp"), "swap", "stun", SubResource("AnimationNodeStateMachineTransition_r7ajd"), "swap", "dying", SubResource("AnimationNodeStateMachineTransition_p70xj"), "HoldItem", "HoldItem_Dash", SubResource("AnimationNodeStateMachineTransition_hnn3q"), "HoldItem_Dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_qsmi3"), "attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cohyv"), "dash_attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_15mvr")]
-graph_offset = Vector2(1.26799, -35.8006)
+graph_offset = Vector2(184.373, -98.3506)
 
 [node name="Player_Hammer" type="CharacterBody2D" groups=["human"]]
 z_index = 10
@@ -653,7 +650,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qxbta")
 
 [node name="damage_zone2" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("4_8v3rg")]
-damage = 3.5
+damage = 3.0
 knockback = 1700.0
 sound = NodePath("../../../HammerHitHeavy")
 stun = 12
