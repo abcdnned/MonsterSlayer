@@ -2,6 +2,8 @@
 # TODO goblin bomber
 
 # Backlogs
+# hitten energy, ultra special attack
+# stun shader
 # redraw map
 # cursor image
 # spear double stub
@@ -35,6 +37,7 @@
 # 6 weapon design
 # war eye support multipul areas
 # Sheild charge
+# each enemy's ranke, solider, master, legend
 extends Node2D
 
 @onready var player = null

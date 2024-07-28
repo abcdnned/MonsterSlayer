@@ -1,11 +1,10 @@
 extends Unit
 
-const SPEED = 400
+const SPEED = 350
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell
 @onready var ray_cast_2d = $Sprite2D/RayCast2D
-@onready var spear_attack_sound = $spear_attack_sound
 @onready var damage_zone = $Sprite2D/damage_zone
 @onready var spear_sprite = $Sprite2D/SpearSprite
 @onready var target_finder = $TargetFinder
@@ -74,9 +73,6 @@ func _on_timer_timeout():
 		navigation_agent_2d.target_position = target_finder.target.global_position
 	else:
 		navigation_agent_2d.target_position = wandering.wandering_loc
-	
-func _spear_attack():
-	spear_attack_sound.play()
 		
 func _sub_dead():
 	spear_sprite.lootable = true

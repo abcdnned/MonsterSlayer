@@ -1,20 +1,15 @@
-[gd_scene load_steps=40 format=3 uid="uid://du5m3qifo1s70"]
+[gd_scene load_steps=38 format=3 uid="uid://dfo2744khwf35"]
 
-[ext_resource type="Script" path="res://scripts/blue_goblin_spear.gd" id="1_j405h"]
-[ext_resource type="Texture2D" uid="uid://de85l3uu2oi1c" path="res://sprites/blue_goblin.png" id="2_fevwx"]
-[ext_resource type="Texture2D" uid="uid://bu08fuackfexy" path="res://sprites/spear.png" id="3_cix3r"]
-[ext_resource type="Script" path="res://scripts/loot_proxy.gd" id="4_l6hs6"]
-[ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="5_14vcf"]
-[ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="6_kh2es"]
-[ext_resource type="Script" path="res://scripts/targetFinder.gd" id="7_qkjp6"]
-[ext_resource type="Animation" uid="uid://b1bn6rpg1nngh" path="res://animation/stun.res" id="8_b7v4f"]
-[ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="8_y2hnm"]
-[ext_resource type="AudioStream" uid="uid://colc12t274qwt" path="res://sounds/weapon/dagger_woosh.mp3" id="9_hpknp"]
-[ext_resource type="AudioStream" uid="uid://yi2aurllo2s0" path="res://sounds/weapon/knifesword-stab.wav" id="10_6avi0"]
-[ext_resource type="Script" path="res://scripts/wandering.gd" id="11_5lkcf"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_riha1"]
-size = Vector2(20, 15.7143)
+[ext_resource type="Script" path="res://scripts/goblin_boomer.gd" id="1_243ql"]
+[ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_5pkod"]
+[ext_resource type="Texture2D" uid="uid://coqno2k8t8uaa" path="res://sprites/item/boomer_v2.png" id="3_p103t"]
+[ext_resource type="Script" path="res://scripts/loot_proxy.gd" id="4_74sqn"]
+[ext_resource type="PackedScene" uid="uid://dqepojbmga4ea" path="res://scenes/navigation_agent_2d.tscn" id="6_c2ar2"]
+[ext_resource type="PackedScene" uid="uid://dhgdvepcssl3n" path="res://scenes/i_boomer.tscn" id="6_wjk8y"]
+[ext_resource type="Script" path="res://scripts/targetFinder.gd" id="7_i6qpi"]
+[ext_resource type="Animation" uid="uid://b1bn6rpg1nngh" path="res://animation/stun.res" id="8_ea76i"]
+[ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="9_0w3rv"]
+[ext_resource type="Script" path="res://scripts/wandering.gd" id="12_qxe1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpxg6"]
 radius = 42.0476
@@ -24,19 +19,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/SpearSprite:position")
+tracks/0/path = NodePath("Sprite2D/BoomerSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(55, 36)]
+"values": [Vector2(27, -44)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearSprite:rotation")
+tracks/1/path = NodePath("Sprite2D/BoomerSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -65,7 +60,7 @@ step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/SpearSprite:position")
+tracks/0/path = NodePath("Sprite2D/BoomerSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -77,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/SpearSprite:rotation")
+tracks/1/path = NodePath("Sprite2D/BoomerSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -109,7 +104,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_spear_attack"
+"method": &"_dagger_attack"
 }]
 }
 
@@ -151,13 +146,55 @@ tracks/1/keys = {
 resource_name = "wandering"
 loop_mode = 1
 
+[sub_resource type="Animation" id="Animation_rmm73"]
+resource_name = "throw"
+length = 0.3
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/BoomerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-11, -76), Vector2(38, -55), Vector2(77, -9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/BoomerSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/BoomerSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
 _data = {
 "RESET": SubResource("Animation_2swvi"),
 "attack": SubResource("Animation_cg68e"),
 "chasing": SubResource("Animation_mtitu"),
 "dying": SubResource("Animation_ic3m7"),
-"stun": ExtResource("8_b7v4f"),
+"stun": ExtResource("8_ea76i"),
+"throw": SubResource("Animation_rmm73"),
 "wandering": SubResource("Animation_gylsu")
 }
 
@@ -240,51 +277,50 @@ states/stun/position = Vector2(452.03, -67.485)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.086)
 transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_crb5a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_vwmt7"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_shpcm"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_6xj28"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_r156f")]
-graph_offset = Vector2(22.53, -191.985)
+graph_offset = Vector2(-131.085, -13.62)
 
-[node name="BlueGoblinSpear" type="CharacterBody2D" groups=["mob"]]
+[node name="GoblinBoomer" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
-script = ExtResource("1_j405h")
-max_health = 2.0
+script = ExtResource("1_243ql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_fevwx")
+texture = ExtResource("2_5pkod")
 region_rect = Rect2(384, 128, 128, 128)
 
-[node name="SpearSprite" type="Sprite2D" parent="Sprite2D"]
+[node name="BoomerSprite" type="Sprite2D" parent="Sprite2D"]
+visible = false
 z_index = -1
-position = Vector2(55, 36)
-texture = ExtResource("3_cix3r")
-script = ExtResource("4_l6hs6")
+position = Vector2(27, -44)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_p103t")
+script = ExtResource("4_74sqn")
 item_path = "res://scenes/i_spear.tscn"
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
 target_position = Vector2(130, 0)
 
-[node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("5_14vcf")]
-monitoring = true
-damage = 0.5
-sound = NodePath("../../spear_stab")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
-position = Vector2(200, -3.00002)
-rotation = 1.5708
-scale = Vector2(1.72, 5.6)
-shape = SubResource("RectangleShape2D_riha1")
-
-[node name="ItemBack" type="Node2D" parent="Sprite2D"]
+[node name="ItemBack1" type="Node2D" parent="Sprite2D"]
 z_index = -1
-position = Vector2(-49, -6)
-rotation = -1.62425
+position = Vector2(-41, -31)
+rotation = 0.0816453
+
+[node name="iBoomer" parent="Sprite2D/ItemBack1" instance=ExtResource("6_wjk8y")]
+
+[node name="ItemBack2" type="Node2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(-44, 9)
+rotation = -0.061251
+
+[node name="iBoomer" parent="Sprite2D/ItemBack2" instance=ExtResource("6_wjk8y")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cpxg6")
 
-[node name="NavigationAgent2D" parent="." instance=ExtResource("6_kh2es")]
+[node name="NavigationAgent2D" parent="." instance=ExtResource("6_c2ar2")]
 target_desired_distance = 240.0
 
 [node name="TargetFinder" type="Node" parent="."]
-script = ExtResource("7_qkjp6")
+script = ExtResource("7_i6qpi")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
@@ -296,6 +332,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_uihj1")
 }
@@ -309,18 +346,10 @@ parameters/conditions/unstun = false
 parameters/conditions/wandering = false
 
 [node name="death_yell" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_y2hnm")
-bus = &"SFX"
-
-[node name="spear_attack_sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_hpknp")
-bus = &"SFX"
-
-[node name="spear_stab" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_6avi0")
+stream = ExtResource("9_0w3rv")
 bus = &"SFX"
 
 [node name="Wandering" type="Node" parent="."]
-script = ExtResource("11_5lkcf")
+script = ExtResource("12_qxe1u")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
