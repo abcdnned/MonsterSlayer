@@ -639,8 +639,8 @@ texture = ExtResource("3_6dqxk")
 region_rect = Rect2(0, 0, 256, 128)
 
 [node name="damage_zone" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("4_8v3rg")]
-damage = 3.0
-knockback = 1400.0
+damage = 1.5
+knockback = 1200.0
 sound = NodePath("../../../HammerHitLite")
 stun = 12
 
@@ -650,10 +650,9 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qxbta")
 
 [node name="damage_zone2" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("4_8v3rg")]
-damage = 3.0
-knockback = 1700.0
+knockback = 1500.0
 sound = NodePath("../../../HammerHitHeavy")
-stun = 12
+stun = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Weapon/damage_zone2"]
 position = Vector2(27.5, -1.14441e-05)

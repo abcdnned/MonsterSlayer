@@ -597,6 +597,7 @@ region_rect = Rect2(0, 0, 256, 128)
 
 [node name="damage_zone" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("6_hswxh")]
 rotation = -2.50551
+damage = 1.0
 sound = NodePath("../../../spear_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Weapon/damage_zone"]
@@ -604,6 +605,7 @@ position = Vector2(-128.498, 93.6493)
 shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="damage_zone2" parent="Sprite2D/Weapon" node_paths=PackedStringArray("sound") instance=ExtResource("6_hswxh")]
+damage = 1.0
 knockback = 1200.0
 sound = NodePath("../../../pole_hit")
 

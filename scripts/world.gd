@@ -1,9 +1,8 @@
 # 5.6 target
-# TODO mob wolf
-# TODO mob spear goblin
 # TODO goblin bomber
 
 # Backlogs
+# redraw map
 # cursor image
 # spear double stub
 # weapon handy system

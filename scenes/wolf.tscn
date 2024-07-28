@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bi25upexphthx"]
+[gd_scene load_steps=46 format=3 uid="uid://bi25upexphthx"]
 
 [ext_resource type="Script" path="res://scripts/wolf.gd" id="1_sgvjy"]
 [ext_resource type="Texture2D" uid="uid://bkjtajdm0tq67" path="res://sprites/tricky_wolf.png" id="2_8fens"]
@@ -185,6 +185,10 @@ advance_condition = &"dying"
 advance_mode = 2
 advance_condition = &"stun"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3gp02"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6vsa7"]
 states/Start/position = Vector2(200.5, 91)
 states/attack/node = SubResource("AnimationNodeAnimation_w5dv5")
@@ -199,7 +203,7 @@ states/stun/node = SubResource("AnimationNodeAnimation_pig7j")
 states/stun/position = Vector2(722.455, 194.823)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(324.42, 223.961)
-transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_xj7us"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_xsrum"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_nhyqk"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_6lam7"), "chasing", "fleeing", SubResource("AnimationNodeStateMachineTransition_oqe7p"), "fleeing", "chasing", SubResource("AnimationNodeStateMachineTransition_3upyx"), "fleeing", "dying", SubResource("AnimationNodeStateMachineTransition_2xm8c"), "fleeing", "stun", SubResource("AnimationNodeStateMachineTransition_n8lar")]
+transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_xj7us"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_xsrum"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_nhyqk"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_6lam7"), "chasing", "fleeing", SubResource("AnimationNodeStateMachineTransition_oqe7p"), "fleeing", "chasing", SubResource("AnimationNodeStateMachineTransition_3upyx"), "fleeing", "dying", SubResource("AnimationNodeStateMachineTransition_2xm8c"), "fleeing", "stun", SubResource("AnimationNodeStateMachineTransition_n8lar"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_3gp02")]
 graph_offset = Vector2(78.8701, -82.8649)
 
 [node name="Wolf" type="CharacterBody2D" groups=["mob"]]

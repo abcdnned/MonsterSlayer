@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://tuasmo1spgg0"]
+
+[ext_resource type="Script" path="res://scripts/missle.gd" id="1_0x5eq"]
+[ext_resource type="Texture2D" uid="uid://bu08fuackfexy" path="res://sprites/spear.png" id="2_8dqfk"]
+[ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="3_t22c5"]
+[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/weapon/521242__cyoung510__arrow_hits_target.wav" id="4_wmsrk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njdt2"]
+size = Vector2(58, 32)
+
+[node name="FlyingSpear" type="Node2D"]
+script = ExtResource("1_0x5eq")
+dis = 1200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8dqfk")
+
+[node name="damage_zone" parent="." node_paths=PackedStringArray("sound") instance=ExtResource("3_t22c5")]
+position = Vector2(75, -4)
+monitoring = true
+damage = 1.0
+sound = NodePath("../arrow_hit")
+aoe = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+position = Vector2(27, 2)
+shape = SubResource("RectangleShape2D_njdt2")
+
+[node name="arrow_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wmsrk")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="hit" from="damage_zone" to="." method="_on_damage_zone_hit"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

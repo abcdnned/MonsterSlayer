@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cucfewyifjhy2"]
+
+[ext_resource type="Texture2D" uid="uid://bu08fuackfexy" path="res://sprites/spear.png" id="1_20ovg"]
+[ext_resource type="Script" path="res://scripts/i_throwable.gd" id="2_ih14f"]
+
+[node name="iSpear" type="Sprite2D"]
+texture = ExtResource("1_20ovg")
+script = ExtResource("2_ih14f")
+missle_type = "res://scenes/flying_spear.tscn"
