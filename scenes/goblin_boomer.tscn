@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dfo2744khwf35"]
+[gd_scene load_steps=37 format=3 uid="uid://dfo2744khwf35"]
 
 [ext_resource type="Script" path="res://scripts/goblin_boomer.gd" id="1_243ql"]
 [ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_5pkod"]
@@ -53,9 +53,9 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_cg68e"]
+[sub_resource type="Animation" id="Animation_rmm73"]
 resource_name = "attack"
-length = 0.44
+length = 0.8
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -64,10 +64,10 @@ tracks/0/path = NodePath("Sprite2D/BoomerSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.18, 0.24, 0.26, 0.44),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(36, 34), Vector2(36, 34), Vector2(108, 0), Vector2(108, 0), Vector2(60, 22), Vector2(60, 22)]
+"values": [Vector2(-11, -76), Vector2(-11, -76), Vector2(38, -55), Vector2(77, -9)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -76,22 +76,22 @@ tracks/1/path = NodePath("Sprite2D/BoomerSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12, 0.18, 0.24, 0.26, 0.44),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.214675, 0.214675, 0.0, 0.0, 0.0575959, 0.0575959]
+"values": [0.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/damage_zone:monitoring")
+tracks/2/path = NodePath("Sprite2D/BoomerSprite:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.18, 0.24),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.54),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true, false]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -100,11 +100,11 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.12),
+"times": PackedFloat32Array(0.54),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_dagger_attack"
+"method": &"shoot"
 }]
 }
 
@@ -146,59 +146,17 @@ tracks/1/keys = {
 resource_name = "wandering"
 loop_mode = 1
 
-[sub_resource type="Animation" id="Animation_rmm73"]
-resource_name = "throw"
-length = 0.3
-step = 0.02
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/BoomerSprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-11, -76), Vector2(38, -55), Vector2(77, -9)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D/BoomerSprite:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/BoomerSprite:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
 _data = {
 "RESET": SubResource("Animation_2swvi"),
-"attack": SubResource("Animation_cg68e"),
+"attack": SubResource("Animation_rmm73"),
 "chasing": SubResource("Animation_mtitu"),
 "dying": SubResource("Animation_ic3m7"),
 "stun": ExtResource("8_ea76i"),
-"throw": SubResource("Animation_rmm73"),
 "wandering": SubResource("Animation_gylsu")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w5dv5"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q7ypb"]
 animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c14qp"]
@@ -214,18 +172,6 @@ animation = &"stun"
 animation = &"wandering"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jryju"]
-advance_mode = 2
-advance_condition = &"dying"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gg5j"]
-advance_mode = 2
-advance_condition = &"attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqpmq"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hcv2b"]
 advance_mode = 2
 advance_condition = &"dying"
 
@@ -256,18 +202,30 @@ advance_condition = &"unstun"
 advance_mode = 2
 advance_condition = &"dying"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xj28"]
-advance_mode = 2
-advance_condition = &"stun"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r156f"]
 advance_mode = 2
 advance_condition = &"stun"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1r8ns"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b70up"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h4bb8"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ccpdh"]
+advance_mode = 2
+advance_condition = &"dying"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
 states/Start/position = Vector2(200.5, 91)
-states/attack/node = SubResource("AnimationNodeAnimation_w5dv5")
-states/attack/position = Vector2(510.34, 218.71)
+states/attack/node = SubResource("AnimationNodeAnimation_q7ypb")
+states/attack/position = Vector2(487.74, 229.8)
 states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(321.5, 33)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
@@ -276,8 +234,8 @@ states/stun/node = SubResource("AnimationNodeAnimation_wd0w4")
 states/stun/position = Vector2(452.03, -67.485)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.086)
-transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_crb5a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_vwmt7"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_shpcm"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_6xj28"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_r156f")]
-graph_offset = Vector2(-131.085, -13.62)
+transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_crb5a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_vwmt7"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_shpcm"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_r156f"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_1r8ns"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_b70up"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_h4bb8"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_ccpdh")]
+graph_offset = Vector2(-61.26, -77.7)
 
 [node name="GoblinBoomer" type="CharacterBody2D" groups=["mob"]]
 z_index = 9
@@ -288,16 +246,12 @@ texture = ExtResource("2_5pkod")
 region_rect = Rect2(384, 128, 128, 128)
 
 [node name="BoomerSprite" type="Sprite2D" parent="Sprite2D"]
-visible = false
 z_index = -1
 position = Vector2(27, -44)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_p103t")
 script = ExtResource("4_74sqn")
 item_path = "res://scenes/i_spear.tscn"
-
-[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
-target_position = Vector2(130, 0)
 
 [node name="ItemBack1" type="Node2D" parent="Sprite2D"]
 z_index = -1
@@ -317,7 +271,6 @@ rotation = -0.061251
 shape = SubResource("CircleShape2D_cpxg6")
 
 [node name="NavigationAgent2D" parent="." instance=ExtResource("6_c2ar2")]
-target_desired_distance = 240.0
 
 [node name="TargetFinder" type="Node" parent="."]
 script = ExtResource("7_i6qpi")
@@ -332,7 +285,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_uihj1")
 }

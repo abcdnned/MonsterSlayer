@@ -1,8 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://ds5inho5pqe5j"]
 
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="1_yye03"]
-[ext_resource type="Script" path="res://scripts/i_dagger.gd" id="2_kt2p4"]
+[ext_resource type="Script" path="res://scripts/i_throwable.gd" id="2_b43bu"]
 
 [node name="iDagger" type="Sprite2D"]
 texture = ExtResource("1_yye03")
-script = ExtResource("2_kt2p4")
+script = ExtResource("2_b43bu")
+missle_type = "res://scenes/flying_dagger.tscn"

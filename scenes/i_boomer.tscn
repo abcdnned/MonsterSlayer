@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhgdvepcssl3n"]
 
 [ext_resource type="Texture2D" uid="uid://coqno2k8t8uaa" path="res://sprites/item/boomer_v2.png" id="1_jo1ua"]
-[ext_resource type="Script" path="res://scripts/i_dagger.gd" id="2_qkuhx"]
+[ext_resource type="Script" path="res://scripts/i_boomer.gd" id="2_b3mom"]
 
 [node name="iBoomer" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_jo1ua")
-script = ExtResource("2_qkuhx")
+script = ExtResource("2_b3mom")

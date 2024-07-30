@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=22 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -12,10 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
-[ext_resource type="PackedScene" uid="uid://ds5inho5pqe5j" path="res://scenes/i_dagger.tscn" id="14_8ylgs"]
+[ext_resource type="PackedScene" uid="uid://dfo2744khwf35" path="res://scenes/goblin_boomer.tscn" id="14_1ckry"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
-[ext_resource type="PackedScene" uid="uid://cp030u4v4at67" path="res://scenes/goblin.tscn" id="15_ftyr1"]
-[ext_resource type="PackedScene" uid="uid://du5m3qifo1s70" path="res://scenes/blue_goblin_spear.tscn" id="16_ue35d"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -218,11 +216,5 @@ enable = false
 [node name="GoblinArmy1Spawner" type="Node" parent="LevelSpawner"]
 script = ExtResource("9_l8cwq")
 
-[node name="iDagger" parent="." instance=ExtResource("14_8ylgs")]
-position = Vector2(147, -150)
-
-[node name="Goblin" parent="." instance=ExtResource("15_ftyr1")]
-position = Vector2(-479, -320)
-
-[node name="BlueGoblinSpear" parent="." instance=ExtResource("16_ue35d")]
-position = Vector2(369, -353)
+[node name="GoblinBoomer" parent="." instance=ExtResource("14_1ckry")]
+position = Vector2(-532, -230)

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://jne2esvohhp1"]
+
+[ext_resource type="Script" path="res://scripts/boomer.gd" id="1_kaxk6"]
+[ext_resource type="Texture2D" uid="uid://coqno2k8t8uaa" path="res://sprites/item/boomer_v2.png" id="2_e8501"]
+[ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="3_kfnvt"]
+[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/weapon/521242__cyoung510__arrow_hits_target.wav" id="4_10xir"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wynpo"]
+radius = 101.579
+
+[node name="FlyingBoomer" type="Node2D"]
+script = ExtResource("1_kaxk6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_e8501")
+
+[node name="damage_zone" parent="." instance=ExtResource("3_kfnvt")]
+damage = 4.0
+aoe = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+shape = SubResource("CircleShape2D_wynpo")
+
+[node name="explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_10xir")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.1
+one_shot = true
+autostart = true
+
+[node name="ExplodTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="hit" from="damage_zone" to="." method="_on_damage_zone_hit"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ExplodTimer" to="." method="_on_explod_timer_timeout"]
