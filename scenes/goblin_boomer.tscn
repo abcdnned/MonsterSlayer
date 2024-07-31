@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dfo2744khwf35"]
+[gd_scene load_steps=38 format=3 uid="uid://dfo2744khwf35"]
 
 [ext_resource type="Script" path="res://scripts/goblin_boomer.gd" id="1_243ql"]
 [ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_5pkod"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/targetFinder.gd" id="7_i6qpi"]
 [ext_resource type="Animation" uid="uid://b1bn6rpg1nngh" path="res://animation/stun.res" id="8_ea76i"]
 [ext_resource type="AudioStream" uid="uid://dqcq8pnb706f2" path="res://sounds/goblin_yell.mp3" id="9_0w3rv"]
+[ext_resource type="Script" path="res://scripts/fleeing.gd" id="11_01vnv"]
 [ext_resource type="Script" path="res://scripts/wandering.gd" id="12_qxe1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cpxg6"]
@@ -271,9 +272,11 @@ rotation = -0.061251
 shape = SubResource("CircleShape2D_cpxg6")
 
 [node name="NavigationAgent2D" parent="." instance=ExtResource("6_c2ar2")]
+debug_enabled = true
 
 [node name="TargetFinder" type="Node" parent="."]
 script = ExtResource("7_i6qpi")
+letgo_factor = 3.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
@@ -304,4 +307,12 @@ bus = &"SFX"
 [node name="Wandering" type="Node" parent="."]
 script = ExtResource("12_qxe1u")
 
+[node name="ReloadTiemr" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Fleeing" type="Node" parent="."]
+script = ExtResource("11_01vnv")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ReloadTiemr" to="." method="_on_reload_tiemr_timeout"]

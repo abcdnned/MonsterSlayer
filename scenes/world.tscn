@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=23 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
 [ext_resource type="PackedScene" uid="uid://dfo2744khwf35" path="res://scenes/goblin_boomer.tscn" id="14_1ckry"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
+[ext_resource type="PackedScene" uid="uid://dhgdvepcssl3n" path="res://scenes/i_boomer.tscn" id="15_6dyy7"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -218,3 +219,9 @@ script = ExtResource("9_l8cwq")
 
 [node name="GoblinBoomer" parent="." instance=ExtResource("14_1ckry")]
 position = Vector2(-532, -230)
+
+[node name="iBoomer" parent="." instance=ExtResource("15_6dyy7")]
+position = Vector2(162, -60)
+
+[node name="iBoomer2" parent="." instance=ExtResource("15_6dyy7")]
+position = Vector2(242, -67)

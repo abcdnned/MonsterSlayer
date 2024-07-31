@@ -6,22 +6,47 @@ const SPEED = 350
 @onready var death_yell = $death_yell
 @onready var target_finder = $TargetFinder
 @onready var wandering = $Wandering
+@onready var item_back_1 = $Sprite2D/ItemBack1
+@onready var item_back_2 = $Sprite2D/ItemBack2
+@onready var reload_timer = $ReloadTiemr
+@onready var boomer_sprite = $Sprite2D/BoomerSprite
+@onready var fleeing = $Fleeing
+
 var last_ray_hit_dis = 800
 const FLYING_BOOMER = preload("res://scenes/flying_boomer.tscn")
-
+var ammo = 3
 var alert_range = 1000.0
 
 	
 func _process(delta):
 	match state_machine.get_current_node():
 		"chasing":
+			if ammo == 2:
+				item_back_1.visible = true
+				item_back_2.visible = false
+				boomer_sprite.visible = true
+			elif ammo == 3:
+				item_back_1.visible = true
+				item_back_2.visible = true
+				boomer_sprite.visible = true
+			elif ammo == 1:
+				item_back_1.visible = false
+				item_back_2.visible = false
+				boomer_sprite.visible = true
+			else:
+				if reload_timer.is_stopped():
+					reload_timer.start()
+				item_back_1.visible = false
+				item_back_2.visible = false
+				boomer_sprite.visible = false
 			if is_in_group("lose"):
 				return
 			var dis = global_position.distance_to(target_finder.target.global_position)
-			if dis <= alert_range:
+			if dis <= alert_range and ammo > 0:
 				last_ray_hit_dis = dis
 				sprite.look_at(target_finder.target.global_position)
 				animation_tree.set("parameters/conditions/attack", true)
+				ammo -= 1
 		"attack":
 			animation_tree.set("parameters/conditions/attack", false)
 			if state_machine.get_current_play_position() <= 0.4:
@@ -70,7 +95,10 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	if target_finder.target:
-		navigation_agent_2d.target_position = target_finder.target.global_position
+		if ammo > 0:
+			navigation_agent_2d.target_position = target_finder.target.global_position
+		else:
+			navigation_agent_2d.target_position = fleeing.fleeing_loc
 	else:
 		navigation_agent_2d.target_position = wandering.wandering_loc
 		
@@ -93,3 +121,7 @@ func shoot():
 	boomer.global_rotation = sprite.global_rotation
 	get_tree().current_scene.add_child(boomer)
 	Tool.play_sound_2d(get_tree().current_scene, "res://sounds/weapon/dagger_woosh.mp3", boomer.global_position)
+
+
+func _on_reload_tiemr_timeout():
+	ammo = 3
