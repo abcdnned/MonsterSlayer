@@ -5,9 +5,6 @@ extends Node2D
 @export var speed = 2000.0
 const EXPLOD = preload("res://scenes/explod.tscn")
 
-func _ready():
-	pass # Replace with function body.
-
 func _process(delta):
 	if dis != 0:
 		position += Vector2(cos(rotation), sin(rotation)) * speed * delta

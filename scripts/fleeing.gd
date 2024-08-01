@@ -22,9 +22,8 @@ func execute_flee():
 		var a: Vector2 = get_tree().current_scene.player.global_position
 		var b: Vector2 = owner.global_position
 		var r = atan2(a.y - b.y, a.x - b.x) + PI
-		print("angel " + str(rad_to_deg(r)))
+		r += deg_to_rad(randf_range(-15.0, 15.0))
 		var d = randf_range(min_range, max_range)
 		var x = owner.global_position.x + cos(r) * d
 		var y = owner.global_position.y + sin(r) * d
 		fleeing_loc = Vector2(x, y)
-		print("fleeing_loc")

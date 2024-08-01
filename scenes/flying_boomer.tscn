@@ -1,9 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://jne2esvohhp1"]
+[gd_scene load_steps=9 format=3 uid="uid://jne2esvohhp1"]
 
 [ext_resource type="Script" path="res://scripts/boomer.gd" id="1_kaxk6"]
 [ext_resource type="Texture2D" uid="uid://coqno2k8t8uaa" path="res://sprites/item/boomer_v2.png" id="2_e8501"]
+[ext_resource type="Shader" path="res://shader/flying_boomer.gdshader" id="2_pk6bl"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="3_kfnvt"]
 [ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/weapon/521242__cyoung510__arrow_hits_target.wav" id="4_10xir"]
+[ext_resource type="Script" path="res://scenes/flying_boomer_sprite.gd" id="4_37y0i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ei2qo"]
+shader = ExtResource("2_pk6bl")
+shader_parameter/blink = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wynpo"]
 radius = 101.579
@@ -12,14 +18,20 @@ radius = 101.579
 script = ExtResource("1_kaxk6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ei2qo")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_e8501")
+script = ExtResource("4_37y0i")
+
+[node name="CountDownTimer" type="Timer" parent="Sprite2D"]
+one_shot = true
 
 [node name="damage_zone" parent="." instance=ExtResource("3_kfnvt")]
 damage = 4.0
 aoe = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_zone"]
+visible = false
 shape = SubResource("CircleShape2D_wynpo")
 
 [node name="explosion" type="AudioStreamPlayer2D" parent="."]
