@@ -313,6 +313,8 @@ one_shot = true
 
 [node name="Fleeing" type="Node" parent="."]
 script = ExtResource("11_01vnv")
+min_range = 600
+max_range = 800
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ReloadTiemr" to="." method="_on_reload_tiemr_timeout"]
