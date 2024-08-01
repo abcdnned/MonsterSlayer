@@ -35,12 +35,12 @@ visible = false
 shape = SubResource("CircleShape2D_wynpo")
 
 [node name="ExplodTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.1
+wait_time = 2.1
 one_shot = true
 autostart = true
 

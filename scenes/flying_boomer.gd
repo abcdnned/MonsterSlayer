@@ -1,4 +1,4 @@
-extends Lootable
+extends Sprite2D
 
 @onready var count_down_timer = $CountDownTimer
 var is_blinking = false
@@ -10,7 +10,6 @@ var blink_speed = .2
 const EXPLOD = preload("res://scenes/explod.tscn")
 
 func _process(delta):
-	super._process(delta)
 	if dis != 0:
 		position += Vector2(cos(rotation), sin(rotation)) * speed * delta
 		dis = clamp(dis - speed * delta, 0.0, dis)
@@ -30,16 +29,15 @@ func _on_explod_timer_timeout():
 	damage_zone.monitoring = true
 
 # Called when the node enters the scene tree for the first time.
-func _sub_ready():
+func _ready():
 	count_down_timer.connect("timeout", _on_blink_timeout)
 	count_down_timer.set_wait_time(blink_speed)
 	count_down_timer.start()
 
 # Timer timeout callback function
 func _on_blink_timeout():
-	#is_blinking = not is_blinking
-	is_blinking = false
-	#get_material().set_shader_parameter("blink", is_blinking)
+	is_blinking = not is_blinking
+	get_material().set_shader_parameter("blink", is_blinking)
 	count_down_timer.set_wait_time(blink_speed)
 	count_down_timer.start()
 
@@ -48,10 +46,6 @@ func shoot():
 	reparent(get_tree().current_scene, true) # Add the instance to the root node first
 	dis = get_global_mouse_position().distance_to(get_tree().current_scene.player.global_position)
 	Tool.play_sound_2d(get_tree().current_scene, "res://sounds/weapon/dagger_woosh.mp3", global_position)
-	# Ensure _process continues
-	self.set_process(true)
-	self.set_process_unhandled_input(true)
-	self.set_process_unhandled_key_input(true)
 
 func _on_final_count_down_timer_timeout():
 	blink_speed = .1
