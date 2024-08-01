@@ -1,11 +1,10 @@
-# 5.6 target
-# TODO goblin bomber
+# 5.7 target
+# cursor image
+# redraw map
+# stun shader
 
 # Backlogs
 # hitten energy, ultra special attack
-# stun shader
-# redraw map
-# cursor image
 # spear double stub
 # weapon handy system
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
@@ -38,6 +37,9 @@
 # war eye support multipul areas
 # Sheild charge
 # each enemy's ranke, solider, master, legend
+# pickable change cursor
+
+
 extends Node2D
 
 @onready var player = null
