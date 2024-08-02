@@ -1,7 +1,6 @@
 # 5.7 target
-# cursor image
-# redraw map
-# stun shader
+# TODO redraw map
+# TODO stun shader
 
 # Backlogs
 # hitten energy, ultra special attack

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5tx3snnq712"]
+
+[ext_resource type="Script" path="res://scripts/cursor.gd" id="1_ep4a6"]
+
+[node name="Cursor" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ep4a6")

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Music="*res://scenes/music.tscn"
 Tool="*res://scripts/tool.gd"
+Cursor="*res://scenes/cursor.tscn"
 
 [display]
 
