@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsnspwl2vt0a2"]
+
+[ext_resource type="Shader" path="res://shader/stun.gdshader" id="1_7syfn"]
+[ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_8xhas"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpkny"]
+shader = ExtResource("1_7syfn")
+shader_parameter/hit_effect = 0.35
+
+[node name="Node2D" type="Sprite2D"]
+material = SubResource("ShaderMaterial_gpkny")
+texture = ExtResource("2_8xhas")

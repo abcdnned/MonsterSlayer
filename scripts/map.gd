@@ -56,39 +56,39 @@ func init_plain_boime():
 	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), false)
 	level_cord["starter_plain"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
 	# Create Start Plain Sourth Gate
-	#create_gate(x + 2, y, 1)
-	# Gallery to first small boss
-	set_plain_tile(x + 2, y)
-	set_plain_tile(x + 3, y)
-	set_plain_tile(x + 4, y)
-	# Goblin Forntie
-	x += 6
-	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), true)
-	level_cord["goblin_fontier"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
-	# Gallery to peaceful boime
-	set_plain_tile(x, y + 2)
-	set_plain_tile(x, y + 3)
-	set_plain_tile(x, y + 4)
-	y += 5
-	create_half_plain_chambler(Vector2(x, y), false)
-	level_cord["peaceful_boime"] = {"top_left": Vector2(x - 1, y), "bottom_right": Vector2(x, y + 1)}
-	# Gallery to orb1
-	set_plain_tile(x + 1, y)
-	set_plain_tile(x + 2, y)
-	set_plain_tile(x + 3, y)
-	# Gallery to orb2
-	set_plain_tile(x - 2, y + 1)
-	set_plain_tile(x - 3, y + 1)
-	set_plain_tile(x - 4, y + 1)
-	set_plain_tile(x - 5, y + 1)
-	# Gallery to orb3
-	set_plain_tile(x - 4, y + 2)
-	set_plain_tile(x - 4, y + 3)
-	set_plain_tile(x - 4, y + 4)
-	# final Gallery
-	set_plain_tile(x, y + 2)
-	set_plain_tile(x, y + 3)
-	set_plain_tile(x, y + 4)
+	create_gate(x + 1, y, 3)
+	## Gallery to first small boss
+	#set_plain_tile(x + 2, y)
+	#set_plain_tile(x + 3, y)
+	#set_plain_tile(x + 4, y)
+	## Goblin Forntie
+	#x += 6
+	#create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), true)
+	#level_cord["goblin_fontier"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
+	## Gallery to peaceful boime
+	#set_plain_tile(x, y + 2)
+	#set_plain_tile(x, y + 3)
+	#set_plain_tile(x, y + 4)
+	#y += 5
+	#create_half_plain_chambler(Vector2(x, y), false)
+	#level_cord["peaceful_boime"] = {"top_left": Vector2(x - 1, y), "bottom_right": Vector2(x, y + 1)}
+	## Gallery to orb1
+	#set_plain_tile(x + 1, y)
+	#set_plain_tile(x + 2, y)
+	#set_plain_tile(x + 3, y)
+	## Gallery to orb2
+	#set_plain_tile(x - 2, y + 1)
+	#set_plain_tile(x - 3, y + 1)
+	#set_plain_tile(x - 4, y + 1)
+	#set_plain_tile(x - 5, y + 1)
+	## Gallery to orb3
+	#set_plain_tile(x - 4, y + 2)
+	#set_plain_tile(x - 4, y + 3)
+	#set_plain_tile(x - 4, y + 4)
+	## final Gallery
+	#set_plain_tile(x, y + 2)
+	#set_plain_tile(x, y + 3)
+	#set_plain_tile(x, y + 4)
 	
 func create_gate(x, y, d):
 	gate[Vector2(x, y)] = d
@@ -193,3 +193,22 @@ func create_boime(x1, x2, y1, y2, mx, my, from, route):
 						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(2, 0), 0)
 					else:
 						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 1), 0)
+			3:
+				var center = (x2 + x1 + 1) / 2
+				for x in range(x1 + 1, x2):
+					if x == center:
+						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(1, 2), 0)
+						var keyHole = KEY_HOLE.instantiate()
+						keyHole.global_position = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(x, y2)))
+						keyHole.door.append(Vector2(x, y1))
+						keyHole.door.append(Vector2(x - 2, y1))
+						keyHole.door.append(Vector2(x - 1, y1))
+						keyHole.door.append(Vector2(x + 1, y1))
+						keyHole.door.append(Vector2(x + 2, y1))
+						get_tree().current_scene.add_child(keyHole)
+					elif x >= center - 2 and x <= center + 2 and x != center:
+						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(2, 0), 0)
+					else:
+						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(1, 1), 0)
+
+

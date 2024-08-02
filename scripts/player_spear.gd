@@ -62,6 +62,7 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/pole_attack", false)
 		"stun":
 			animation_tree.set("parameters/conditions/stun", false)
+			_apply_stun_shader()
 			damage_zone.monitoring = false
 			if stun_ticks > 0:
 				stun_ticks -= 1
@@ -71,6 +72,7 @@ func _physics_process(delta):
 				move_and_slide()
 			else:
 				animation_tree.set("parameters/conditions/unstun", true)
+				_clear_stun_shader()
 		"dying":
 			damage_zone.monitoring = false
 			damage_zone_2.monitoring = false

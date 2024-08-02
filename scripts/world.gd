@@ -1,5 +1,4 @@
 # 5.7 target
-# TODO redraw map
 # TODO stun shader
 
 # Backlogs

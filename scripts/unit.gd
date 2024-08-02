@@ -50,6 +50,16 @@ func _apply_dying_shader():
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = shader
 	sprite.material = shader_material
+
+func _clear_stun_shader():
+	sprite.material = null
+
+func _apply_stun_shader():
+	var shader = load("res://shader/stun.gdshader")
+	var shader_material = ShaderMaterial.new()
+	shader_material.shader = shader
+	sprite.material = shader_material
+	shader_material.set_shader_parameter("hit_effect", .35)
 	
 func _sub_dead():
 	pass
