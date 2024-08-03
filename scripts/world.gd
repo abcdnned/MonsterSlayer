@@ -1,8 +1,25 @@
 # 5.8 target
-# TODO design how weapon system cope with level system
-# TODO design how item data cope with weapon and level system
+# TODO check useful plugins
 
 # Backlogs
+# strength system, support using heavy weapon, increased by potion
+# weapon info UI
+# award merchants, king knight, give stage awards, can be purchased by money
+# weapon handy system, support using advance weapon
+# armor system, heavy armor need strenth, could be repair, broke cause long stun
+# ore system, used to repair armor
+# dynamic supplier system
+# quest system
+# Smith, repair weapon, unlock: one iron
+# iron counter UI
+# Merchants, unlock: 10 coin
+# collect coin on enemy death
+# resource megnets, coin iron
+# armor tier iron, stell, silver
+# weapon duribility system, if broken reload
+# Dexity system, increase throwable or range weapon accurcy
+# Vit system, increase max health, increased by vit potion
+# check Action game godot project
 # weapon handy system
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
 # SFX: wolf, boomer
