@@ -52,7 +52,6 @@ func is_on_top():
 	for l in get_tree().get_nodes_in_group("lootable"):
 		if is_intersect(l) and (top == null or l.is_greater_than(top)):
 			top = l
-	print(" is on top " + str(top == self))
 	return top == self
 	
 func is_intersect(l):

@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Unit
 
 var state_machine
+var previous_state = ""
 
 @onready var sprite = $Sprite2D
 @onready var anim = $AnimationPlayer
@@ -26,6 +27,25 @@ func _ready():
 
 func _sub_ready():
 	pass
+
+func _process(delta):
+	_check_state_change()
+
+func _check_state_change():
+	var current_state = state_machine.get_current_node()
+	if current_state != previous_state:
+		_on_state_exited(previous_state)
+		_on_state_entered(current_state)
+		previous_state = current_state
+
+func _on_state_entered(state_name: String):
+	if state_name == "stun":
+		_apply_stun_shader()
+
+func _on_state_exited(state_name: String):
+	if state_name == "stun":
+		_clear_stun_shader()
+
 	
 func _take_damage(d, v, source_position, tick):
 	self.knock_back_force = v
@@ -67,5 +87,6 @@ func _sub_dead():
 func heal(h):
 	health = clampf(health + h, 0, max_health)
 	emit_signal("health_change", health)
+	
 		
 

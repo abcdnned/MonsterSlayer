@@ -21,6 +21,7 @@ var alert_range = 1000.0
 
 	
 func _process(delta):
+	super._process(delta)
 	match state_machine.get_current_node():
 		"chasing":
 			if is_in_group("lose"):

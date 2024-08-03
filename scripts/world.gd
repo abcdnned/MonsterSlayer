@@ -1,14 +1,11 @@
-# 5.7 target
-# TODO stun shader
+# 5.8 target
+# TODO design how weapon system cope with level system
+# TODO design how item data cope with weapon and level system
 
 # Backlogs
-# hitten energy, ultra special attack
-# spear double stub
 # weapon handy system
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
-# orb1 boime
-# orb2 boime
-# orb3 boime
+# SFX: wolf, boomer
 # item slots
 # presure plate trape
 # notification when target spotted
@@ -36,7 +33,8 @@
 # Sheild charge
 # each enemy's ranke, solider, master, legend
 # pickable change cursor
-
+# hitten energy, ultra special attack
+# spear double stub
 
 extends Node2D
 

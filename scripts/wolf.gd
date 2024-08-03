@@ -28,6 +28,7 @@ func _process(delta):
 			animation_tree.set("parameters/conditions/attack", false)
 
 func _physics_process(delta):
+	super._process(delta)
 	match state_machine.get_current_node():
 		"wandering":
 			if target_finder.target:

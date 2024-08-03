@@ -30,6 +30,7 @@ var map_pos = Vector2(4, 4)
 const TYPE = "KnightWeaponSuit"
 
 func _process(delta):
+	super._process(delta)
 	match state_machine.get_current_node():
 		"Idle_2", "HoldItem":
 			var mouse_pos = get_global_mouse_position()
