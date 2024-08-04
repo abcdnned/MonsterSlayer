@@ -1,11 +1,12 @@
-# 5.8 target
-# TODO check useful plugins
+# 5.9 target
+# TODO enemy dead drop money
 
 # Backlogs
+# day cycle system, refresh map, supplier
 # strength system, support using heavy weapon, increased by potion
+# Dexity system, support using range weapon and short range melee weapon
 # weapon info UI
 # award merchants, king knight, give stage awards, can be purchased by money
-# weapon handy system, support using advance weapon
 # armor system, heavy armor need strenth, could be repair, broke cause long stun
 # ore system, used to repair armor
 # dynamic supplier system
@@ -17,7 +18,6 @@
 # resource megnets, coin iron
 # armor tier iron, stell, silver
 # weapon duribility system, if broken reload
-# Dexity system, increase throwable or range weapon accurcy
 # Vit system, increase max health, increased by vit potion
 # check Action game godot project
 # weapon handy system
