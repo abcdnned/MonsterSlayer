@@ -1,16 +1,23 @@
 # 5.9 target
 # TODO enemy dead drop money
+# TODO simplify move controller, change dash machinsm to restrike it's direction
 
 # Backlogs
+# mouse hover display item info
+# weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
+# weapon skills tier, Novice, Adept, GrandMaster, legend
+# rage system, hit to increase, store to perform special attack of weapon
+# weapon durability tier, standard, durable, reinforced, unbreakable
+# press S sell item, collect mondy earned form merchants afterwards
 # day cycle system, refresh map, supplier
 # strength system, support using heavy weapon, increased by potion
 # Dexity system, support using range weapon and short range melee weapon
-# weapon info UI
 # award merchants, king knight, give stage awards, can be purchased by money
-# armor system, heavy armor need strenth, could be repair, broke cause long stun
-# ore system, used to repair armor
+# armor system, heavy armor need strenth, could be repair, decrease max stamina
+# item ore, used to repair armor
 # dynamic supplier system
 # quest system
+# weapon duribilty system, automate reset after seconds, can use item to reset immeditely
 # Smith, repair weapon, unlock: one iron
 # iron counter UI
 # Merchants, unlock: 10 coin

@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://jne2esvohhp1"]
+[gd_scene load_steps=7 format=3 uid="uid://jne2esvohhp1"]
 
 [ext_resource type="Texture2D" uid="uid://coqno2k8t8uaa" path="res://sprites/item/boomer_v2.png" id="2_e8501"]
 [ext_resource type="Shader" path="res://shader/flying_boomer.gdshader" id="2_pk6bl"]
 [ext_resource type="Script" path="res://scripts/flying_boomer.gd" id="3_ifr00"]
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="3_kfnvt"]
-[ext_resource type="AudioStream" uid="uid://bc734glkul2dn" path="res://sounds/weapon/521242__cyoung510__arrow_hits_target.wav" id="4_10xir"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ei2qo"]
 shader = ExtResource("2_pk6bl")
@@ -43,10 +42,6 @@ autostart = true
 wait_time = 2.1
 one_shot = true
 autostart = true
-
-[node name="explosion" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_10xir")
-bus = &"SFX"
 
 [connection signal="timeout" from="FinalCountDownTimer" to="." method="_on_final_count_down_timer_timeout"]
 [connection signal="timeout" from="ExplodTimer" to="." method="_on_explod_timer_timeout"]

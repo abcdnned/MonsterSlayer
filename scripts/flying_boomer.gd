@@ -27,6 +27,7 @@ func _on_explod_timer_timeout():
 	e.play("spawn")
 	get_tree().current_scene.add_child(e)
 	damage_zone.monitoring = true
+	Tool.play_sound_2d(get_tree().current_scene, "res://sounds/effect/435695__samsterbirdies__big-boom.wav", global_position)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
