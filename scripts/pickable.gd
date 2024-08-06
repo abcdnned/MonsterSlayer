@@ -19,9 +19,12 @@ func _process(delta):
 		material = null
 
 func _input(event):
-	if pickable and event is InputEventKey and event.pressed and event.as_text_physical_keycode() == "Q":
+	if pickable and is_left_mouse_button_pressed(event):
 		if get_rect().has_point(to_local(get_global_mouse_position())) and get_tree().current_scene.player.global_position.distance_to(get_global_mouse_position()) <= pick_up_dis and is_on_top():
 			pickup(get_tree().current_scene.player)	
+
+func is_left_mouse_button_pressed(event):
+	return event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
 
 func apply_pickable_shader(sprite):
 	var shader = load("res://shader/pickable.gdshader")
@@ -30,7 +33,7 @@ func apply_pickable_shader(sprite):
 	sprite.material = shader_material
 	
 func pickup(player):
-	pass
+	player.interact(self)
 
 func is_on_top():
 	for l in get_tree().get_nodes_in_group("lootable"):

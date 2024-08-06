@@ -120,6 +120,10 @@ func _physics_process(delta):
 				velocity = dash_attack_direction * dash_attack_speed
 				dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
 				move_and_slide()
+		"interact":
+			animation_tree.set("parameters/conditions/attack", false)
+			animation_tree.set("parameters/conditions/interact", false)
+
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -196,3 +200,6 @@ func on_dash_attack():
 func on_swap():
 	hammer_swap.play()
 	
+func interact(o):
+	animation_tree.set("parameters/conditions/interact", true)
+

@@ -8,6 +8,8 @@
 [node name="iCoinSmall" type="Sprite2D"]
 texture = ExtResource("1_xih8n")
 script = ExtResource("2_anqod")
+amount_min = 25
+amount_max = 35
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

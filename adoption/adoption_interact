@@ -1,0 +1,9 @@
+1. import animation "interact"
+2. add directly transfer from attack to interact, and end transfer from interact to idle
+3. add code for statemachine:
+		"interact":
+			animation_tree.set("parameters/conditions/attack", false)
+			animation_tree.set("parameters/conditions/interact", false)
+4. add method:
+func interact(o):
+    animation_tree.set("parameters/conditions/interact", true)

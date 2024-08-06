@@ -133,6 +133,9 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/use_item", false)
 		"drop_item":
 			animation_tree.set("parameters/conditions/drop_item", false)
+		"interact":
+			animation_tree.set("parameters/conditions/attack", false)
+			animation_tree.set("parameters/conditions/interact", false)
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -230,3 +233,5 @@ func drop():
 	animation_tree.set("parameters/conditions/hold_item", false)
 	animation_tree.set("parameters/conditions/hide_item", true)
 	
+func interact(o):
+	animation_tree.set("parameters/conditions/interact", true)

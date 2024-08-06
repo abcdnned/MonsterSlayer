@@ -7,6 +7,7 @@ extends Pickable
 @onready var floating_text_util = $FloatingTextUtil
 
 func pickup(player):
+	super.pickup(player)
 	if not visible:
 		return
 	visible = false
@@ -15,6 +16,7 @@ func pickup(player):
 	get_tree().current_scene.get_money(m)
 	timer.start()
 	floating_text_util.create_floating_text(player.global_position, "+" + str(m), Color.GOLD)
+	
 
 func _on_timer_timeout():
 	queue_free()

@@ -1,5 +1,4 @@
 # 5.9 target
-# TODO enemy dead drop money
 # TODO simplify move controller, change dash machinsm to restrike it's direction
 
 # Backlogs
@@ -59,7 +58,6 @@
 # pickable change cursor
 # hitten energy, ultra special attack
 # spear double stub
-
 extends Node2D
 
 @onready var player = null
@@ -74,6 +72,8 @@ extends Node2D
 @onready var map = $UI/Map
 @onready var war_eye = $UI/WarEye
 @onready var goblin_army_1_spawner = $LevelSpawner/GoblinArmy1Spawner
+const I_COIN_SMALL = preload("res://scenes/i_coin_small.tscn")
+const I_COIN_MEDIUM = preload("res://scenes/i_coin_medium.tscn")
 const PLAYER = preload("res://scenes/player.tscn")
 const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
@@ -86,7 +86,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player(PLAYER_SPEAR, Vector2(0, 0))
+	load_player(PLAYER_HAMMER, Vector2(0, 0))
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
 
@@ -101,7 +101,13 @@ func _on_mob_death(node):
 	kill_count += 1
 	kill.text = "KILL " + str(kill_count)
 	if node.name == "GoblinWarrior":
-		_win()
+		var coin_medium = I_COIN_MEDIUM.instantiate()
+		coin_medium.position = node.global_position
+		add_child(coin_medium)
+	else:
+		var coin_small = I_COIN_SMALL.instantiate()
+		coin_small.position = node.global_position
+		add_child(coin_small)
 
 func _win():
 	winning_scene.visible = true

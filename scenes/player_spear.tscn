@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dyortnniqa1ua"]
+[gd_scene load_steps=77 format=3 uid="uid://dyortnniqa1ua"]
 
 [ext_resource type="Script" path="res://scripts/player_spear.gd" id="1_eacyd"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_u30ly"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="6_hswxh"]
 [ext_resource type="AudioStream" uid="uid://dxrvo3m3fkke" path="res://sounds/weapon/547040__cogfirestudios__hit-swing-sword-small-2.wav" id="7_3qqoq"]
 [ext_resource type="Animation" uid="uid://dhfbh7e05dcah" path="res://animation/dash_attack.res" id="7_lf23u"]
+[ext_resource type="Animation" uid="uid://cf0usmjbou3y8" path="res://animation/interact.res" id="8_ius7n"]
 [ext_resource type="AudioStream" uid="uid://bsegar0k5jjb" path="res://sounds/weapon/422510__nightflame__swinging-staff-whoosh-strong-05.wav" id="8_krbbr"]
 [ext_resource type="AudioStream" uid="uid://cmcaelru5jg2m" path="res://sounds/weapon/205517__everheat__axe_barrel1.wav" id="9_363tm"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="9_uwwuq"]
@@ -374,6 +375,7 @@ _data = {
 "dash_attack": ExtResource("7_lf23u"),
 "drop_item": SubResource("Animation_0hhfo"),
 "dying": SubResource("Animation_bsl3y"),
+"interact": ExtResource("8_ius7n"),
 "stun": SubResource("Animation_7vio4"),
 "use_item": SubResource("Animation_ly6d4")
 }
@@ -401,6 +403,9 @@ animation = &"drop_item"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x5wc5"]
 animation = &"dying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ub72n"]
+animation = &"interact"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx11l"]
 animation = &"stun"
@@ -554,6 +559,14 @@ advance_condition = &"hold_item"
 advance_mode = 2
 advance_condition = &"hold_item"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fqek2"]
+advance_mode = 2
+advance_condition = &"interact"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0a8p"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hn3fy"]
 states/Attack/node = SubResource("AnimationNodeAnimation_k3o4c")
 states/Attack/position = Vector2(418.283, 489.837)
@@ -573,12 +586,14 @@ states/drop_item/node = SubResource("AnimationNodeAnimation_ggwrt")
 states/drop_item/position = Vector2(602.32, -248.769)
 states/dying/node = SubResource("AnimationNodeAnimation_x5wc5")
 states/dying/position = Vector2(999.21, 83.5448)
+states/interact/node = SubResource("AnimationNodeAnimation_ub72n")
+states/interact/position = Vector2(254.453, 443.812)
 states/stun/node = SubResource("AnimationNodeAnimation_yx11l")
 states/stun/position = Vector2(849.81, 222.202)
 states/use_item/node = SubResource("AnimationNodeAnimation_xk3wl")
 states/use_item/position = Vector2(314.98, -167.365)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "drop_item", "stun", SubResource("AnimationNodeStateMachineTransition_u3s8l"), "drop_item", "dying", SubResource("AnimationNodeStateMachineTransition_ir0ar"), "Idle_2", "Attack", SubResource("AnimationNodeStateMachineTransition_ohr3h"), "Attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2celi"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ty0yu"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_rvwuo"), "Idle_2", "PoleAttack", SubResource("AnimationNodeStateMachineTransition_6klll"), "PoleAttack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ayept"), "PoleAttack", "stun", SubResource("AnimationNodeStateMachineTransition_itf47"), "PoleAttack", "dying", SubResource("AnimationNodeStateMachineTransition_esd7i"), "Attack", "stun", SubResource("AnimationNodeStateMachineTransition_18nms"), "Attack", "dying", SubResource("AnimationNodeStateMachineTransition_s75ic"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_14ika"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_okf55"), "dash_attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_b010c"), "Attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_2qyul")]
-graph_offset = Vector2(136.313, -249.026)
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "stun", SubResource("AnimationNodeStateMachineTransition_bqvsw"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2w0km"), "Idle_2", "dying", SubResource("AnimationNodeStateMachineTransition_sjiku"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_m6k5h"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "stun", SubResource("AnimationNodeStateMachineTransition_l57li"), "HoldItem", "dying", SubResource("AnimationNodeStateMachineTransition_ifemr"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "use_item", "stun", SubResource("AnimationNodeStateMachineTransition_8uqye"), "use_item", "dying", SubResource("AnimationNodeStateMachineTransition_4vbcc"), "stun", "HoldItem", SubResource("AnimationNodeStateMachineTransition_ln0di"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "drop_item", "stun", SubResource("AnimationNodeStateMachineTransition_u3s8l"), "drop_item", "dying", SubResource("AnimationNodeStateMachineTransition_ir0ar"), "Idle_2", "Attack", SubResource("AnimationNodeStateMachineTransition_ohr3h"), "Attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2celi"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ty0yu"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_rvwuo"), "Idle_2", "PoleAttack", SubResource("AnimationNodeStateMachineTransition_6klll"), "PoleAttack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ayept"), "PoleAttack", "stun", SubResource("AnimationNodeStateMachineTransition_itf47"), "PoleAttack", "dying", SubResource("AnimationNodeStateMachineTransition_esd7i"), "Attack", "stun", SubResource("AnimationNodeStateMachineTransition_18nms"), "Attack", "dying", SubResource("AnimationNodeStateMachineTransition_s75ic"), "dash_attack", "stun", SubResource("AnimationNodeStateMachineTransition_14ika"), "dash_attack", "dying", SubResource("AnimationNodeStateMachineTransition_okf55"), "dash_attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_b010c"), "Attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_2qyul"), "Attack", "interact", SubResource("AnimationNodeStateMachineTransition_fqek2"), "interact", "Idle_2", SubResource("AnimationNodeStateMachineTransition_a0a8p")]
+graph_offset = Vector2(90.953, -59.6884)
 
 [node name="Player_Spear" type="CharacterBody2D" groups=["human"]]
 z_index = 10
@@ -643,6 +658,7 @@ parameters/conditions/drop_item = false
 parameters/conditions/dying = false
 parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false
+parameters/conditions/interact = false
 parameters/conditions/pole_attack = false
 parameters/conditions/stun = false
 parameters/conditions/unstun = false

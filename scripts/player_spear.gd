@@ -108,6 +108,9 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/use_item", false)
 		"drop_item":
 			animation_tree.set("parameters/conditions/drop_item", false)
+		"interact":
+			animation_tree.set("parameters/conditions/attack", false)
+			animation_tree.set("parameters/conditions/interact", false)
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
@@ -195,5 +198,6 @@ func pole_attack_hit():
 func pole_attack_unhit():
 	damage_zone_2.knockback = 1000
 	
-	
-	
+func interact(o):
+	animation_tree.set("parameters/conditions/interact", true)
+
