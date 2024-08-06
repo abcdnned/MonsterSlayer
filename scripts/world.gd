@@ -1,7 +1,11 @@
-# 5.9 target
-# TODO simplify move controller, change dash machinsm to restrike it's direction
+# 5.10 target
+# TODO flag level trigger
+# TODO level 1
+# TODO bed sprite
 
 # Backlogs
+# hit energy
+# sprint particles
 # mouse hover display item info
 # weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
 # weapon skills tier, Novice, Adept, GrandMaster, legend
@@ -10,22 +14,19 @@
 # press S sell item, collect mondy earned form merchants afterwards
 # day cycle system, refresh map, supplier
 # strength system, support using heavy weapon, increased by potion
-# Dexity system, support using range weapon and short range melee weapon
 # award merchants, king knight, give stage awards, can be purchased by money
 # armor system, heavy armor need strenth, could be repair, decrease max stamina
 # item ore, used to repair armor
-# dynamic supplier system
+# dynamic supplier system, refresh by bed, i.t a new day
 # quest system
 # weapon duribilty system, automate reset after seconds, can use item to reset immeditely
 # Smith, repair weapon, unlock: one iron
 # iron counter UI
 # Merchants, unlock: 10 coin
-# collect coin on enemy death
 # resource megnets, coin iron
 # armor tier iron, stell, silver
 # weapon duribility system, if broken reload
 # Vit system, increase max health, increased by vit potion
-# check Action game godot project
 # weapon handy system
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
 # SFX: wolf, boomer
@@ -39,7 +40,7 @@
 # dash_angel_limit
 # war fog
 # light
-# multi items
+# multi items， backpack
 # weapon tire
 # rush gallary
 # burnable wooden locked door
@@ -51,10 +52,8 @@
 # just pressed attack
 # stanmine system
 # design monster tire
-# 6 weapon design
-# war eye support multipul areas
 # Sheild charge
-# each enemy's ranke, solider, master, legend
+# each enemy's ranke, novice, adept, grandMaster, legend
 # pickable change cursor
 # hitten energy, ultra special attack
 # spear double stub
