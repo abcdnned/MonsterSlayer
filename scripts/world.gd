@@ -1,7 +1,4 @@
-# 5.10 target
-# TODO flag level trigger
-# TODO level 1
-# TODO bed sprite
+# 5.11 target
 
 # Backlogs
 # hit energy
@@ -137,16 +134,6 @@ func load_player(player_type, position, stats = null):
 func _on_player_map_pos_change(x, y):
 	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
 	var i = self.map.tile_to_cord[Vector2(p.x, p.y)]
-	if i and map.war_eye[i.x][i.y] > 0:
-		check_war_eye_spawner()
-	else:
-		war_eye.visible = false
-		goblin_army_1_spawner.enable = false
-	#print(Vector2(x, y)) # TODO get pos
-
-func check_war_eye_spawner():
-	war_eye.visible = true
-	goblin_army_1_spawner.enable = true
 
 func get_money(m):
 	money += m

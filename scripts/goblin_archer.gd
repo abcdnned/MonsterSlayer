@@ -70,6 +70,8 @@ func should_charge():
 	return dis and not obstacle
 
 func obstacle():
+	if !ray_cast().collider:
+		return false
 	return not ray_cast().collider.is_in_group("human")
 
 func ray_cast():

@@ -35,9 +35,11 @@ func do_spawn():
 	elif wave == MAX_WAVE and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
 		spawn_tracker(GOBLIN_WARRIOR_HAMMER, "melee_mob")
 		wave += 1
-	else:
+	elif get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") == 0:
 		enable = false
 		emit_signal("level_1_finish")
+		owner.war_eye.visible = false
+		
 
 func get_alive_mob_count(type):
 	var mob_count = 0
@@ -62,13 +64,15 @@ func spawn_mob(type, group):
 	return mob
 
 func get_spawn_top_left():
-	var tile = owner.map.cord_to_tile[owner.map.level_cord["goblin_fontier"]["top_left"]]["top_left"]
+	var tile = owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["top_left"]]["top_left"]
 	return owner.tile_map.to_global(owner.tile_map.map_to_local(tile))
 
 func get_spawn_bottom_right():
-	var tile = owner.map.cord_to_tile[owner.map.level_cord["goblin_fontier"]["bottom_right"]]["bottom_right"]
+	var tile = owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"]
 	return owner.tile_map.to_global(owner.tile_map.map_to_local(tile))
 
 func _on_goblin_flag_1_trigger_level(level):
+	print("level start")
 	enable = true
+	owner.war_eye.visible = true
 	wave = 1
