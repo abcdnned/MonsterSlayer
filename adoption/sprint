@@ -1,0 +1,17 @@
+1. change move_velocity to 
+func _move_velocity(delta):
+	var direction = get_direction()
+	var input = get_input()
+	if direction:
+		if sprint and Input.is_action_pressed("sprint") and input == Vector2(0.0, -1.0) and abs(Vector2(1, 0).rotated(sprite.rotation).angle_to(dash_direction)) <= deg_to_rad(15):
+			speed = SPRINT_SPEED
+		else:
+			sprint = false
+			speed = WALK_SPEED
+		velocity = direction * speed
+	else:
+		sprint = false
+		velocity = velocity.lerp(Vector2.ZERO, delta * 20)
+2. add var var sprint = false
+3. when trigger dash, sprint = true
+4. dash attack add condition sprint and
