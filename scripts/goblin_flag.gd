@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@export var level = 1
+
+signal trigger_level(level)
+
 const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
 @onready var timer = $Timer
 @onready var collision_shape_2d = $CollisionShape2D
@@ -11,6 +15,8 @@ func _take_damage(d, v, source_position, tick):
 	return [false, d]
 
 func _on_timer_timeout():
-	var mob = get_tree().current_scene.spawn(GOBLIN_WARRIOR_SPEAR, global_position, global_position)
-	mob.death.connect(get_tree().current_scene._on_mob_death)
-	queue_free()
+	emit_signal("trigger_level", 1)
+
+func _on_goblin_army_1_spawner_level_1_finish():
+	visible = true
+	collision_shape_2d.disabled = false

@@ -4,6 +4,8 @@ class_name Spawner
 @export var internval_seconds = 3
 @export var enable = false
 
+signal level_1_finish
+
 var wave = 1
 const MAX_WAVE = 11
 var spawn_count = 0
@@ -35,6 +37,7 @@ func do_spawn():
 		wave += 1
 	else:
 		enable = false
+		emit_signal("level_1_finish")
 
 func get_alive_mob_count(type):
 	var mob_count = 0
@@ -65,3 +68,7 @@ func get_spawn_top_left():
 func get_spawn_bottom_right():
 	var tile = owner.map.cord_to_tile[owner.map.level_cord["goblin_fontier"]["bottom_right"]]["bottom_right"]
 	return owner.tile_map.to_global(owner.tile_map.map_to_local(tile))
+
+func _on_goblin_flag_1_trigger_level(level):
+	enable = true
+	wave = 1

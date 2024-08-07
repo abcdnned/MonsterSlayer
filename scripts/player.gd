@@ -28,6 +28,7 @@ var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
 var map_pos = Vector2(4, 4)
 const TYPE = "KnightWeaponSuit"
+var sprint = false
 
 func _process(delta):
 	super._process(delta)
@@ -53,7 +54,8 @@ func _physics_process(delta):
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
-			elif Input.is_action_pressed("sprint") and get_input() == Vector2(0.0, -1.0) and Input.is_action_just_pressed("left_click"):
+				sprint = true
+			elif sprint and Input.is_action_pressed("sprint") and get_input() == Vector2(0.0, -1.0) and Input.is_action_just_pressed("left_click"):
 				animation_tree.set("parameters/conditions/dash_attack", true)
 				dash_attack_speed = DASH_ATTACK_MAX_SPEED
 				dash_attack_deduction = 20.0
@@ -156,12 +158,14 @@ func _move_velocity(delta):
 	var direction = get_direction()
 	var input = get_input()
 	if direction:
-		if Input.is_action_pressed("sprint") and input == Vector2(0.0, -1.0):
+		if sprint and Input.is_action_pressed("sprint") and input == Vector2(0.0, -1.0) and abs(Vector2(1, 0).rotated(sprite.rotation).angle_to(dash_direction)) <= deg_to_rad(15):
 			speed = SPRINT_SPEED
 		else:
+			sprint = false
 			speed = WALK_SPEED
 		velocity = direction * speed
 	else:
+		sprint = false
 		velocity = velocity.lerp(Vector2.ZERO, delta * 20)
 		
 func _sword_swing():
