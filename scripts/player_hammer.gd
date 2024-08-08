@@ -146,7 +146,7 @@ func _move_velocity(delta):
 	var direction = get_direction()
 	var input = get_input()
 	if direction:
-		if sprint and Input.is_action_pressed("sprint") and input == Vector2(0.0, -1.0) and abs(Vector2(1, 0).rotated(sprite.rotation).angle_to(dash_direction)) <= deg_to_rad(30):
+		if sprint and Input.is_action_pressed("sprint") and input == Vector2(0.0, -1.0) and abs(Vector2(1, 0).rotated(sprite.rotation).angle_to(dash_direction)) <= deg_to_rad(Globals.DASH_ANGEL):
 			speed = SPRINT_SPEED
 		else:
 			sprint = false

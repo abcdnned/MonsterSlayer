@@ -1,16 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://i3osqxr20u04"]
+[gd_scene load_steps=3 format=3 uid="uid://i3osqxr20u04"]
 
 [ext_resource type="Script" path="res://scripts/goblin_flag.gd" id="1_heeua"]
 [ext_resource type="Texture2D" uid="uid://dsapnbdr3rqif" path="res://sprites/goblin_flag.png" id="1_tonyw"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_77qw4"]
-radius = 64.0078
-
 [node name="GoblinFlag" type="CharacterBody2D"]
 script = ExtResource("1_heeua")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_77qw4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_tonyw")

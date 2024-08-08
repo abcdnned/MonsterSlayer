@@ -1,4 +1,4 @@
-extends Pickable
+extends AutoPickable
 
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
 @onready var timer = $Timer
@@ -6,11 +6,7 @@ extends Pickable
 @export var amount_max: int = 12
 @onready var floating_text_util = $FloatingTextUtil
 
-func pickup(player):
-	super.pickup(player)
-	if not visible:
-		return
-	visible = false
+func auto_pickup(player):
 	audio_stream_player_2d.play()
 	var m = randi_range(amount_min, amount_max)
 	get_tree().current_scene.get_money(m)

@@ -1,8 +1,11 @@
 # 5.11 target
+# TODO sprint particles
+# TODO level 1 optz
+# TODO different level flags
+# TODO level 2
 
 # Backlogs
 # hit energy
-# sprint particles
 # mouse hover display item info
 # weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
 # weapon skills tier, Novice, Adept, GrandMaster, legend

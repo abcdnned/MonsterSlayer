@@ -223,19 +223,16 @@ script = ExtResource("9_l8cwq")
 position = Vector2(-193, -426)
 
 [node name="iCoinSmall" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-406, 216)
+position = Vector2(-552, 129)
 
 [node name="iCoinSmall2" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-313, 285)
+position = Vector2(-240, -70)
 
 [node name="iCoinSmall3" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-340, 93)
+position = Vector2(-293, 73)
 
 [node name="iCoinSmall4" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(132, 345)
-
-[node name="iCoinSmall5" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-296, 525)
+position = Vector2(-516, 432)
 
 [connection signal="level_1_finish" from="LevelSpawner/GoblinArmy1Spawner" to="." method="_on_goblin_army_1_spawner_level_1_finish"]
 [connection signal="level_1_finish" from="LevelSpawner/GoblinArmy1Spawner" to="LevelTrigger/GoblinFlag_1" method="_on_goblin_army_1_spawner_level_1_finish"]

@@ -66,7 +66,8 @@ func _physics_process(delta):
 
 func should_charge():
 	var dis = global_position.distance_to(target_finder.target.global_position) <= CHARGE_DIS * .8
-	var obstacle = not ray_cast().collider.is_in_group("human")
+	var hit = ray_cast()
+	var obstacle = hit.size() > 0 and not hit.collider.is_in_group("human")
 	return dis and not obstacle
 
 func obstacle():
