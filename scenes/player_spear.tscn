@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dyortnniqa1ua"]
+[gd_scene load_steps=78 format=3 uid="uid://dyortnniqa1ua"]
 
 [ext_resource type="Script" path="res://scripts/player_spear.gd" id="1_eacyd"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_u30ly"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="9_uwwuq"]
 [ext_resource type="AudioStream" uid="uid://7f46s7d2o404" path="res://sounds/weapon/spear_stub_woosh.wav" id="10_6p4fh"]
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/weapon/521999__kastenfrosch__whoosh-dash.wav" id="10_drpr7"]
+[ext_resource type="PackedScene" uid="uid://brjyfu25b5ab6" path="res://scenes/sprint_dust.tscn" id="15_0vy0y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 40.6079
@@ -700,5 +701,7 @@ bus = &"SFX"
 stream = ExtResource("10_6p4fh")
 volume_db = -10.0
 bus = &"SFX"
+
+[node name="SprintDust" parent="." instance=ExtResource("15_0vy0y")]
 
 [connection signal="timeout" from="emit_signal" to="." method="_on_emit_signal_timeout"]

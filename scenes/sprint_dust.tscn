@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://brjyfu25b5ab6"]
+
+[ext_resource type="Texture2D" uid="uid://bkqxiui0tlslg" path="res://sprites/effects/sprint_particles.png" id="1_75nm4"]
+
+[node name="SprintDust" type="CPUParticles2D"]
+z_index = -5
+emitting = false
+amount = 2
+lifetime = 0.5
+texture = ExtResource("1_75nm4")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0

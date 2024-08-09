@@ -1,0 +1,3 @@
+1. add SprintDust scene as child
+2. @onready var sprint_dust = $SprintDust
+3. in move_velocity method, when SPRINT set it to emitting otherwise not emitting

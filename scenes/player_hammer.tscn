@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://rvxdsfthj8v5"]
+[gd_scene load_steps=80 format=3 uid="uid://rvxdsfthj8v5"]
 
 [ext_resource type="Script" path="res://scripts/player_hammer.gd" id="1_knv2p"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_y3nrw"]
@@ -16,6 +16,7 @@
 [ext_resource type="Animation" uid="uid://cf0usmjbou3y8" path="res://animation/interact.res" id="9_skps3"]
 [ext_resource type="AudioStream" uid="uid://be4olnvi25o8q" path="res://sounds/weapon/hammer_hit_lite.wav" id="10_0prxb"]
 [ext_resource type="AudioStream" uid="uid://dm0ivqxa30665" path="res://sounds/weapon/hammer_hit_heavy.wav" id="11_cbopi"]
+[ext_resource type="PackedScene" uid="uid://brjyfu25b5ab6" path="res://scenes/sprint_dust.tscn" id="17_gftgh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxbta"]
 size = Vector2(124, 97)
@@ -747,5 +748,7 @@ bus = &"SFX"
 stream = ExtResource("11_cbopi")
 volume_db = 8.0
 bus = &"SFX"
+
+[node name="SprintDust" parent="." instance=ExtResource("17_gftgh")]
 
 [connection signal="timeout" from="emit_signal" to="." method="_on_emit_signal_timeout"]

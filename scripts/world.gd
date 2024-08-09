@@ -1,5 +1,4 @@
 # 5.11 target
-# TODO sprint particles
 # TODO level 1 optz
 # TODO different level flags
 # TODO level 2
