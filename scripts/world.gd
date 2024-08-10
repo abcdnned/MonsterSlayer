@@ -1,10 +1,10 @@
 # 5.11 target
-# TODO level 1 optz
 # TODO different level flags
 # TODO level 2
 
 # Backlogs
 # hit energy
+# dash directly attack
 # mouse hover display item info
 # weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
 # weapon skills tier, Novice, Adept, GrandMaster, legend

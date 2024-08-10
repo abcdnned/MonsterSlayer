@@ -22,20 +22,19 @@ func _process(delta):
 		do_spawn()
 	
 func do_spawn():
-	if wave == 1 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
+	if wave == 1 and get_alive_mob_count("melee_mob") == 0:
+		spawn_tracker(GOBLIN, "melee_mob")
+		wave += 1
+	elif wave <= 3 and get_alive_mob_count("melee_mob") == 0:
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		wave += 1
+	elif wave <= 5 and get_alive_mob_count("melee_mob") == 0:
 		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN, "melee_mob")
 		wave += 1
-	elif wave <= MAX_WAVE - 1 and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 3:
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN_ARCHER, "range_mob")
-		wave += 1
-	elif wave == MAX_WAVE and get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") < 1:
-		spawn_tracker(GOBLIN_WARRIOR_HAMMER, "melee_mob")
-		wave += 1
-	elif get_alive_mob_count("melee_mob") + get_alive_mob_count("range_mob") == 0:
+	elif wave == 6 and get_alive_mob_count("melee_mob") == 0:
 		enable = false
 		emit_signal("level_1_finish")
 		owner.war_eye.visible = false

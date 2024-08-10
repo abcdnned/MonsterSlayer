@@ -100,6 +100,7 @@ func _physics_process(delta):
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
+				sprint = true
 			elif Input.is_action_pressed("right_click"):
 				animation_tree.set("parameters/conditions/drop_item", true)
 				drop()

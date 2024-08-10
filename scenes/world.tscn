@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
 [ext_resource type="PackedScene" uid="uid://i3osqxr20u04" path="res://scenes/goblin_flag.tscn" id="14_o7re4"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
-[ext_resource type="PackedScene" uid="uid://dfw25eeased7r" path="res://scenes/i_coin_small.tscn" id="15_gfcwn"]
+[ext_resource type="PackedScene" uid="uid://ds5inho5pqe5j" path="res://scenes/i_dagger.tscn" id="15_vhahx"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -222,17 +222,8 @@ script = ExtResource("9_l8cwq")
 [node name="GoblinFlag_1" parent="LevelTrigger" instance=ExtResource("14_o7re4")]
 position = Vector2(-193, -426)
 
-[node name="iCoinSmall" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-552, 129)
-
-[node name="iCoinSmall2" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-240, -70)
-
-[node name="iCoinSmall3" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-293, 73)
-
-[node name="iCoinSmall4" parent="." instance=ExtResource("15_gfcwn")]
-position = Vector2(-516, 432)
+[node name="iDagger" parent="." instance=ExtResource("15_vhahx")]
+position = Vector2(-270, -190)
 
 [connection signal="level_1_finish" from="LevelSpawner/GoblinArmy1Spawner" to="." method="_on_goblin_army_1_spawner_level_1_finish"]
 [connection signal="level_1_finish" from="LevelSpawner/GoblinArmy1Spawner" to="LevelTrigger/GoblinFlag_1" method="_on_goblin_army_1_spawner_level_1_finish"]
