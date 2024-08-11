@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dippsuhgfyhvi"]
 
 [ext_resource type="PackedScene" uid="uid://i3osqxr20u04" path="res://scenes/goblin_flag.tscn" id="1_4tylx"]
-[ext_resource type="Texture2D" uid="uid://ce2vygv6842fi" path="res://sprites/yellow_star.png" id="2_12k47"]
+[ext_resource type="Texture2D" uid="uid://jqo8wk0mrgx6" path="res://sprites/copper_star.png" id="2_c8hie"]
 
 [node name="GoblinFlag_lv1" instance=ExtResource("1_4tylx")]
 
 [node name="star1" type="Sprite2D" parent="." index="2"]
-position = Vector2(0, -74)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_12k47")
+position = Vector2(0, -78)
+texture = ExtResource("2_c8hie")

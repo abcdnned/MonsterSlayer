@@ -147,8 +147,4 @@ func spawn(type, top_left, bottom_right):
 	thing.position = spawn_position
 	add_child(thing)
 	return thing
-
-func _on_goblin_army_1_spawner_level_1_finish():
-	print("level 1 finish")
-	_win()
 	

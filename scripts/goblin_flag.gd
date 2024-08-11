@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
 @export var level = 1
-
-signal trigger_level(level)
+@export var level_spawner: Spawner
 
 const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
 @onready var timer = $Timer
@@ -11,6 +10,7 @@ var collision_shape_2d: CollisionShape2D
 func _ready():
 	# Create a CollisionShape2D child, set Shape to CircleShape2D and radius to 64.0 px
 	create_collision_shape()
+	add_to_group("LevelTrigger")
 	
 func create_collision_shape():
 	# If there's an existing collision shape, free it first
@@ -28,19 +28,19 @@ func create_collision_shape():
 	collision_shape_2d.position = Vector2.ZERO
 
 func _take_damage(d, v, source_position, tick):
-	visible = false
 	timer.start()
 	# Delete the CollisionShape2D child
-	if collision_shape_2d:
-		collision_shape_2d.queue_free()
-		collision_shape_2d = null
+	for trigger in get_tree().get_nodes_in_group("LevelTrigger"):
+		if trigger.collision_shape_2d:
+				trigger.collision_shape_2d.queue_free()
+				trigger.collision_shape_2d = null
+		trigger.visible = false
 	return [false, d]
 
 func _on_timer_timeout():
-	emit_signal("trigger_level", 1)
+	level_spawner._start_sapwner()
 
-func _on_goblin_army_1_spawner_level_1_finish():
-	visible = true
-	# Re-create the CollisionShape2D child, set Shape to CircleShape2D and radius to 64.0 px
-	create_collision_shape()
-	print("level finish")
+func _reset_trigger():
+	for trigger in get_tree().get_nodes_in_group("LevelTrigger"):
+		trigger.create_collision_shape()
+		trigger.visible = true

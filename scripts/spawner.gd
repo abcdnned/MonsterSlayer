@@ -3,11 +3,9 @@ class_name Spawner
 
 @export var internval_seconds = 3
 @export var enable = false
-
-signal level_1_finish
+@export var spawn_trigger: Node
 
 var wave = 1
-const MAX_WAVE = 11
 var spawn_count = 0
 const GOBLIN = preload("res://scenes/goblin.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
@@ -36,9 +34,8 @@ func do_spawn():
 		wave += 1
 	elif wave == 6 and get_alive_mob_count("melee_mob") == 0:
 		enable = false
-		emit_signal("level_1_finish")
 		owner.war_eye.visible = false
-		
+		spawn_trigger._reset_trigger()	
 
 func get_alive_mob_count(type):
 	var mob_count = 0
@@ -70,8 +67,7 @@ func get_spawn_bottom_right():
 	var tile = owner.map.cord_to_tile[owner.map.level_cord["starter_plain"]["bottom_right"]]["bottom_right"]
 	return owner.tile_map.to_global(owner.tile_map.map_to_local(tile))
 
-func _on_goblin_flag_1_trigger_level(level):
-	print("level start")
+func _start_sapwner():
 	enable = true
 	owner.war_eye.visible = true
 	wave = 1
