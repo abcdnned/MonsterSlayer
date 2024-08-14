@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlsr0nb52f4yd"]
+
+[ext_resource type="Script" path="res://scripts/merchants.gd" id="1_ilf3y"]
+[ext_resource type="Texture2D" uid="uid://c0xf5o1bohbc3" path="res://sprites/merchants.png" id="2_h0tkq"]
+
+[node name="Merchants" type="CharacterBody2D"]
+script = ExtResource("1_ilf3y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_h0tkq")

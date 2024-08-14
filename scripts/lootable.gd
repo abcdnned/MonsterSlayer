@@ -42,8 +42,12 @@ func loot(player):
 		lootable = false
 
 func drop(pos):
-	reparent(get_tree().current_scene, false)
-	global_position = pos
+	if typeof(pos) == TYPE_VECTOR2:
+		reparent(get_tree().current_scene, false)
+		global_position = pos
+	else:
+		reparent(pos, false)
+		position = Vector2(64, 64)
 	p = null
 	lootable = true
 

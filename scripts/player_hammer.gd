@@ -10,6 +10,7 @@ extends Unit
 @onready var damage_zone_2 = $Sprite2D/Weapon/damage_zone2
 @onready var hammer_swap = $HammerSwap
 @onready var sprint_dust = $SprintDust
+@onready var inv_ui = $InvUI
 
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 signal hero_death
@@ -195,7 +196,10 @@ func gaven_new_item(item):
 		animation_tree.set("parameters/conditions/hide_item", false)
 
 func drop():
-	item_handle.get_child(0).drop(get_global_mouse_position())
+	if inv_ui.visible and inv_ui.hover != null:
+		item_handle.get_child(0).drop(inv_ui.hover)
+	else:
+		item_handle.get_child(0).drop(get_global_mouse_position())
 	animation_tree.set("parameters/conditions/hold_item", false)
 	animation_tree.set("parameters/conditions/hide_item", true)
 

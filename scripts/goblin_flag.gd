@@ -10,7 +10,7 @@ var collision_shape_2d: CollisionShape2D
 func _ready():
 	# Create a CollisionShape2D child, set Shape to CircleShape2D and radius to 64.0 px
 	create_collision_shape()
-	add_to_group("LevelTrigger")
+	add_to_group("Facility")
 	
 func create_collision_shape():
 	# If there's an existing collision shape, free it first
@@ -30,7 +30,7 @@ func create_collision_shape():
 func _take_damage(d, v, source_position, tick):
 	timer.start()
 	# Delete the CollisionShape2D child
-	for trigger in get_tree().get_nodes_in_group("LevelTrigger"):
+	for trigger in get_tree().get_nodes_in_group("Facility"):
 		if trigger.collision_shape_2d:
 				trigger.collision_shape_2d.queue_free()
 				trigger.collision_shape_2d = null
@@ -41,6 +41,6 @@ func _on_timer_timeout():
 	level_spawner._start_sapwner()
 
 func _reset_trigger():
-	for trigger in get_tree().get_nodes_in_group("LevelTrigger"):
+	for trigger in get_tree().get_nodes_in_group("Facility"):
 		trigger.create_collision_shape()
 		trigger.visible = true

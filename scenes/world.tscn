@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=25 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
 [ext_resource type="PackedScene" uid="uid://bxbcrun2tl4rq" path="res://scenes/goblin_flag_lv_2.tscn" id="15_ct2cs"]
 [ext_resource type="PackedScene" uid="uid://dippsuhgfyhvi" path="res://scenes/goblin_flag_lv_1.tscn" id="15_gu6by"]
+[ext_resource type="PackedScene" uid="uid://dlsr0nb52f4yd" path="res://scenes/merchants.tscn" id="17_vteil"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -226,9 +227,14 @@ spawn_trigger = NodePath("../../LevelTrigger/GoblinFlag_lv2")
 [node name="LevelTrigger" type="Node" parent="."]
 
 [node name="GoblinFlag_lv1" parent="LevelTrigger" node_paths=PackedStringArray("level_spawner") instance=ExtResource("15_gu6by")]
-position = Vector2(-291, -490)
+position = Vector2(-364, -864)
 level_spawner = NodePath("../../LevelSpawner/GoblinArmy1Spawner")
 
 [node name="GoblinFlag_lv2" parent="LevelTrigger" node_paths=PackedStringArray("level_spawner") instance=ExtResource("15_ct2cs")]
-position = Vector2(-49, -490)
+position = Vector2(-122, -864)
 level_spawner = NodePath("../../LevelSpawner/GoblinArmy2Spawner")
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="Merchants" parent="NPCs" instance=ExtResource("17_vteil")]
+position = Vector2(-1138, 0)

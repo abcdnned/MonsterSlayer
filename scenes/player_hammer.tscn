@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://rvxdsfthj8v5"]
+[gd_scene load_steps=83 format=3 uid="uid://rvxdsfthj8v5"]
 
 [ext_resource type="Script" path="res://scripts/player_hammer.gd" id="1_knv2p"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_y3nrw"]
@@ -17,6 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://be4olnvi25o8q" path="res://sounds/weapon/hammer_hit_lite.wav" id="10_0prxb"]
 [ext_resource type="AudioStream" uid="uid://dm0ivqxa30665" path="res://sounds/weapon/hammer_hit_heavy.wav" id="11_cbopi"]
 [ext_resource type="PackedScene" uid="uid://brjyfu25b5ab6" path="res://scenes/sprint_dust.tscn" id="17_gftgh"]
+[ext_resource type="PackedScene" uid="uid://c48rbow725211" path="res://scenes/inv_ui.tscn" id="18_6gvlw"]
+[ext_resource type="PackedScene" uid="uid://bwuxsin6joanw" path="res://scenes/inv_slots.tscn" id="19_nc226"]
+[ext_resource type="PackedScene" uid="uid://ds5inho5pqe5j" path="res://scenes/i_dagger.tscn" id="20_5nmjv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxbta"]
 size = Vector2(124, 97)
@@ -750,5 +753,38 @@ volume_db = 8.0
 bus = &"SFX"
 
 [node name="SprintDust" parent="." instance=ExtResource("17_gftgh")]
+
+[node name="InvUI" parent="." instance=ExtResource("18_6gvlw")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 118.0
+offset_bottom = 118.0
+
+[node name="GridContainer" type="GridContainer" parent="InvUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
+
+[node name="InvSlots" parent="InvUI/GridContainer" instance=ExtResource("19_nc226")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="iDagger" parent="InvUI/GridContainer/InvSlots" instance=ExtResource("20_5nmjv")]
+position = Vector2(64, 64)
+
+[node name="InvSlots2" parent="InvUI/GridContainer" instance=ExtResource("19_nc226")]
+layout_mode = 2
+
+[node name="InvSlots3" parent="InvUI/GridContainer" instance=ExtResource("19_nc226")]
+layout_mode = 2
+
+[node name="InvSlots4" parent="InvUI/GridContainer" instance=ExtResource("19_nc226")]
+layout_mode = 2
 
 [connection signal="timeout" from="emit_signal" to="." method="_on_emit_signal_timeout"]

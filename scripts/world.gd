@@ -1,8 +1,9 @@
-# 5.11 target
-# TODO different level flags
-# TODO level 2
+# 6.0 target
+# TODO Merchants, unlock: 10 coin
+# TODO dynamic supplier system, refresh by bed, i.t a new day
 
 # Backlogs
+# start area, paved stone floor
 # hit energy
 # dash directly attack
 # mouse hover display item info
@@ -16,12 +17,10 @@
 # award merchants, king knight, give stage awards, can be purchased by money
 # armor system, heavy armor need strenth, could be repair, decrease max stamina
 # item ore, used to repair armor
-# dynamic supplier system, refresh by bed, i.t a new day
 # quest system
 # weapon duribilty system, automate reset after seconds, can use item to reset immeditely
 # Smith, repair weapon, unlock: one iron
 # iron counter UI
-# Merchants, unlock: 10 coin
 # resource megnets, coin iron
 # armor tier iron, stell, silver
 # weapon duribility system, if broken reload
