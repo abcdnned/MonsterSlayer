@@ -8,7 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var item = $iDagger
-	if item != null:
+	if get_child_count() > 0:
+		var item = get_child(0)
 		item.lootable = get_parent().get_parent().visible
 

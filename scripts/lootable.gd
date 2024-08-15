@@ -11,6 +11,7 @@ var tooltip_panel = null
 func _ready():
 	z_index = 8
 	add_to_group("lootable")
+	create_tooltip()
 	_sub_ready()
 	
 func _sub_ready():
@@ -79,9 +80,9 @@ func create_tooltip():
 	tooltip_panel = Panel.new()
 	var container = HFlowContainer.new()
 	
-	var coin_icon = TextureRect.new()
+	var coin_icon: TextureRect = TextureRect.new()
 	coin_icon.texture = load("res://sprites/coin_icon.png")
-	coin_icon.rect_min_size = Vector2(16, 16)  # Set a minimum size for the icon
+	coin_icon.custom_minimum_size = Vector2(32, 32)  # Set a minimum size for the icon
 
 	var label = Label.new()
 	label.name = "TooltipLabel"
@@ -91,14 +92,14 @@ func create_tooltip():
 	tooltip_panel.add_child(container)
 	
 	tooltip_panel.set_visible(false)
-	tooltip_panel.rect_min_size = Vector2(200, 50) # Set a minimum size
+	tooltip_panel.custom_minimum_size = Vector2(200, 50) # Set a minimum size
 	add_child(tooltip_panel)
 
 func move_tooltip(position):
-	tooltip_panel.rect_position = position
+	tooltip_panel.position = position
 
 func show_tooltip(text):
-	var label = tooltip_panel.get_node("TooltipLabel")
+	var label = tooltip_panel.get_child(0).get_child(1)
 	label.text = text
 	tooltip_panel.set_visible(true)
 	move_tooltip(get_global_mouse_position() + Vector2(10, -20)) # Offset for better visibility
