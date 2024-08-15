@@ -1,10 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlsr0nb52f4yd"]
+[gd_scene load_steps=5 format=3 uid="uid://dlsr0nb52f4yd"]
 
 [ext_resource type="Script" path="res://scripts/merchants.gd" id="1_ilf3y"]
 [ext_resource type="Texture2D" uid="uid://c0xf5o1bohbc3" path="res://sprites/merchants.png" id="2_h0tkq"]
+[ext_resource type="PackedScene" uid="uid://dkceuii6u6emo" path="res://scenes/merchants_store.tscn" id="3_n07y2"]
+[ext_resource type="PackedScene" uid="uid://cvi44uf31mxce" path="res://scenes/interactable.tscn" id="4_h1fha"]
 
 [node name="Merchants" type="CharacterBody2D"]
+z_index = 8
+z_as_relative = false
 script = ExtResource("1_ilf3y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_h0tkq")
+
+[node name="Interactable" parent="Sprite2D" instance=ExtResource("4_h1fha")]
+
+[node name="MerchantsStore" parent="." instance=ExtResource("3_n07y2")]
+visible = false
+z_index = 2
+z_as_relative = false
+offset_left = 55.0
+offset_top = -464.0
+offset_right = 1051.0
+offset_bottom = 524.0
+
+[connection signal="interact" from="Sprite2D/Interactable" to="." method="_on_interactable_interact"]

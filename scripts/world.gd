@@ -3,6 +3,7 @@
 # TODO dynamic supplier system, refresh by bed, i.t a new day
 
 # Backlogs
+# drink potion SFX
 # start area, paved stone floor
 # hit energy
 # dash directly attack
@@ -83,7 +84,7 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player(PLAYER_HAMMER, Vector2(0, 0))
+	load_player(PLAYER_HAMMER, Vector2(0, 0), { "health": 1, "max_health": 10 })
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
 
@@ -129,8 +130,8 @@ func load_player(player_type, position, stats = null):
 	if stats:
 		player.health = stats["health"]
 		player.max_health = stats["max_health"]
-		player.emit_signal("health_change", player.health)
-		player.emit_signal("max_health_change", player.max_health)
+	player.emit_signal("health_change", player.health)
+	player.emit_signal("max_health_change", player.max_health)
 
 func _on_player_map_pos_change(x, y):
 	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))

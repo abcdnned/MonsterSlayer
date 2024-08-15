@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://scripts/i_boomer.gd" id="2_b3mom"]
 
 [node name="iBoomer" type="Sprite2D"]
+z_index = 5
+z_as_relative = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_jo1ua")
 script = ExtResource("2_b3mom")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=26 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bxbcrun2tl4rq" path="res://scenes/goblin_flag_lv_2.tscn" id="15_ct2cs"]
 [ext_resource type="PackedScene" uid="uid://dippsuhgfyhvi" path="res://scenes/goblin_flag_lv_1.tscn" id="15_gu6by"]
 [ext_resource type="PackedScene" uid="uid://dlsr0nb52f4yd" path="res://scenes/merchants.tscn" id="17_vteil"]
+[ext_resource type="PackedScene" uid="uid://cwtpgqo8etj1c" path="res://scenes/i_health_potion.tscn" id="19_m6yu1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -238,3 +239,9 @@ level_spawner = NodePath("../../LevelSpawner/GoblinArmy2Spawner")
 
 [node name="Merchants" parent="NPCs" instance=ExtResource("17_vteil")]
 position = Vector2(-1138, 0)
+
+[node name="iHealthPotion" parent="." instance=ExtResource("19_m6yu1")]
+position = Vector2(201, 563)
+
+[node name="iHealthPotion2" parent="." instance=ExtResource("19_m6yu1")]
+position = Vector2(440, 583)

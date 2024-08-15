@@ -1,11 +1,15 @@
 extends Sprite2D
 class_name Lootable
 
+@export var price = 10
+
 var lootable = true
 const pick_up_dis = 600.0
 var p = null
+var tooltip_panel = null
 
 func _ready():
+	z_index = 8
 	add_to_group("lootable")
 	_sub_ready()
 	
@@ -15,6 +19,8 @@ func _sub_ready():
 func _process(delta):
 	if lootable and is_on_top() and is_reachable():
 		apply_pickable_shader(self)
+		if is_selling():
+			show_tooltip("100")
 	else:
 		material = null
 
@@ -64,3 +70,40 @@ func is_intersect(l):
 func is_reachable():
 	var pp = get_tree().current_scene.player.global_position
 	return pp.distance_to(get_global_mouse_position()) <= pick_up_dis
+
+func is_selling():
+	# Implement your logic to determine if the item is selling
+	return true # Placeholder return value for demonstration
+
+func create_tooltip():
+	tooltip_panel = Panel.new()
+	var container = HFlowContainer.new()
+	
+	var coin_icon = TextureRect.new()
+	coin_icon.texture = load("res://sprites/coin_icon.png")
+	coin_icon.rect_min_size = Vector2(16, 16)  # Set a minimum size for the icon
+
+	var label = Label.new()
+	label.name = "TooltipLabel"
+	
+	container.add_child(coin_icon)
+	container.add_child(label)
+	tooltip_panel.add_child(container)
+	
+	tooltip_panel.set_visible(false)
+	tooltip_panel.rect_min_size = Vector2(200, 50) # Set a minimum size
+	add_child(tooltip_panel)
+
+func move_tooltip(position):
+	tooltip_panel.rect_position = position
+
+func show_tooltip(text):
+	var label = tooltip_panel.get_node("TooltipLabel")
+	label.text = text
+	tooltip_panel.set_visible(true)
+	move_tooltip(get_global_mouse_position() + Vector2(10, -20)) # Offset for better visibility
+
+func hide_tooltip():
+	if tooltip_panel.visible:
+		tooltip_panel.set_visible(false)
+	

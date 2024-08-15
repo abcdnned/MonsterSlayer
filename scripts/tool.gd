@@ -25,3 +25,7 @@ static func play_sound_2d(parent: Node, sound_path: String, position: Vector2):
 	var short_life = SHORT_LIVE.instantiate()
 	audio_player.add_child(short_life)
 	
+static func remove_all_children(p):
+	for child in p.get_children():
+		p.remove_child(child)
+		child.queue_free()

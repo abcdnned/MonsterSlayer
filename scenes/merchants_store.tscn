@@ -1,18 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkceuii6u6emo"]
 
 [ext_resource type="Texture2D" uid="uid://wcqgs2ihht1c" path="res://sprites/MerchantsStore.png" id="1_lja50"]
-[ext_resource type="PackedScene" uid="uid://bwuxsin6joanw" path="res://scenes/inv_slots.tscn" id="2_q83ds"]
+[ext_resource type="Script" path="res://scripts/merchants_store.gd" id="2_mmxld"]
 
 [node name="MerchantsStore" type="NinePatchRect"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -54.0
-offset_right = -684.0
-offset_bottom = -116.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 996.0
+offset_bottom = 988.0
 texture = ExtResource("1_lja50")
+script = ExtResource("2_mmxld")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(524, 260)
@@ -28,51 +23,3 @@ theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
 columns = 4
 metadata/_edit_use_anchors_ = true
-
-[node name="InvSlots" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots2" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots3" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots4" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots5" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots6" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots7" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots8" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots9" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots10" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots11" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots12" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots13" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots14" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots15" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
-
-[node name="InvSlots16" parent="GridContainer" instance=ExtResource("2_q83ds")]
-layout_mode = 2
