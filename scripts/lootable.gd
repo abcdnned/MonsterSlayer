@@ -2,6 +2,8 @@ extends Sprite2D
 class_name Lootable
 
 @export var price = 10
+@export var item_name = "placeholder:item"
+@export var description = "placeholder:description"
 
 var lootable = true
 const pick_up_dis = 600.0
@@ -21,7 +23,7 @@ func _process(delta):
 	if lootable and is_on_top() and is_reachable():
 		apply_pickable_shader(self)
 		if is_selling():
-			show_tooltip("100")
+			show_tooltip(str(price) + " ")
 	else:
 		material = null
 
@@ -78,31 +80,33 @@ func is_selling():
 
 func create_tooltip():
 	tooltip_panel = Panel.new()
-	var container = HFlowContainer.new()
-	
-	var coin_icon: TextureRect = TextureRect.new()
+	tooltip_panel.name = "Item Description"
+	var container = HBoxContainer.new()
+	container.name = "HBoxContainer"
+	var coin_icon = TextureRect.new()
+	coin_icon.name = "TextureRect"
 	coin_icon.texture = load("res://sprites/coin_icon.png")
 	coin_icon.custom_minimum_size = Vector2(32, 32)  # Set a minimum size for the icon
-
 	var label = Label.new()
 	label.name = "TooltipLabel"
-	
+	# Optionally, you could set a minimum size for the label if needed
+	label.custom_minimum_size = Vector2(0, 0)
+
 	container.add_child(coin_icon)
 	container.add_child(label)
 	tooltip_panel.add_child(container)
-	
 	tooltip_panel.set_visible(false)
-	tooltip_panel.custom_minimum_size = Vector2(200, 50) # Set a minimum size
 	add_child(tooltip_panel)
 
 func move_tooltip(position):
 	tooltip_panel.position = position
+	tooltip_panel.size = tooltip_panel.get_child(0).size
 
 func show_tooltip(text):
 	var label = tooltip_panel.get_child(0).get_child(1)
 	label.text = text
 	tooltip_panel.set_visible(true)
-	move_tooltip(get_global_mouse_position() + Vector2(10, -20)) # Offset for better visibility
+	move_tooltip(Vector2(-70, -130)) # Offset for better visibility
 
 func hide_tooltip():
 	if tooltip_panel.visible:

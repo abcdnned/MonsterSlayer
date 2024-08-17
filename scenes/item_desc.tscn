@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cap0edvd8twgb"]
+
+[ext_resource type="Texture2D" uid="uid://b36r44urmjjxy" path="res://sprites/coin_icon.png" id="2_4u5aq"]
+
+[node name="Control" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1607.0
+offset_bottom = -1018.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_4u5aq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "1000 "
