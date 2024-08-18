@@ -1,38 +1,26 @@
-# 6.0 target
-# TODO Merchants, unlock: 10 coin
-# TODO dynamic supplier system, refresh by bed, i.t a new day
+# 7.0 target
+# TODO drink health potion SFX
+# TODO bought SFX
+# TODO bought floating text
+# TODO quest system, system info
+# TODO new game loop
 
 # Backlogs
-# drink potion SFX
 # start area, paved stone floor
-# hit energy
-# dash directly attack
-# mouse hover display item info
+# draw order fix
 # weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
 # weapon skills tier, Novice, Adept, GrandMaster, legend
 # rage system, hit to increase, store to perform special attack of weapon
 # weapon durability tier, standard, durable, reinforced, unbreakable
 # press S sell item, collect mondy earned form merchants afterwards
-# day cycle system, refresh map, supplier
 # strength system, support using heavy weapon, increased by potion
 # award merchants, king knight, give stage awards, can be purchased by money
-# armor system, heavy armor need strenth, could be repair, decrease max stamina
-# item ore, used to repair armor
-# quest system
-# weapon duribilty system, automate reset after seconds, can use item to reset immeditely
-# Smith, repair weapon, unlock: one iron
-# iron counter UI
-# resource megnets, coin iron
-# armor tier iron, stell, silver
-# weapon duribility system, if broken reload
-# Vit system, increase max health, increased by vit potion
+# max heart increment item
 # weapon handy system
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
 # SFX: wolf, boomer
-# item slots
 # presure plate trape
 # notification when target spotted
-# switch weapon
 # Goblin Flag generator
 # no cycle tree
 # dash_tired

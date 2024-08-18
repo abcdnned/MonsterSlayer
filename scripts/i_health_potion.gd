@@ -8,5 +8,3 @@ func shoot():
 	p = null
 	visible = false
 	audio_stream_player_2d.play()
-
-

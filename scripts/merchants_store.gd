@@ -19,3 +19,16 @@ func add_item(item):
 
 func clear_all_items():
 	Tool.remove_all_children(grid_container)
+	
+
+func enable_lootable():
+	for s in grid_container.get_children():
+		for item in s.get_children():
+			if "lootable" in item:
+				item.lootable = true
+	
+func disable_lootable():
+	for s in grid_container.get_children():
+		for item in s.get_children():
+			if "lootable" in item:
+				item.lootable = false

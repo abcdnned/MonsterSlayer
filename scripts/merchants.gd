@@ -11,6 +11,7 @@ const I_HEALTH_POTION = preload("res://scenes/i_health_potion.tscn")
 func _process(delta):
 	if buier == null:
 		merchants_store.visible = false
+		merchants_store.disable_lootable()
 	elif buier.global_position.distance_to(global_position) > max_sell_dis:
 		buier = null
 
@@ -24,7 +25,7 @@ func create_collision_shape():
 	if collision_shape_2d:
 		collision_shape_2d.queue_free()
 
-
 func _on_interactable_interact(player):
 	buier = player
 	merchants_store.visible = true
+	merchants_store.enable_lootable()
