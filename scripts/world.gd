@@ -22,7 +22,6 @@
 # presure plate trape
 # notification when target spotted
 # Goblin Flag generator
-# no cycle tree
 # dash_tired
 # dash_angel_limit
 # war fog

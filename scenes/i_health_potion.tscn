@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://duwj5i610j7j" path="res://sprites/item/health_potion.png" id="1_kr7ft"]
 [ext_resource type="Script" path="res://scripts/i_health_potion.gd" id="2_0ybrk"]
-[ext_resource type="AudioStream" uid="uid://bd17lenmrkfid" path="res://sounds/411597__omgbong__eating-an-apple-01.wav" id="3_oejm7"]
+[ext_resource type="AudioStream" uid="uid://skps3md0fll7" path="res://sounds/41529__jamius__potiondrinklong.wav" id="3_q5rxb"]
 
 [node name="iHealthPotion" type="Sprite2D"]
 z_index = 5
@@ -13,5 +13,5 @@ item_name = "Health Potion"
 description = "Use to cure for 5 point of heart"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_oejm7")
+stream = ExtResource("3_q5rxb")
 bus = &"SFX"
