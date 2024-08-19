@@ -1,12 +1,8 @@
-# 7.0 target
-# TODO drink health potion SFX
-# TODO bought SFX
-# TODO bought floating text
-# TODO quest system, system info
-# TODO new game loop
+# 7.1 target
 
 # Backlogs
 # start area, paved stone floor
+# bought floating text
 # draw order fix
 # weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
 # weapon skills tier, Novice, Adept, GrandMaster, legend
@@ -57,6 +53,10 @@ extends Node2D
 @onready var map = $UI/Map
 @onready var war_eye = $UI/WarEye
 @onready var goblin_army_1_spawner = $LevelSpawner/GoblinArmy1Spawner
+@onready var quest = $UI/Quest
+@onready var merchants = $NPCs/Merchants
+@onready var progress_timer = $ProgressTimer
+@onready var live_enemy = $UI/LiveEnemy
 const I_COIN_SMALL = preload("res://scenes/i_coin_small.tscn")
 const I_COIN_MEDIUM = preload("res://scenes/i_coin_medium.tscn")
 const PLAYER = preload("res://scenes/player.tscn")
@@ -64,6 +64,7 @@ const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
 var money: int = 0
 var kill_count = 0
+var progress = 1
 
 # Called when the node enters the scene tree for the first time.
 #   1
@@ -71,13 +72,18 @@ var kill_count = 0
 #   3
 func _ready():
 	randomize()
-	load_player(PLAYER_HAMMER, Vector2(0, 0), { "health": 1, "max_health": 10 })
+	#load_player(PLAYER_HAMMER, Vector2(0, 0), { "health": 1, "max_health": 10 })
+	load_player(PLAYER_HAMMER, Vector2(0, 0))
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
+	disable_merchants()
+	progress_timer.wait_time = 3
+	progress_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if progress == 2 and live_enemy.get_live_enemy_count() == 0:
+		_win()
 	
 func _on_player_hero_death():
 	lose_scene.visible = true
@@ -135,3 +141,18 @@ func spawn(type, top_left, bottom_right):
 	add_child(thing)
 	return thing
 	
+func enable_merchants():
+	merchants.visible = true
+	merchants.find_child("Interactable").interactable = true
+
+func disable_merchants():
+	merchants.visible = false
+	merchants.find_child("Interactable").interactable = false
+
+func _on_progress_timer_timeout():
+	if progress == 1:
+		quest.display_text("Level 1 : Kill some goblins")
+		goblin_army_1_spawner._start_sapwner()
+
+func level_complete(level):
+	progress += 1

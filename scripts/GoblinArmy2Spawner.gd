@@ -19,6 +19,5 @@ func do_spawn():
 	elif wave == 6 and get_alive_mob_count("mob") == 0:
 		enable = false
 		owner.war_eye.visible = false
-		spawn_trigger._reset_trigger()
 
 

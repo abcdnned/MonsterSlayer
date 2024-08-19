@@ -25,7 +25,7 @@ func _ready():
 	
 func _process(delta):
 	if Input.is_action_pressed("tab"):
-		visible = true
+		visible = false
 	else:
 		visible = false
 
@@ -53,10 +53,15 @@ func init_plain_boime():
 	var x = START.x
 	var y = START.y
 	# Start Plain
-	create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), false)
-	level_cord["starter_plain"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
+	set_plain_tile(x, y, false)
+	set_plain_tile(x, y - 1, false)
+	set_plain_tile(x + 1, y - 1, false)
+	set_plain_tile(x + 1, y, false)
+	#create_plain_chambler(Vector2(x - 1, y - 1), Vector2(x + 1, y + 1), false)
+	#level_cord["starter_plain"] = {"top_left": Vector2(x - 1, y - 1), "bottom_right": Vector2(x + 1, y + 1)}
+	level_cord["starter_plain"] = {"top_left": Vector2(x, y - 1), "bottom_right": Vector2(x + 1, y)}
 	# Create Start Plain Sourth Gate
-	create_gate(x + 1, y, 3)
+	#create_gate(x + 1, y, 3)
 	## Gallery to first small boss
 	#set_plain_tile(x + 2, y)
 	#set_plain_tile(x + 3, y)

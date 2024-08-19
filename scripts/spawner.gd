@@ -1,9 +1,8 @@
 extends Node
 class_name Spawner
 
-@export var internval_seconds = 3
+@export var internval_seconds = 8
 @export var enable = false
-@export var spawn_trigger: Node
 
 var wave = 1
 var spawn_count = 0
@@ -20,22 +19,22 @@ func _process(delta):
 		do_spawn()
 	
 func do_spawn():
-	if wave == 1 and get_alive_mob_count("melee_mob") == 0:
+	if wave == 1:
 		spawn_tracker(GOBLIN, "melee_mob")
 		wave += 1
-	elif wave <= 3 and get_alive_mob_count("melee_mob") == 0:
-		spawn_tracker(GOBLIN, "melee_mob")
-		spawn_tracker(GOBLIN, "melee_mob")
-		wave += 1
-	elif wave <= 5 and get_alive_mob_count("melee_mob") == 0:
-		spawn_tracker(GOBLIN, "melee_mob")
+	elif wave <= 3:
 		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN, "melee_mob")
 		wave += 1
-	elif wave == 6 and get_alive_mob_count("melee_mob") == 0:
+	elif wave <= 5:
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob")
+		wave += 1
+	elif wave == 6:
 		enable = false
 		owner.war_eye.visible = false
-		spawn_trigger._reset_trigger()	
+		owner.level_complete(1)
 
 func get_alive_mob_count(type):
 	var mob_count = 0
@@ -54,6 +53,7 @@ func spawn_mob(type, group):
 	var spawn_position = owner.map.get_spawn_position(top_left, bottom_right)
 	var mob = type.instantiate()
 	mob.add_to_group(group)
+	mob.add_to_group("mob")
 	mob.position = spawn_position
 	owner.add_child(mob)
 	mob.death.connect(owner._on_mob_death)
