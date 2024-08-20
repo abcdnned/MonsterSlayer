@@ -1,26 +1,16 @@
 # 7.1 target
-# TODO max heart increment item
 # TODO weapon handy system
-# TODO Level 2
 
 # Backlogs
 # skills unlock board
+# increase move speed
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
 # SFX: wolf, boomer
-# presure plate trape
-# notification when target spotted
-# Goblin Flag generator
-# dash_tired
-# dash_angel_limit
-# war fog
-# light
-# multi items， backpack
 # weapon tire
-# rush gallary
-# burnable wooden locked door
-# key merchants boss
+# weapon duribility system
 # goblin summoner
 # treasure goblin sneaker
+# item drop
 # white eye attack, purple eye attack
 # lootable precise collision
 # just pressed attack
@@ -51,6 +41,7 @@ extends Node2D
 @onready var map = $UI/Map
 @onready var war_eye = $UI/WarEye
 @onready var goblin_army_1_spawner = $LevelSpawner/GoblinArmy1Spawner
+@onready var goblin_army_2_spawner = $LevelSpawner/GoblinArmy2Spawner
 @onready var quest = $UI/Quest
 @onready var merchants = $NPCs/Merchants
 @onready var progress_timer = $ProgressTimer
@@ -71,7 +62,7 @@ var progress = 1
 func _ready():
 	randomize()
 	#load_player(PLAYER_HAMMER, Vector2(0, 0), { "health": 1, "max_health": 10 })
-	load_player(PLAYER_HAMMER, Vector2(0, 0))
+	load_player(PLAYER, Vector2(0, 0))
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
 	disable_merchants()
@@ -80,7 +71,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if progress == 2 and live_enemy.get_live_enemy_count() == 0:
+	if progress == 3 and live_enemy.get_live_enemy_count() == 0:
 		_win()
 	
 func _on_player_hero_death():
@@ -151,6 +142,10 @@ func _on_progress_timer_timeout():
 	if progress == 1:
 		quest.display_text("Level 1 : Kill some goblins")
 		goblin_army_1_spawner._start_sapwner()
+	elif progress == 2:
+		quest.display_text("Level 2 : Damn they can use bow")
+		goblin_army_2_spawner._start_sapwner()
 
 func level_complete(level):
 	progress += 1
+	progress_timer.start()

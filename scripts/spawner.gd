@@ -3,6 +3,7 @@ class_name Spawner
 
 @export var internval_seconds = 1
 @export var enable = false
+@export var start_level = 1
 
 var wave = 1
 var spawn_count = 0
@@ -70,4 +71,4 @@ func get_spawn_bottom_right():
 func _start_sapwner():
 	enable = true
 	owner.war_eye.visible = true
-	wave = 1
+	wave = start_level
