@@ -1,18 +1,10 @@
 # 7.1 target
+# TODO max heart increment item
+# TODO weapon handy system
+# TODO Level 2
 
 # Backlogs
-# start area, paved stone floor
-# bought floating text
-# draw order fix
-# weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
-# weapon skills tier, Novice, Adept, GrandMaster, legend
-# rage system, hit to increase, store to perform special attack of weapon
-# weapon durability tier, standard, durable, reinforced, unbreakable
-# press S sell item, collect mondy earned form merchants afterwards
-# strength system, support using heavy weapon, increased by potion
-# award merchants, king knight, give stage awards, can be purchased by money
-# max heart increment item
-# weapon handy system
+# skills unlock board
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
 # SFX: wolf, boomer
 # presure plate trape
@@ -39,6 +31,12 @@
 # pickable change cursor
 # hitten energy, ultra special attack
 # spear double stub
+# bought floating text
+# weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
+# weapon skills tier, Novice, Adept, GrandMaster, legend
+# strength system, support using heavy weapon, increased by potion
+# award merchants, king knight, give stage awards, can be purchased by money
+
 extends Node2D
 
 @onready var player = null

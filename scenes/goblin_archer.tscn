@@ -332,7 +332,7 @@ transitions = ["shoot", "chasing", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(32.175, 9.64471)
 
 [node name="GoblinArcher" type="CharacterBody2D" groups=["mob"]]
-z_index = 9
+z_index = 10
 script = ExtResource("1_3piif")
 max_health = 0.5
 

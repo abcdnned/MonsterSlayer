@@ -13,7 +13,6 @@ var tooltip = false
 var tooltip_hover_timer = 0
 
 func _ready():
-	z_index = 8
 	add_to_group("lootable")
 	create_tooltip()
 	_sub_ready()

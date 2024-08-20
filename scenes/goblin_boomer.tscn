@@ -239,7 +239,7 @@ transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(-61.26, -77.7)
 
 [node name="GoblinBoomer" type="CharacterBody2D" groups=["mob"]]
-z_index = 9
+z_index = 10
 script = ExtResource("1_243ql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

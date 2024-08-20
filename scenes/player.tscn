@@ -785,7 +785,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["human"]]
-z_index = 10
+z_index = 100
 script = ExtResource("1_4j5bp")
 max_health = 10.0
 

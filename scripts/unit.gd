@@ -87,6 +87,10 @@ func _sub_dead():
 func heal(h):
 	health = clampf(health + h, 0, max_health)
 	emit_signal("health_change", health)
-	
+
+func increase_max_health(h):
+	max_health += h
+	emit_signal("max_health_change", max_health)
+	heal(h)
 		
 

@@ -6,7 +6,6 @@
 
 [node name="iHealthPotion" type="Sprite2D"]
 z_index = 5
-z_as_relative = false
 texture = ExtResource("1_kr7ft")
 script = ExtResource("2_0ybrk")
 item_name = "Health Potion"

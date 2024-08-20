@@ -251,7 +251,7 @@ transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(112.147, -223.865)
 
 [node name="GoblinWarriorSpear" type="CharacterBody2D" groups=["mob"]]
-z_index = 9
+z_index = 10
 script = ExtResource("1_e1vh1")
 max_health = 1.0
 

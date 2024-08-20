@@ -207,7 +207,7 @@ transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(78.8701, -82.8649)
 
 [node name="Wolf" type="CharacterBody2D" groups=["mob"]]
-z_index = 9
+z_index = 10
 script = ExtResource("1_sgvjy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

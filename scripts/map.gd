@@ -127,6 +127,27 @@ func _on_player_map_pos_change(x, y):
 			tiles[key.x][key.y].add_child(player)
 			break
 
+func get_spawn_border_position(top_left, bottom_right):
+	var get_random_x = func():
+		var x = randf_range(-128, 128)
+		if x < 0:
+			x = bottom_right.x + x - 128
+		else:
+			x = top_left.x + x + 128
+		return x
+	var get_random_y = func():
+		var y = randf_range(-128, 128)
+		if y < 0:
+			y = bottom_right.y + y - 128
+		else:
+			y = top_left.y + y + 128
+		return y
+	var x = get_random_x.call()
+	var y = get_random_y.call()
+	while not can_spawn(x, y):
+		x = get_random_x.call()
+		y = get_random_y.call()
+	return Vector2(x, y)
 
 func get_spawn_position(top_left, bottom_right):
 	var x = randf_range(top_left.x, bottom_right.x)

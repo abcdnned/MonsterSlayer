@@ -597,7 +597,7 @@ transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransiti
 graph_offset = Vector2(90.953, -59.6884)
 
 [node name="Player_Spear" type="CharacterBody2D" groups=["human"]]
-z_index = 10
+z_index = 100
 script = ExtResource("1_eacyd")
 max_health = 10.0
 

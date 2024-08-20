@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw76laducm147"]
+
+[ext_resource type="Texture2D" uid="uid://cxwr4jxhea6gb" path="res://sprites/item/heart_4.0.png" id="1_nrepn"]
+[ext_resource type="Script" path="res://scripts/i_heart.gd" id="2_yc13k"]
+[ext_resource type="AudioStream" uid="uid://b7xooelmom3uh" path="res://sounds/effect/644306__reincarnatedechoes__heart-collecthealing-retro.wav" id="3_yye3v"]
+
+[node name="i_Heart" type="Sprite2D"]
+z_index = 5
+z_as_relative = false
+texture = ExtResource("1_nrepn")
+script = ExtResource("2_yc13k")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yye3v")
+bus = &"SFX"

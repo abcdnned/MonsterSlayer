@@ -1,7 +1,7 @@
 extends Node
 class_name Spawner
 
-@export var internval_seconds = 8
+@export var internval_seconds = 1
 @export var enable = false
 
 var wave = 1
@@ -22,11 +22,11 @@ func do_spawn():
 	if wave == 1:
 		spawn_tracker(GOBLIN, "melee_mob")
 		wave += 1
-	elif wave <= 3:
+	elif wave <= 3 and get_alive_mob_count("mob") == 0:
 		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN, "melee_mob")
 		wave += 1
-	elif wave <= 5:
+	elif wave <= 5 and get_alive_mob_count("mob") == 0:
 		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN, "melee_mob")
 		spawn_tracker(GOBLIN, "melee_mob")
@@ -50,7 +50,7 @@ func spawn_tracker(type, group):
 func spawn_mob(type, group):
 	var top_left = get_spawn_top_left()
 	var bottom_right = get_spawn_bottom_right()
-	var spawn_position = owner.map.get_spawn_position(top_left, bottom_right)
+	var spawn_position = owner.map.get_spawn_border_position(top_left, bottom_right)
 	var mob = type.instantiate()
 	mob.add_to_group(group)
 	mob.add_to_group("mob")
