@@ -1,4 +1,5 @@
 # 7.1 target
+# TODO sword lightning strike
 # TODO weapon handy system
 
 # Backlogs
