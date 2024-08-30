@@ -67,6 +67,10 @@ func _physics_process(delta):
 			move_and_slide()	
 		"swap":
 			animation_tree.set("parameters/conditions/attack", false)
+			if state_machine.get_current_play_position() >= 0.06 and Input.is_action_pressed("left_click"):
+				animation_tree.set("parameters/conditions/special_attack", true)
+		"lightning_strike":
+			animation_tree.set("parameters/conditions/special_attack", false)
 		"stun":
 			animation_tree.set("parameters/conditions/stun", false)
 			damage_zone.monitoring = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=35 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/weapon/521999__kastenfrosch__whoosh-dash.wav" id="8_cfbsl"]
 [ext_resource type="AudioStream" uid="uid://cm8vrpnyg8fpv" path="res://sounds/weapon/690076__apocaloopsis__small-object-hit-wood.wav" id="10_fawfi"]
 [ext_resource type="PackedScene" uid="uid://brjyfu25b5ab6" path="res://scenes/sprint_dust.tscn" id="13_02niw"]
+[ext_resource type="Texture2D" uid="uid://g5b5aiyxydse" path="res://sprites/effects/sword_trail.png" id="14_8hl5y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
@@ -379,6 +380,42 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(55, -57)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sprite2D/Trail1:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Sprite2D/Trail2:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Sprite2D/Trail3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2ax2q"]
 resource_name = "dash"
@@ -609,6 +646,103 @@ tracks/3/keys = {
 "values": [-0.195387]
 }
 
+[sub_resource type="Animation" id="Animation_qbka8"]
+resource_name = "lightning_strike"
+length = 0.92
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.18, 0.2, 0.22, 0.26, 0.34, 0.38, 0.4, 0.42, 0.44, 0.52, 0.54, 0.56, 0.58, 0.62, 0.68, 0.76, 0.84, 0.92),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.52262, -1.52262, -0.871355, -0.0423344, 0.692502, 1.58439, 1.58439, 0.692502, -0.0423344, -0.871355, -1.52262, -2.16964, -2.30237, -1.41735, 0.280388]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/damage_zone:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26, 0.3, 0.46, 0.5, 0.62, 0.66),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [false, false, false, false, false, false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/LongSword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.18, 0.2, 0.22, 0.26, 0.34, 0.38, 0.4, 0.42, 0.44, 0.52, 0.54, 0.56, 0.58, 0.62, 0.68, 0.76, 0.84, 0.92),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(33, -196), Vector2(125, -151), Vector2(198, -3), Vector2(156, 130), Vector2(21, 183), Vector2(21, 183), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(-52, -173), Vector2(-66, -163), Vector2(55, -86), Vector2(107, 91)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.28, 0.42),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_sword_swing"
+}, {
+"args": [],
+"method": &"_sword_swing"
+}, {
+"args": [],
+"method": &"_sword_swing"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/Trail1:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D/Trail2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.38, 0.46),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2D/Trail3:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.54, 0.62),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_7vio4"]
 resource_name = "stun"
 loop_mode = 1
@@ -636,7 +770,7 @@ tracks/1/path = NodePath("Sprite2D/damage_zone:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.14, 0.18),
+"times": PackedFloat32Array(0.16, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [true, false]
@@ -778,6 +912,7 @@ _data = {
 "idle_defense_cancel": SubResource("Animation_bqgxm"),
 "idle_defense_hit": SubResource("Animation_86rf0"),
 "interact": ExtResource("6_u2pkg"),
+"lightning_strike": SubResource("Animation_qbka8"),
 "stun": SubResource("Animation_7vio4"),
 "swap": SubResource("Animation_520qt"),
 "use_item": SubResource("Animation_ly6d4"),
@@ -827,6 +962,28 @@ sound = NodePath("../../sword_hit")
 position = Vector2(156.5, 3)
 shape = SubResource("RectangleShape2D_fog5n")
 
+[node name="Trail1" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(138, -58)
+rotation = 2.12561
+scale = Vector2(2.28996, 2.3254)
+texture = ExtResource("14_8hl5y")
+
+[node name="Trail2" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(132, 15)
+rotation = -2.4335
+scale = Vector2(2.28996, 2.3254)
+texture = ExtResource("14_8hl5y")
+flip_v = true
+
+[node name="Trail3" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(138, -58)
+rotation = 2.12561
+scale = Vector2(2.28996, 2.3254)
+texture = ExtResource("14_8hl5y")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqexy")
 
@@ -854,6 +1011,7 @@ parameters/conditions/dying = false
 parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false
 parameters/conditions/interact = false
+parameters/conditions/special_attack = false
 parameters/conditions/stun = false
 parameters/conditions/unstun = false
 "parameters/conditions/unstun & hold_item" = false
