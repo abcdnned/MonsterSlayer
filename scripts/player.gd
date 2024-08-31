@@ -46,7 +46,7 @@ func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
 			if Input.is_action_just_pressed("right_click"):
-				animation_tree.set("parameters/conditions/defense", true)
+				animation_tree.set("parameters/conditions/special_attack", true)
 			elif Input.is_action_pressed("item"):
 				if item_handle.get_child_count() > 0:
 					animation_tree.set("parameters/conditions/hold_item", true)
@@ -63,12 +63,12 @@ func _physics_process(delta):
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
 			elif Input.is_action_just_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
+			elif get_input() == Vector2(0.0, 1.0):
+				animation_tree.set("parameters/conditions/defense", true)
 			_move_velocity(delta)
 			move_and_slide()	
 		"swap":
 			animation_tree.set("parameters/conditions/attack", false)
-			if state_machine.get_current_play_position() >= 0.06 and Input.is_action_pressed("left_click"):
-				animation_tree.set("parameters/conditions/special_attack", true)
 		"lightning_strike":
 			animation_tree.set("parameters/conditions/special_attack", false)
 		"stun":
@@ -111,7 +111,7 @@ func _physics_process(delta):
 			else:
 				velocity = velocity.lerp(Vector2.ZERO, delta * 20)
 			move_and_slide()
-			if not Input.is_action_pressed("right_click"):
+			if not get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
 		"idle_defense_cancel":
 			animation_tree.set("parameters/conditions/defense_cancel", false)

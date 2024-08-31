@@ -63,6 +63,7 @@ func _take_damage(d, v, source_position, tick):
 		_sub_dead()
 	else:
 		animation_tree.set("parameters/conditions/stun", true)
+		print("stun")
 	return [false, d]
 		
 func _apply_dying_shader():
