@@ -1,8 +1,10 @@
 # 7.1 target
-# TODO sword lightning strike
-# TODO weapon handy system
+# TODO sword lightning dash
+# TODO dummy unit
+# TODO combo test
 
 # Backlogs
+# weapon handy system
 # skills unlock board
 # increase move speed
 # arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
