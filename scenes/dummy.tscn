@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwe8s5kwh2tkd"]
+
+[ext_resource type="Script" path="res://scripts/dummy.gd" id="1_iv1pj"]
+[ext_resource type="Texture2D" uid="uid://c44jmc2h1q2te" path="res://sprites/dummy.png" id="2_jw1xh"]
+[ext_resource type="Animation" uid="uid://b1bn6rpg1nngh" path="res://animation/stun.res" id="8_ut6c1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpxg6"]
+radius = 50.0
+
+[sub_resource type="Animation" id="Animation_2swvi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
+_data = {
+"RESET": SubResource("Animation_2swvi"),
+"stun": ExtResource("8_ut6c1")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c14qp"]
+animation = &"chasing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wd0w4"]
+animation = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xbksm"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kn6un"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b4ihm"]
+advance_mode = 2
+advance_condition = &"unstun"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
+states/Start/position = Vector2(163, 84.5)
+states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
+states/chasing/position = Vector2(321.5, 33)
+states/stun/node = SubResource("AnimationNodeAnimation_wd0w4")
+states/stun/position = Vector2(452.03, -67.485)
+transitions = ["Start", "chasing", SubResource("AnimationNodeStateMachineTransition_xbksm"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_kn6un"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_b4ihm")]
+graph_offset = Vector2(-1451.56, -159.315)
+
+[node name="Dummy" type="CharacterBody2D" groups=["mob"]]
+z_index = 10
+script = ExtResource("1_iv1pj")
+max_health = 30000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jw1xh")
+region_rect = Rect2(384, 128, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_cpxg6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uihj1")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uihj1")
+}
+tree_root = SubResource("AnimationNodeStateMachine_42fvj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/stun = false
+parameters/conditions/unstun = false

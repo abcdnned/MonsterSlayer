@@ -648,7 +648,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_qbka8"]
 resource_name = "lightning_strike"
-length = 0.82
+length = 0.98
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -657,7 +657,7 @@ tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.12, 0.14, 0.16, 0.2, 0.24, 0.28, 0.3, 0.32, 0.34, 0.42, 0.44, 0.46, 0.48, 0.52, 0.58, 0.66, 0.74, 0.82),
+"times": PackedFloat32Array(0, 0.16, 0.18, 0.2, 0.22, 0.26, 0.3, 0.34, 0.36, 0.38, 0.4, 0.48, 0.5, 0.52, 0.54, 0.58, 0.64, 0.72, 0.84, 0.98),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.52262, -1.52262, -0.871355, -0.0423344, 0.692502, 1.58439, 1.58439, 0.692502, -0.0423344, -0.871355, -1.52262, -2.16964, -2.30237, -1.41735, 0.280388]
@@ -669,7 +669,7 @@ tracks/1/path = NodePath("Sprite2D/LongSword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.12, 0.14, 0.16, 0.2, 0.24, 0.28, 0.3, 0.32, 0.34, 0.42, 0.44, 0.46, 0.48, 0.52, 0.58, 0.66, 0.74, 0.82),
+"times": PackedFloat32Array(0, 0.16, 0.18, 0.2, 0.22, 0.26, 0.3, 0.34, 0.36, 0.38, 0.4, 0.48, 0.5, 0.52, 0.54, 0.58, 0.64, 0.72, 0.84, 0.98),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(33, -196), Vector2(125, -151), Vector2(198, -3), Vector2(156, 130), Vector2(21, 183), Vector2(21, 183), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(-52, -173), Vector2(-66, -163), Vector2(55, -86), Vector2(107, 91)]
@@ -681,7 +681,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.14, 0.22, 0.32),
+"times": PackedFloat32Array(0.2, 0.28, 0.38),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -701,7 +701,7 @@ tracks/3/path = NodePath("Sprite2D/Trail1:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.14, 0.24),
+"times": PackedFloat32Array(0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -713,7 +713,7 @@ tracks/4/path = NodePath("Sprite2D/Trail2:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.32, 0.4),
+"times": PackedFloat32Array(0.38, 0.46),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -725,7 +725,7 @@ tracks/5/path = NodePath("Sprite2D/Trail3:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.48, 0.56),
+"times": PackedFloat32Array(0.54, 0.62),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -737,7 +737,7 @@ tracks/6/path = NodePath("Sprite2D/combo1:monitoring")
 tracks/6/interp = 0
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.2, 0.24),
+"times": PackedFloat32Array(0.26, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -749,7 +749,7 @@ tracks/7/path = NodePath("Sprite2D/combo2:monitoring")
 tracks/7/interp = 0
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.36, 0.4),
+"times": PackedFloat32Array(0.42, 0.46),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -761,10 +761,30 @@ tracks/8/path = NodePath("Sprite2D/combo3:monitoring")
 tracks/8/interp = 0
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.52, 0.56),
+"times": PackedFloat32Array(0.58, 0.62),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.16, 0.3, 0.48),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"dash_attack"
+}, {
+"args": [],
+"method": &"dash_attack_successor"
+}, {
+"args": [],
+"method": &"dash_attack_successor"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7vio4"]
@@ -870,7 +890,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_520qt"]
 resource_name = "swap"
-length = 0.34
+length = 0.3
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -879,7 +899,7 @@ tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.1, 0.12, 0.16, 0.28, 0.34),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.1, 0.12, 0.16, 0.24, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [2.37193, 2.37193, 0.692502, -0.0423344, -0.871355, -1.52262, -2.16964, -2.30237]
@@ -891,7 +911,7 @@ tracks/1/path = NodePath("Sprite2D/damage_zone:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.14),
+"times": PackedFloat32Array(0.1, 0.12),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [true, false]
@@ -903,7 +923,7 @@ tracks/2/path = NodePath("Sprite2D/LongSword:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.1, 0.12, 0.16, 0.28, 0.34),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.1, 0.12, 0.16, 0.24, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-64, 175), Vector2(-64, 175), Vector2(156, 130), Vector2(198, -3), Vector2(125, -151), Vector2(33, -196), Vector2(-52, -173), Vector2(-66, -163)]
@@ -1077,7 +1097,7 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="combo1" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 500.0
+knockback = 800.0
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/combo1"]
@@ -1086,7 +1106,7 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="combo2" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 500.0
+knockback = 800.0
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/combo2"]
@@ -1095,7 +1115,7 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="combo3" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 2000.0
+knockback = 1600.0
 sound = NodePath("../../sword_hit")
 stun = 20
 
@@ -1168,6 +1188,7 @@ parameters/conditions/use_item = false
 
 [node name="sword_swing_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_xgjfg")
+volume_db = 10.0
 bus = &"SFX"
 
 [node name="sword_hit" type="AudioStreamPlayer2D" parent="."]

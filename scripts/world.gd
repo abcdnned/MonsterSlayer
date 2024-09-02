@@ -1,7 +1,4 @@
-# 7.1 target
-# TODO sword lightning dash
-# TODO dummy unit
-# TODO combo test
+# 7.2 target
 
 # Backlogs
 # weapon handy system
@@ -56,7 +53,7 @@ const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
 var money: int = 0
 var kill_count = 0
-var progress = 1
+var progress = 0
 
 # Called when the node enters the scene tree for the first time.
 #   1

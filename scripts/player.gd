@@ -71,6 +71,9 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/attack", false)
 		"lightning_strike":
 			animation_tree.set("parameters/conditions/special_attack", false)
+			velocity = dash_attack_direction * dash_attack_speed
+			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
+			move_and_slide()
 		"stun":
 			animation_tree.set("parameters/conditions/stun", false)
 			damage_zone.monitoring = false
@@ -247,3 +250,13 @@ func drop():
 	
 func interact(o):
 	animation_tree.set("parameters/conditions/interact", true)
+
+func dash_attack():
+	dash_attack_speed = 600
+	dash_attack_deduction = 20.0
+	dash_attack_direction = (get_global_mouse_position() - global_position).normalized()
+
+func dash_attack_successor():
+	dash_attack_speed = 600
+	dash_attack_deduction = 20.0
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=28 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dlsr0nb52f4yd" path="res://scenes/merchants.tscn" id="17_vteil"]
 [ext_resource type="PackedScene" uid="uid://cw76laducm147" path="res://scenes/i_heart.tscn" id="18_t5plx"]
 [ext_resource type="PackedScene" uid="uid://cwtpgqo8etj1c" path="res://scenes/i_health_potion.tscn" id="19_x22p1"]
+[ext_resource type="PackedScene" uid="uid://cwe8s5kwh2tkd" path="res://scenes/dummy.tscn" id="20_crv25"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -257,5 +258,8 @@ position = Vector2(631, 749)
 
 [node name="iHealthPotion" parent="." instance=ExtResource("19_x22p1")]
 position = Vector2(456, 607)
+
+[node name="Dummy" parent="." instance=ExtResource("20_crv25")]
+position = Vector2(-103, -223)
 
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]

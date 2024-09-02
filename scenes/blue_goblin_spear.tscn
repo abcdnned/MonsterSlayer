@@ -240,7 +240,7 @@ states/stun/position = Vector2(452.03, -67.485)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.086)
 transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_crb5a"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_vwmt7"), "stun", "dying", SubResource("AnimationNodeStateMachineTransition_shpcm"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_6xj28"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_r156f")]
-graph_offset = Vector2(22.53, -191.985)
+graph_offset = Vector2(-108.825, -56.2725)
 
 [node name="BlueGoblinSpear" type="CharacterBody2D" groups=["mob"]]
 z_index = 10
