@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cp030u4v4at67"]
+[gd_scene load_steps=39 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
@@ -149,12 +149,16 @@ tracks/1/keys = {
 resource_name = "wandering"
 loop_mode = 1
 
+[sub_resource type="Animation" id="Animation_wkec3"]
+resource_name = "stun"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uihj1"]
 _data = {
 "RESET": SubResource("Animation_2swvi"),
 "attack": SubResource("Animation_cg68e"),
 "chasing": SubResource("Animation_mtitu"),
 "dying": SubResource("Animation_ic3m7"),
+"stun": SubResource("Animation_wkec3"),
 "wandering": SubResource("Animation_gylsu")
 }
 
@@ -166,6 +170,9 @@ animation = &"chasing"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7si6"]
 animation = &"dying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3rai"]
+animation = &"stun"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lma3l"]
 animation = &"wandering"
@@ -201,23 +208,40 @@ advance_condition = &"wandering"
 advance_mode = 2
 advance_condition = &"dying"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o6bxl"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fl08w"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hyywo"]
+advance_mode = 2
+advance_condition = &"stun"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtj66"]
+advance_mode = 2
+advance_condition = &"unstun"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
 states/Start/position = Vector2(200.5, 91)
 states/attack/node = SubResource("AnimationNodeAnimation_w5dv5")
-states/attack/position = Vector2(510.34, 218.71)
+states/attack/position = Vector2(602.34, 242.21)
 states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(444, 94)
 states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
 states/dying/position = Vector2(645, 91.5)
+states/stun/node = SubResource("AnimationNodeAnimation_r3rai")
+states/stun/position = Vector2(467.1, 301.878)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.461)
-transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi")]
-graph_offset = Vector2(22.53, 60.465)
+transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_o6bxl"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_fl08w"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_hyywo"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_xtj66")]
+graph_offset = Vector2(7.93502, 99.48)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 10
 script = ExtResource("1_04ln1")
-max_health = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_qle06")
@@ -273,7 +297,9 @@ tree_root = SubResource("AnimationNodeStateMachine_42fvj")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/dying = false
+parameters/conditions/stun = false
 parameters/conditions/target = false
+parameters/conditions/unstun = false
 parameters/conditions/wandering = false
 
 [node name="death_yell" type="AudioStreamPlayer2D" parent="."]

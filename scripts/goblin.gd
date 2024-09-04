@@ -41,6 +41,7 @@ func _physics_process(delta):
 					velocity = direction * SPEED
 					move_and_slide()
 		"chasing":
+			animation_tree.set("parameters/conditions/unstun", false)
 			if target_finder.target:
 				var direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 				sprite.look_at(navigation_agent_2d.get_next_path_position())
@@ -56,6 +57,17 @@ func _physics_process(delta):
 			knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
 			move_and_slide()
 			damage_zone.monitoring = false
+		"stun":
+			animation_tree.set("parameters/conditions/stun", false)
+			damage_zone.monitoring = false
+			if stun_ticks > 0:
+				stun_ticks -= 1
+				var direction = knock_back_source_position.direction_to(global_position).normalized()
+				velocity = direction * knock_back_force
+				knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
+				move_and_slide()
+			else:
+				animation_tree.set("parameters/conditions/unstun", true)
 
 
 func _on_timer_timeout():

@@ -1,5 +1,4 @@
 # 7.3 target
-# TODO increase goblin health
 
 # Backlogs
 # SFX: wolf, boomer
