@@ -1097,7 +1097,7 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="combo1" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 800.0
+knockback = 880.0
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/combo1"]
@@ -1106,7 +1106,7 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="combo2" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 800.0
+knockback = 880.0
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/combo2"]

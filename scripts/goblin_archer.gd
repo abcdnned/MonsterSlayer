@@ -1,6 +1,6 @@
 extends Unit
 
-const SPEED := 400.0
+const SPEED := 500.0
 const CHARGE_DIS := 800.0
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D

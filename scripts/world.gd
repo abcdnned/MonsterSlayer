@@ -1,14 +1,9 @@
-# 7.2 target
+# 7.3 target
+# TODO increase goblin health
 
 # Backlogs
-# weapon handy system
-# skills unlock board
-# increase move speed
-# arean mode, choose flag to hit, summon enmeies, get loot, earn money, train skills, beat the boss, lock new arean
 # SFX: wolf, boomer
 # weapon tire
-# weapon duribility system
-# goblin summoner
 # treasure goblin sneaker
 # item drop
 # white eye attack, purple eye attack
@@ -16,16 +11,14 @@
 # just pressed attack
 # stanmine system
 # design monster tire
-# Sheild charge
-# each enemy's ranke, novice, adept, grandMaster, legend
 # pickable change cursor
-# hitten energy, ultra special attack
 # spear double stub
 # bought floating text
 # weapon tier, common, rare, epic, mythical; weapon damage tier: 1 < common < 3 < rare < 5 < epic < 7 < mythical < 9
 # weapon skills tier, Novice, Adept, GrandMaster, legend
 # strength system, support using heavy weapon, increased by potion
 # award merchants, king knight, give stage awards, can be purchased by money
+
 
 extends Node2D
 
@@ -53,7 +46,7 @@ const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
 var money: int = 0
 var kill_count = 0
-var progress = 0
+var progress = 1
 
 # Called when the node enters the scene tree for the first time.
 #   1

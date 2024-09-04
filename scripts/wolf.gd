@@ -1,6 +1,6 @@
 extends Unit
 
-const SPEED = 550
+const SPEED = 600
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell

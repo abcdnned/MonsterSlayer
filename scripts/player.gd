@@ -14,16 +14,16 @@ extends Unit
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 signal hero_death
 signal map_pos_change(x, y)
-const WALK_SPEED = 500.0
-const GUARD_SPEED = 300.0
-const SPRINT_SPEED = 800.0
+const WALK_SPEED = 550.0
+const GUARD_SPEED = 330.0
+const SPRINT_SPEED = 880.0
 
 var speed = WALK_SPEED
 
 var dash_direction = Vector2.ZERO
-const DASH_MAX_SPEED = 1400.0
+const DASH_MAX_SPEED = 1540.0
 var dash_speed = DASH_MAX_SPEED
-const DASH_ATTACK_MAX_SPEED = 1100.0
+const DASH_ATTACK_MAX_SPEED = 1210.0
 var dash_attack_speed = DASH_ATTACK_MAX_SPEED
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
@@ -252,11 +252,11 @@ func interact(o):
 	animation_tree.set("parameters/conditions/interact", true)
 
 func dash_attack():
-	dash_attack_speed = 600
+	dash_attack_speed = 660
 	dash_attack_deduction = 20.0
 	dash_attack_direction = (get_global_mouse_position() - global_position).normalized()
 
 func dash_attack_successor():
-	dash_attack_speed = 600
+	dash_attack_speed = 660
 	dash_attack_deduction = 20.0
 
