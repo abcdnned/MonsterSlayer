@@ -74,18 +74,6 @@ func _physics_process(delta):
 			velocity = dash_attack_direction * dash_attack_speed
 			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
 			move_and_slide()
-		"stun":
-			animation_tree.set("parameters/conditions/stun", false)
-			damage_zone.monitoring = false
-			damage_zone_2.monitoring = false
-			if stun_ticks > 0:
-				stun_ticks -= 1
-				var direction = knock_back_source_position.direction_to(global_position).normalized()
-				velocity = direction * knock_back_force
-				knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
-				move_and_slide()
-			else:
-				animation_tree.set("parameters/conditions/unstun", true)
 		"dying":
 			damage_zone.monitoring = false
 			damage_zone_2.monitoring = false

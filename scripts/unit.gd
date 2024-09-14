@@ -27,6 +27,7 @@ signal death
 func _ready():
 	state_machine = animation_tree.get("parameters/playback")
 	health = max_health
+	stamina = max_stamina
 	emit_signal("health_change", health)
 	emit_signal("max_health_change", max_health)
 	emit_signal("stamina_change", stamina)
@@ -46,6 +47,14 @@ func _sub_ready():
 	pass
 
 func _process(delta):
+	if stun_ticks && stun_ticks > 0:
+		stun_ticks -= 1
+		var direction = knock_back_source_position.direction_to(global_position).normalized()
+		velocity = direction * knock_back_force
+		knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
+		move_and_slide()
+	else:
+		animation_tree.set("parameters/conditions/unstun", true)
 	_check_state_change()
 
 func _check_state_change():
@@ -58,11 +67,17 @@ func _check_state_change():
 func _on_state_entered(state_name: String):
 	if state_name == "stun":
 		_apply_stun_shader()
+		_set_damage_zone_monitoring(false)
 
 func _on_state_exited(state_name: String):
 	if state_name == "stun":
 		_clear_stun_shader()
+		_set_damage_zone_monitoring(true)
 
+func _set_damage_zone_monitoring(monitoring: bool):
+	for child in get_children():
+		if child is Area2D and child.get_filename() == "res://scenes/damage_zone.tscn":
+			child.monitoring = monitoring
 	
 func _take_damage(d, v, source_position, tick):
 	self.knock_back_force = v
@@ -79,7 +94,7 @@ func _take_damage(d, v, source_position, tick):
 		_apply_dying_shader()
 		_sub_dead()
 	else:
-		animation_tree.set("parameters/conditions/stun", true)
+		state_machine.start("stun")
 	return [false, d]
 		
 func _apply_dying_shader():

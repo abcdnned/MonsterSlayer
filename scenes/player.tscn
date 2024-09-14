@@ -1184,9 +1184,7 @@ parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false
 parameters/conditions/interact = false
 parameters/conditions/special_attack = false
-parameters/conditions/stun = false
 parameters/conditions/unstun = false
-"parameters/conditions/unstun & hold_item" = false
 parameters/conditions/use_item = false
 
 [node name="sword_swing_sound" type="AudioStreamPlayer2D" parent="."]
