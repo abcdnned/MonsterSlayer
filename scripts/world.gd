@@ -1,4 +1,4 @@
-# 7.4 target
+# Current sprint
 
 # Backlogs
 # SFX: wolf, boomer
