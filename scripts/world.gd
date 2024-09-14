@@ -1,4 +1,4 @@
-# 7.3 target
+# 7.4 target
 
 # Backlogs
 # SFX: wolf, boomer
@@ -8,7 +8,7 @@
 # white eye attack, purple eye attack
 # lootable precise collision
 # just pressed attack
-# stanmine system
+# adopt hammer and spear
 # design monster tire
 # pickable change cursor
 # spear double stub
@@ -27,6 +27,8 @@ extends Node2D
 @onready var coins = $UI/Coins
 @onready var winning_scene = $UI/WinningScene
 @onready var hearts = $UI/Life/Hearts
+@onready var stamina = $UI/Energy/Stamina
+@onready var max_stamina = $UI/Energy/MaxStamina
 @onready var max_hearts = $UI/Life/MaxHearts
 @onready var lose_scene = $UI/LoseScene
 @onready var winning_sound = $WinningSound
@@ -98,6 +100,8 @@ func load_player(player_type, position, stats = null):
 	player.owner = self
 	player.health_change.connect(hearts._on_player_health_change)
 	player.max_health_change.connect(max_hearts._on_player_max_health_change)
+	player.stamina_change.connect(stamina._on_player_stamina_change)
+	player.max_stamina_change.connect(max_stamina._on_player_max_stamina_change)
 	player.hero_death.connect(_on_player_hero_death)
 	player.map_pos_change.connect(map._on_player_map_pos_change)
 	player.map_pos_change.connect(_on_player_map_pos_change)
@@ -106,7 +110,9 @@ func load_player(player_type, position, stats = null):
 		player.max_health = stats["max_health"]
 	player.emit_signal("health_change", player.health)
 	player.emit_signal("max_health_change", player.max_health)
-
+	player.emit_signal("stamina_change", player.stamina)
+	player.emit_signal("max_stamina_change", player.max_stamina)
+	
 func _on_player_map_pos_change(x, y):
 	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
 	var i = self.map.tile_to_cord[Vector2(p.x, p.y)]

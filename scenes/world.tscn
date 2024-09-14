@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=30 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -10,10 +10,13 @@
 [ext_resource type="Shader" path="res://shader/dying.gdshader" id="8_tthfh"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="9_l8cwq"]
 [ext_resource type="PackedScene" uid="uid://c1agv22pvbvaj" path="res://scenes/winning_scene.tscn" id="10_45iw7"]
+[ext_resource type="Texture2D" uid="uid://bjhebxgri1whu" path="res://sprites/energy.png" id="11_5wd1r"]
 [ext_resource type="PackedScene" uid="uid://bacveih6couh6" path="res://scenes/map.tscn" id="11_8baoh"]
 [ext_resource type="AudioStream" uid="uid://cmxyqbek488ch" path="res://sounds/mixkit-battle-man-scream-2175.wav" id="11_54gj3"]
 [ext_resource type="Script" path="res://scripts/LiveEnemy.gd" id="11_nwqkv"]
 [ext_resource type="PackedScene" uid="uid://dxpc0aat7sd54" path="res://scenes/quest.tscn" id="11_s5dyf"]
+[ext_resource type="Script" path="res://scripts/Stamina.gd" id="12_i4yyr"]
+[ext_resource type="Script" path="res://scripts/MaxStamina.gd" id="13_kv0ah"]
 [ext_resource type="Script" path="res://scripts/GoblinArmy2Spawner.gd" id="14_arbhp"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
 [ext_resource type="PackedScene" uid="uid://dlsr0nb52f4yd" path="res://scenes/merchants.tscn" id="17_vteil"]
@@ -192,6 +195,40 @@ texture = ExtResource("5_vj55y")
 expand_mode = 2
 stretch_mode = 1
 script = ExtResource("8_qgpxq")
+
+[node name="Energy" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 0.123
+anchor_top = 0.899
+anchor_right = 0.123
+anchor_bottom = 0.899
+offset_left = -0.639999
+offset_top = -52.95
+offset_right = 39.36
+offset_bottom = -12.95
+grow_vertical = 0
+
+[node name="Stamina" type="TextureRect" parent="UI/Energy"]
+z_index = 1
+layout_mode = 0
+offset_right = 1420.0
+offset_bottom = 128.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_5wd1r")
+expand_mode = 1
+stretch_mode = 1
+script = ExtResource("12_i4yyr")
+
+[node name="MaxStamina" type="TextureRect" parent="UI/Energy"]
+material = SubResource("ShaderMaterial_75xxt")
+layout_mode = 0
+offset_right = 1420.0
+offset_bottom = 128.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_5wd1r")
+expand_mode = 2
+stretch_mode = 1
+script = ExtResource("13_kv0ah")
 
 [node name="Kill" type="Label" parent="UI"]
 offset_right = 40.0

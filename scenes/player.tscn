@@ -1064,6 +1064,7 @@ _data = {
 z_index = 100
 script = ExtResource("1_4j5bp")
 max_health = 10.0
+max_stamina = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_mrnfa")
@@ -1089,6 +1090,7 @@ rotation = -0.280392
 
 [node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
+knockback = 1200.0
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
@@ -1125,6 +1127,7 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="damage_zone2" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
+knockback = 1200.0
 sound = NodePath("../../sword_hit")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone2"]

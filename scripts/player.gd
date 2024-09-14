@@ -45,23 +45,23 @@ func _process(delta):
 func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
-			if Input.is_action_just_pressed("right_click"):
+			if Input.is_action_just_pressed("right_click") and consume(3):
 				animation_tree.set("parameters/conditions/special_attack", true)
 			elif Input.is_action_pressed("item"):
 				if item_handle.get_child_count() > 0:
 					animation_tree.set("parameters/conditions/hold_item", true)
 					animation_tree.set("parameters/conditions/hide_item", false)
-			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
+			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped() && consume(1):
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
 				sprint = true
-			elif sprint and Input.is_action_pressed("sprint") and get_input() == Vector2(0.0, -1.0) and Input.is_action_just_pressed("left_click"):
+			elif sprint and Input.is_action_pressed("sprint") and get_input() == Vector2(0.0, -1.0) and Input.is_action_just_pressed("left_click") && consume(1):
 				animation_tree.set("parameters/conditions/dash_attack", true)
 				dash_attack_speed = DASH_ATTACK_MAX_SPEED
 				dash_attack_deduction = 20.0
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
-			elif Input.is_action_just_pressed("left_click"):
+			elif Input.is_action_just_pressed("left_click") and consume(1):
 				animation_tree.set("parameters/conditions/attack", true)
 			elif get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense", true)

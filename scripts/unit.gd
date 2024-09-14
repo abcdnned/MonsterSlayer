@@ -10,12 +10,18 @@ var previous_state = ""
 
 var health := 2.0
 @export var max_health := 3.0
+var stamina := 3
+@export var max_stamina := 3
 var knock_back_force
 var stun_ticks
 var knock_back_source_position
+@export var stamina_restore_time: float = 2.0
+var stamina_restore_timer: Timer
 
 signal health_change(health)
 signal max_health_change(max_health)
+signal stamina_change(stamina)
+signal max_stamina_change(max_stamina)
 signal death
 
 func _ready():
@@ -23,6 +29,17 @@ func _ready():
 	health = max_health
 	emit_signal("health_change", health)
 	emit_signal("max_health_change", max_health)
+	emit_signal("stamina_change", stamina)
+	emit_signal("max_stamina_change", max_stamina)
+	# Create and configure the StaminaRestoreTimer
+	stamina_restore_timer = Timer.new()
+	stamina_restore_timer.set_wait_time(stamina_restore_time)
+	stamina_restore_timer.autostart = false
+	stamina_restore_timer.set_one_shot(true)
+	add_child(stamina_restore_timer)
+
+	# Connect the timeout signal
+	stamina_restore_timer.connect("timeout", _on_StaminaRestoreTimer_timeout)
 	_sub_ready()
 
 func _sub_ready():
@@ -93,4 +110,21 @@ func increase_max_health(h):
 	emit_signal("max_health_change", max_health)
 	heal(h)
 		
+func consume(s):
+	if stamina < s:
+		return false
+	stamina -= s
+	emit_signal("stamina_change", stamina)
+	stamina_restore_timer.start()
+	return true
+
+func increase_max_stamina(s):
+	max_stamina += s
+	emit_signal("max_stamina_change", max_stamina)
+	stamina = stamina + s
+	emit_signal("stamina_change", stamina)
+	
+func _on_StaminaRestoreTimer_timeout():
+	stamina = max_stamina
+	emit_signal("stamina_change", stamina)
 
