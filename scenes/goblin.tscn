@@ -119,7 +119,7 @@ loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_kj4y3"]
 resource_name = "combo"
-length = 0.64
+length = 0.6
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -128,7 +128,7 @@ tracks/0/path = NodePath("Sprite2D/DaggerSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.24, 0.3, 0.32, 0.4, 0.46, 0.48, 0.5, 0.52, 0.64),
+"times": PackedFloat32Array(0, 0.14, 0.2, 0.26, 0.28, 0.36, 0.42, 0.44, 0.46, 0.48, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(36, 34), Vector2(36, 34), Vector2(119, 0), Vector2(119, 0), Vector2(2.99998, -83), Vector2(2.99998, -83), Vector2(2.99998, -83), Vector2(67, -58), Vector2(98, -5), Vector2(84, 68), Vector2(84, 68)]
@@ -140,7 +140,7 @@ tracks/1/path = NodePath("Sprite2D/DaggerSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.14, 0.24, 0.3, 0.32, 0.4, 0.46, 0.48, 0.5, 0.52, 0.64),
+"times": PackedFloat32Array(0, 0.14, 0.2, 0.26, 0.28, 0.36, 0.42, 0.44, 0.46, 0.48, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.214675, 0.214675, 0.0, 0.0, -1.83495, -1.83495, -1.83495, -0.838437, -0.00977713, 0.614493, 0.614493]
@@ -182,6 +182,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.32),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [null, 660, 20],
+"method": &"push"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wvlkw"]
@@ -344,9 +358,8 @@ shape = SubResource("RectangleShape2D_riha1")
 
 [node name="combo1" parent="Sprite2D/DaggerSprite" node_paths=PackedStringArray("sound") instance=ExtResource("4_24x6m")]
 position = Vector2(-55, -36)
-monitoring = true
 damage = 0.5
-knockback = 880.0
+knockback = 660.0
 sound = NodePath("../../../dagger_stab")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DaggerSprite/combo1"]

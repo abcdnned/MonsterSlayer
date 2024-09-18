@@ -14,10 +14,6 @@ const SPEED = 550
 @onready var what_am_i_thinking = $WhatAmIThinking
 
 var alert_range = 500.0
-const DASH_ATTACK_MAX_SPEED = 1210.0
-var dash_attack_speed = DASH_ATTACK_MAX_SPEED
-var dash_attack_direction = Vector2.ZERO
-var dash_attack_deduction = 20.0
 	
 func _process(delta):
 	super._process(delta)

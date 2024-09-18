@@ -18,6 +18,9 @@ var knock_back_source_position
 @export var stamina_restore_time: float = 2.0
 var stamina_restore_timer: Timer
 var level := 1
+var push_speed = 1210.0
+var push_direction = Vector2.ZERO
+var push_deduction = 20.0
 
 signal health_change(health)
 signal max_health_change(max_health)
@@ -53,6 +56,10 @@ func _process(delta):
 		var direction = knock_back_source_position.direction_to(global_position).normalized()
 		velocity = direction * knock_back_force
 		knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
+		move_and_slide()
+	elif push_speed > 0:
+		velocity = push_direction * push_speed
+		push_speed = clampf(push_speed - push_deduction, 0, push_speed)
 		move_and_slide()
 	else:
 		animation_tree.set("parameters/conditions/unstun", true)
@@ -147,4 +154,12 @@ func increase_max_stamina(s):
 func _on_StaminaRestoreTimer_timeout():
 	stamina = max_stamina
 	emit_signal("stamina_change", stamina)
+
+func push(direction = null, speed = 660, deduction = 20):
+	push_speed = speed
+	push_deduction = deduction
+	if direction == null:
+		push_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
+	else:
+		push_direction = direction
 

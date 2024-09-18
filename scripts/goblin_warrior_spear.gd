@@ -16,7 +16,6 @@ const I_HEAVY_SPEAR = preload("res://scenes/i_heavy_spear.tscn")
 var dash_attack_speed = 1100
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
-
 var alert_range = 1000.0
 
 	
