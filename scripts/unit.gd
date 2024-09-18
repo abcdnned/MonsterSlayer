@@ -17,6 +17,7 @@ var stun_ticks
 var knock_back_source_position
 @export var stamina_restore_time: float = 2.0
 var stamina_restore_timer: Timer
+var level := 1
 
 signal health_change(health)
 signal max_health_change(max_health)
@@ -88,8 +89,8 @@ func _take_damage(d, v, source_position, tick):
 	emit_signal("max_health_change", max_health)
 	if health <= 0:
 		knock_back_force = knock_back_force / 2
-		animation_tree.set("parameters/conditions/dying", true)
 		add_to_group("dead")
+		state_machine.start("dying")
 		emit_signal("death", self)
 		_apply_dying_shader()
 		_sub_dead()

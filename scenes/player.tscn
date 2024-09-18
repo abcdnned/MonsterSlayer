@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=34 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://bpr5anhjkj6ku" path="res://sounds/weapon/521999__kastenfrosch__whoosh-dash.wav" id="8_cfbsl"]
 [ext_resource type="AudioStream" uid="uid://cm8vrpnyg8fpv" path="res://sounds/weapon/690076__apocaloopsis__small-object-hit-wood.wav" id="10_fawfi"]
 [ext_resource type="PackedScene" uid="uid://brjyfu25b5ab6" path="res://scenes/sprint_dust.tscn" id="13_02niw"]
-[ext_resource type="Texture2D" uid="uid://g5b5aiyxydse" path="res://sprites/effects/sword_trail.png" id="14_8hl5y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
@@ -1139,14 +1138,12 @@ visible = false
 position = Vector2(138, -58)
 rotation = 2.12561
 scale = Vector2(2.28996, 2.3254)
-texture = ExtResource("14_8hl5y")
 
 [node name="Trail2" type="Sprite2D" parent="Sprite2D"]
 visible = false
 position = Vector2(132, 15)
 rotation = -2.4335
 scale = Vector2(2.28996, 2.3254)
-texture = ExtResource("14_8hl5y")
 flip_v = true
 
 [node name="Trail3" type="Sprite2D" parent="Sprite2D"]
@@ -1154,7 +1151,6 @@ visible = false
 position = Vector2(138, -58)
 rotation = 2.12561
 scale = Vector2(2.28996, 2.3254)
-texture = ExtResource("14_8hl5y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqexy")
@@ -1179,7 +1175,6 @@ parameters/conditions/defense = false
 parameters/conditions/defense_cancel = false
 parameters/conditions/defense_hit = false
 parameters/conditions/drop_item = false
-parameters/conditions/dying = false
 parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false
 parameters/conditions/interact = false

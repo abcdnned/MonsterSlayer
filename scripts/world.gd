@@ -1,4 +1,6 @@
 # Current sprint
+# TODO Goblin defense
+# TODO Generalize dash
 
 # Backlogs
 # SFX: wolf, boomer
@@ -55,7 +57,7 @@ var progress = 1
 #   3
 func _ready():
 	randomize()
-	#load_player(PLAYER_HAMMER, Vector2(0, 0), { "health": 1, "max_health": 10 })
+	#load_player(PLAYER, Vector2(0, 0), { "health": 1, "max_health": 10 })
 	load_player(PLAYER, Vector2(0, 0))
 	var route := {}
 	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
@@ -138,11 +140,10 @@ func disable_merchants():
 
 func _on_progress_timer_timeout():
 	if progress == 1:
-		quest.display_text("Level 1 : Kill some goblins")
+		quest.display_text("Wave 1 : Goblin(lv1) x 1")
 		goblin_army_1_spawner._start_sapwner()
 	elif progress == 2:
-		quest.display_text("Level 2 : Damn they can use bow")
-		goblin_army_2_spawner._start_sapwner()
+		_win()
 
 func level_complete(level):
 	progress += 1

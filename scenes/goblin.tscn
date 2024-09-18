@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cp030u4v4at67"]
+[gd_scene load_steps=38 format=3 uid="uid://cp030u4v4at67"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_04ln1"]
 [ext_resource type="Texture2D" uid="uid://dc8n2kkj4cyti" path="res://sprites/dagger.png" id="2_5avma"]
@@ -87,7 +87,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/damage_zone:monitoring")
+tracks/2/path = NodePath("Sprite2D/DaggerSprite/damage_zone:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -114,6 +114,65 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_mtitu"]
 resource_name = "chasing"
 loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_kj4y3"]
+resource_name = "combo"
+length = 0.64
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/DaggerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.18, 0.2, 0.24, 0.34, 0.4, 0.42, 0.44, 0.46, 0.52, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(36, 34), Vector2(36, 34), Vector2(108, 0), Vector2(108, 0), Vector2(108, 0), Vector2(2.99998, -83), Vector2(2.99998, -83), Vector2(67, -58), Vector2(98, -5), Vector2(84, 68), Vector2(84, 68), Vector2(60, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/DaggerSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.18, 0.2, 0.24, 0.34, 0.4, 0.42, 0.44, 0.46, 0.52, 0.64),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.214675, 0.214675, 0.0, 0.0, 0.0, -1.83495, -1.83495, -0.838437, -0.00977713, 0.614493, 0.614493, 0.0575959]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/DaggerSprite/damage_zone:monitoring")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.18, 0.2, 0.34, 0.46),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_dagger_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wvlkw"]
+resource_name = "defense"
+length = 100.0
 
 [sub_resource type="Animation" id="Animation_ic3m7"]
 resource_name = "dying"
@@ -157,6 +216,8 @@ _data = {
 "RESET": SubResource("Animation_2swvi"),
 "attack": SubResource("Animation_cg68e"),
 "chasing": SubResource("Animation_mtitu"),
+"combo": SubResource("Animation_kj4y3"),
+"defense": SubResource("Animation_wvlkw"),
 "dying": SubResource("Animation_ic3m7"),
 "stun": SubResource("Animation_wkec3"),
 "wandering": SubResource("Animation_gylsu")
@@ -168,18 +229,17 @@ animation = &"attack"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c14qp"]
 animation = &"chasing"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7si6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ny2y5"]
+animation = &"defense"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jqmsc"]
 animation = &"dying"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3rai"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3dc13"]
 animation = &"stun"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lma3l"]
 animation = &"wandering"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jryju"]
-advance_mode = 2
-advance_condition = &"dying"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gg5j"]
 advance_mode = 2
@@ -188,10 +248,6 @@ advance_condition = &"attack"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqpmq"]
 switch_mode = 2
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hcv2b"]
-advance_mode = 2
-advance_condition = &"dying"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0v775"]
 advance_mode = 2
@@ -204,23 +260,15 @@ advance_condition = &"target"
 advance_mode = 2
 advance_condition = &"wandering"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpaxi"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayesx"]
 advance_mode = 2
-advance_condition = &"dying"
+advance_condition = &"defense"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o6bxl"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_squkl"]
 advance_mode = 2
-advance_condition = &"stun"
+advance_condition = &"undefense"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fl08w"]
-advance_mode = 2
-advance_condition = &"stun"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hyywo"]
-advance_mode = 2
-advance_condition = &"stun"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtj66"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_asiwc"]
 advance_mode = 2
 advance_condition = &"unstun"
 
@@ -230,14 +278,16 @@ states/attack/node = SubResource("AnimationNodeAnimation_w5dv5")
 states/attack/position = Vector2(602.34, 242.21)
 states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(444, 94)
-states/dying/node = SubResource("AnimationNodeAnimation_v7si6")
-states/dying/position = Vector2(645, 91.5)
-states/stun/node = SubResource("AnimationNodeAnimation_r3rai")
-states/stun/position = Vector2(467.1, 301.878)
+states/defense/node = SubResource("AnimationNodeAnimation_ny2y5")
+states/defense/position = Vector2(360.745, -53.218)
+states/dying/node = SubResource("AnimationNodeAnimation_jqmsc")
+states/dying/position = Vector2(717.48, 22.47)
+states/stun/node = SubResource("AnimationNodeAnimation_3dc13")
+states/stun/position = Vector2(593.48, 27.47)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.461)
-transitions = ["chasing", "dying", SubResource("AnimationNodeStateMachineTransition_jryju"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "attack", "dying", SubResource("AnimationNodeStateMachineTransition_hcv2b"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "wandering", "dying", SubResource("AnimationNodeStateMachineTransition_cpaxi"), "wandering", "stun", SubResource("AnimationNodeStateMachineTransition_o6bxl"), "chasing", "stun", SubResource("AnimationNodeStateMachineTransition_fl08w"), "attack", "stun", SubResource("AnimationNodeStateMachineTransition_hyywo"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_xtj66")]
-graph_offset = Vector2(7.93502, 99.48)
+transitions = ["chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "chasing", "defense", SubResource("AnimationNodeStateMachineTransition_ayesx"), "defense", "chasing", SubResource("AnimationNodeStateMachineTransition_squkl"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_asiwc")]
+graph_offset = Vector2(66.315, -32.168)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 10
@@ -254,18 +304,19 @@ texture = ExtResource("2_5avma")
 script = ExtResource("4_jb6hs")
 item_path = "res://scenes/i_dagger.tscn"
 
-[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
-target_position = Vector2(130, 0)
-
-[node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_24x6m")]
+[node name="damage_zone" parent="Sprite2D/DaggerSprite" node_paths=PackedStringArray("sound") instance=ExtResource("4_24x6m")]
+position = Vector2(-55, -36)
 damage = 0.5
-sound = NodePath("../../dagger_stab")
+sound = NodePath("../../../dagger_stab")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
-position = Vector2(110, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/DaggerSprite/damage_zone"]
+position = Vector2(80, 37)
 rotation = 1.5708
 scale = Vector2(1.72, 5.6)
 shape = SubResource("RectangleShape2D_riha1")
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
+target_position = Vector2(130, 0)
 
 [node name="ItemBack" type="Node2D" parent="Sprite2D"]
 z_index = -1
@@ -296,9 +347,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_42fvj")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
-parameters/conditions/dying = false
-parameters/conditions/stun = false
+parameters/conditions/defense = false
 parameters/conditions/target = false
+parameters/conditions/undefense = false
 parameters/conditions/unstun = false
 parameters/conditions/wandering = false
 

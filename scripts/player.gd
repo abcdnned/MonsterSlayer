@@ -38,8 +38,6 @@ func _process(delta):
 			var mouse_pos = get_global_mouse_position()
 			sprite.look_at(mouse_pos)
 			animation_tree.set("parameters/conditions/unstun", false)
-		"dying":
-			animation_tree.set("parameters/conditions/dying", false)
 
 		
 func _physics_process(delta):
