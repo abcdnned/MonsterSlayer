@@ -21,7 +21,7 @@ func _process(delta):
 	
 func do_spawn():
 	if wave == 1:
-		spawn_tracker(GOBLIN, "melee_mob")
+		spawn_tracker(GOBLIN, "melee_mob", 2)
 		wave += 1
 	elif wave == 2 and get_alive_mob_count("mob") == 0:
 		enable = false
@@ -35,8 +35,9 @@ func get_alive_mob_count(type):
 			mob_count += 1
 	return mob_count
 
-func spawn_tracker(type, group):
+func spawn_tracker(type, group, lv = 1):
 	var mob = spawn_mob(type, group)
+	mob.level = lv
 	mob.alert_range = 100000
 
 func spawn_mob(type, group):

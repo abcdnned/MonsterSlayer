@@ -66,19 +66,23 @@ func _check_state_change():
 		previous_state = current_state
 
 func _on_state_entered(state_name: String):
-	if state_name == "stun":
+	if state_name == "stun" || state_name == 'dying':
 		_apply_stun_shader()
 		_set_damage_zone_monitoring(false)
 
 func _on_state_exited(state_name: String):
 	if state_name == "stun":
 		_clear_stun_shader()
-		_set_damage_zone_monitoring(true)
+	animation_tree.set("parameters/conditions/" + state_name, false)
 
 func _set_damage_zone_monitoring(monitoring: bool):
-	for child in get_children():
-		if child is Area2D and child.get_filename() == "res://scenes/damage_zone.tscn":
+	set_monitoring_for_children(self, monitoring)
+	
+func set_monitoring_for_children(node: Node, monitoring):
+	for child in node.get_children():
+		if child is Area2D and child.get_scene_file_path() == "res://scenes/damage_zone.tscn":
 			child.monitoring = monitoring
+		set_monitoring_for_children(child, monitoring)  # Recursively check the child's children
 	
 func _take_damage(d, v, source_position, tick):
 	self.knock_back_force = v

@@ -1,6 +1,6 @@
 extends Unit
 
-const SPEED = 440
+const SPEED = 550
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell
@@ -11,9 +11,13 @@ const SPEED = 440
 @onready var target_finder = $TargetFinder
 @onready var wandering = $Wandering
 @onready var item_back = $Sprite2D/ItemBack
+@onready var what_am_i_thinking = $WhatAmIThinking
 
 var alert_range = 500.0
-
+const DASH_ATTACK_MAX_SPEED = 1210.0
+var dash_attack_speed = DASH_ATTACK_MAX_SPEED
+var dash_attack_direction = Vector2.ZERO
+var dash_attack_deduction = 20.0
 	
 func _process(delta):
 	super._process(delta)
@@ -23,14 +27,23 @@ func _process(delta):
 				animation_tree.set("parameters/conditions/defense", true)
 			if is_in_group("lose"):
 				return
-			if ray_cast_2d.is_colliding():
-				if ray_cast_2d.get_collider().is_in_group("human") && consume(1):
-					animation_tree.set("parameters/conditions/attack", true)
+			if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().is_in_group("human"):
+				if what_am_i_thinking.thinking <= 100:
+					move_queue(2)
+				else:
+					move_queue(1)
 		"attack":
 			animation_tree.set("parameters/conditions/attack", false)
 		"defense":
 			animation_tree.set("parameters/conditions/defense", false)
-			
+
+func move_queue(t: int) -> void:
+	var conditions = ["attack", "combo"]
+	for i in range(t, 0, -1):  # This iterates from t to 0
+		if consume(i):
+			animation_tree.set("parameters/conditions/" + conditions[i - 1], true)
+			return
+
 
 func _physics_process(delta):
 	match state_machine.get_current_node():

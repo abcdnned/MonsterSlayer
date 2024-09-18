@@ -1,7 +1,7 @@
 # Current sprint
-# TODO Goblin defense
-# TODO Generalize dash
+# TODO lv2 goblin
 
+# lv2 2 -> lv3 6 -> lv4 12 -> lv5 20 -> lv6 30 -> lv7 42
 # Backlogs
 # SFX: wolf, boomer
 # weapon tire
@@ -140,7 +140,7 @@ func disable_merchants():
 
 func _on_progress_timer_timeout():
 	if progress == 1:
-		quest.display_text("Wave 1 : Goblin(lv1) x 1")
+		quest.display_text("Wave 1 : Goblin(lv2) x 1")
 		goblin_army_1_spawner._start_sapwner()
 	elif progress == 2:
 		_win()
