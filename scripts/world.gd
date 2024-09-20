@@ -140,7 +140,7 @@ func disable_merchants():
 
 func _on_progress_timer_timeout():
 	if progress == 1:
-		quest.display_text("Wave 1 : Goblin(lv2) x 1")
+		quest.display_text("Wave 1 : Goblin Archer [lv2]")
 		goblin_army_1_spawner._start_sapwner()
 	elif progress == 2:
 		_win()

@@ -73,6 +73,7 @@ func _check_state_change():
 		previous_state = current_state
 
 func _on_state_entered(state_name: String):
+	animation_tree.set("parameters/conditions/" + state_name, false)
 	if state_name == "stun" || state_name == 'dying':
 		_apply_stun_shader()
 		_set_damage_zone_monitoring(false)
@@ -80,7 +81,7 @@ func _on_state_entered(state_name: String):
 func _on_state_exited(state_name: String):
 	if state_name == "stun":
 		_clear_stun_shader()
-	animation_tree.set("parameters/conditions/" + state_name, false)
+	animation_tree.set("parameters/conditions/un" + state_name, false)
 
 func _set_damage_zone_monitoring(monitoring: bool):
 	set_monitoring_for_children(self, monitoring)

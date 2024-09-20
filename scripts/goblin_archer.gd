@@ -1,6 +1,6 @@
 extends Unit
 
-const SPEED := 500.0
+const SPEED := 600.0
 const CHARGE_DIS := 800.0
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
@@ -31,11 +31,16 @@ func _physics_process(delta):
 					move_and_slide()
 		"chasing":
 			animation_tree.set("parameters/conditions/chasing", false)
+			if stamina == 0:
+				animation_tree.set("parameters/conditions/run", true)
 			if is_in_group("lose"):
 				return
 			if target_finder.target:
 				if should_charge():
-					animation_tree.set("parameters/conditions/charge", true)
+					if global_position.distance_to(target_finder.target.global_position) < 120:
+						move_queue(2)
+					else:
+						animation_tree.set("parameters/conditions/charge", true)
 				if not target_finder.target.is_in_group("dead") and not is_in_group("lose"):
 					var direction = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 					sprite.look_at(navigation_agent_2d.get_next_path_position())
@@ -48,7 +53,7 @@ func _physics_process(delta):
 			animation_tree.set("parameters/conditions/charge", false)
 			if obstacle():
 				animation_tree.set("parameters/conditions/chasing", true)
-			if ray_cast_2d.is_colliding() and state_machine.get_current_play_position() >= 1.2:
+			if ray_cast_2d.is_colliding() and state_machine.get_current_play_position() >= 1.2 and consume(1):
 				animation_tree.set("parameters/conditions/shoot", true)
 			else:
 				if global_position.distance_to(target_finder.target.global_position) > CHARGE_DIS:
@@ -63,6 +68,14 @@ func _physics_process(delta):
 			move_and_slide()
 		"shoot":
 			animation_tree.set("parameters/conditions/shoot", false)
+		"run":
+			if target_finder.target && stamina == 0:
+				var direction = target_finder.target.global_position.direction_to(global_position).normalized()
+				sprite.look_at(global_position + direction)
+				velocity = direction * SPEED
+				move_and_slide()
+			else:
+				animation_tree.set("parameters/conditions/unrun", true)
 
 func should_charge():
 	var dis = global_position.distance_to(target_finder.target.global_position) <= CHARGE_DIS * .8
@@ -98,3 +111,17 @@ func shoot():
 	bow_release.play()
 	arrow_woosh.play()
 	get_parent().add_child(arrow)
+
+func _sub_ready():
+	if level == 2:
+		max_health = 4
+		health = max_health
+		max_stamina = 4
+		stamina = max_health
+
+func move_queue(t: int) -> void:
+	var conditions = ["charge", "swap"]
+	for i in range(t, 0, -1):  # This iterates from t to 0
+		if consume(i):
+			animation_tree.set("parameters/conditions/" + conditions[i - 1], true)
+			return

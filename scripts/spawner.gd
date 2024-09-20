@@ -21,7 +21,7 @@ func _process(delta):
 	
 func do_spawn():
 	if wave == 1:
-		spawn_tracker(GOBLIN, "melee_mob", 2)
+		spawn_tracker(GOBLIN_ARCHER, "melee_mob", 2)
 		wave += 1
 	elif wave == 2 and get_alive_mob_count("mob") == 0:
 		enable = false
