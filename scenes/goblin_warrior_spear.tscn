@@ -254,8 +254,6 @@ graph_offset = Vector2(112.147, -223.865)
 z_index = 10
 script = ExtResource("1_e1vh1")
 max_health = 1.0
-max_stamina = null
-stamina_restore_time = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_08fiq")

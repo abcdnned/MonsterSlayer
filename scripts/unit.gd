@@ -164,3 +164,9 @@ func push(direction = null, speed = 660, deduction = 20):
 	else:
 		push_direction = direction
 
+func level_up(l):
+	level = l
+	_sub_level_up(l)
+	
+func _sub_level_up(l):
+	pass

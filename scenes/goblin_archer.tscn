@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dfgn2a3h6b40x"]
+[gd_scene load_steps=51 format=3 uid="uid://dfgn2a3h6b40x"]
 
 [ext_resource type="Script" path="res://scripts/goblin_archer.gd" id="1_3piif"]
 [ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_gfai2"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bcx27b0i3y6" path="res://sounds/weapon/521242__cyoung510__arrow_woosh.wav" id="10_t5u7j"]
 [ext_resource type="Script" path="res://scripts/targetFinder.gd" id="11_v032f"]
 [ext_resource type="Script" path="res://scripts/wandering.gd" id="12_06bbr"]
+[ext_resource type="Script" path="res://scripts/what_am_i_thinking.gd" id="14_suv5s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_00sus"]
 animations = [{
@@ -199,7 +200,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_x1bom"]
 resource_name = "run"
-length = 10.0
+length = 2.0
 
 [sub_resource type="Animation" id="Animation_my0w6"]
 resource_name = "shoot"
@@ -378,21 +379,29 @@ advance_mode = 2
 advance_condition = &"run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2g288"]
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"unrun"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e1v65"]
-advance_mode = 2
-advance_condition = &"swap"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5ieb"]
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hiq3n"]
+advance_mode = 2
+advance_condition = &"swap"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s1pus"]
+advance_mode = 2
+advance_condition = &"wandering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5pudv"]
+advance_mode = 2
+advance_condition = &"run"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_42fvj"]
 states/Start/position = Vector2(138.5, 99.5)
 states/charge/node = SubResource("AnimationNodeAnimation_c3f77")
-states/charge/position = Vector2(309.79, 231.02)
+states/charge/position = Vector2(624.29, 195.102)
 states/chasing/node = SubResource("AnimationNodeAnimation_c14qp")
 states/chasing/position = Vector2(436.5, 79.5)
 states/dying/node = SubResource("AnimationNodeAnimation_plj3a")
@@ -407,8 +416,8 @@ states/swap/node = SubResource("AnimationNodeAnimation_gmahg")
 states/swap/position = Vector2(635.775, 21.8167)
 states/wandering/node = SubResource("AnimationNodeAnimation_485ye")
 states/wandering/position = Vector2(256.258, 14.0297)
-transitions = ["shoot", "chasing", SubResource("AnimationNodeStateMachineTransition_nbvko"), "charge", "shoot", SubResource("AnimationNodeStateMachineTransition_7qcc2"), "charge", "chasing", SubResource("AnimationNodeStateMachineTransition_858cl"), "chasing", "charge", SubResource("AnimationNodeStateMachineTransition_g7ojp"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_4w1gx"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_cw3hb"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_y65ve"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_px2gf"), "chasing", "run", SubResource("AnimationNodeStateMachineTransition_6tbts"), "run", "chasing", SubResource("AnimationNodeStateMachineTransition_2g288"), "chasing", "swap", SubResource("AnimationNodeStateMachineTransition_e1v65"), "swap", "chasing", SubResource("AnimationNodeStateMachineTransition_h5ieb")]
-graph_offset = Vector2(254.924, -80.5208)
+transitions = ["shoot", "chasing", SubResource("AnimationNodeStateMachineTransition_nbvko"), "charge", "shoot", SubResource("AnimationNodeStateMachineTransition_7qcc2"), "charge", "chasing", SubResource("AnimationNodeStateMachineTransition_858cl"), "chasing", "charge", SubResource("AnimationNodeStateMachineTransition_g7ojp"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_4w1gx"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_cw3hb"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_y65ve"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_px2gf"), "chasing", "run", SubResource("AnimationNodeStateMachineTransition_6tbts"), "run", "chasing", SubResource("AnimationNodeStateMachineTransition_2g288"), "swap", "chasing", SubResource("AnimationNodeStateMachineTransition_h5ieb"), "charge", "swap", SubResource("AnimationNodeStateMachineTransition_hiq3n"), "run", "wandering", SubResource("AnimationNodeStateMachineTransition_s1pus"), "charge", "run", SubResource("AnimationNodeStateMachineTransition_5pudv")]
+graph_offset = Vector2(50.594, -159.968)
 
 [node name="GoblinArcher" type="CharacterBody2D" groups=["mob"]]
 z_index = 10
@@ -474,7 +483,6 @@ parameters/conditions/run = false
 parameters/conditions/shoot = false
 parameters/conditions/swap = false
 parameters/conditions/target = false
-parameters/conditions/unrun = false
 parameters/conditions/unstun = false
 parameters/conditions/wandering = false
 
@@ -492,5 +500,8 @@ bus = &"SFX"
 
 [node name="Wandering" type="Node" parent="."]
 script = ExtResource("12_06bbr")
+
+[node name="WhatAmIThinking" type="Node" parent="."]
+script = ExtResource("14_suv5s")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

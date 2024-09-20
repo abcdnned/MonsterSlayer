@@ -99,7 +99,7 @@ func drop_key():
 		key.reparent(get_tree().current_scene, true)
 		key.rotation_degrees = 0
 				
-func _sub_ready():
-	if level == 2:
+func _sub_level_up(l):
+	if l == 2:
 		max_health = 5
 		health = max_health
