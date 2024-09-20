@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctoaxl40kt506"]
+
+[ext_resource type="Texture2D" uid="uid://yptgo5kjhbb" path="res://sprites/tired.png" id="1_1mtsp"]
+[ext_resource type="Script" path="res://scripts/tired_sprite.gd" id="2_6vfpm"]
+
+[node name="TiredSprite" type="Sprite2D"]
+visible = false
+z_index = 1000
+texture = ExtResource("1_1mtsp")
+script = ExtResource("2_6vfpm")

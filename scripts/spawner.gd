@@ -37,7 +37,7 @@ func get_alive_mob_count(type):
 
 func spawn_tracker(type, group, lv = 1):
 	var mob = spawn_mob(type, group)
-	mob.level = lv
+	mob.level_up(2)
 	mob.alert_range = 100000
 
 func spawn_mob(type, group):

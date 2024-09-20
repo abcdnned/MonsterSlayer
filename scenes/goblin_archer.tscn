@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dfgn2a3h6b40x"]
+[gd_scene load_steps=52 format=3 uid="uid://dfgn2a3h6b40x"]
 
 [ext_resource type="Script" path="res://scripts/goblin_archer.gd" id="1_3piif"]
 [ext_resource type="Texture2D" uid="uid://db5siu65k7i88" path="res://sprites/globin.png" id="2_gfai2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/targetFinder.gd" id="11_v032f"]
 [ext_resource type="Script" path="res://scripts/wandering.gd" id="12_06bbr"]
 [ext_resource type="Script" path="res://scripts/what_am_i_thinking.gd" id="14_suv5s"]
+[ext_resource type="PackedScene" uid="uid://ctoaxl40kt506" path="res://scenes/tired_sprite.tscn" id="15_k28g1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_00sus"]
 animations = [{
@@ -503,5 +504,7 @@ script = ExtResource("12_06bbr")
 
 [node name="WhatAmIThinking" type="Node" parent="."]
 script = ExtResource("14_suv5s")
+
+[node name="TiredSprite" parent="." instance=ExtResource("15_k28g1")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

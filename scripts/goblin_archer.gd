@@ -118,5 +118,3 @@ func _sub_level_up(l):
 	if l == 2:
 		max_health = 4
 		health = max_health
-		max_stamina = 4
-		stamina = max_health
