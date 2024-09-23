@@ -11,6 +11,7 @@ extends Unit
 @onready var item_handle = $Sprite2D/ItemHandle
 @onready var sprint_dust = $SprintDust
 
+
 const dash_dust = preload("res://scenes/dash_dust.tscn")
 signal hero_death
 signal map_pos_change(x, y)
@@ -102,6 +103,8 @@ func _physics_process(delta):
 			move_and_slide()
 			if not get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
+			elif Input.is_action_just_pressed("right_click") and consume(3):
+				animation_tree.set("parameters/conditions/moon_swap", true)
 		"idle_defense_cancel":
 			animation_tree.set("parameters/conditions/defense_cancel", false)
 		"idle_defense_hit":
