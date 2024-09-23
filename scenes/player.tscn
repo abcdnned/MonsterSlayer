@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csinpw556o7ux"]
+[gd_scene load_steps=38 format=3 uid="uid://csinpw556o7ux"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4j5bp"]
 [ext_resource type="Texture2D" uid="uid://cb4a45ces2cnk" path="res://sprites/knight3.0.png" id="2_mrnfa"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsdts71tmlke5" path="res://scenes/damage_zone.tscn" id="4_u465u"]
 [ext_resource type="AudioStream" uid="uid://cg4mkt8a0yb82" path="res://sounds/weapon/weapon_swing6.wav" id="4_xgjfg"]
 [ext_resource type="AudioStream" uid="uid://dr16khaikgudr" path="res://sounds/weapon/hit-swing-sword-small.wav" id="5_o0uxe"]
+[ext_resource type="Texture2D" uid="uid://g5b5aiyxydse" path="res://sprites/effects/sword_trail.png" id="6_6626t"]
 [ext_resource type="Animation" uid="uid://cf0usmjbou3y8" path="res://animation/interact.res" id="6_u2pkg"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://vb0guu55d7jb" path="res://animation/player.tres" id="7_j82rp"]
 [ext_resource type="AudioStream" uid="uid://d13o0qlhyhqs1" path="res://sounds/695384__fmaudio__male-death-cry-1.wav" id="7_tqos6"]
@@ -14,6 +15,9 @@
 [ext_resource type="AudioStream" uid="uid://cm8vrpnyg8fpv" path="res://sounds/weapon/690076__apocaloopsis__small-object-hit-wood.wav" id="10_fawfi"]
 [ext_resource type="PackedScene" uid="uid://brjyfu25b5ab6" path="res://scenes/sprint_dust.tscn" id="13_02niw"]
 [ext_resource type="PackedScene" uid="uid://ctoaxl40kt506" path="res://scenes/tired_sprite.tscn" id="14_2gekr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1kir"]
+size = Vector2(280.005, 76.01)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
@@ -450,7 +454,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_yn61v"]
 resource_name = "dash_attack"
-length = 0.6
+length = 0.38
 step = 0.02
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -459,7 +463,7 @@ tracks/0/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.38),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [-0.001129, -0.001129, 0.00670608, 0.00670608, 0.304272]
@@ -471,7 +475,7 @@ tracks/1/path = NodePath("Sprite2D/LongSword:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.5),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.24, 0.38),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(36, 27), Vector2(36, 27), Vector2(176, 2), Vector2(176, 2), Vector2(115, 82)]
@@ -1039,6 +1043,47 @@ tracks/1/keys = {
 "values": [Vector2(139, 83), Vector2(199, 38)]
 }
 
+[sub_resource type="Animation" id="Animation_5sax7"]
+resource_name = "moon_swap"
+length = 0.54
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/LongSword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(49, -198), Vector2(49, -198), Vector2(227, -8), Vector2(3.00002, 200), Vector2(-194, 5), Vector2(-0.999985, -224)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.3742, -1.3742, -0.0335745, 1.6083, 3.11409, 4.71125]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/LongSword/damage_zone_moon:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06, 0.32),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_805h5"]
 _data = {
 "HoldItem": SubResource("Animation_7smbj"),
@@ -1054,6 +1099,7 @@ _data = {
 "idle_defense_hit": SubResource("Animation_86rf0"),
 "interact": ExtResource("6_u2pkg"),
 "lightning_strike": SubResource("Animation_qbka8"),
+"moon_swap": SubResource("Animation_5sax7"),
 "stun": SubResource("Animation_7vio4"),
 "swap": SubResource("Animation_520qt"),
 "use_item": SubResource("Animation_ly6d4"),
@@ -1075,6 +1121,18 @@ z_index = -1
 position = Vector2(130, 58)
 texture = ExtResource("3_navsb")
 region_rect = Rect2(0, 0, 256, 128)
+
+[node name="damage_zone_moon" parent="Sprite2D/LongSword" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
+position = Vector2(-224.001, 0.745775)
+rotation = 1.57193
+knockback = 1500.0
+sound = NodePath("../../../sword_hit")
+stun = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LongSword/damage_zone_moon"]
+position = Vector2(1.00003, -201.01)
+rotation = -1.56823
+shape = SubResource("RectangleShape2D_l1kir")
 
 [node name="Shield" type="Sprite2D" parent="Sprite2D"]
 z_index = 1
@@ -1127,8 +1185,9 @@ shape = SubResource("CircleShape2D_y1hdt")
 
 [node name="damage_zone2" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 1200.0
+knockback = 1500.0
 sound = NodePath("../../sword_hit")
+stun = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone2"]
 position = Vector2(156.5, 3)
@@ -1139,12 +1198,14 @@ visible = false
 position = Vector2(138, -58)
 rotation = 2.12561
 scale = Vector2(2.28996, 2.3254)
+texture = ExtResource("6_6626t")
 
 [node name="Trail2" type="Sprite2D" parent="Sprite2D"]
 visible = false
 position = Vector2(132, 15)
 rotation = -2.4335
 scale = Vector2(2.28996, 2.3254)
+texture = ExtResource("6_6626t")
 flip_v = true
 
 [node name="Trail3" type="Sprite2D" parent="Sprite2D"]
@@ -1152,6 +1213,7 @@ visible = false
 position = Vector2(138, -58)
 rotation = 2.12561
 scale = Vector2(2.28996, 2.3254)
+texture = ExtResource("6_6626t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yqexy")
@@ -1164,6 +1226,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_805h5")
 }
@@ -1179,6 +1242,7 @@ parameters/conditions/drop_item = false
 parameters/conditions/hide_item = false
 parameters/conditions/hold_item = false
 parameters/conditions/interact = false
+parameters/conditions/moon_swap = false
 parameters/conditions/special_attack = false
 parameters/conditions/unstun = false
 parameters/conditions/use_item = false

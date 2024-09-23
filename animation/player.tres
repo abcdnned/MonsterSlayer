@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=42 format=3 uid="uid://vb0guu55d7jb"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=45 format=3 uid="uid://vb0guu55d7jb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4xs71"]
 animation = &"HoldItem"
@@ -32,6 +32,9 @@ animation = &"interact"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ng85d"]
 animation = &"lightning_strike"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cbenv"]
+animation = &"moon_swap"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8l5e1"]
 animation = &"stun"
@@ -151,6 +154,14 @@ advance_condition = &"special_attack"
 advance_mode = 2
 advance_condition = &"unstun"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6n8xv"]
+advance_mode = 2
+advance_condition = &"moon_swap"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_andwd"]
+switch_mode = 2
+advance_mode = 2
+
 [resource]
 states/End/position = Vector2(1036.5, -124.5)
 states/HoldItem/node = SubResource("AnimationNodeAnimation_4xs71")
@@ -176,11 +187,13 @@ states/interact/node = SubResource("AnimationNodeAnimation_70qpn")
 states/interact/position = Vector2(777.045, 404.665)
 states/lightning_strike/node = SubResource("AnimationNodeAnimation_ng85d")
 states/lightning_strike/position = Vector2(503.31, 418.095)
+states/moon_swap/node = SubResource("AnimationNodeAnimation_cbenv")
+states/moon_swap/position = Vector2(228.284, -410.019)
 states/stun/node = SubResource("AnimationNodeAnimation_8l5e1")
 states/stun/position = Vector2(774.698, 230.804)
 states/swap/node = SubResource("AnimationNodeAnimation_64u58")
 states/swap/position = Vector2(357.273, 290.202)
 states/use_item/node = SubResource("AnimationNodeAnimation_xk3wl")
 states/use_item/position = Vector2(185.48, -125.865)
-transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "Idle_2", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_8pbgv"), "Idle_Defense", "idle_defense_cancel", SubResource("AnimationNodeStateMachineTransition_j1roa"), "idle_defense_cancel", "Idle_2", SubResource("AnimationNodeStateMachineTransition_mo8ah"), "Idle_Defense", "idle_defense_hit", SubResource("AnimationNodeStateMachineTransition_7fitq"), "idle_defense_hit", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_7yfoa"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "swap", "HoldItem", SubResource("AnimationNodeStateMachineTransition_oegrb"), "dash_attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_w8fkx"), "interact", "Idle_2", SubResource("AnimationNodeStateMachineTransition_uksq3"), "lightning_strike", "Idle_2", SubResource("AnimationNodeStateMachineTransition_gdtm8"), "swap", "interact", SubResource("AnimationNodeStateMachineTransition_r0mtd"), "Idle_2", "lightning_strike", SubResource("AnimationNodeStateMachineTransition_dsexh"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_w2r3a")]
-graph_offset = Vector2(57.255, -168.894)
+transitions = ["Start", "Idle_2", SubResource("AnimationNodeStateMachineTransition_1e758"), "Idle_2", "swap", SubResource("AnimationNodeStateMachineTransition_narhr"), "swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_8hqpa"), "Idle_2", "dash", SubResource("AnimationNodeStateMachineTransition_1jlru"), "dash", "Idle_2", SubResource("AnimationNodeStateMachineTransition_ljhp8"), "Idle_2", "dash_attack", SubResource("AnimationNodeStateMachineTransition_ibfje"), "dash_attack", "Idle_2", SubResource("AnimationNodeStateMachineTransition_q74yg"), "Idle_2", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_8pbgv"), "Idle_Defense", "idle_defense_cancel", SubResource("AnimationNodeStateMachineTransition_j1roa"), "idle_defense_cancel", "Idle_2", SubResource("AnimationNodeStateMachineTransition_mo8ah"), "Idle_Defense", "idle_defense_hit", SubResource("AnimationNodeStateMachineTransition_7fitq"), "idle_defense_hit", "Idle_Defense", SubResource("AnimationNodeStateMachineTransition_7yfoa"), "Idle_2", "HoldItem", SubResource("AnimationNodeStateMachineTransition_cuay5"), "dash", "HoldItem", SubResource("AnimationNodeStateMachineTransition_a2abo"), "HoldItem", "dash", SubResource("AnimationNodeStateMachineTransition_0bc4v"), "HoldItem", "Idle_2", SubResource("AnimationNodeStateMachineTransition_upuoj"), "HoldItem", "use_item", SubResource("AnimationNodeStateMachineTransition_4f8xo"), "use_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_5i87m"), "HoldItem", "drop_item", SubResource("AnimationNodeStateMachineTransition_qfpll"), "drop_item", "Idle_2", SubResource("AnimationNodeStateMachineTransition_2t41s"), "swap", "HoldItem", SubResource("AnimationNodeStateMachineTransition_oegrb"), "dash_attack", "HoldItem", SubResource("AnimationNodeStateMachineTransition_w8fkx"), "interact", "Idle_2", SubResource("AnimationNodeStateMachineTransition_uksq3"), "lightning_strike", "Idle_2", SubResource("AnimationNodeStateMachineTransition_gdtm8"), "swap", "interact", SubResource("AnimationNodeStateMachineTransition_r0mtd"), "Idle_2", "lightning_strike", SubResource("AnimationNodeStateMachineTransition_dsexh"), "stun", "Idle_2", SubResource("AnimationNodeStateMachineTransition_w2r3a"), "Idle_Defense", "moon_swap", SubResource("AnimationNodeStateMachineTransition_6n8xv"), "moon_swap", "Idle_2", SubResource("AnimationNodeStateMachineTransition_andwd")]
+graph_offset = Vector2(-31.71, -433.562)

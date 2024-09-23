@@ -165,8 +165,9 @@ func push(direction = null, speed = 660, deduction = 20):
 		push_direction = direction
 
 func level_up(l):
-	level = l
-	_sub_level_up(l)
+	var start_level = level + 1
+	for i in range(start_level, l + 1):
+		_sub_level_up(i)
 	
 func _sub_level_up(l):
 	pass

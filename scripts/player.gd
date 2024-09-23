@@ -245,4 +245,19 @@ func dash_attack():
 func dash_attack_successor():
 	dash_attack_speed = 660
 	dash_attack_deduction = 20.0
-
+	
+				
+func _sub_level_up(l):
+	if l == 2:
+		max_health += 1
+		health = max_health
+	elif l == 3:
+		max_health += 1
+		health = max_health
+	elif l == 4:
+		max_stamina += 1
+		health = max_stamina
+	emit_signal("health_change", health)
+	emit_signal("max_health_change", max_health)
+	emit_signal("stamina_change", stamina)
+	emit_signal("max_stamina_change", max_stamina)

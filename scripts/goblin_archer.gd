@@ -1,7 +1,7 @@
 extends Unit
 
 const SPEED := 600.0
-const CHARGE_DIS := 800.0
+var CHARGE_DIS := 800.0
 @onready var navigation_agent_2d = $NavigationAgent2D
 @onready var collision_shape_2d = $CollisionShape2D
 @onready var death_yell = $death_yell
@@ -48,6 +48,7 @@ func _physics_process(delta):
 				animation_tree.set("parameters/conditions/wandering", true)
 				animation_tree.set("parameters/conditions/target", false)
 		"charge":
+			print(global_position.distance_to(target_finder.target.global_position))
 			if global_position.distance_to(target_finder.target.global_position) < 250:
 				if what_am_i_thinking.thinking < 70 and consume(1):
 					animation_tree.set("parameters/conditions/swap", true)
@@ -55,7 +56,7 @@ func _physics_process(delta):
 					animation_tree.set("parameters/conditions/run", true)
 			elif obstacle():
 				animation_tree.set("parameters/conditions/chasing", true)
-			elif ray_cast_2d.is_colliding() and state_machine.get_current_play_position() >= 1.2 and consume(1):
+			elif global_position.distance_to(target_finder.target.global_position) <= CHARGE_DIS and state_machine.get_current_play_position() >= 1.2 and consume(1):
 				animation_tree.set("parameters/conditions/shoot", true)
 			else:
 				if global_position.distance_to(target_finder.target.global_position) > CHARGE_DIS:
@@ -108,6 +109,7 @@ func _sub_dead():
 	
 func shoot():
 	var arrow = ARROW.instantiate()
+	arrow.dis = CHARGE_DIS
 	arrow.global_position = shoot_pos.global_position
 	arrow.global_rotation = shoot_pos.global_rotation
 	bow_release.play()
@@ -116,5 +118,12 @@ func shoot():
 
 func _sub_level_up(l):
 	if l == 2:
-		max_health = 4
+		max_health += 1
 		health = max_health
+	elif l == 3:
+		max_health += 1
+		health = max_health
+		max_stamina += 1
+		stamina = max_stamina
+		CHARGE_DIS = 1000
+		alert_range = CHARGE_DIS

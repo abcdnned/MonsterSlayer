@@ -101,5 +101,5 @@ func drop_key():
 				
 func _sub_level_up(l):
 	if l == 2:
-		max_health = 5
+		max_health += 2
 		health = max_health

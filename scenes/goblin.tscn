@@ -328,7 +328,7 @@ states/stun/position = Vector2(593.48, 27.47)
 states/wandering/node = SubResource("AnimationNodeAnimation_lma3l")
 states/wandering/position = Vector2(314.42, 219.461)
 transitions = ["chasing", "attack", SubResource("AnimationNodeStateMachineTransition_6gg5j"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_kqpmq"), "Start", "wandering", SubResource("AnimationNodeStateMachineTransition_0v775"), "wandering", "chasing", SubResource("AnimationNodeStateMachineTransition_xa6cx"), "chasing", "wandering", SubResource("AnimationNodeStateMachineTransition_xhdx3"), "chasing", "defense", SubResource("AnimationNodeStateMachineTransition_ayesx"), "defense", "chasing", SubResource("AnimationNodeStateMachineTransition_squkl"), "stun", "chasing", SubResource("AnimationNodeStateMachineTransition_asiwc"), "chasing", "combo", SubResource("AnimationNodeStateMachineTransition_ixrts"), "combo", "chasing", SubResource("AnimationNodeStateMachineTransition_kni3y")]
-graph_offset = Vector2(-50.445, -90.3305)
+graph_offset = Vector2(83.0025, -187.711)
 
 [node name="Goblin" type="CharacterBody2D" groups=["mob"]]
 z_index = 10
