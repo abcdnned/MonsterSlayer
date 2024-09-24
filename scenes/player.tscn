@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ctoaxl40kt506" path="res://scenes/tired_sprite.tscn" id="14_2gekr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1kir"]
-size = Vector2(280.005, 76.01)
+size = Vector2(342.976, 76.01)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1hdt"]
 radius = 109.005
@@ -802,10 +802,10 @@ tracks/0/path = NodePath("Sprite2D/LongSword:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.14, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(49, -198), Vector2(49, -198), Vector2(227, -8), Vector2(3.00002, 200), Vector2(-194, 5), Vector2(-0.999985, -224)]
+"values": [Vector2(49, -198), Vector2(175, 1), Vector2(6, 190)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -814,10 +814,10 @@ tracks/1/path = NodePath("Sprite2D/LongSword:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.14, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-1.3742, -1.3742, -0.0335745, 1.6083, 3.11409, 4.71125]
+"values": [-1.3742, 0.00480846, 1.57831]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -826,7 +826,7 @@ tracks/2/path = NodePath("Sprite2D/LongSword/damage_zone_moon:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.06, 0.32),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1125,12 +1125,13 @@ region_rect = Rect2(0, 0, 256, 128)
 [node name="damage_zone_moon" parent="Sprite2D/LongSword" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 position = Vector2(-224.001, 0.745775)
 rotation = 1.57193
+monitoring = true
 knockback = 1500.0
 sound = NodePath("../../../sword_hit")
 stun = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LongSword/damage_zone_moon"]
-position = Vector2(1.00003, -201.01)
+position = Vector2(1.08083, -232.495)
 rotation = -1.56823
 shape = SubResource("RectangleShape2D_l1kir")
 
@@ -1226,7 +1227,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_805h5")
 }

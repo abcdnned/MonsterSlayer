@@ -20,6 +20,7 @@ const GUARD_SPEED = 330.0
 const SPRINT_SPEED = 880.0
 
 var speed = WALK_SPEED
+var oir: float
 
 var dash_direction = Vector2.ZERO
 const DASH_MAX_SPEED = 1540.0
@@ -104,6 +105,7 @@ func _physics_process(delta):
 			if not get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
 			elif Input.is_action_just_pressed("right_click") and consume(3):
+				oir = sprite.rotation
 				animation_tree.set("parameters/conditions/moon_swap", true)
 		"idle_defense_cancel":
 			animation_tree.set("parameters/conditions/defense_cancel", false)
@@ -136,6 +138,10 @@ func _physics_process(delta):
 		"interact":
 			animation_tree.set("parameters/conditions/attack", false)
 			animation_tree.set("parameters/conditions/interact", false)
+		"moon_swap":
+			var p = clampf(state_machine.get_current_play_position(), 0, .3)
+			var r = oir + lerpf(0, 2 * PI, p / .3)
+			sprite.rotation = r
 
 func get_direction():
 	var mouse_pos = get_global_mouse_position()
