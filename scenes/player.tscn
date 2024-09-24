@@ -1125,7 +1125,6 @@ region_rect = Rect2(0, 0, 256, 128)
 [node name="damage_zone_moon" parent="Sprite2D/LongSword" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 position = Vector2(-224.001, 0.745775)
 rotation = 1.57193
-monitoring = true
 knockback = 1500.0
 sound = NodePath("../../../sword_hit")
 stun = 15

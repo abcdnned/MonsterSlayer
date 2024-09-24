@@ -48,7 +48,6 @@ func _physics_process(delta):
 				animation_tree.set("parameters/conditions/wandering", true)
 				animation_tree.set("parameters/conditions/target", false)
 		"charge":
-			print(global_position.distance_to(target_finder.target.global_position))
 			if global_position.distance_to(target_finder.target.global_position) < 250:
 				if what_am_i_thinking.thinking < 70 and consume(1):
 					animation_tree.set("parameters/conditions/swap", true)

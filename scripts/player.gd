@@ -45,8 +45,11 @@ func _process(delta):
 func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
-			if Input.is_action_just_pressed("right_click") and consume(3):
+			if Input.is_action_just_pressed("right_click") and get_input() == Vector2(0.0, -1.0) and consume(3):
 				animation_tree.set("parameters/conditions/special_attack", true)
+			elif Input.is_action_just_pressed("right_click") and get_input() == Vector2(0.0, 0.0) and consume(3):
+				oir = sprite.rotation
+				animation_tree.set("parameters/conditions/moon_swap", true)
 			elif Input.is_action_pressed("item"):
 				if item_handle.get_child_count() > 0:
 					animation_tree.set("parameters/conditions/hold_item", true)
@@ -104,9 +107,6 @@ func _physics_process(delta):
 			move_and_slide()
 			if not get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
-			elif Input.is_action_just_pressed("right_click") and consume(3):
-				oir = sprite.rotation
-				animation_tree.set("parameters/conditions/moon_swap", true)
 		"idle_defense_cancel":
 			animation_tree.set("parameters/conditions/defense_cancel", false)
 		"idle_defense_hit":
