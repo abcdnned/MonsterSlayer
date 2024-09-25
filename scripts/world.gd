@@ -1,5 +1,21 @@
-# Current sprint
-# TODO lv2 goblin
+# FIGHT!!! 17 days plan to release alpha version game
+# 1 hero lv5 back attack
+# 2 lv6 weapon upgrade
+# 3 level up integretion
+# 4 level up log
+# 5 skills UI + level status
+# 6 skills UI + level status
+# 7 goblin lv3 throw knife and reload
+# 8 lv4 angry buff
+# 9 lv4 angry buff
+# 10 level up AI integretion
+# 11 blue goblin lv2 throw spear and reload
+# 12 lv1 attack
+# 13 AI confirm
+# 14 level set up
+# 15 game test
+# 16 game test
+# 17 bug fix
 
 # lv2 2 -> lv3 6 -> lv4 12 -> lv5 20 -> lv6 30 -> lv7 42
 # Backlogs
@@ -49,7 +65,7 @@ const PLAYER_SPEAR = preload("res://scenes/player_spear.tscn")
 const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
 var money: int = 0
 var kill_count = 0
-var progress = 1
+var progress = 0
 
 # Called when the node enters the scene tree for the first time.
 #   1

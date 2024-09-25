@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=29 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scripts/GoblinArmy2Spawner.gd" id="14_arbhp"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
 [ext_resource type="PackedScene" uid="uid://dlsr0nb52f4yd" path="res://scenes/merchants.tscn" id="17_vteil"]
+[ext_resource type="PackedScene" uid="uid://cwe8s5kwh2tkd" path="res://scenes/dummy.tscn" id="21_lgvqf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_r5abn"]
 tile_data = PackedInt32Array(0, 0, 2, 1, 0, 2)
@@ -284,5 +285,8 @@ position = Vector2(-1138, 0)
 
 [node name="ProgressTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Dummy" parent="." instance=ExtResource("21_lgvqf")]
+position = Vector2(511, 314)
 
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]

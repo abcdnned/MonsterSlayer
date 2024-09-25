@@ -95,6 +95,7 @@ func _physics_process(delta):
 			dash_attack_speed = clampf(dash_attack_speed - dash_attack_deduction, 0, dash_attack_speed)
 			move_and_slide()
 		"Idle_Defense":
+			push_speed = 0.0
 			animation_tree.set("parameters/conditions/defense", false)
 			var mouse_pos = get_global_mouse_position()
 			sprite.look_at(mouse_pos)
@@ -107,6 +108,10 @@ func _physics_process(delta):
 			move_and_slide()
 			if not get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
+			elif Input.is_action_just_pressed("sprint") and consume(1):
+				animation_tree.set("parameters/conditions/shield_charge", true)
+				push(null, 2500, 150)
+				print("push")
 		"idle_defense_cancel":
 			animation_tree.set("parameters/conditions/defense_cancel", false)
 		"idle_defense_hit":
@@ -201,7 +206,7 @@ func dash_attack_sound():
 
 func _take_damage(d, v, source_position, tick):
 	match state_machine.get_current_node():
-		"Idle_Defense":
+		"Idle_Defense", "shield_charge":
 			var hit_angel = Vector2(cos(sprite.global_rotation), sin(sprite.global_rotation)).angle_to((source_position - global_position))
 			if abs(hit_angel) < deg_to_rad(40.0):
 				self.knock_back_force = v
@@ -270,3 +275,9 @@ func _sub_level_up(l):
 	emit_signal("max_health_change", max_health)
 	emit_signal("stamina_change", stamina)
 	emit_signal("max_stamina_change", max_stamina)
+	
+func _animation_interrupt():
+	$Sprite2D/Speed.visible = false
+	$Sprite2D/Trail1.visible = false
+	$Sprite2D/Trail2.visible = false
+	$Sprite2D/Trail3.visible = false

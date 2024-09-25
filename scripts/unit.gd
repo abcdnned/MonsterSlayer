@@ -77,6 +77,10 @@ func _on_state_entered(state_name: String):
 	if state_name == "stun" || state_name == 'dying':
 		_apply_stun_shader()
 		_set_damage_zone_monitoring(false)
+		_animation_interrupt()
+
+func _animation_interrupt():
+	pass
 
 func _on_state_exited(state_name: String):
 	if state_name == "stun":
