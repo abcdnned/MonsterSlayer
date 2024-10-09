@@ -236,5 +236,3 @@ func create_boime(x1, x2, y1, y2, mx, my, from, route):
 						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(2, 0), 0)
 					else:
 						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(1, 1), 0)
-
-
