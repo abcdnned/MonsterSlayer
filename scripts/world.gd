@@ -69,10 +69,8 @@ func _ready():
 	#load_player(PLAYER, Vector2(0, 0), { "health": 1, "max_health": 10 })
 	load_player(PLAYER, Vector2(0, 0))
 	var route := {}
-	map.create_boime(-10, 10, -10, 10, 4, 4, 0, route)
+	map.create_boime(-map.MAP_H / 4, map.MAP_H / 4, -map.MAP_V / 4, map.MAP_V / 4, map.START.x, map.START.y, 0, route)
 	disable_merchants()
-	progress_timer.wait_time = 3
-	progress_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
