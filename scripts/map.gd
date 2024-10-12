@@ -134,7 +134,7 @@ func create_boime():
 				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
 			elif chance <= 12:
 				map[x][y] = 3
-				tiles[x][y].color = Color(0.533333, 0.345098, 0.133333, .75)
+				tiles[y][x].color = Color(0.533333, 0.345098, 0.133333, .75)
 			else:
 				map[x][y] = 1
 				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .4)
@@ -142,8 +142,10 @@ func create_boime():
 		for y in range(0, MAP_V):
 			if map[x][y] == 2  and x + 1 < MAP_H and y - 1 >= 0 and map[x + 1][y - 1] == 2 and map[x + 1][y] != 2 and map[x][y - 1] != 2:
 				map[x][y - 1] = 2
+				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
 			elif map[x][y] == 2 and x - 1 >= 0 and y - 1 >= 0 and map[x - 1][y - 1] == 2 and map[x - 1][y] != 2 and map[x][y - 1] != 2:
 				map[x][y - 1] = 2
+				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
 	map[0][0] = 1
 	tiles[0][0].color = Color(0.133333, 0.545098, 0.133333, .4)
 	for x in range(0, MAP_H):
@@ -170,7 +172,7 @@ func create_region(top_left, bottom_right, mx, my):
 			elif map[mx][my] == 2:
 				owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
 			elif map[mx][my] == 3:
-				if randi_range(1, 100) <= 20:
+				if randi_range(1, 100) <= 2:
 					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
 					var p = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y)))
 					spawn_apple(p)
