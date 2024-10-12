@@ -33,7 +33,6 @@
 extends Node2D
 
 @onready var player = null
-@onready var tile_map = $TileMap
 @onready var kill = $UI/Kill
 @onready var coins = $UI/Coins
 @onready var winning_scene = $UI/WinningScene
@@ -67,9 +66,9 @@ var progress = 0
 func _ready():
 	randomize()
 	#load_player(PLAYER, Vector2(0, 0), { "health": 1, "max_health": 10 })
-	load_player(PLAYER, Vector2(0, 0))
+	load_player(PLAYER, Vector2(500, 500))
 	var route := {}
-	map.create_boime(-map.MAP_H / 4, map.MAP_H / 4, -map.MAP_V / 4, map.MAP_V / 4, map.START.x, map.START.y, 0, route)
+	map.create_boime()
 	disable_merchants()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -123,7 +122,7 @@ func load_player(player_type, position, stats = null):
 	player.emit_signal("max_stamina_change", player.max_stamina)
 	
 func _on_player_map_pos_change(x, y):
-	var p = tile_map.local_to_map(tile_map.to_local(Vector2(x, y)))
+	var p = get_tile_map().local_to_map(get_tile_map().to_local(Vector2(x, y)))
 	var i = self.map.tile_to_cord[Vector2(p.x, p.y)]
 
 func get_money(m):
@@ -155,3 +154,6 @@ func _on_progress_timer_timeout():
 func level_complete(level):
 	progress += 1
 	progress_timer.start()
+	
+func get_tile_map():
+	return find_child("TileMap")

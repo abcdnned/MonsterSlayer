@@ -7,8 +7,8 @@ var tile_to_cord = {}
 var level_cord = {}
 var gate := {}
 const START = Vector2(0, 0)
-const MAP_H = 3
-const MAP_V = 3
+const MAP_H = 20
+const MAP_V = 20
 const TILE_REGION_SIZE = 20
 var tiles = []
 var war_eye = []
@@ -20,10 +20,9 @@ const OBSTACLE_AGENT = preload("res://scenes/obstacle_agent.tscn")
 
 func _ready():
 	init_map()
-	init_plain_boime()
+	create_boime()
 	for x in range(0, MAP_V):
 		print(map[x])
-	create_boime()
 	
 func _process(delta):
 	if Input.is_action_pressed("tab"):
@@ -52,11 +51,6 @@ func init_map():
 		tiles.append(row)
 	init_map_to_tile_cord()
 	print(cord_to_tile)
-		
-func init_plain_boime():
-	var x = START.x
-	var y = START.y
-	#create_gate(x + 1, y, 3)
 	
 	
 func create_gate(x, y, d):
@@ -91,10 +85,10 @@ func _on_player_map_pos_change(x, y):
 	if player:
 		player.queue_free()
 	player = KNIGHT_POTRIAT.instantiate()
-	var p = owner.tile_map.local_to_map(owner.tile_map.to_local(Vector2(x, y)))
+	var p = owner.get_tile_map().local_to_map(owner.get_tile_map().to_local(Vector2(x, y)))
 	for key in cord_to_tile:
 		if cord_to_tile[key]["top_left"].x <= p.x and cord_to_tile[key]["top_left"].y <= p.y and cord_to_tile[key]["bottom_right"].x >= p.x and cord_to_tile[key]["bottom_right"].y >= p.y:
-			tiles[key.x][key.y].add_child(player)
+			tiles[key.y][key.x].add_child(player)
 			break
 
 func get_spawn_border_position(top_left, bottom_right):
@@ -134,6 +128,26 @@ func can_spawn(x, y):
 func create_boime():
 	for x in range(0, MAP_H):
 		for y in range(0, MAP_V):
+			var chance = randi_range(1, 100)
+			if chance <= 6:
+				map[x][y] = 2
+				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
+			elif chance <= 12:
+				map[x][y] = 3
+				tiles[x][y].color = Color(0.533333, 0.345098, 0.133333, .75)
+			else:
+				map[x][y] = 1
+				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .4)
+	for x in range(0, MAP_H):
+		for y in range(0, MAP_V):
+			if map[x][y] == 2  and x + 1 < MAP_H and y - 1 >= 0 and map[x + 1][y - 1] == 2 and map[x + 1][y] != 2 and map[x][y - 1] != 2:
+				map[x][y - 1] = 2
+			elif map[x][y] == 2 and x - 1 >= 0 and y - 1 >= 0 and map[x - 1][y - 1] == 2 and map[x - 1][y] != 2 and map[x][y - 1] != 2:
+				map[x][y - 1] = 2
+	map[0][0] = 1
+	tiles[0][0].color = Color(0.133333, 0.545098, 0.133333, .4)
+	for x in range(0, MAP_H):
+		for y in range(0, MAP_V):
 			create_region(cord_to_tile[Vector2(x, y)]["top_left"], cord_to_tile[Vector2(x, y)]["bottom_right"], x, y)
 
 
@@ -144,27 +158,35 @@ func create_region(top_left, bottom_right, mx, my):
 	var y2 = bottom_right.y
 	for x in range(x1, x2 + 1):
 		for y in range(y1, y2 + 1):
-			var chance = randi_range(1, 100 + 10 + 5)
-			tile_to_cord[Vector2(x, y)] = Vector2(mx, my)
-			if chance <= 10:
-				owner.tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 0), 0)
-			elif chance <= 15:
-				owner.tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(1, 0), 0)
-			else:
-				owner.tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0, 1), 0)	
+			if map[mx][my] == 1:
+				var chance = randi_range(1, 100 + 10 + 5)
+				tile_to_cord[Vector2(x, y)] = Vector2(mx, my)
+				if chance <= 10:
+					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 0), 0)
+				elif chance <= 15:
+					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(1, 0), 0)
+				else:
+					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 1), 0)	
+			elif map[mx][my] == 2:
+				owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
+			elif map[mx][my] == 3:
+				if randi_range(1, 100) <= 20:
+					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
+					var p = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y)))
+					spawn_apple(p)
 	# generate wall
-	if mx + 1 >= MAP_H or map[mx + 1][my] == 0:
+	if my + 1 >= MAP_V:
 		for x in range(x1, x2 + 1):
-			owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(0, 2), 0)
-	if my + 1 >= MAP_V or map[mx][my + 1] == 0:
+			owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(0, 2), 0)
+	if mx + 1 >= MAP_H:
 		for y in range(y1, y2 + 1):
-			owner.tile_map.set_cell(0, Vector2i(x2, y), 0, Vector2i(0, 2), 0)
-	if mx - 1 <= 0 or map[mx - 1][my] == 0:
+			owner.get_tile_map().set_cell(Vector2i(x2, y), 0, Vector2i(0, 2), 0)
+	if my - 1 < 0:
 		for x in range(x1, x2 + 1):
-			owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(0, 2), 0)
-	if my - 1 <= 0 or map[mx][my - 1] == 0:
+			owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(0, 2), 0)
+	if mx - 1 < 0:
 		for y in range(y1, y2 + 1):
-			owner.tile_map.set_cell(0, Vector2i(x1, y), 0, Vector2i(0, 2), 0)
+			owner.get_tile_map().set_cell(Vector2i(x1, y), 0, Vector2i(0, 2), 0)
 	# generate gate
 	if gate.has(Vector2(mx, my)):
 		match gate[Vector2(mx, my)]:
@@ -172,9 +194,9 @@ func create_region(top_left, bottom_right, mx, my):
 				var center = (x2 + x1 + 1) / 2
 				for x in range(x1 + 1, x2):
 					if x == center:
-						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 2), 0)
+						owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(1, 2), 0)
 						var keyHole = KEY_HOLE.instantiate()
-						keyHole.global_position = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(x, y1)))
+						keyHole.global_position = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y1)))
 						keyHole.door.append(Vector2(x, y1))
 						keyHole.door.append(Vector2(x - 2, y1))
 						keyHole.door.append(Vector2(x - 1, y1))
@@ -182,16 +204,16 @@ func create_region(top_left, bottom_right, mx, my):
 						keyHole.door.append(Vector2(x + 2, y1))
 						get_tree().current_scene.add_child(keyHole)
 					elif x >= center - 2 and x <= center + 2 and x != center:
-						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(2, 0), 0)
+						owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(2, 0), 0)
 					else:
-						owner.tile_map.set_cell(0, Vector2i(x, y1), 0, Vector2i(1, 1), 0)
+						owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(1, 1), 0)
 			3:
 				var center = (x2 + x1 + 1) / 2
 				for x in range(x1 + 1, x2):
 					if x == center:
-						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(1, 2), 0)
+						owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(1, 2), 0)
 						var keyHole = KEY_HOLE.instantiate()
-						keyHole.global_position = owner.tile_map.to_global(owner.tile_map.map_to_local(Vector2(x, y2)))
+						keyHole.global_position = owner.get_tile_map().to_global(owner.tile_map.map_to_local(Vector2(x, y2)))
 						keyHole.door.append(Vector2(x, y1))
 						keyHole.door.append(Vector2(x - 2, y1))
 						keyHole.door.append(Vector2(x - 1, y1))
@@ -199,6 +221,13 @@ func create_region(top_left, bottom_right, mx, my):
 						keyHole.door.append(Vector2(x + 2, y1))
 						get_tree().current_scene.add_child(keyHole)
 					elif x >= center - 2 and x <= center + 2 and x != center:
-						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(2, 0), 0)
+						owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(2, 0), 0)
 					else:
-						owner.tile_map.set_cell(0, Vector2i(x, y2), 0, Vector2i(1, 1), 0)
+						owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(1, 1), 0)
+
+const I_APPLE = preload("res://scenes/i_apple.tscn")
+
+func spawn_apple(p):
+	var a = I_APPLE.instantiate()
+	a.position = p
+	owner.add_child(a)

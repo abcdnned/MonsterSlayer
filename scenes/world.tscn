@@ -123,10 +123,10 @@ shader_parameter/shift_color = Color(0.81, 0.81, 0.81, 1)
 [node name="World" type="Node2D"]
 script = ExtResource("1_se2w6")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMapLayer" parent="."]
+use_parent_material = true
 position = Vector2(-146, 309)
 tile_set = SubResource("TileSet_upu07")
-format = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -273,6 +273,6 @@ position = Vector2(-1138, 0)
 one_shot = true
 
 [node name="Dummy" parent="." instance=ExtResource("21_lgvqf")]
-position = Vector2(511, 314)
+position = Vector2(1802, 1276)
 
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]
