@@ -21,7 +21,7 @@ func _sub_ready():
 	pass
 
 func _process(delta):
-	if lootable and is_on_top() and is_reachable():
+	if lootable and is_reachable() and is_on_top() :
 		tooltip_hover_timer += 1
 		if tooltip_hover_timer > 50:
 			tooltip = true
