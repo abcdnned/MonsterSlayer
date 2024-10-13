@@ -2,6 +2,7 @@ extends Control
 
 @onready var grid_container = $GridContainer
 var map = []
+var entity = []
 var cord_to_tile = {}
 var tile_to_cord = {}
 var level_cord = {}
@@ -41,14 +42,19 @@ func init_map():
 		for x in range(MAP_V):
 			row.append(0)  # 0 represents a default tile type
 		war_eye.append(row)
-	for y in range(MAP_H):
+	for x in range(MAP_H):
 		var row = []
-		for x in range(MAP_V):
+		for y in range(MAP_V):
 			var tile = MAP_TILE.instantiate()
 			grid_container.add_child(tile)
 			tile.color = Color.BURLYWOOD
 			row.append(tile)
 		tiles.append(row)
+	for x in range(MAP_V):
+		var row = []  # Initialize the row array
+		for y in range(MAP_H):
+			row.append({})  # Optionally initialize inner values, e.g., with null or a specific initial value
+		entity.append(row)  # Append the row to the main array
 	init_map_to_tile_cord()
 	print(cord_to_tile)
 	
@@ -89,7 +95,13 @@ func _on_player_map_pos_change(x, y):
 	for key in cord_to_tile:
 		if cord_to_tile[key]["top_left"].x <= p.x and cord_to_tile[key]["top_left"].y <= p.y and cord_to_tile[key]["bottom_right"].x >= p.x and cord_to_tile[key]["bottom_right"].y >= p.y:
 			tiles[key.y][key.x].add_child(player)
+			active_entities(key.x, key.y)	
 			break
+
+func active_entities(x, y):
+	for k in entity[x][y]:
+		entity[x][y][k].process_mode = PROCESS_MODE_INHERIT
+		print(entity[x][y][k].name)
 
 func get_spawn_border_position(top_left, bottom_right):
 	var get_random_x = func():
@@ -175,7 +187,7 @@ func create_region(top_left, bottom_right, mx, my):
 				if randi_range(1, 100) <= 2:
 					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
 					var p = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y)))
-					spawn_apple(p)
+					spawn_apple(p, mx, my)
 	# generate wall
 	if my + 1 >= MAP_V:
 		for x in range(x1, x2 + 1):
@@ -229,7 +241,8 @@ func create_region(top_left, bottom_right, mx, my):
 
 const I_APPLE = preload("res://scenes/i_apple.tscn")
 
-func spawn_apple(p):
+func spawn_apple(p, mx, my):
 	var a = I_APPLE.instantiate()
 	a.position = p
 	owner.add_child(a)
+	entity[mx][my][a.get_path()] = a

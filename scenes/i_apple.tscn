@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bd17lenmrkfid" path="res://sounds/411597__omgbong__eating-an-apple-01.wav" id="3_nvgg7"]
 
 [node name="iApple" type="Sprite2D"]
+process_mode = 4
 z_index = 5
 z_as_relative = false
 texture = ExtResource("1_m0h02")

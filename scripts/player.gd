@@ -230,9 +230,12 @@ func _take_damage(d, v, source_position, tick):
 			super._take_damage(d, v, source_position, tick)
 	return [false, d]
 
+var last_pos = Vector2(0, 0)
 
 func _on_emit_signal_timeout():
-	emit_signal("map_pos_change", global_position.x, global_position.y)
+	if global_position != last_pos:
+		last_pos = global_position
+		emit_signal("map_pos_change", global_position.x, global_position.y)
 	
 func throw_item():
 	item_handle.get_child(0).shoot()
