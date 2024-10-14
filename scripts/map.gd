@@ -8,8 +8,8 @@ var tile_to_cord = {}
 var level_cord = {}
 var gate := {}
 const START = Vector2(0, 0)
-const MAP_H = 20
-const MAP_V = 20
+const MAP_H = 10
+const MAP_V = 10
 const TILE_REGION_SIZE = 20
 var tiles = []
 var war_eye = []
@@ -87,22 +87,33 @@ func init_map_to_tile_cord():
 		for y in range(0, MAP_V):
 			cord_to_tile[Vector2(x, y)] = {"top_left": Vector2(top_left.x + x * TILE_REGION_SIZE, top_left.y + y * TILE_REGION_SIZE), "bottom_right": Vector2(bottom_right.x + x * TILE_REGION_SIZE, bottom_right.y + y * TILE_REGION_SIZE)}
 
+var last_cord = Vector2(-1, -1)
+
 func _on_player_map_pos_change(x, y):
-	if player:
-		player.queue_free()
-	player = KNIGHT_POTRIAT.instantiate()
 	var p = owner.get_tile_map().local_to_map(owner.get_tile_map().to_local(Vector2(x, y)))
 	for key in cord_to_tile:
 		if cord_to_tile[key]["top_left"].x <= p.x and cord_to_tile[key]["top_left"].y <= p.y and cord_to_tile[key]["bottom_right"].x >= p.x and cord_to_tile[key]["bottom_right"].y >= p.y:
-			tiles[key.y][key.x].add_child(player)
-			active_entities(key.x, key.y)	
-			break
+			if key != last_cord:
+				if player:
+					player.queue_free()
+				player = KNIGHT_POTRIAT.instantiate()
+				tiles[key.y][key.x].add_child(player)
+				active_entities(key.x, key.y)
+				deactive_entities(last_cord.x, last_cord.y, key.x, key.y)
+				last_cord = key
+				break
 
 func active_entities(x, y):
 	for k in entity[x][y]:
 		entity[x][y][k].process_mode = PROCESS_MODE_INHERIT
-		print(entity[x][y][k].name)
-
+		
+func deactive_entities(x, y, new_x, new_y):
+	for k in entity[x][y]:
+		if entity[x][y][k] is Unit:
+			pass
+		else:
+			entity[x][y][k].process_mode = PROCESS_MODE_DISABLED
+			
 func get_spawn_border_position(top_left, bottom_right):
 	var get_random_x = func():
 		var x = randf_range(-128, 128)
@@ -141,29 +152,30 @@ func create_boime():
 	for x in range(0, MAP_H):
 		for y in range(0, MAP_V):
 			var chance = randi_range(1, 100)
-			if chance <= 6:
+			if chance <= 10:
 				map[x][y] = 2
 				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
-			elif chance <= 12:
+			elif chance <= 20:
 				map[x][y] = 3
 				tiles[y][x].color = Color(0.533333, 0.345098, 0.133333, .75)
 			else:
 				map[x][y] = 1
 				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .4)
-	for x in range(0, MAP_H):
-		for y in range(0, MAP_V):
-			if map[x][y] == 2  and x + 1 < MAP_H and y - 1 >= 0 and map[x + 1][y - 1] == 2 and map[x + 1][y] != 2 and map[x][y - 1] != 2:
-				map[x][y - 1] = 2
-				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
-			elif map[x][y] == 2 and x - 1 >= 0 and y - 1 >= 0 and map[x - 1][y - 1] == 2 and map[x - 1][y] != 2 and map[x][y - 1] != 2:
-				map[x][y - 1] = 2
-				tiles[y][x].color = Color(0.133333, 0.545098, 0.133333, .75)
 	map[0][0] = 1
 	tiles[0][0].color = Color(0.133333, 0.545098, 0.133333, .4)
 	for x in range(0, MAP_H):
 		for y in range(0, MAP_V):
 			create_region(cord_to_tile[Vector2(x, y)]["top_left"], cord_to_tile[Vector2(x, y)]["bottom_right"], x, y)
 
+func make_up_tree():
+	for x in range(0, MAP_H):
+		for y in range(0, MAP_V):
+			if map[x][y] == 2  and x + 1 < MAP_H and y - 1 >= 0 and map[x + 1][y - 1] == 2 and map[x + 1][y] != 2 and map[x][y - 1] != 2:
+				map[x][y - 1] = 2
+				tiles[y - 1][x].color = Color(0.133333, 0.545098, 0.133333, .75)
+			elif map[x][y] == 2 and x - 1 >= 0 and y - 1 >= 0 and map[x - 1][y - 1] == 2 and map[x - 1][y] != 2 and map[x][y - 1] != 2:
+				map[x][y - 1] = 2
+				tiles[y - 1][x].color = Color(0.133333, 0.545098, 0.133333, .75)
 
 func create_region(top_left, bottom_right, mx, my):
 	var x1 = top_left.x
@@ -172,22 +184,31 @@ func create_region(top_left, bottom_right, mx, my):
 	var y2 = bottom_right.y
 	for x in range(x1, x2 + 1):
 		for y in range(y1, y2 + 1):
-			if map[mx][my] == 1:
-				var chance = randi_range(1, 100 + 10 + 5)
-				tile_to_cord[Vector2(x, y)] = Vector2(mx, my)
-				if chance <= 10:
-					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 0), 0)
-				elif chance <= 15:
-					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(1, 0), 0)
-				else:
-					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 1), 0)	
-			elif map[mx][my] == 2:
-				owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
+			# Init tile
+			var chance = randi_range(1, 100 + 10 + 5)
+			tile_to_cord[Vector2(x, y)] = Vector2(mx, my)
+			if chance <= 10:
+				owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 0), 0)
+			elif chance <= 15:
+				owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(1, 0), 0)
+			else:
+				owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 1), 0)	
+			# Forest
+			if map[mx][my] == 2:
+				var d = (bottom_right.x - top_left.x) / 2
+				var center = Vector2(bottom_right.x - top_left.x, bottom_right.y - top_left.y) / 2 + Vector2(x1, y1)
+				var dis = Vector2(x, y).distance_to(center)
+				if dis <= d + 1:
+					if randi_range(1, 100) <= 88:
+						owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
+			# Apple Forest
 			elif map[mx][my] == 3:
-				if randi_range(1, 100) <= 2:
+				var c = randi_range(1, 100)
+				if c <= 10:
 					owner.get_tile_map().set_cell(Vector2i(x, y), 0, Vector2i(0, 2), 0)
 					var p = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y)))
-					spawn_apple(p, mx, my)
+					if c <= 2:
+						spawn_apple(p, mx, my)
 	# generate wall
 	if my + 1 >= MAP_V:
 		for x in range(x1, x2 + 1):
@@ -244,5 +265,5 @@ const I_APPLE = preload("res://scenes/i_apple.tscn")
 func spawn_apple(p, mx, my):
 	var a = I_APPLE.instantiate()
 	a.position = p
-	owner.add_child(a)
-	entity[mx][my][a.get_path()] = a
+	owner.add_child.call_deferred(a)
+	entity[mx][my][a.get_instance_id()] = a
