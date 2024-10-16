@@ -58,6 +58,8 @@ const PLAYER_HAMMER = preload("res://scenes/player_hammer.tscn")
 var money: int = 0
 var kill_count = 0
 var progress = 0
+@onready var mobs: Node = $Mobs
+@onready var random_boime_spawner: Node = $LevelSpawner/RandomBoimeSpawner
 
 # Called when the node enters the scene tree for the first time.
 #   1
@@ -70,6 +72,7 @@ func _ready():
 	var route := {}
 	map.create_boime()
 	disable_merchants()
+	random_boime_spawner.random_spawn()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

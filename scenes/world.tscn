@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjvbg67qq86db"]
+[gd_scene load_steps=30 format=3 uid="uid://bjvbg67qq86db"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_se2w6"]
 [ext_resource type="Texture2D" uid="uid://cpi0gij4ilg70" path="res://sprites/plain_boime/plain_boime_2.png" id="2_o8njh"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scripts/MaxStamina.gd" id="13_kv0ah"]
 [ext_resource type="Script" path="res://scripts/GoblinArmy2Spawner.gd" id="14_arbhp"]
 [ext_resource type="Script" path="res://scripts/starter_plain_spawner.gd" id="14_ucirg"]
+[ext_resource type="Script" path="res://scripts/random_boime_spawner.gd" id="17_7t4yd"]
 [ext_resource type="PackedScene" uid="uid://dlsr0nb52f4yd" path="res://scenes/merchants.tscn" id="17_vteil"]
 [ext_resource type="PackedScene" uid="uid://cwe8s5kwh2tkd" path="res://scenes/dummy.tscn" id="21_lgvqf"]
 
@@ -254,6 +255,9 @@ bus = &"SFX"
 
 [node name="LevelSpawner" type="Node" parent="."]
 
+[node name="RandomBoimeSpawner" type="Node" parent="LevelSpawner"]
+script = ExtResource("17_7t4yd")
+
 [node name="StarterPlainSpawner" type="Node" parent="LevelSpawner"]
 script = ExtResource("14_ucirg")
 enable = false
@@ -274,5 +278,7 @@ one_shot = true
 
 [node name="Dummy" parent="." instance=ExtResource("21_lgvqf")]
 position = Vector2(1802, 1276)
+
+[node name="Mobs" type="Node" parent="."]
 
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]

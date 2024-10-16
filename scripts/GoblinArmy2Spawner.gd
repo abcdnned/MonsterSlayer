@@ -27,5 +27,3 @@ func do_spawn():
 		enable = false
 		owner.war_eye.visible = false
 		owner.level_complete(2)
-
-
