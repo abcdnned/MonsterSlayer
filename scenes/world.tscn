@@ -183,6 +183,7 @@ script = ExtResource("8_qgpxq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Energy" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchor_left = 0.1
 anchor_top = 0.9

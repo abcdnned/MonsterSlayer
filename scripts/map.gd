@@ -101,6 +101,8 @@ func _on_player_map_pos_change(x, y):
 				active_entities(key.x, key.y)
 				deactive_entities(last_cord.x, last_cord.y, key.x, key.y)
 				last_cord = key
+				if map[key.x][key.y] == 1:
+					owner.random_boime_spawner.random_spawn(key.x, key.y)
 				break
 
 func active_entities(x, y):
@@ -109,10 +111,7 @@ func active_entities(x, y):
 		
 func deactive_entities(x, y, new_x, new_y):
 	for k in entity[x][y]:
-		if entity[x][y][k] is Unit:
-			pass
-		else:
-			entity[x][y][k].process_mode = PROCESS_MODE_DISABLED
+		entity[x][y][k].process_mode = PROCESS_MODE_DISABLED
 			
 func get_spawn_border_position(top_left, bottom_right):
 	var get_random_x = func():

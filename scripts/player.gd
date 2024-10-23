@@ -45,16 +45,16 @@ func _process(delta):
 func _physics_process(delta):
 	match state_machine.get_current_node():
 		"Idle_2":
-			if Input.is_action_just_pressed("right_click") and get_input() == Vector2(0.0, -1.0) and consume(3):
+			if Input.is_action_just_pressed("right_click") and get_input() == Vector2(0.0, -1.0):
 				animation_tree.set("parameters/conditions/special_attack", true)
-			elif Input.is_action_just_pressed("right_click") and get_input() == Vector2(0.0, 0.0) and consume(3):
+			elif Input.is_action_just_pressed("right_click") and get_input() == Vector2(0.0, 0.0):
 				oir = sprite.rotation
 				animation_tree.set("parameters/conditions/moon_swap", true)
 			elif Input.is_action_pressed("item"):
 				if item_handle.get_child_count() > 0:
 					animation_tree.set("parameters/conditions/hold_item", true)
 					animation_tree.set("parameters/conditions/hide_item", false)
-			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped() && consume(1):
+			elif Input.is_action_just_pressed("sprint") && dash_cooldown.is_stopped():
 				dash_direction = get_direction()
 				animation_tree.set("parameters/conditions/dash", true)
 				dash_cooldown.start()
@@ -64,7 +64,7 @@ func _physics_process(delta):
 				dash_attack_speed = DASH_ATTACK_MAX_SPEED
 				dash_attack_deduction = 20.0
 				dash_attack_direction = Vector2(cos(sprite.rotation), sin(sprite.rotation)).normalized()
-			elif Input.is_action_just_pressed("left_click") and consume(1):
+			elif Input.is_action_just_pressed("left_click"):
 				animation_tree.set("parameters/conditions/attack", true)
 			elif get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense", true)
@@ -108,7 +108,7 @@ func _physics_process(delta):
 			move_and_slide()
 			if not get_input() == Vector2(0.0, 1.0):
 				animation_tree.set("parameters/conditions/defense_cancel", true)
-			elif Input.is_action_just_pressed("sprint") and consume(1):
+			elif Input.is_action_just_pressed("sprint"):
 				animation_tree.set("parameters/conditions/shield_charge", true)
 				push(null, 2500, 150)
 				print("push")
@@ -281,6 +281,3 @@ func _sub_level_up(l):
 	
 func _animation_interrupt():
 	$Sprite2D/Speed.visible = false
-	$Sprite2D/Trail1.visible = false
-	$Sprite2D/Trail2.visible = false
-	$Sprite2D/Trail3.visible = false

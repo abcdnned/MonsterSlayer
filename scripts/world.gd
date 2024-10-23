@@ -72,7 +72,6 @@ func _ready():
 	var route := {}
 	map.create_boime()
 	disable_merchants()
-	random_boime_spawner.random_spawn()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -19,7 +19,7 @@ func _process(delta):
 
 func _on_damage_zone_hit():
 	visible = false
-	damage_zone.monitoring = false
+	damage_zone.set_deferred("monitoring", false)
 
 func _on_timer_timeout():
 	queue_free()

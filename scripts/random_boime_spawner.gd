@@ -4,15 +4,8 @@ const GOBLIN = preload("res://scenes/goblin.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
 const GOBLIN_WARRIOR_HAMMER = preload("res://scenes/goblin_warrior_hammer.tscn")
 
-func random_spawn():
-	var map = owner.map.map
-	var rows = owner.map.MAP_V
-	var columns = owner.map.MAP_H
-	var chance = randi_range(1, 100)
-	for x in rows:
-		for y in columns:
-			if map[x][y] == 1:
-				spawn_mob(GOBLIN, x, y)
+func random_spawn(mx, my):
+	spawn_mob(GOBLIN, mx, my)
 		
 func spawn_mob(type, mx, my):
 	var spawn_position = get_regin_center(mx, my)

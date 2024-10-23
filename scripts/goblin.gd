@@ -6,7 +6,7 @@ const SPEED = 550
 @onready var death_yell = $death_yell
 @onready var ray_cast_2d = $Sprite2D/RayCast2D
 @onready var dagger_attack_sound = $dagger_attack_sound
-@onready var damage_zone = $Sprite2D/damage_zone
+@onready var damage_zone = $Sprite2D/DaggerSprite/damage_zone
 @onready var dagger_sprite = $Sprite2D/DaggerSprite
 @onready var target_finder = $TargetFinder
 @onready var wandering = $Wandering
@@ -14,31 +14,26 @@ const SPEED = 550
 @onready var what_am_i_thinking = $WhatAmIThinking
 
 var alert_range = 500.0
+var defense_tick = 50
 	
 func _process(delta):
 	super._process(delta)
 	match state_machine.get_current_node():
 		"chasing":
-			if stamina == 0:
-				animation_tree.set("parameters/conditions/defense", true)
 			if is_in_group("lose"):
 				return
 			if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().is_in_group("human"):
-				if what_am_i_thinking.thinking <= 100:
-					move_queue(2)
+				if what_am_i_thinking.thinking <= 10:
+					defense_tick = 50
+					animation_tree.set("parameters/conditions/defense", true)
+				elif what_am_i_thinking.thinking <= 30:
+					animation_tree.set("parameters/conditions/combo", true)
 				else:
-					move_queue(1)
+					animation_tree.set("parameters/conditions/attack", true)
 		"attack":
 			animation_tree.set("parameters/conditions/attack", false)
 		"defense":
 			animation_tree.set("parameters/conditions/defense", false)
-
-func move_queue(t: int) -> void:
-	var conditions = ["attack", "combo"]
-	for i in range(t, 0, -1):  # This iterates from t to 0
-		if consume(i):
-			animation_tree.set("parameters/conditions/" + conditions[i - 1], true)
-			return
 
 
 func _physics_process(delta):
@@ -68,7 +63,8 @@ func _physics_process(delta):
 				animation_tree.set("parameters/conditions/target", false)
 		"defense":
 			animation_tree.set("parameters/conditions/defense", false)
-			if target_finder.target && stamina == 0:
+			if target_finder.target and defense_tick > 0:
+				defense_tick = defense_tick - 1
 				var direction = global_position.direction_to(target_finder.target.global_position).normalized()
 				sprite.look_at(target_finder.target.global_position)
 				velocity = -direction * SPEED * 0.8
