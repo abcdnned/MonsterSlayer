@@ -23,10 +23,7 @@ func _process(delta):
 			if is_in_group("lose"):
 				return
 			if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().is_in_group("human"):
-				if what_am_i_thinking.thinking <= 10:
-					defense_tick = 50
-					animation_tree.set("parameters/conditions/defense", true)
-				elif what_am_i_thinking.thinking <= 30:
+				if what_am_i_thinking.thinking <= 30:
 					animation_tree.set("parameters/conditions/combo", true)
 				else:
 					animation_tree.set("parameters/conditions/attack", true)

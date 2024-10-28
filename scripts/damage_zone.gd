@@ -10,14 +10,10 @@ const HEART_BREAK_FLOAT = preload("res://scenes/heart_break_float.tscn")
 const HEART_BREAK_FLOOR = preload("res://scenes/heart_break_floor.tscn")
 
 signal hit
-var active = true
-
 
 
 func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	var tmp_d = damage
-	if not active:
-		return
 	if (!body.has_method("_take_damage")):
 		return
 	if _check_parent(body):
@@ -39,7 +35,7 @@ func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index)
 		heart_break_floor.emit()
 	emit_signal("hit")
 	if not aoe:
-		active = false
+		monitoring = false
 
 func _check_parent(body):
 	var current_node = self
