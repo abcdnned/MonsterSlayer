@@ -3,9 +3,32 @@ extends Node
 const GOBLIN = preload("res://scenes/goblin.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
 const GOBLIN_WARRIOR_HAMMER = preload("res://scenes/goblin_warrior_hammer.tscn")
+const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
+
+var spawnable_area = []
+var pre_spawn_mob = {}
+
+func init_random_spawn():
+	for x in range(owner.map.MAP_V):
+		for y in range(owner.map.MAP_H):
+			if owner.map[x][y] == 1:
+				spawnable_area.append(Vector2(x, y))
+	for v in spawnable_area:
+		var i = randf_range(1, 100)
+		if i <= 70:
+			pre_spawn_mob[v] = GOBLIN
+		else:
+			pre_spawn_mob[v] = GOBLIN_ARCHER
+	make_up_spawn()
 
 func random_spawn(mx, my):
-	spawn_mob(GOBLIN, mx, my)
+	spawn_mob(pre_spawn_mob[Vector2(mx, my)], mx, my)
+		
+func make_up_spawn():
+	var v1 = randf_range(0, spawnable_area.size() - 1)
+	var v2 = randf_range(v1, spawnable_area.size() - 1)
+	pre_spawn_mob[v1] = GOBLIN_WARRIOR_HAMMER
+	pre_spawn_mob[v2] = GOBLIN_WARRIOR_SPEAR
 		
 func spawn_mob(type, mx, my):
 	var spawn_position = get_regin_center(mx, my)
