@@ -208,7 +208,7 @@ func create_region(top_left, bottom_right, mx, my):
 					var p = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y)))
 					if c <= 2:
 						spawn_apple(p, mx, my)
-	# generate wall
+	# generate tree wall
 	if my + 1 >= MAP_V:
 		for x in range(x1, x2 + 1):
 			owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(0, 2), 0)
@@ -221,43 +221,6 @@ func create_region(top_left, bottom_right, mx, my):
 	if mx - 1 < 0:
 		for y in range(y1, y2 + 1):
 			owner.get_tile_map().set_cell(Vector2i(x1, y), 0, Vector2i(0, 2), 0)
-	# generate gate
-	if gate.has(Vector2(mx, my)):
-		match gate[Vector2(mx, my)]:
-			1:
-				var center = (x2 + x1 + 1) / 2
-				for x in range(x1 + 1, x2):
-					if x == center:
-						owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(1, 2), 0)
-						var keyHole = KEY_HOLE.instantiate()
-						keyHole.global_position = owner.get_tile_map().to_global(owner.get_tile_map().map_to_local(Vector2(x, y1)))
-						keyHole.door.append(Vector2(x, y1))
-						keyHole.door.append(Vector2(x - 2, y1))
-						keyHole.door.append(Vector2(x - 1, y1))
-						keyHole.door.append(Vector2(x + 1, y1))
-						keyHole.door.append(Vector2(x + 2, y1))
-						get_tree().current_scene.add_child(keyHole)
-					elif x >= center - 2 and x <= center + 2 and x != center:
-						owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(2, 0), 0)
-					else:
-						owner.get_tile_map().set_cell(Vector2i(x, y1), 0, Vector2i(1, 1), 0)
-			3:
-				var center = (x2 + x1 + 1) / 2
-				for x in range(x1 + 1, x2):
-					if x == center:
-						owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(1, 2), 0)
-						var keyHole = KEY_HOLE.instantiate()
-						keyHole.global_position = owner.get_tile_map().to_global(owner.tile_map.map_to_local(Vector2(x, y2)))
-						keyHole.door.append(Vector2(x, y1))
-						keyHole.door.append(Vector2(x - 2, y1))
-						keyHole.door.append(Vector2(x - 1, y1))
-						keyHole.door.append(Vector2(x + 1, y1))
-						keyHole.door.append(Vector2(x + 2, y1))
-						get_tree().current_scene.add_child(keyHole)
-					elif x >= center - 2 and x <= center + 2 and x != center:
-						owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(2, 0), 0)
-					else:
-						owner.get_tile_map().set_cell(Vector2i(x, y2), 0, Vector2i(1, 1), 0)
 
 const I_APPLE = preload("res://scenes/i_apple.tscn")
 
