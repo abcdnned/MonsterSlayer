@@ -71,6 +71,7 @@ func _ready():
 	load_player(PLAYER, Vector2(500, 500))
 	var route := {}
 	map.create_boime()
+	random_boime_spawner.init_random_spawn()
 	disable_merchants()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
