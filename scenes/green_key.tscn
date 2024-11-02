@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://r35d0doyl8i5"]
+
+[ext_resource type="Texture2D" uid="uid://d3tl5jq5ee5pv" path="res://sprites/item/start_key.png" id="1_tjhog"]
+[ext_resource type="Script" path="res://scripts/green_key.gd" id="2_wtncf"]
+
+[node name="GreenKey" type="Sprite2D"]
+texture = ExtResource("1_tjhog")
+script = ExtResource("2_wtncf")

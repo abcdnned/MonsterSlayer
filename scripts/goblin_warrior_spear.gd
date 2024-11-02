@@ -104,7 +104,13 @@ func _on_timer_timeout():
 	
 func _sub_dead():
 	death_yell.play()
-	drop_spear()
+	drop_green_key()
+	
+const GREEN_KEY = preload("res://scenes/green_key.tscn")
+func drop_green_key():
+	var key = GREEN_KEY.instantiate()
+	key.position = global_position
+	get_tree().current_scene.add_child(key)
 
 func drop_spear():
 	var spear = I_HEAVY_SPEAR.instantiate()

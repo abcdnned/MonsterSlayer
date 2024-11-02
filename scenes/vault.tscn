@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://deiwvt12l1bt1"]
+
+[ext_resource type="Texture2D" uid="uid://crt3qq4d2nhym" path="res://scripts/vault.png" id="1_mwra6"]
+[ext_resource type="Script" path="res://scripts/vault.gd" id="2_s4sw8"]
+
+[node name="Vault" type="Sprite2D"]
+texture = ExtResource("1_mwra6")
+script = ExtResource("2_s4sw8")

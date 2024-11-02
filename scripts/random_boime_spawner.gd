@@ -16,13 +16,13 @@ func init_random_spawn():
 				spawnable_area.append(Vector2(x, y))
 	for v in spawnable_area:
 		var i = randf_range(1, 100)
-		if i <= 70:
-			pre_spawn_mob[v] = GOBLIN
+		if i <= 100:
+			pre_spawn_mob[v] = GOBLIN_WARRIOR_HAMMER
 			print(str(v) + " GOBLIN")
 		else:
 			pre_spawn_mob[v] = GOBLIN_ARCHER
 			print(str(v) + " GOBLIN_ARCHER")
-	make_up_spawn()
+	#make_up_spawn()
 
 func random_spawn(mx, my):
 	spawn_mob(pre_spawn_mob[Vector2(mx, my)], mx, my)

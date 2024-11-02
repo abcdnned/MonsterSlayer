@@ -160,3 +160,14 @@ func level_complete(level):
 	
 func get_tile_map():
 	return find_child("TileMap")
+	
+@onready var red_key: Control = $UI/RedKey
+func get_red_key():
+	red_key.visible = true
+	
+@onready var green_key: Control = $UI/GreenKey
+func get_green_key():
+	green_key.visible = true
+
+func two_key_obtained():
+	return red_key.visible and green_key.visible

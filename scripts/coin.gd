@@ -16,5 +16,3 @@ func auto_pickup(player):
 
 func _on_timer_timeout():
 	queue_free()
-
-

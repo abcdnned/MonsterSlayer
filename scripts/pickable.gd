@@ -34,6 +34,10 @@ func apply_pickable_shader(sprite):
 	
 func pickup(player):
 	player.interact(self)
+	sub_pickup(player)
+	
+func sub_pickup(player):
+	pass
 
 func is_on_top():
 	for l in get_tree().get_nodes_in_group("lootable"):

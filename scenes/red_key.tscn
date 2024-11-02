@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddreexcatrrla"]
+
+[ext_resource type="Texture2D" uid="uid://ba0kmfa6vfax4" path="res://sprites/item/red_key.png" id="1_1fwbm"]
+[ext_resource type="Script" path="res://scripts/red_key.gd" id="1_w7wvt"]
+
+[node name="RedKey" type="Sprite2D"]
+texture = ExtResource("1_1fwbm")
+script = ExtResource("1_w7wvt")

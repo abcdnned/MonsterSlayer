@@ -18,6 +18,7 @@ const I_HAMMER = preload("res://scenes/i_hammer.tscn")
 var dash_attack_speed = 1100
 var dash_attack_direction = Vector2.ZERO
 var dash_attack_deduction = 20.0
+const RED_KEY = preload("res://scenes/red_key.tscn")
 
 var alert_range = 1000.0
 
@@ -113,7 +114,12 @@ func _on_timer_timeout():
 		navigation_agent_2d.target_position = wandering.wandering_loc
 	
 func _sub_dead():
-	drop_hammer()
+	drop_red_key()
+
+func drop_red_key():
+	var key = RED_KEY.instantiate()
+	key.position = global_position
+	get_tree().current_scene.add_child(key)
 
 func drop_hammer():
 	var hammer = I_HAMMER.instantiate()
