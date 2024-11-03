@@ -59,6 +59,7 @@ var money: int = 0
 var kill_count = 0
 var progress = 0
 @onready var mobs: Node = $Mobs
+@onready var items: Node = $Items
 @onready var random_boime_spawner: Node = $LevelSpawner/RandomBoimeSpawner
 
 # Called when the node enters the scene tree for the first time.

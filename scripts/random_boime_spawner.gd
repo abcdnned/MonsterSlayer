@@ -4,9 +4,11 @@ const GOBLIN = preload("res://scenes/goblin.tscn")
 const GOBLIN_ARCHER = preload("res://scenes/goblin_archer.tscn")
 const GOBLIN_WARRIOR_HAMMER = preload("res://scenes/goblin_warrior_hammer.tscn")
 const GOBLIN_WARRIOR_SPEAR = preload("res://scenes/goblin_warrior_spear.tscn")
+const VAULT = preload("res://scenes/vault.tscn")
 
 var spawnable_area = []
-var pre_spawn_mob = {}
+var pre_spawn = {}
+var pre_spawn_type = {}
 
 func init_random_spawn():
 	var map = owner.map.map
@@ -17,23 +19,35 @@ func init_random_spawn():
 	for v in spawnable_area:
 		var i = randf_range(1, 100)
 		if i <= 100:
-			pre_spawn_mob[v] = GOBLIN_WARRIOR_HAMMER
-			print(str(v) + " GOBLIN")
+			set_pre_spawn_mob(GOBLIN, v)
 		else:
-			pre_spawn_mob[v] = GOBLIN_ARCHER
-			print(str(v) + " GOBLIN_ARCHER")
-	#make_up_spawn()
+			set_pre_spawn_mob(GOBLIN_ARCHER, v)
+	make_up_spawn()
 
 func random_spawn(mx, my):
-	spawn_mob(pre_spawn_mob[Vector2(mx, my)], mx, my)
+	if pre_spawn_type[Vector2(mx, my)] == "mob":
+		spawn_mob(pre_spawn[Vector2(mx, my)], mx, my)
+	elif pre_spawn_type[Vector2(mx, my)] == "item":
+		spawn_item(pre_spawn[Vector2(mx, my)], mx, my)
+
+func set_pre_spawn_mob(type, v):
+	set_pre_spawn("mob", type, v)
+	
+func set_pre_spawn_item(type, v):
+	set_pre_spawn("item", type, v)
+	
+func set_pre_spawn(cata, type, v):
+	pre_spawn_type[v] = cata
+	pre_spawn[v] = type
+	print(str(v) + " " + str(type.resource_path))
 		
 func make_up_spawn():
-	var v1 = randf_range(0, spawnable_area.size() - 1)
-	var v2 = randf_range(v1, spawnable_area.size() - 1)
-	pre_spawn_mob[spawnable_area[v1]] = GOBLIN_WARRIOR_HAMMER
-	pre_spawn_mob[spawnable_area[v2]] = GOBLIN_WARRIOR_SPEAR
-	print(str(spawnable_area[v1]) + " GOBLIN_WARRIOR_HAMMER")
-	print(str(spawnable_area[v2]) + " GOBLIN_WARRIOR_SPEAR")
+	var v1 = randf_range(0, spawnable_area.size() - 3)
+	var v2 = randf_range(v1, spawnable_area.size() - 2)
+	var v3 = randf_range(v2, spawnable_area.size() - 1 )
+	set_pre_spawn_mob(GOBLIN_WARRIOR_HAMMER, spawnable_area[v1])
+	set_pre_spawn_mob(GOBLIN_WARRIOR_SPEAR, spawnable_area[v2])
+	set_pre_spawn_item(VAULT, spawnable_area[v3])
 		
 func spawn_mob(type, mx, my):
 	var spawn_position = get_regin_center(mx, my)
@@ -43,6 +57,13 @@ func spawn_mob(type, mx, my):
 	owner.mobs.add_child(mob)
 	mob.death.connect(owner._on_mob_death)
 	return mob
+
+func spawn_item(type, mx, my):
+	var spawn_position = get_regin_center(mx, my)
+	var item = type.instantiate()
+	item.position = spawn_position
+	owner.items.add_child(item)
+	return item
 
 func get_regin_center(x, y):
 	var top_left = owner.map.cord_to_tile[Vector2(x,y)]["top_left"]

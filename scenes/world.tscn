@@ -316,4 +316,6 @@ position = Vector2(1802, 1276)
 
 [node name="Mobs" type="Node" parent="."]
 
+[node name="Items" type="Node" parent="."]
+
 [connection signal="timeout" from="ProgressTimer" to="." method="_on_progress_timer_timeout"]
