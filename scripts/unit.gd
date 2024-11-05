@@ -53,9 +53,10 @@ func _sub_ready():
 func _process(delta):
 	if stun_ticks && stun_ticks > 0:
 		stun_ticks -= 1
+		print("stun_tickets " + str(stun_ticks))
 		var direction = knock_back_source_position.direction_to(global_position).normalized()
 		velocity = direction * knock_back_force
-		knock_back_force = clamp(knock_back_force - 10.0, 0.0, knock_back_force)
+		knock_back_force = clamp(knock_back_force - 50.0, 0.0, knock_back_force)
 		move_and_slide()
 	elif push_speed > 0:
 		velocity = push_direction * push_speed

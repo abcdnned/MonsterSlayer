@@ -1130,9 +1130,8 @@ region_rect = Rect2(0, 0, 256, 128)
 [node name="damage_zone_moon" parent="Sprite2D/LongSword" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 position = Vector2(-224.001, 0.745775)
 rotation = 1.57193
-knockback = 1500.0
 sound = NodePath("../../../sword_hit")
-stun = 15
+stun = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/LongSword/damage_zone_moon"]
 position = Vector2(1.08083, -232.495)
@@ -1153,8 +1152,8 @@ rotation = -0.280392
 
 [node name="damage_zone" parent="Sprite2D" node_paths=PackedStringArray("sound") instance=ExtResource("4_u465u")]
 damage = 1.0
-knockback = 1200.0
 sound = NodePath("../../sword_hit")
+stun = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/damage_zone"]
 position = Vector2(171, -11)
